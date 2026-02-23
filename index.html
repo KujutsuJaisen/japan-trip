@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎌 京坂行程表</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:      #1a1a2e;
+      --paper:    #faf9f6;
+      --accent:   #c0392b;
+      --accent2:  #e67e22;
+      --muted:    #7f8c8d;
+      --border:   #e8e4dc;
+      --card-bg:  #ffffff;
+      --tag-sight:  #e8f4f8;
+      --tag-food:   #fef9e7;
+      --tag-hotel:  #eaf4ea;
+      --tag-shop:   #fdf2f8;
+      --tag-sight-text:  #1a6a8a;
+      --tag-food-text:   #a0620a;
+      --tag-hotel-text:  #2e7d32;
+      --tag-shop-text:   #8e24aa;
+      --tag-other:       #f0eef8;
+      --tag-other-text:  #5e35b1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,.03) 40px,
+        rgba(255,255,255,.03) 41px
+      );
+    }
+    .site-header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: .08em;
+      position: relative;
+    }
+    .site-header .subtitle {
+      margin-top: .5rem;
+      font-size: .9rem;
+      color: rgba(255,255,255,.6);
+      letter-spacing: .05em;
+      position: relative;
+    }
+
+    /* ── DAY TABS ── */
+    .tabs-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--card-bg);
+      border-bottom: 2px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 1rem;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0;
+      padding: .85rem 1.2rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--muted);
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--ink); }
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* ── DAY SECTION ── */
+    .day-section { display: none; }
+    .day-section.active { display: block; }
+
+    .day-header {
+      margin-bottom: 1.8rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .day-header h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .day-header .day-date {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: .25rem;
+    }
+
+    /* ── ITEM CARD ── */
+    .item-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1rem;
+      transition: box-shadow .2s;
+      position: relative;
+    }
+    .item-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .time-col {
+      flex-shrink: 0;
+      text-align: center;
+      min-width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+    }
+    .time-start, .time-end {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.3;
+      text-align: center;
+      letter-spacing: -.02em;
+    }
+    .time-arrow {
+      font-size: 1rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1;
+      margin: .2rem 0;
+    }
+    .time-divider {
+      width: 2px;
+      align-self: stretch;
+      background: var(--border);
+      flex-shrink: 0;
+      margin: 0 .4rem;
+      border-radius: 2px;
+    }
+    .card-body { flex: 1; min-width: 0; padding-right: 7rem; }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: .5rem;
+    }
+    .type-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .25rem .65rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .type-tag.sight  { background: var(--tag-sight);  color: var(--tag-sight-text); }
+    .type-tag.food   { background: var(--tag-food);   color: var(--tag-food-text); }
+    .type-tag.hotel  { background: var(--tag-hotel);  color: var(--tag-hotel-text); }
+    .type-tag.shop   { background: var(--tag-shop);   color: var(--tag-shop-text); }
+    .type-tag.other  { background: var(--tag-other);  color: var(--tag-other-text); }
+
+    .place-link {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color .2s, color .2s;
+      line-height: 1.35;
+    }
+    .place-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .place-link.no-link { cursor: default; }
+    .place-link.no-link:hover { color: var(--ink); border-color: transparent; }
+
+    /* 地點名稱列 */
+    .place-nav-row {
+      margin-bottom: .3rem;
+    }
+
+    /* 導航按鈕：右側垂直置中絕對定位，放大版 */
+    .nav-btn {
+      position: absolute;
+      right: 1.4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .3rem;
+      padding: .9rem 1.1rem;
+      border-radius: 16px;
+      background: #2e7d32;
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(46,125,50,.35);
+      min-width: 64px;
+      cursor: pointer;
+    }
+    .nav-btn:hover {
+      background: #1b5e20;
+      transform: translateY(calc(-50% - 2px));
+      box-shadow: 0 6px 16px rgba(46,125,50,.45);
+    }
+    .nav-btn svg {
+      width: 26px; height: 26px;
+      fill: currentColor;
+    }
+
+    /* 備註區塊 */
+    .card-notes {
+      margin-top: .55rem;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+    .note-item {
+      display: flex;
+      gap: .45rem;
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.55;
+    }
+    .note-label {
+      font-size: .75rem;
+      font-weight: 700;
+      padding: .15rem .4rem;
+      border-radius: 4px;
+      background: #f0f0f0;
+      color: #888;
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: .15rem;
+    }
+
+    .card-cost {
+      margin-top: .65rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .88rem;
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    /* ── LOADING / ERROR ── */
+    .state-msg {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .state-msg .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── CONFIG BANNER ── */
+    .config-banner {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: .88rem;
+      line-height: 1.7;
+    }
+    .config-banner strong { color: #856404; }
+    .config-banner code {
+      background: #f8f0d0;
+      padding: .1rem .35rem;
+      border-radius: 4px;
+      font-size: .82rem;
+    }
+
+    /* ── RWD ── */
+    @media (max-width: 560px) {
+      .time-col { min-width: 72px; }
+      .time-start, .time-end { font-size: 1.25rem; }
+      .card-top { gap: .6rem; }
+      .item-card { padding: 1.1rem 1rem; }
+      .card-body { padding-right: 5.5rem; }
+      .nav-btn { padding: .65rem .75rem; min-width: 52px; right: .9rem; }
+      .nav-btn svg { width: 20px; height: 20px; }
+      .nav-btn span { font-size: .8rem; }
+      .place-link { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>🎌 京坂旅遊行程</h1>
+  <p class="subtitle" id="trip-subtitle">載入中…</p>
+</header>
+
+<nav class="tabs-wrapper">
+  <div class="tabs" id="tabs-container"></div>
+</nav>
+
+<main class="container" id="main-content">
+  <div class="state-msg" id="loading-msg">
+    <div class="spinner"></div>
+    正在讀取行程資料…
+  </div>
+</main>
+
+<script>
+// ════════════════════════════════════════════
+//  ⚙️  設定區 — 只需修改這裡
+// ════════════════════════════════════════════
+const CONFIG = {
+  // 1. 貼上你的 Google Sheets API 金鑰
+  API_KEY: 'AIzaSyDKUQWFclRLM5mBtVoXOasoYOivkxt2UdM',
+
+  // 2. 試算表 ID（網址中間那段）
+  SHEET_ID: '1Oxb_bl8xXXNuyTfDx8ea8CYw5zXQ5wxxS04kFf2Kapw',
+
+  // 3. 旅行標題 & 副標
+  TRIP_TITLE: '🎌 京坂旅遊行程',
+  TRIP_SUBTITLE: '京都・大阪',
+};
+// ════════════════════════════════════════════
+
+// 欄位對應（A~I）
+const COL = {
+  TYPE: 0,        // A 類型
+  TIME_START: 1,  // B 時間(起)
+  TIME_END: 2,    // C 時間(迄)
+  PLACE: 3,       // D 目的地
+  MAP_URL: 4,     // E 目的地(googlemap)
+  COST: 5,        // F 花費
+  CURRENCY: 6,    // G 幣別
+  NOTE1: 7,       // H 備註
+  NOTE2: 8,       // I 備註2
+};
+
+const TYPE_META = {
+  '景點': { icon: '🏛️', cls: 'sight' },
+  '餐廳': { icon: '🍜', cls: 'food' },
+  '住宿': { icon: '🏨', cls: 'hotel' },
+  '購物': { icon: '🛍️', cls: 'shop' },
+  '其他': { icon: '📌', cls: 'other' },
+};
+
+// ── 工具函式 ──────────────────────────────────
+function escHtml(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── 解析工作頁名稱，萃取「DayN」和日期 ──────────
+function parseSheetName(name) {
+  // 支援 "Day1(4/17)" 或 "Day1" 等格式
+  const m = name.match(/Day\s*(\d+)(?:\(([^)]+)\))?/i);
+  if (!m) return null;
+  return { day: parseInt(m[1]), date: m[2] || '', raw: name };
+}
+
+// ── 取得所有工作頁名稱 ────────────────────────
+async function fetchSheetNames() {
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}?key=${CONFIG.API_KEY}&fields=sheets.properties.title`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`無法讀取試算表：${res.status}`);
+  const data = await res.json();
+  return data.sheets.map(s => s.properties.title);
+}
+
+// ── 取得單一工作頁資料 ────────────────────────
+async function fetchSheet(sheetName) {
+  const range = encodeURIComponent(`'${sheetName}'!A:I`);
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${range}?key=${CONFIG.API_KEY}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`無法讀取工作頁 ${sheetName}`);
+  const data = await res.json();
+  return data.values || [];
+}
+
+// ── 渲染單一行程卡片 ─────────────────────────
+function renderCard(row) {
+  const type     = row[COL.TYPE]       || '';
+  const tStart   = row[COL.TIME_START] || '';
+  const tEnd     = row[COL.TIME_END]   || '';
+  const place    = row[COL.PLACE]      || '';
+  const mapUrl   = row[COL.MAP_URL]    || '';
+  const cost     = row[COL.COST]       || '';
+  const currency = row[COL.CURRENCY]   || '';
+  const note1    = row[COL.NOTE1]      || '';
+  const note2    = row[COL.NOTE2]      || '';
+
+  if (!place && !type) return '';
+
+  const meta = TYPE_META[type] || { icon: '📍', cls: 'other' };
+
+  // 類型標籤
+  const tagHtml = type
+    ? `<span class="type-tag ${meta.cls}">${meta.icon} ${escHtml(type)}</span>`
+    : '';
+
+  // 地點名稱（如有 map URL 則可點擊）
+  const placeLinkHtml = mapUrl
+    ? `<a class="place-link" href="${escHtml(mapUrl)}" target="_blank" rel="noopener">${escHtml(place)}</a>`
+    : `<span class="place-link no-link">${escHtml(place)}</span>`;
+
+  // 導航按鈕：右側垂直置中，icon 上、文字下
+  const navBtnHtml = mapUrl ? `
+    <a class="nav-btn" href="javascript:void(0)" onclick="navigate('${escHtml(mapUrl)}')" title="導航至此地點">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
+      <span>導航</span>
+    </a>` : '';
+
+  // 時間欄位：起迄字體相同，留空不顯示
+  const timeHtml = `
+    ${tStart ? `<div class="time-start">${escHtml(tStart)}</div>` : ''}
+    ${tStart && tEnd ? `<div class="time-arrow">↓</div>` : ''}
+    ${tEnd   ? `<div class="time-end">${escHtml(tEnd)}</div>` : ''}
+  `;
+
+  // 備註：分兩行，明確標示備註1/2，留空不顯示
+  let notesHtml = '';
+  const noteLines = [];
+  if (note1) noteLines.push(`<div class="note-item"><span class="note-label">備註1</span><span>${escHtml(note1)}</span></div>`);
+  if (note2) noteLines.push(`<div class="note-item"><span class="note-label">備註2</span><span>${escHtml(note2)}</span></div>`);
+  if (noteLines.length) notesHtml = `<div class="card-notes">${noteLines.join('')}</div>`;
+
+  // 花費
+  const costHtml = cost
+    ? `<div class="card-cost">💰 ${escHtml(cost)} ${escHtml(currency)}</div>`
+    : '';
+
+  return `
+    <div class="item-card">
+      <div class="card-top">
+        <div class="time-col">${timeHtml}</div>
+        <div class="time-divider"></div>
+        <div class="card-body">
+          <div class="card-title-row">
+            ${tagHtml}
+          </div>
+          <div class="place-nav-row">
+            ${placeLinkHtml}
+            ${navBtnHtml}
+          </div>
+          ${notesHtml}
+          ${costHtml}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── 渲染一天的區塊 ────────────────────────────
+function renderDay(meta, rows) {
+  const id = `day-${meta.day}`;
+  const cards = rows.map(renderCard).join('');
+  return `
+    <section class="day-section" id="${id}">
+      <div class="day-header">
+        <h2>Day ${meta.day}</h2>
+        ${meta.date ? `<div class="day-date">📅 ${meta.date}</div>` : ''}
+      </div>
+      ${cards || '<p style="color:#aaa;font-size:.9rem;">此天尚無行程資料</p>'}
+    </section>`;
+}
+
+// ── 渲染 Tab 按鈕 ─────────────────────────────
+function renderTabs(days) {
+  return days.map(d =>
+    `<button class="tab-btn" data-day="${d.day}" onclick="switchDay(${d.day})">
+      Day ${d.day}${d.date ? '<br><small style="font-size:.7rem;opacity:.7">'+escHtml(d.date)+'</small>' : ''}
+    </button>`
+  ).join('');
+}
+
+// ── 切換 Tab ──────────────────────────────────
+function switchDay(n) {
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const sec = document.getElementById(`day-${n}`);
+  if (sec) sec.classList.add('active');
+  const btn = document.querySelector(`.tab-btn[data-day="${n}"]`);
+  if (btn) {
+    btn.classList.add('active');
+    btn.scrollIntoView({ inline: 'center', behavior: 'smooth' });
+  }
+}
+
+// ── 主流程 ────────────────────────────────────
+async function init() {
+  const main = document.getElementById('main-content');
+  const subtitle = document.getElementById('trip-subtitle');
+  subtitle.textContent = CONFIG.TRIP_SUBTITLE;
+
+  // 尚未填入 API 金鑰時顯示說明
+  if (CONFIG.API_KEY === 'YOUR_GOOGLE_SHEETS_API_KEY') {
+    main.innerHTML = `
+      <div class="config-banner">
+        <strong>⚙️ 設定提示：</strong>請開啟 <code>index.html</code>，在頂部的 <code>CONFIG</code> 區塊填入你的
+        <code>API_KEY</code>（Google Sheets API 金鑰）後，重新整理即可看到行程。<br><br>
+        申請步驟：Google Cloud Console → 建立專案 → 啟用 Sheets API → 建立 API 金鑰 → 貼到 CONFIG.API_KEY。
+      </div>
+      <div class="state-msg">等待 API 金鑰設定完成…</div>`;
+    return;
+  }
+
+  try {
+    const names = await fetchSheetNames();
+    const daySheets = names
+      .map(n => ({ ...parseSheetName(n), sheetName: n }))
+      .filter(d => d !== null && d.day != null)
+      .sort((a, b) => a.day - b.day);
+
+    if (!daySheets.length) throw new Error('找不到 Day 開頭的工作頁');
+
+    // 並行抓所有工作頁
+    const allRows = await Promise.all(daySheets.map(d => fetchSheet(d.sheetName)));
+
+    // 組建 HTML
+    const tabsHtml = renderTabs(daySheets);
+    const sectionsHtml = daySheets.map((d, i) => {
+      const rows = allRows[i].slice(1).filter(r => r.some(c => c)); // 跳過標題列，濾空列
+      return renderDay(d, rows);
+    }).join('');
+
+    document.getElementById('tabs-container').innerHTML = tabsHtml;
+    main.innerHTML = sectionsHtml;
+
+    // 預設顯示第一天
+    switchDay(daySheets[0].day);
+
+  } catch (err) {
+    main.innerHTML = `
+      <div class="state-msg">
+        ❌ 讀取失敗：${escHtml(err.message)}<br>
+        <small style="margin-top:.5rem;display:block;">請確認 API 金鑰、試算表 ID 是否正確，以及試算表已設定為「知道連結的任何人可以檢視」。</small>
+      </div>`;
+  }
+}
+
+// ── 導航函式：取得目前位置，開啟 Google Maps 導航 ──
+function navigate(destUrl) {
+  // 從 Google Maps 網址嘗試萃取目的地座標或地點名稱
+  // 直接用 Google Maps 的 dir 功能，起點設為目前位置
+  if (!navigator.geolocation) {
+    // 瀏覽器不支援定位，直接開啟目的地頁面
+    window.open(destUrl, '_blank');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      // 萃取目的地：優先使用 Maps URL 內的座標，否則用整個網址當作搜尋字串
+      let dest = destUrl;
+      // 嘗試從 @lat,lng 格式萃取
+      const coordMatch = destUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+      if (coordMatch) {
+        dest = `${coordMatch[1]},${coordMatch[2]}`;
+      } else {
+        // 嘗試從 /place/ 路徑萃取地點名稱
+        const placeMatch = destUrl.match(/\/place\/([^/]+)/);
+        if (placeMatch) dest = decodeURIComponent(placeMatch[1].replace(/\+/g, ' '));
+      }
+      const navUrl = `https://www.google.com/maps/dir/${lat},${lng}/${encodeURIComponent(dest)}`;
+      window.open(navUrl, '_blank');
+    },
+    () => {
+      // 定位失敗，直接開啟目的地
+      window.open(destUrl, '_blank');
+    }
+  );
+}
+
+init();
+</script>
+</body>
+</html>
