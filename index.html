@@ -614,33 +614,21 @@ function openUrl(url) {
   document.body.removeChild(a);
 }
 
-// ── 萃取 Google Maps 目的地字串 ──
-function extractDest(destUrl) {
-  // 優先抓 @lat,lng
-  const coordMatch = destUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
-  if (coordMatch) return `${coordMatch[1]},${coordMatch[2]}`;
-  // 其次抓 /place/地點名稱
-  const placeMatch = destUrl.match(/\/place\/([^/?]+)/);
-  if (placeMatch) return decodeURIComponent(placeMatch[1].replace(/\+/g, ' '));
-  // 最後直接用整個網址
-  return destUrl;
-}
-
 // ── 導航函式：iOS / Android / 桌面全相容 ──
 function navigate(destUrl) {
-  const dest = extractDest(destUrl);
+  let navUrl;
 
-  // iOS：優先嘗試開啟 Apple Maps app（comgooglemaps 在 iOS 上也可試）
-  // 這裡統一用 Google Maps 網頁版，讓系統自己決定要開 app 還是瀏覽器
-  if (!navigator.geolocation) {
-    // 不支援定位，直接開目的地
-    openUrl(`https://maps.google.com/?daddr=${encodeURIComponent(dest)}&directionsmode=driving`);
-    return;
+  // 長網址含座標（@lat,lng），直接用座標最精準
+  const coordMatch = destUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+  if (coordMatch) {
+    const dest = `${coordMatch[1]},${coordMatch[2]}`;
+    navUrl = `https://maps.google.com/?daddr=${dest}&directionsmode=driving`;
+  } else {
+    // 短網址（maps.app.goo.gl）或其他格式
+    // 直接把原始網址當成 destination，Google Maps 會自己展開短網址找到地點
+    navUrl = `https://maps.google.com/?daddr=${encodeURIComponent(destUrl)}&directionsmode=driving`;
   }
 
-  // 先用 daddr 只帶終點（不帶起點），Google Maps 會自動用 GPS 定位當起點
-  // 這樣完全不需要等非同步 GPS，iOS 不會封鎖
-  const navUrl = `https://maps.google.com/?daddr=${encodeURIComponent(dest)}&directionsmode=driving`;
   openUrl(navUrl);
 }
 
