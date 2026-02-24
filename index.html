@@ -621,12 +621,14 @@ function navigate(destUrl) {
   // 長網址含座標（@lat,lng），直接用座標最精準
   const coordMatch = destUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
   if (coordMatch) {
+    // 有座標：用 saddr=目前位置（留空讓 Maps 自動抓 GPS），daddr=目的地座標
     const dest = `${coordMatch[1]},${coordMatch[2]}`;
-    navUrl = `https://maps.google.com/?daddr=${dest}&directionsmode=driving`;
+    navUrl = `https://maps.google.com/maps?daddr=${dest}&dirflg=d`;
   } else {
-    // 短網址（maps.app.goo.gl）或其他格式
-    // 直接把原始網址當成 destination，Google Maps 會自己展開短網址找到地點
-    navUrl = `https://maps.google.com/?daddr=${encodeURIComponent(destUrl)}&directionsmode=driving`;
+    // 短網址或無座標：直接把原始短網址用 location 方式跳轉
+    // iOS 上 maps.app.goo.gl 開啟後會自動進入地點頁面，再點導航即可
+    // 這是最可靠的方式，不會有地點解析問題
+    navUrl = destUrl;
   }
 
   openUrl(navUrl);
