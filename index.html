@@ -388,17 +388,18 @@ const CONFIG = {
 };
 // ════════════════════════════════════════════
 
-// 欄位對應（A~I）
+// 欄位對應（A~J）
 const COL = {
   TYPE: 0,        // A 類型
   TIME_START: 1,  // B 時間(起)
   TIME_END: 2,    // C 時間(迄)
   PLACE: 3,       // D 目的地
   MAP_URL: 4,     // E 目的地(googlemap)
-  COST: 5,        // F 花費
-  CURRENCY: 6,    // G 幣別
-  NOTE1: 7,       // H 備註
-  NOTE2: 8,       // I 備註2
+  NAV_ADDR: 5,    // F 導航地址
+  COST: 6,        // G 花費
+  CURRENCY: 7,    // H 幣別
+  NOTE1: 8,       // I 備註
+  NOTE2: 9,       // J 備註2
 };
 
 const TYPE_META = {
@@ -433,7 +434,7 @@ async function fetchSheetNames() {
 
 // ── 取得單一工作頁資料 ────────────────────────
 async function fetchSheet(sheetName) {
-  const range = encodeURIComponent(`'${sheetName}'!A:I`);
+  const range = encodeURIComponent(`'${sheetName}'!A:J`);
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${range}?key=${CONFIG.API_KEY}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`無法讀取工作頁 ${sheetName}`);
@@ -448,6 +449,7 @@ function renderCard(row) {
   const tEnd     = row[COL.TIME_END]   || '';
   const place    = row[COL.PLACE]      || '';
   const mapUrl   = row[COL.MAP_URL]    || '';
+  const navAddr  = row[COL.NAV_ADDR]   || '';
   const cost     = row[COL.COST]       || '';
   const currency = row[COL.CURRENCY]   || '';
   const note1    = row[COL.NOTE1]      || '';
@@ -467,9 +469,9 @@ function renderCard(row) {
     ? `<a class="place-link" href="${escHtml(mapUrl)}" target="_blank" rel="noopener">${escHtml(place)}</a>`
     : `<span class="place-link no-link">${escHtml(place)}</span>`;
 
-  // 導航按鈕：右側垂直置中，icon 上、文字下
-  const navBtnHtml = mapUrl ? `
-    <a class="nav-btn" href="javascript:void(0)" onclick="navigate('${escHtml(mapUrl)}')" title="導航至此地點">
+  // 導航按鈕：有填導航地址才顯示
+  const navBtnHtml = navAddr ? `
+    <a class="nav-btn" href="javascript:void(0)" onclick="navigate('${escHtml(navAddr)}')" title="導航至此地點">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
       </svg>
@@ -614,23 +616,11 @@ function openUrl(url) {
   document.body.removeChild(a);
 }
 
-// ── 導航函式：iOS / Android / 桌面全相容 ──
-function navigate(destUrl) {
-  let navUrl;
-
-  // 長網址含座標（@lat,lng），直接用座標最精準
-  const coordMatch = destUrl.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
-  if (coordMatch) {
-    // 有座標：用 saddr=目前位置（留空讓 Maps 自動抓 GPS），daddr=目的地座標
-    const dest = `${coordMatch[1]},${coordMatch[2]}`;
-    navUrl = `https://maps.google.com/maps?daddr=${dest}&dirflg=d`;
-  } else {
-    // 短網址或無座標：直接把原始短網址用 location 方式跳轉
-    // iOS 上 maps.app.goo.gl 開啟後會自動進入地點頁面，再點導航即可
-    // 這是最可靠的方式，不會有地點解析問題
-    navUrl = destUrl;
-  }
-
+// ── 導航函式：直接用導航地址搜尋，iOS / Android / 桌面全相容 ──
+function navigate(navAddr) {
+  // 用 Google Maps 搜尋地址並直接開啟路線規劃
+  // saddr 留空讓 Maps 自動抓目前 GPS 位置當起點
+  const navUrl = `https://maps.google.com/?daddr=${encodeURIComponent(navAddr)}&dirflg=d`;
   openUrl(navUrl);
 }
 
