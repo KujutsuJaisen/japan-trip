@@ -351,25 +351,390 @@
       .nav-btn span { font-size: .8rem; }
       .place-link { font-size: 1.3rem; }
     }
+
+    /* ── HAMBURGER BUTTON ── */
+    .hamburger-btn {
+      position: absolute;
+      top: 50%;
+      left: 1.2rem;
+      transform: translateY(-50%);
+      z-index: 200;
+      background: rgba(255,255,255,.12);
+      border: 1.5px solid rgba(255,255,255,.25);
+      border-radius: 10px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: background .2s;
+      padding: 0;
+    }
+    .hamburger-btn:hover { background: rgba(255,255,255,.22); }
+    .hamburger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── SIDEBAR ── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 300;
+      backdrop-filter: blur(2px);
+    }
+    .sidebar-overlay.open { display: block; }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 100%;
+      width: 260px;
+      background: var(--ink);
+      z-index: 400;
+      transform: translateX(-100%);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .sidebar.open { transform: translateX(0); }
+
+    .sidebar-header {
+      padding: 2rem 1.5rem 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .sidebar-header h2 {
+      font-family: 'Noto Serif TC', serif;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+    .sidebar-header p {
+      color: rgba(255,255,255,.5);
+      font-size: .8rem;
+      margin-top: .3rem;
+    }
+
+    .sidebar-nav {
+      padding: 1rem 0;
+      flex: 1;
+    }
+    .sidebar-nav-item {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .9rem 1.5rem;
+      color: rgba(255,255,255,.7);
+      font-size: .95rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      transition: background .2s, color .2s;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-nav-item:hover {
+      background: rgba(255,255,255,.07);
+      color: #fff;
+    }
+    .sidebar-nav-item.active {
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      border-left-color: var(--accent);
+    }
+    .sidebar-nav-item .nav-icon {
+      font-size: 1.3rem;
+      width: 28px;
+      text-align: center;
+    }
+
+    /* ── PAGE 切換 ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* tabs-wrapper 只在行程頁顯示 */
+    .tabs-wrapper { display: none; }
+    .tabs-wrapper.visible { display: block; }
+
+    /* ── WEATHER PAGE ── */
+    .weather-container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+    .weather-page-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .weather-page-subtitle {
+      font-size: .88rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    /* 城市選擇器 */
+    .city-tabs {
+      display: flex;
+      gap: .6rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .city-tab {
+      padding: .45rem 1.1rem;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: var(--card-bg);
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .city-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .city-tab.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #fff;
+    }
+    .city-tab-gps {
+      border-color: #3498db;
+      color: #3498db;
+    }
+    .city-tab-gps:hover {
+      background: #ebf5fb;
+      border-color: #2980b9;
+      color: #2980b9;
+    }
+    .city-tab-gps.active {
+      background: #2980b9;
+      border-color: #2980b9;
+      color: #fff;
+    }
+    .city-tab-gps.locating {
+      opacity: .7;
+      cursor: wait;
+      pointer-events: none;
+    }
+
+    /* 天氣卡片主體 */
+    .weather-main-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      border-radius: 20px;
+      padding: 2rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .weather-main-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .weather-city-name {
+      font-size: .95rem;
+      opacity: .7;
+      margin-bottom: .3rem;
+    }
+    .weather-temp-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: .5rem;
+    }
+    .weather-temp {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.03em;
+    }
+    .weather-icon-big { font-size: 3rem; line-height: 1; }
+    .weather-desc {
+      font-size: 1rem;
+      opacity: .85;
+      margin-bottom: 1.2rem;
+    }
+    .weather-stats {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .weather-stat {
+      display: flex;
+      flex-direction: column;
+      gap: .15rem;
+    }
+    .weather-stat-label {
+      font-size: .72rem;
+      opacity: .6;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .weather-stat-value {
+      font-size: .95rem;
+      font-weight: 600;
+    }
+
+    /* 每日預報 */
+    .forecast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: .75rem;
+    }
+    .forecast-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem .8rem;
+      text-align: center;
+      transition: box-shadow .2s;
+    }
+    .forecast-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+    .forecast-day {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: .4rem;
+    }
+    .forecast-icon { font-size: 1.8rem; margin-bottom: .4rem; }
+    .forecast-hi {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .forecast-lo {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: .1rem;
+    }
+    .forecast-rain {
+      font-size: .75rem;
+      color: #3498db;
+      margin-top: .3rem;
+      font-weight: 500;
+    }
+
+    /* 天氣載入/錯誤 */
+    .weather-loading {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+    }
+    .weather-loading .spinner {
+      width: 30px; height: 30px;
+      border: 3px solid var(--border);
+      border-top-color: #3498db;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    .weather-error {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-size: .88rem;
+      color: #856404;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 560px) {
+      .sidebar { width: 240px; }
+      .weather-temp { font-size: 3rem; }
+      .forecast-grid { grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); }
+    }
   </style>
 </head>
 <body>
 
+<!-- 側邊欄遮罩 -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- 側邊欄 -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>🎌 京坂行程</h2>
+    <p>京都・大阪</p>
+  </div>
+  <nav class="sidebar-nav">
+    <button class="sidebar-nav-item active" onclick="switchPage('itinerary')" id="menu-itinerary">
+      <span class="nav-icon">🗓️</span> 行程表
+    </button>
+    <button class="sidebar-nav-item" onclick="switchPage('weather')" id="menu-weather">
+      <span class="nav-icon">🌤️</span> 天氣預報
+    </button>
+  </nav>
+</aside>
+
 <header class="site-header">
+  <!-- 漢堡按鈕 -->
+  <button class="hamburger-btn" id="hamburger-btn" onclick="toggleSidebar()" aria-label="選單">
+    <span></span><span></span><span></span>
+  </button>
   <h1>🎌 京坂旅遊行程</h1>
   <p class="subtitle" id="trip-subtitle">載入中…</p>
 </header>
 
-<nav class="tabs-wrapper">
+<!-- Day 頁籤（只在行程頁顯示） -->
+<nav class="tabs-wrapper visible" id="tabs-wrapper">
   <div class="tabs" id="tabs-container"></div>
 </nav>
 
-<main class="container" id="main-content">
-  <div class="state-msg" id="loading-msg">
-    <div class="spinner"></div>
-    正在讀取行程資料…
+<!-- ═══ 行程表頁面 ═══ -->
+<div class="page active" id="page-itinerary">
+  <main class="container" id="main-content">
+    <div class="state-msg" id="loading-msg">
+      <div class="spinner"></div>
+      正在讀取行程資料…
+    </div>
+  </main>
+</div>
+
+<!-- ═══ 天氣預報頁面 ═══ -->
+<div class="page" id="page-weather">
+  <div class="weather-container">
+    <div class="weather-page-title">🌤️ 天氣預報</div>
+    <div class="weather-page-subtitle">旅遊期間各城市天氣資訊</div>
+
+    <!-- 城市切換 -->
+    <div class="city-tabs">
+      <button class="city-tab active" onclick="selectCity('kyoto')" id="city-kyoto">京都</button>
+      <button class="city-tab" onclick="selectCity('osaka')" id="city-osaka">大阪</button>
+      <button class="city-tab city-tab-gps" onclick="selectCity('gps')" id="city-gps">
+        <span id="gps-btn-text">📍 我的位置</span>
+      </button>
+    </div>
+
+    <!-- 天氣內容區 -->
+    <div id="weather-content">
+      <div class="weather-loading">
+        <div class="spinner"></div>
+        載入天氣資料中…
+      </div>
+    </div>
   </div>
-</main>
+</div>
 
 <script>
 // ════════════════════════════════════════════
@@ -622,6 +987,233 @@ function navigate(navAddr) {
   // saddr 留空讓 Maps 自動抓目前 GPS 位置當起點
   const navUrl = `https://maps.google.com/?daddr=${encodeURIComponent(navAddr)}&dirflg=d`;
   openUrl(navUrl);
+}
+
+// ════════════════════════════════════════════
+//  🍔 漢堡選單 & 頁面切換
+// ════════════════════════════════════════════
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  const btn     = document.getElementById('hamburger-btn');
+  const isOpen  = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+  document.getElementById('hamburger-btn').classList.remove('open');
+}
+
+let currentPage = 'itinerary';
+function switchPage(page) {
+  closeSidebar();
+  currentPage = page;
+
+  // 頁面切換
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(`page-${page}`).classList.add('active');
+
+  // 選單 active 狀態
+  document.querySelectorAll('.sidebar-nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById(`menu-${page}`).classList.add('active');
+
+  // Day tabs 只在行程頁顯示
+  const tabsWrapper = document.getElementById('tabs-wrapper');
+  tabsWrapper.classList.toggle('visible', page === 'itinerary');
+
+  // 切換到天氣頁時載入
+  if (page === 'weather') loadWeather(currentCity);
+}
+
+// ════════════════════════════════════════════
+//  🌤️ 天氣功能（Open-Meteo 免費 API，不需金鑰）
+// ════════════════════════════════════════════
+const CITIES = {
+  kyoto: { name: '京都', lat: 35.0116, lon: 135.7681, tz: 'Asia/Tokyo' },
+  osaka: { name: '大阪', lat: 34.6937, lon: 135.5023, tz: 'Asia/Tokyo' },
+};
+
+const WMO_CODES = {
+  0:  { label: '晴天',     icon: '☀️' },
+  1:  { label: '大致晴',   icon: '🌤️' },
+  2:  { label: '部分多雲', icon: '⛅' },
+  3:  { label: '陰天',     icon: '☁️' },
+  45: { label: '霧',       icon: '🌫️' },
+  48: { label: '凍霧',     icon: '🌫️' },
+  51: { label: '毛毛雨',   icon: '🌦️' },
+  53: { label: '毛毛雨',   icon: '🌦️' },
+  55: { label: '毛毛雨',   icon: '🌦️' },
+  61: { label: '小雨',     icon: '🌧️' },
+  63: { label: '中雨',     icon: '🌧️' },
+  65: { label: '大雨',     icon: '🌧️' },
+  71: { label: '小雪',     icon: '🌨️' },
+  73: { label: '中雪',     icon: '❄️' },
+  75: { label: '大雪',     icon: '❄️' },
+  80: { label: '陣雨',     icon: '🌦️' },
+  81: { label: '陣雨',     icon: '🌧️' },
+  82: { label: '暴雨',     icon: '⛈️' },
+  95: { label: '雷雨',     icon: '⛈️' },
+  99: { label: '冰雹雷雨', icon: '⛈️' },
+};
+function getWmo(code) {
+  return WMO_CODES[code] || { label: '未知', icon: '🌡️' };
+}
+
+const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
+
+let currentCity = 'kyoto';
+let weatherCache = {};
+
+// ── 用座標查天氣（共用邏輯）────────────────────
+async function fetchWeatherByCoord(lat, lon, cityName) {
+  const content = document.getElementById('weather-content');
+  const cacheKey = `${lat.toFixed(3)},${lon.toFixed(3)}`;
+
+  if (weatherCache[cacheKey]) {
+    renderWeather(weatherCache[cacheKey], { name: cityName });
+    return;
+  }
+
+  content.innerHTML = `<div class="weather-loading"><div class="spinner"></div>載入 ${cityName} 天氣中…</div>`;
+
+  try {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}`
+      + `&current=temperature_2m,weathercode,windspeed_10m,relative_humidity_2m,apparent_temperature`
+      + `&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max`
+      + `&timezone=auto&forecast_days=10`;
+
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('API 回應異常');
+    const data = await res.json();
+    weatherCache[cacheKey] = data;
+    renderWeather(data, { name: cityName });
+  } catch (err) {
+    content.innerHTML = `
+      <div class="weather-error">⚠️ 天氣資料載入失敗：${escHtml(err.message)}<br>
+      請確認網路連線後重新整理。</div>`;
+  }
+}
+
+// ── 載入城市天氣 ─────────────────────────────
+async function loadWeather(cityKey) {
+  currentCity = cityKey;
+  if (cityKey === 'gps') {
+    loadGpsWeather();
+    return;
+  }
+  const city = CITIES[cityKey];
+  await fetchWeatherByCoord(city.lat, city.lon, city.name);
+}
+
+// ── GPS 定位查天氣 ────────────────────────────
+function loadGpsWeather() {
+  const btn = document.getElementById('city-gps');
+  const btnText = document.getElementById('gps-btn-text');
+  const content = document.getElementById('weather-content');
+
+  if (!navigator.geolocation) {
+    content.innerHTML = `<div class="weather-error">⚠️ 你的瀏覽器不支援定位功能。</div>`;
+    return;
+  }
+
+  // 定位中狀態
+  btn.classList.add('locating');
+  btnText.textContent = '⏳ 定位中…';
+  content.innerHTML = `<div class="weather-loading"><div class="spinner"></div>正在取得你的位置…</div>`;
+
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      btn.classList.remove('locating');
+      btnText.textContent = '📍 我的位置';
+      const { latitude, longitude } = pos.coords;
+      await fetchWeatherByCoord(latitude, longitude, '我的位置');
+    },
+    (err) => {
+      btn.classList.remove('locating');
+      btnText.textContent = '📍 我的位置';
+      const msg = err.code === 1 ? '請允許瀏覽器存取你的位置權限後再試。'
+                : err.code === 2 ? '無法取得位置，請確認 GPS 是否開啟。'
+                : '定位逾時，請再試一次。';
+      content.innerHTML = `<div class="weather-error">⚠️ 定位失敗：${msg}</div>`;
+      // 恢復到京都
+      document.querySelectorAll('.city-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('city-kyoto').classList.add('active');
+      currentCity = 'kyoto';
+      loadWeather('kyoto');
+    },
+    { timeout: 10000, maximumAge: 60000 }
+  );
+}
+
+function selectCity(cityKey) {
+  currentCity = cityKey;
+  document.querySelectorAll('.city-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(`city-${cityKey}`).classList.add('active');
+  loadWeather(cityKey);
+}
+
+function renderWeather(data, city) {
+  const cur = data.current;
+  const daily = data.daily;
+  const wmo = getWmo(cur.weathercode);
+
+  // 今日預報卡
+  const mainCard = `
+    <div class="weather-main-card">
+      <div class="weather-city-name">📍 ${city.name}</div>
+      <div class="weather-temp-row">
+        <div class="weather-temp">${Math.round(cur.temperature_2m)}°</div>
+        <div class="weather-icon-big">${wmo.icon}</div>
+      </div>
+      <div class="weather-desc">${wmo.label}　體感 ${Math.round(cur.apparent_temperature)}°C</div>
+      <div class="weather-stats">
+        <div class="weather-stat">
+          <span class="weather-stat-label">濕度</span>
+          <span class="weather-stat-value">${cur.relative_humidity_2m}%</span>
+        </div>
+        <div class="weather-stat">
+          <span class="weather-stat-label">風速</span>
+          <span class="weather-stat-value">${cur.windspeed_10m} km/h</span>
+        </div>
+        <div class="weather-stat">
+          <span class="weather-stat-label">最高</span>
+          <span class="weather-stat-value">${Math.round(daily.temperature_2m_max[0])}°C</span>
+        </div>
+        <div class="weather-stat">
+          <span class="weather-stat-label">最低</span>
+          <span class="weather-stat-value">${Math.round(daily.temperature_2m_min[0])}°C</span>
+        </div>
+      </div>
+    </div>`;
+
+  // 10 天預報
+  const forecastCards = daily.time.map((dateStr, i) => {
+    const d = new Date(dateStr);
+    const dayLabel = i === 0 ? '今天' : i === 1 ? '明天' : `${d.getMonth()+1}/${d.getDate()}（${WEEKDAYS[d.getDay()]}）`;
+    const fw = getWmo(daily.weathercode[i]);
+    const rain = daily.precipitation_probability_max[i];
+    return `
+      <div class="forecast-card">
+        <div class="forecast-day">${dayLabel}</div>
+        <div class="forecast-icon">${fw.icon}</div>
+        <div class="forecast-hi">${Math.round(daily.temperature_2m_max[i])}°</div>
+        <div class="forecast-lo">${Math.round(daily.temperature_2m_min[i])}°</div>
+        ${rain != null ? `<div class="forecast-rain">💧${rain}%</div>` : ''}
+      </div>`;
+  }).join('');
+
+  document.getElementById('weather-content').innerHTML = mainCard
+    + `<div class="forecast-grid">${forecastCards}</div>`;
+}
+
+function selectCity(cityKey) {
+  currentCity = cityKey;
+  document.querySelectorAll('.city-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(`city-${cityKey}`).classList.add('active');
+  loadWeather(cityKey);
 }
 
 init();
