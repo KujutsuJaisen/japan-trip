@@ -681,6 +681,9 @@
     <button class="sidebar-nav-item active" onclick="switchPage('itinerary')" id="menu-itinerary">
       <span class="nav-icon">🗓️</span> 行程表
     </button>
+    <button class="sidebar-nav-item" onclick="switchPage('luggage')" id="menu-luggage">
+      <span class="nav-icon">🧳</span> 行李確認表
+    </button>
     <button class="sidebar-nav-item" onclick="switchPage('weather')" id="menu-weather">
       <span class="nav-icon">🌤️</span> 天氣預報
     </button>
@@ -709,6 +712,15 @@
       正在讀取行程資料…
     </div>
   </main>
+</div>
+
+<!-- ═══ 行李確認表頁面（功能開發中）═══ -->
+<div class="page" id="page-luggage">
+  <div class="container">
+    <div class="state-msg" style="padding-top:4rem;">
+      🧳 行李確認表功能即將推出
+    </div>
+  </div>
 </div>
 
 <!-- ═══ 天氣預報頁面 ═══ -->
@@ -933,7 +945,11 @@ async function init() {
 
   try {
     const names = await fetchSheetNames();
+
+    // 跳過非行程工作頁（行李確認表等），只處理 Day 開頭的工作頁
+    const SKIP_SHEETS = ['行李確認表'];
     const daySheets = names
+      .filter(n => !SKIP_SHEETS.includes(n))
       .map(n => ({ ...parseSheetName(n), sheetName: n }))
       .filter(d => d !== null && d.day != null)
       .sort((a, b) => a.day - b.day);
