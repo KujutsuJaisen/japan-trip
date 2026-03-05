@@ -1539,9 +1539,15 @@ let editingRow    = null;  // 編輯中的試算表列號
 
 // ── 呼叫 GAS API ─────────────────────────────
 async function gasRequest(payload) {
+  // Apps Script 不支援 OPTIONS 預檢，改用 no-cors + FormData 方式
+  // 用 URL 參數夾帶 action，body 用 application/x-www-form-urlencoded
+  const form = new URLSearchParams();
+  form.append('payload', JSON.stringify(payload));
+
   const res = await fetch(CONFIG.GAS_URL, {
     method: 'POST',
-    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: form.toString(),
   });
   const data = await res.json();
   if (!data.ok) throw new Error(data.error || '操作失敗');
