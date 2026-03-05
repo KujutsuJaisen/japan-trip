@@ -1571,12 +1571,14 @@ function fetchGasJsonp(url) {
     }
 
     window[cbName] = function(data) {
+      console.log('[JSONP] callback 收到資料:', data);
       cleanup();
       resolve(data);
     };
 
     script.src = `${url}?callback=${cbName}`;
-    script.onerror = () => { cleanup(); reject(new Error('載入失敗')); };
+    console.log('[JSONP] 發送請求:', script.src);
+    script.onerror = (err) => { console.error('[JSONP] script 載入錯誤:', err); cleanup(); reject(new Error('載入失敗')); };
     document.head.appendChild(script);
   });
 }
@@ -1595,11 +1597,15 @@ async function loadLuggage() {
   }
 
   try {
+    console.log('[Luggage] 開始載入，GAS_URL:', CONFIG.GAS_URL);
     const data = await fetchGasJsonp(CONFIG.GAS_URL);
+    console.log('[Luggage] JSONP 回應:', data);
     if (!data.ok) throw new Error(data.error);
     luggageItems = data.data;
+    console.log('[Luggage] 資料筆數:', luggageItems.length, luggageItems);
     renderLuggage();
   } catch (e) {
+    console.error('[Luggage] 載入失敗:', e);
     list.innerHTML = `<div class="state-msg">❌ 載入失敗：${escHtml(e.message)}</div>`;
   }
 }
