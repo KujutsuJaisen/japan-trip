@@ -1054,12 +1054,20 @@
 const CONFIG = {
   API_KEY:      '{{SHEETS_API_KEY}}',
   SHEET_ID:     '{{SHEET_ID}}',
-  // 貼上你的 Google Apps Script Web App 網址
   GAS_URL:      '{{GAS_URL}}',
   TRIP_TITLE:   '🎌 京坂旅遊行程',
   TRIP_SUBTITLE:'京都・大阪',
+  VERSION:      'v1.0.0',   // ← 版本號，可自行修改
 };
 // ════════════════════════════════════════════
+
+// 🚀 啟動 log
+console.log(
+  `%c 🎌 京坂旅遊行程 ${CONFIG.VERSION} `,
+  'background:#1a1a2e;color:#fff;font-size:14px;font-weight:bold;padding:4px 10px;border-radius:6px;'
+);
+console.log('%c[Config] GAS_URL:', 'color:#3498db;font-weight:bold;', CONFIG.GAS_URL);
+console.log('%c[Config] SHEET_ID:', 'color:#3498db;font-weight:bold;', CONFIG.SHEET_ID);
 
 // 欄位對應（A~J）
 const COL = {
@@ -1321,6 +1329,7 @@ function closeSidebar() {
 
 let currentPage = 'itinerary';
 function switchPage(page) {
+  console.log('[switchPage] 切換到:', page);
   closeSidebar();
   currentPage = page;
 
@@ -1591,7 +1600,7 @@ async function loadLuggage() {
 
   if (!CONFIG.GAS_URL || CONFIG.GAS_URL === '{{GAS_URL}}') {
     list.innerHTML = `<div class="config-banner">
-      <strong>⚙️ 設定提示：</strong>請至 GitHub Secrets 新增 <code>GAS_URL</code>（Google Apps Script Web App 網址）後重新部署。
+      <strong>⚙️ 設定提示：</strong>請至 GitHub Secrets 新增 <code>GAS_URL</code>（Google Apps Script Web App 網址）後重新部署0305。
     </div>`;
     return;
   }
