@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main          # 每次推送到 main 分支時自動觸發!
+      - main          # 每次推送到 main 分支時自動觸發!!!
   workflow_dispatch:  # 也可以在 Actions 頁面手動觸發
 
 permissions:
