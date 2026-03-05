@@ -1057,7 +1057,7 @@ const CONFIG = {
   GAS_URL:      '{{GAS_URL}}',
   TRIP_TITLE:   '🎌 京坂旅遊行程',
   TRIP_SUBTITLE:'京都・大阪',
-  VERSION:      'v1.0.0',   // ← 版本號，可自行修改
+  VERSION:      'v1.0.1',   // ← 版本號，可自行修改
 };
 // ════════════════════════════════════════════
 
@@ -1598,9 +1598,9 @@ async function loadLuggage() {
   list.innerHTML = `<div class="state-msg"><div class="spinner"></div>載入行李清單…</div>`;
   document.getElementById('luggage-progress').style.display = 'none';
 
-  if (!CONFIG.GAS_URL || CONFIG.GAS_URL === '{{GAS_URL}}') {
+  if (!CONFIG.GAS_URL || !CONFIG.GAS_URL.startsWith('https://script.google.com')) {
     list.innerHTML = `<div class="config-banner">
-      <strong>⚙️ 設定提示：</strong>請至 GitHub Secrets 新增 <code>GAS_URL</code>（Google Apps Script Web App 網址）後重新部署0305。
+      <strong>⚙️ 設定提示：</strong>請至 GitHub Secrets 新增 <code>GAS_URL</code>（Google Apps Script Web App 網址）後重新部署。
     </div>`;
     return;
   }
