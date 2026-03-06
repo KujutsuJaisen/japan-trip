@@ -1057,7 +1057,7 @@ const CONFIG = {
   GAS_URL:      '{{GAS_URL}}',
   TRIP_TITLE:   '🎌 京坂旅遊行程',
   TRIP_SUBTITLE:'京都・大阪',
-  VERSION:      'v1.0.2',   // ← 版本號，可自行修改
+  VERSION:      'v1.1.1',   // ← 版本號，可自行修改
 };
 // ════════════════════════════════════════════
 
@@ -1638,7 +1638,7 @@ function renderLuggage() {
         html += `
           <div class="luggage-item" id="luggage-row-${item.row}">
             <div class="luggage-checkbox ${chk ? 'checked' : ''}"
-                 onclick="toggleCheck(${item.row}, ${!chk})"></div>
+                 onclick="toggleCheck(${item.row})"></div>
             <div class="luggage-content ${chk ? 'checked' : ''}">${escHtml(item.content)}</div>
             <div class="luggage-actions">
               <button class="luggage-action-btn" onclick="openEditModal(${item.row})" title="編輯">✏️</button>
@@ -1653,10 +1653,15 @@ function renderLuggage() {
 }
 
 // ── 切換勾選 ─────────────────────────────────
-async function toggleCheck(row, checked) {
+async function toggleCheck(row) {
   const box = document.querySelector(`#luggage-row-${row} .luggage-checkbox`);
   const txt = document.querySelector(`#luggage-row-${row} .luggage-content`);
-  if (!box) return;
+  if (!box || box.classList.contains('loading')) return;
+
+  // 從本地資料讀取目前狀態，取反
+  const item = luggageItems.find(i => i.row === row);
+  if (!item) return;
+  const checked = !item.checked;
 
   // 樂觀更新 UI
   box.classList.add('loading');
@@ -1664,22 +1669,44 @@ async function toggleCheck(row, checked) {
   txt.classList.toggle('checked', checked);
 
   // 更新本地資料
-  const item = luggageItems.find(i => i.row === row);
-  if (item) item.checked = checked;
+  item.checked = checked;
 
-  // 更新進度條
+  // 更新全域進度條
   const total = luggageItems.length;
   const done  = luggageItems.filter(i => i.checked).length;
   document.getElementById('progress-text').textContent = `${done} / ${total} 已確認`;
-  document.getElementById('progress-bar').style.width = (total ? Math.round(done/total*100) : 0) + '%';
+  document.getElementById('progress-bar').style.width = (total ? Math.round(done / total * 100) : 0) + '%';
+
+  // 更新個人徽章（找到同一 owner 的所有項目）
+  const ownerItems = luggageItems.filter(i => i.owner === item.owner);
+  const ownerDone  = ownerItems.filter(i => i.checked).length;
+  // 找到對應的 owner badge 並更新
+  document.querySelectorAll('.owner-title').forEach(el => {
+    if (el.textContent.includes(item.owner)) {
+      const badge = el.querySelector('.owner-badge');
+      if (badge) badge.textContent = `${ownerDone}/${ownerItems.length}`;
+    }
+  });
 
   try {
     await gasRequest({ action: 'check', row, checked });
   } catch (e) {
     // 失敗則回滾
+    item.checked = !checked;
     box.classList.toggle('checked', !checked);
     txt.classList.toggle('checked', !checked);
-    if (item) item.checked = !checked;
+    // 回滾進度條
+    const rollbackDone = luggageItems.filter(i => i.checked).length;
+    document.getElementById('progress-text').textContent = `${rollbackDone} / ${total} 已確認`;
+    document.getElementById('progress-bar').style.width = (total ? Math.round(rollbackDone / total * 100) : 0) + '%';
+    // 回滾個人徽章
+    const rollbackOwnerDone = luggageItems.filter(i => i.owner === item.owner && i.checked).length;
+    document.querySelectorAll('.owner-title').forEach(el => {
+      if (el.textContent.includes(item.owner)) {
+        const badge = el.querySelector('.owner-badge');
+        if (badge) badge.textContent = `${rollbackOwnerDone}/${ownerItems.length}`;
+      }
+    });
     alert('同步失敗：' + e.message);
   } finally {
     box.classList.remove('loading');
