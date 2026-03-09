@@ -1047,7 +1047,8 @@
     </div>
     <div class="modal-field">
       <label class="modal-label">類型</label>
-      <input class="modal-input" id="modal-type" placeholder="例：隨身行李" />
+      <input class="modal-input" id="modal-type" placeholder="例：隨身行李" list="type-datalist" autocomplete="off" />
+      <datalist id="type-datalist"></datalist>
     </div>
     <div class="modal-field">
       <label class="modal-label" style="display:flex;align-items:center;justify-content:space-between;">
@@ -1794,6 +1795,13 @@ function getContentRows() {
     .filter(v => v !== '');
 }
 
+// ── 更新類型下拉選單 ──────────────────────────
+function updateTypeDatalist() {
+  const datalist = document.getElementById('type-datalist');
+  const types = [...new Set(luggageItems.map(i => i.type).filter(Boolean))];
+  datalist.innerHTML = types.map(t => `<option value="${escHtml(t)}">`).join('');
+}
+
 // ── 更新持有人下拉選單 ────────────────────────
 function updateOwnerDatalist() {
   const datalist = document.getElementById('owner-datalist');
@@ -1814,6 +1822,7 @@ function openAddModal() {
   document.getElementById('content-add-btn').style.display  = 'inline-flex';
   initContentRows(['']);   // 預設一個空輸入框
   updateOwnerDatalist();
+  updateTypeDatalist();
   document.getElementById('item-modal').classList.add('open');
   document.getElementById('modal-owner').focus();
 }
@@ -1831,6 +1840,7 @@ function openEditModal(row) {
   document.getElementById('content-add-btn').style.display   = 'none';  // 編輯模式不允許多筆
   initContentRows([item.content]);
   updateOwnerDatalist();
+  updateTypeDatalist();
   document.getElementById('item-modal').classList.add('open');
 }
 
