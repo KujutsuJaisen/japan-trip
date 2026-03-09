@@ -889,6 +889,44 @@
     .modal-btn-submit { background: var(--ink); color: #fff; }
     .modal-btn-delete { background: #fdecea; color: #c0392b; }
 
+    /* 多筆內容物 */
+    .content-add-row-btn {
+      background: none;
+      border: 1.5px solid var(--ink);
+      border-radius: 7px;
+      padding: .2rem .7rem;
+      font-size: .78rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink);
+      font-family: 'Noto Sans TC', sans-serif;
+      transition: background .15s;
+    }
+    .content-add-row-btn:hover { background: #f0f0f0; }
+
+    .content-row {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .5rem;
+    }
+    .content-row .modal-input { margin-bottom: 0; flex: 1; }
+    .content-row-del {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      border: 1px solid #fcc;
+      background: #fdecea;
+      color: #c0392b;
+      font-size: 1rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+    }
+    .content-row-del:hover { background: #f5c6c6; }
+
     /* 進度統計 */
     .luggage-progress {
       background: var(--card-bg);
@@ -1012,8 +1050,11 @@
       <input class="modal-input" id="modal-type" placeholder="例：隨身行李" />
     </div>
     <div class="modal-field">
-      <label class="modal-label">內容物</label>
-      <input class="modal-input" id="modal-content" placeholder="例：行動電源" />
+      <label class="modal-label" style="display:flex;align-items:center;justify-content:space-between;">
+        內容物
+        <button type="button" class="content-add-row-btn" onclick="addContentRow()" id="content-add-btn" style="display:none">＋ 新增一項</button>
+      </label>
+      <div id="modal-content-list"></div>
     </div>
     <div class="modal-btns">
       <button class="modal-btn modal-btn-cancel" onclick="closeModal()">取消</button>
@@ -1714,6 +1755,45 @@ async function toggleCheck(row) {
   }
 }
 
+// ── 多筆內容物輸入 ────────────────────────────
+function initContentRows(values) {
+  const container = document.getElementById('modal-content-list');
+  container.innerHTML = '';
+  values.forEach(v => appendContentRow(v));
+}
+
+function appendContentRow(value = '') {
+  const container = document.getElementById('modal-content-list');
+  const div = document.createElement('div');
+  div.className = 'content-row';
+  div.innerHTML = `
+    <input class="modal-input" type="text" placeholder="例：行動電源" value="${escHtml(value)}" />
+    <button type="button" class="content-row-del" onclick="removeContentRow(this)" title="移除">✕</button>`;
+  container.appendChild(div);
+  // 自動 focus 到新增的輸入框
+  div.querySelector('input').focus();
+}
+
+function addContentRow() {
+  appendContentRow('');
+}
+
+function removeContentRow(btn) {
+  const container = document.getElementById('modal-content-list');
+  // 至少保留一個輸入框
+  if (container.querySelectorAll('.content-row').length <= 1) {
+    btn.closest('.content-row').querySelector('input').value = '';
+    return;
+  }
+  btn.closest('.content-row').remove();
+}
+
+function getContentRows() {
+  return [...document.querySelectorAll('#modal-content-list .content-row input')]
+    .map(i => i.value.trim())
+    .filter(v => v !== '');
+}
+
 // ── 更新持有人下拉選單 ────────────────────────
 function updateOwnerDatalist() {
   const datalist = document.getElementById('owner-datalist');
@@ -1726,12 +1806,13 @@ function updateOwnerDatalist() {
 function openAddModal() {
   modalMode = 'add';
   editingRow = null;
-  document.getElementById('modal-title').textContent   = '新增行李項目';
-  document.getElementById('modal-owner').value         = '';
-  document.getElementById('modal-type').value          = '';
-  document.getElementById('modal-content').value       = '';
+  document.getElementById('modal-title').textContent      = '新增行李項目';
+  document.getElementById('modal-owner').value            = '';
+  document.getElementById('modal-type').value             = '';
   document.getElementById('modal-submit-btn').textContent = '新增';
   document.getElementById('modal-delete-btn').style.display = 'none';
+  document.getElementById('content-add-btn').style.display  = 'inline-flex';
+  initContentRows(['']);   // 預設一個空輸入框
   updateOwnerDatalist();
   document.getElementById('item-modal').classList.add('open');
   document.getElementById('modal-owner').focus();
@@ -1742,12 +1823,13 @@ function openEditModal(row) {
   if (!item) return;
   modalMode  = 'edit';
   editingRow = row;
-  document.getElementById('modal-title').textContent   = '編輯行李項目';
-  document.getElementById('modal-owner').value         = item.owner;
-  document.getElementById('modal-type').value          = item.type;
-  document.getElementById('modal-content').value       = item.content;
+  document.getElementById('modal-title').textContent      = '編輯行李項目';
+  document.getElementById('modal-owner').value            = item.owner;
+  document.getElementById('modal-type').value             = item.type;
   document.getElementById('modal-submit-btn').textContent = '儲存';
-  document.getElementById('modal-delete-btn').style.display = 'inline-flex';
+  document.getElementById('modal-delete-btn').style.display  = 'inline-flex';
+  document.getElementById('content-add-btn').style.display   = 'none';  // 編輯模式不允許多筆
+  initContentRows([item.content]);
   updateOwnerDatalist();
   document.getElementById('item-modal').classList.add('open');
 }
@@ -1758,10 +1840,12 @@ function closeModal() {
 
 // ── 送出 Modal（新增 or 編輯）────────────────
 async function submitModal() {
-  const owner   = document.getElementById('modal-owner').value.trim();
-  const type    = document.getElementById('modal-type').value.trim();
-  const content = document.getElementById('modal-content').value.trim();
-  if (!owner || !type || !content) { alert('請填寫所有欄位'); return; }
+  const owner    = document.getElementById('modal-owner').value.trim();
+  const type     = document.getElementById('modal-type').value.trim();
+  const contents = getContentRows().filter(c => c.trim() !== '');
+
+  if (!owner || !type)          { alert('請填寫持有人和類型');   return; }
+  if (contents.length === 0)    { alert('請至少填寫一項內容物'); return; }
 
   const btn = document.getElementById('modal-submit-btn');
   btn.disabled = true;
@@ -1769,12 +1853,15 @@ async function submitModal() {
 
   try {
     if (modalMode === 'add') {
-      await gasRequest({ action: 'add', owner, type, content });
+      // 批次新增：每筆 content 各新增一列
+      for (const content of contents) {
+        await gasRequest({ action: 'add', owner, type, content: content.trim() });
+      }
     } else {
-      await gasRequest({ action: 'edit', row: editingRow, owner, type, content });
+      await gasRequest({ action: 'edit', row: editingRow, owner, type, content: contents[0].trim() });
     }
     closeModal();
-    await loadLuggage();  // 重新載入以反映最新排序
+    await loadLuggage();
   } catch (e) {
     alert('操作失敗：' + e.message);
   } finally {
