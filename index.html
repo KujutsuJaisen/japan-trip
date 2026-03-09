@@ -1004,7 +1004,8 @@
     <div class="modal-title" id="modal-title">新增行李項目</div>
     <div class="modal-field">
       <label class="modal-label">持有人</label>
-      <input class="modal-input" id="modal-owner" placeholder="例：吉吉" />
+      <input class="modal-input" id="modal-owner" placeholder="例：吉吉" list="owner-datalist" autocomplete="off" />
+      <datalist id="owner-datalist"></datalist>
     </div>
     <div class="modal-field">
       <label class="modal-label">類型</label>
@@ -1057,7 +1058,7 @@ const CONFIG = {
   GAS_URL:      '{{GAS_URL}}',
   TRIP_TITLE:   '🎌 京坂旅遊行程',
   TRIP_SUBTITLE:'京都・大阪',
-  VERSION:      'v1.1.1',   // ← 版本號，可自行修改
+  VERSION:      'v1.0.0',   // ← 版本號，可自行修改
 };
 // ════════════════════════════════════════════
 
@@ -1713,6 +1714,14 @@ async function toggleCheck(row) {
   }
 }
 
+// ── 更新持有人下拉選單 ────────────────────────
+function updateOwnerDatalist() {
+  const datalist = document.getElementById('owner-datalist');
+  // 從現有資料取出不重複的持有人
+  const owners = [...new Set(luggageItems.map(i => i.owner).filter(Boolean))];
+  datalist.innerHTML = owners.map(o => `<option value="${escHtml(o)}">`).join('');
+}
+
 // ── Modal 開啟/關閉 ───────────────────────────
 function openAddModal() {
   modalMode = 'add';
@@ -1723,6 +1732,7 @@ function openAddModal() {
   document.getElementById('modal-content').value       = '';
   document.getElementById('modal-submit-btn').textContent = '新增';
   document.getElementById('modal-delete-btn').style.display = 'none';
+  updateOwnerDatalist();
   document.getElementById('item-modal').classList.add('open');
   document.getElementById('modal-owner').focus();
 }
@@ -1738,6 +1748,7 @@ function openEditModal(row) {
   document.getElementById('modal-content').value       = item.content;
   document.getElementById('modal-submit-btn').textContent = '儲存';
   document.getElementById('modal-delete-btn').style.display = 'inline-flex';
+  updateOwnerDatalist();
   document.getElementById('item-modal').classList.add('open');
 }
 
