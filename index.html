@@ -927,6 +927,94 @@
     }
     .content-row-del:hover { background: #f5c6c6; }
 
+    /* ── 密碼登入 Modal ── */
+    .pwd-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 600;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      backdrop-filter: blur(4px);
+    }
+    .pwd-modal-overlay.open { display: flex; }
+    .pwd-modal {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.2rem 2rem;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.25);
+      text-align: center;
+    }
+    .pwd-modal-icon { font-size: 2.8rem; margin-bottom: .8rem; }
+    .pwd-modal-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .pwd-modal-desc {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .pwd-input-wrap {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .pwd-input {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      text-align: center;
+      letter-spacing: .2em;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .pwd-input:focus { border-color: var(--ink); }
+    .pwd-input.error { border-color: #e74c3c; animation: shake .3s; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-6px); }
+      75%      { transform: translateX(6px); }
+    }
+    .pwd-error-msg {
+      font-size: .82rem;
+      color: #e74c3c;
+      margin-bottom: .8rem;
+      min-height: 1.2em;
+    }
+    .pwd-submit-btn {
+      width: 100%;
+      padding: .75rem;
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Noto Sans TC', sans-serif;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .pwd-submit-btn:hover { opacity: .85; }
+    .pwd-role-badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: .3rem .9rem;
+      border-radius: 20px;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+    .pwd-role-badge.admin { background: #eaf4ea; color: #2e7d32; }
+    .pwd-role-badge.viewer { background: #f0eef8; color: #5e35b1; }
+
     /* 進度統計 */
     .luggage-progress {
       background: var(--card-bg);
@@ -1007,10 +1095,32 @@
   </main>
 </div>
 
+<!-- ═══ 密碼登入 Modal ═══ -->
+<div class="pwd-modal-overlay" id="pwd-modal">
+  <div class="pwd-modal">
+    <div class="pwd-modal-icon">🔐</div>
+    <div class="pwd-modal-title">行李確認表</div>
+    <div class="pwd-modal-desc">請輸入密碼以繼續</div>
+    <div class="pwd-input-wrap">
+      <input class="pwd-input" id="pwd-input" type="password"
+             placeholder="••••" maxlength="20"
+             onkeydown="if(event.key==='Enter') submitPassword()" />
+    </div>
+    <div class="pwd-error-msg" id="pwd-error"></div>
+    <button class="pwd-submit-btn" onclick="submitPassword()">確認</button>
+  </div>
+</div>
+
 <!-- ═══ 行李確認表頁面 ═══ -->
 <div class="page" id="page-luggage">
   <div class="luggage-container">
-    <div class="luggage-page-title">🧳 行李確認表</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem;">
+      <div class="luggage-page-title">🧳 行李確認表</div>
+      <div style="display:flex;align-items:center;gap:.6rem;">
+        <span class="pwd-role-badge" id="role-badge" style="display:none"></span>
+        <button onclick="logoutLuggage()" id="logout-btn" style="display:none;background:none;border:1px solid var(--border);border-radius:8px;padding:.25rem .7rem;font-size:.78rem;color:var(--muted);cursor:pointer;">登出</button>
+      </div>
+    </div>
     <div class="luggage-page-subtitle">點擊項目左側方塊確認已完成打包</div>
 
     <!-- 進度條 -->
@@ -1021,8 +1131,8 @@
       </div>
     </div>
 
-    <!-- 新增按鈕 -->
-    <button class="luggage-add-btn" onclick="openAddModal()">
+    <!-- 新增按鈕（只有編輯權限才顯示） -->
+    <button class="luggage-add-btn" onclick="openAddModal()" id="luggage-add-btn" style="display:none">
       ＋ 新增項目
     </button>
 
@@ -1100,7 +1210,7 @@ const CONFIG = {
   GAS_URL:      '{{GAS_URL}}',
   TRIP_TITLE:   '🎌 京坂旅遊行程',
   TRIP_SUBTITLE:'京都・大阪',
-  VERSION:      'v1.0.0',   // ← 版本號，可自行修改
+  VERSION:      'v1.2.1',   // ← 版本號，可自行修改
 };
 // ════════════════════════════════════════════
 
@@ -1583,6 +1693,82 @@ function selectCity(cityKey) {
 }
 
 // ════════════════════════════════════════════
+//  🔐 行李確認表 密碼 & 權限
+// ════════════════════════════════════════════
+const LUGGAGE_PWD_ADMIN  = '1569';   // 可編輯修改
+let   luggageRole        = null;     // null=未登入 | 'admin' | 'viewer'
+let   ownerAnonMap       = {};       // 持有人 → 匿名名稱 對照表
+
+function showPwdModal() {
+  document.getElementById('pwd-input').value = '';
+  document.getElementById('pwd-error').textContent = '';
+  document.getElementById('pwd-input').classList.remove('error');
+  document.getElementById('pwd-modal').classList.add('open');
+  setTimeout(() => document.getElementById('pwd-input').focus(), 100);
+}
+
+function closePwdModal() {
+  document.getElementById('pwd-modal').classList.remove('open');
+}
+
+function submitPassword() {
+  const pwd = document.getElementById('pwd-input').value.trim();
+  if (!pwd) return;
+
+  if (pwd === LUGGAGE_PWD_ADMIN) {
+    luggageRole = 'admin';
+  } else {
+    luggageRole = 'viewer';
+  }
+
+  closePwdModal();
+  applyRoleUI();
+  loadLuggage();
+}
+
+function applyRoleUI() {
+  const isAdmin = luggageRole === 'admin';
+  // 新增按鈕
+  document.getElementById('luggage-add-btn').style.display = isAdmin ? 'inline-flex' : 'none';
+  // 權限徽章
+  const badge = document.getElementById('role-badge');
+  badge.style.display = 'inline-block';
+  badge.className = `pwd-role-badge ${isAdmin ? 'admin' : 'viewer'}`;
+  badge.textContent = isAdmin ? '✏️ 編輯權限' : '👁️ 觀看權限';
+  // 登出按鈕
+  document.getElementById('logout-btn').style.display = 'inline-block';
+}
+
+function logoutLuggage() {
+  luggageRole = null;
+  ownerAnonMap = {};
+  document.getElementById('luggage-add-btn').style.display = 'none';
+  document.getElementById('role-badge').style.display      = 'none';
+  document.getElementById('logout-btn').style.display      = 'none';
+  document.getElementById('luggage-list').innerHTML        = '';
+  document.getElementById('luggage-progress').style.display = 'none';
+}
+
+// 建立持有人匿名對照表
+function buildAnonMap(items) {
+  const owners = [...new Set(items.map(i => i.owner).filter(Boolean))];
+  ownerAnonMap = {};
+  owners.forEach((owner, idx) => {
+    // 遊客A、遊客B... 超過26個用 遊客AA、遊客AB...
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const label = idx < 26
+      ? letters[idx]
+      : letters[Math.floor(idx / 26) - 1] + letters[idx % 26];
+    ownerAnonMap[owner] = `遊客${label}`;
+  });
+}
+
+function getDisplayOwner(owner) {
+  if (luggageRole === 'admin') return owner;
+  return ownerAnonMap[owner] || owner;
+}
+
+// ════════════════════════════════════════════
 //  🧳 行李確認表
 // ════════════════════════════════════════════
 let luggageItems  = [];   // 目前所有資料
@@ -1608,6 +1794,12 @@ async function gasRequest(payload) {
 
 // ── 載入行李清單 ─────────────────────────────
 async function loadLuggage() {
+  // 未登入先要求密碼
+  if (!luggageRole) {
+    showPwdModal();
+    return;
+  }
+
   const list = document.getElementById('luggage-list');
   list.innerHTML = `<div class="state-msg"><div class="spinner"></div>載入行李清單…</div>`;
   document.getElementById('luggage-progress').style.display = 'none';
@@ -1626,6 +1818,7 @@ async function loadLuggage() {
     console.log('[Luggage] 回應:', data);
     if (!data.ok) throw new Error(data.error);
     luggageItems = data.data;
+    buildAnonMap(luggageItems);
     console.log('[Luggage] 資料筆數:', luggageItems.length, luggageItems);
     renderLuggage();
   } catch (e) {
@@ -1652,6 +1845,8 @@ function renderLuggage() {
   document.getElementById('progress-text').textContent = `${done} / ${total} 已確認`;
   document.getElementById('progress-bar').style.width = pct + '%';
 
+  const isAdmin = luggageRole === 'admin';
+
   // 依持有人 → 類型分組
   const ownerMap = {};
   for (const item of luggageItems) {
@@ -1662,12 +1857,13 @@ function renderLuggage() {
 
   let html = '';
   for (const owner of Object.keys(ownerMap)) {
-    const ownerItems = Object.values(ownerMap[owner]).flat();
-    const ownerDone  = ownerItems.filter(i => i.checked).length;
+    const displayOwner = getDisplayOwner(owner);
+    const ownerItems   = Object.values(ownerMap[owner]).flat();
+    const ownerDone    = ownerItems.filter(i => i.checked).length;
     html += `
       <div class="owner-group">
         <div class="owner-title">
-          👤 ${escHtml(owner)}
+          👤 ${escHtml(displayOwner)}
           <span class="owner-badge">${ownerDone}/${ownerItems.length}</span>
         </div>`;
 
@@ -1684,7 +1880,7 @@ function renderLuggage() {
                  onclick="toggleCheck(${item.row})"></div>
             <div class="luggage-content ${chk ? 'checked' : ''}">${escHtml(item.content)}</div>
             <div class="luggage-actions">
-              <button class="luggage-action-btn" onclick="openEditModal(${item.row})" title="編輯">✏️</button>
+              ${isAdmin ? `<button class="luggage-action-btn" onclick="openEditModal(${item.row})" title="編輯">✏️</button>` : ''}
             </div>
           </div>`;
       }
@@ -1720,12 +1916,12 @@ async function toggleCheck(row) {
   document.getElementById('progress-text').textContent = `${done} / ${total} 已確認`;
   document.getElementById('progress-bar').style.width = (total ? Math.round(done / total * 100) : 0) + '%';
 
-  // 更新個人徽章（找到同一 owner 的所有項目）
+  // 更新個人徽章
   const ownerItems = luggageItems.filter(i => i.owner === item.owner);
   const ownerDone  = ownerItems.filter(i => i.checked).length;
-  // 找到對應的 owner badge 並更新
+  const displayOwner = getDisplayOwner(item.owner);
   document.querySelectorAll('.owner-title').forEach(el => {
-    if (el.textContent.includes(item.owner)) {
+    if (el.textContent.includes(displayOwner)) {
       const badge = el.querySelector('.owner-badge');
       if (badge) badge.textContent = `${ownerDone}/${ownerItems.length}`;
     }
