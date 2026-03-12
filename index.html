@@ -786,6 +786,10 @@
       pointer-events: none;
       opacity: .5;
     }
+    .luggage-checkbox.readonly {
+      cursor: not-allowed;
+      opacity: .6;
+    }
 
     .luggage-content {
       flex: 1;
@@ -1876,7 +1880,7 @@ function renderLuggage() {
         const chk = item.checked;
         html += `
           <div class="luggage-item" id="luggage-row-${item.row}">
-            <div class="luggage-checkbox ${chk ? 'checked' : ''}"
+            <div class="luggage-checkbox ${chk ? 'checked' : ''} ${luggageRole !== 'admin' ? 'readonly' : ''}"
                  onclick="toggleCheck(${item.row})"></div>
             <div class="luggage-content ${chk ? 'checked' : ''}">${escHtml(item.content)}</div>
             <div class="luggage-actions">
@@ -1893,6 +1897,8 @@ function renderLuggage() {
 
 // ── 切換勾選 ─────────────────────────────────
 async function toggleCheck(row) {
+  // 觀看權限不可勾選
+  if (luggageRole !== 'admin') return;
   const box = document.querySelector(`#luggage-row-${row} .luggage-checkbox`);
   const txt = document.querySelector(`#luggage-row-${row} .luggage-content`);
   if (!box || box.classList.contains('loading')) return;
