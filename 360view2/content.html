@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        
+        <!--css code start-->
+        <style>
+            html,
+            body {
+                font-family: AR StdMingti Extra B5, 微軟正黑體, Arial, sans-serif;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+        
+            #container {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <!--css code end-->
+    </head>
+    <body>
+
+        <!--360° view content-->
+        <div id='container'></div>
+
+        <!--js code start-->
+        <!--360° view js-->
+        <script src="./js/three.min.js"></script>
+        <script src="./js/photo-sphere-viewer.min.js"></script>
+        <script>
+            var pid = getUrlVars()["pid"];
+            var div = document.getElementById('container');
+            var PSV = new PhotoSphereViewer({
+                panorama: 'img/' + pid + '.jpg',
+                container: div,
+                default_position: { long: Math.PI / 0.7, lat: Math.PI / 0.5 },
+                time_anim: false, //於幾秒後自轉，預設2000(2秒)，設定為false取消自轉
+                navbar: false,
+                navbar_style: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                },
+            });
+
+            function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
+        </script>
+        <!--js code end-->
+
+    </body>
+</html>

@@ -1,0 +1,283 @@
+/*global*/
+
+html, body {
+    font-family: AR StdMingti Extra B5, 微軟正黑體, Arial, sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#container {
+    width: 81%;
+    margin-left: 19%;
+    height: 100%;
+}
+
+/*button*/
+
+#menu>a, #menu-m>a {
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: block;
+    font-size: 2vmin;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    width: 7.5vmin;
+    height: 7.5vmin;
+    line-height: 7.5vmin;
+    letter-spacing: 0.2vmin;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+
+#menu>a:hover, #menu-m>a:hover {
+    background-color: #4e3815;
+}
+
+#menu>#f01_01 {
+    top: 65%;
+    left: 20.5vmin;
+}
+
+#menu>#f01_02 {
+    top: 51%;
+    left: 15vmin;
+}
+
+#menu>#f01_03 {
+    top: 40.5%;
+    left: 15vmin;
+}
+
+#menu>#f02_01 {
+    top: 54%;
+    left: 11vmin;
+}
+
+#menu>#f02_02 {
+    top: 68%;
+    left: 15vmin;
+}
+
+#menu>#f02_03 {
+    top: 42%;
+    left: 15vmin;
+}
+
+#menu>#f03_01 {
+    top: 68%;
+    left: 15vmin;
+}
+
+#menu>#f03_02 {
+    top: 54%;
+    left: 11vmin;
+}
+
+#menu>#f03_03 {
+    top: 42%;
+    left: 15vmin;
+}
+
+#menu>#f04_01 {
+    top: 52%;
+    left: 15vmin;
+}
+
+#menu>#f04_02 {
+    top: 36%;
+    left: 18vmin;
+}
+
+/*menu*/
+
+#menu {
+    background-image: url('../img/f01_01.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    font-size: 18px;
+    left: 0;
+    top: 0;
+    min-width: 480px;
+    height: 100vh;
+    position: absolute;
+    z-index: 9;
+}
+
+#menu-m {
+    display: none;
+}
+
+/*route*/
+
+#route {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(100% - 400px);
+    text-align: center;
+    /* z-index: 9; */
+}
+
+#route>a {
+    background-color: rgb(0, 0, 0, .68);
+    color: #fff;
+    display: inline-block;
+    padding: 15px 25px;
+}
+
+#route>a>span {
+    color: #cba364 !important;
+}
+
+/*floor*/
+
+#floor {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px 30px;
+    z-index: 9;
+}
+
+#floor>a>img {
+    width: 95px;
+}
+
+#floor-m {
+    display: none
+}
+
+@media (max-width: 1200px) {
+    /*button*/
+    #menu-m>a {
+        width: 5vmin;
+        height: 5vmin;
+        line-height: 5vmin;
+        font-size: 3vmin;
+    }
+    /*floor*/
+    #floor>a>img {
+        width: 70px;
+    }
+    /*route*/
+    #route {
+        text-align: right;
+        /* z-index: 9; */
+    }
+    #route>a {
+        background-color: rgb(0, 0, 0, .68);
+        color: #fff;
+        display: inline-block;
+        padding: 15px 25px;
+    }
+}
+
+@media (max-width: 780px) {
+    html, body {
+        font-family: 微軟正黑體, Arial, sans-serif;
+    }
+    /*button*/
+    #menu-m>a {
+        width: 10vmin;
+        height: 10vmin;
+        line-height: 10vmin;
+    }
+    #menu-m>#f0B_01 {
+        top: 52%;
+        left: 41vw;
+    }
+    #menu-m>#f01_01 {
+        top: 67%;
+        left: 48vw;
+    }
+    #menu-m>#f01_02 {
+        top: 52%;
+        left: 42vw;
+    }
+    #menu-m>#f01_03 {
+        top: 41%;
+        left: 42vw;
+    }
+    #menu-m>#f02_01 {
+        top: 55%;
+        left: 34vw;
+    }
+    #menu-m>#f02_02 {
+        top: 43%;
+        left: 38vw;
+    }
+    #menu-m>#f02_03 {
+        top: 69.5%;
+        left: 38vw;
+    }
+    #menu-m>#f03_01 {
+        top: 43%;
+        left: 38vw;
+    }
+    #menu-m>#f03_02 {
+        top: 55%;
+        left: 34vw;
+    }
+    #menu-m>#f03_03 {
+        top: 69.5%;
+        left: 38vw;
+    }
+    #menu-m>#f04_01 {
+        top: 58%;
+        left: 38vw;
+    }
+    #menu-m>#f04_02 {
+        top: 40%;
+        left: 46vw;
+    }
+    #menu-m>#f0R_01 {
+        top: 55%;
+        left: 50vw;
+    }
+    /*menu*/
+    #menu {
+        display: none;
+    }
+    #menu-m {
+        background-color: rgba(1, 1, 1, .99);
+        background-image: url('../img/f01_01-m.jpg');
+        background-position: center center;
+        background-size: auto 100%;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        min-width: unset;
+        display: block;
+        position: absolute;
+        z-index: 9;
+    }
+    /*route*/
+    #route {
+        display: none;
+    }
+    /*floor*/
+    #floor {
+        display: none;
+    }
+    #floor-m {
+        display: block;
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        z-index: 9;
+    }
+    #floor-m>a {
+        display: block;
+    }
+    #floor-m>a>img {
+        width: 65px;
+    }
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <meta name="viewport" content="initial-scale=1.0" />
+        
+        <!--css code start-->
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="./css/jquery.fancybox.min.css">
+        <!--css code end-->
+    </head>
+    <body>
+        <!--left menu-->
+        <div id="menu">
+            <!--block button-->
+            <a id="f0B_01" class="f0B" href="#" style="display:none">停車場</a>
+            <a id="f01_01" class="f01" href="#" style="display:none">客廳</a>
+            <a id="f01_02" class="f01" href="#" title="餐廳">餐廳</a>
+            <a id="f01_03" class="f01" href="#">廚房</a>
+            <a id="f02_01" class="f02" href="#" style="display:none">休息室</a>
+            <a id="f02_02" class="f02" href="#" style="display:none">臥室</a>
+            <a id="f02_03" class="f02" href="#" style="display:none">臥室</a>
+            <a id="f03_01" class="f03" href="#" style="display:none">臥室</a>
+            <a id="f03_02" class="f03" href="#" style="display:none">浴廁</a>
+            <a id="f03_03" class="f03" href="#" style="display:none">臥室</a>
+            <a id="f04_01" class="f04" href="#" style="display:none">客廳</a>
+            <a id="f04_02" class="f04" href="#" style="display:none">小花園</a>
+            <a id="f0R_01" class="f0R" href="#" style="display:none">頂樓</a>
+            
+        </div>
+
+        <div id="menu-m">
+            <a id="f0B_01" class="f0B" data-fancybox data-type="iframe" data-src="content.html?pid=f0B_01" href="javascript:;" style="display:none">停車場</a>
+            <a id="f01_01" class="f01" data-fancybox data-type="iframe" data-src="content.html?pid=f01_01" href="javascript:;">客廳</a>
+            <a id="f01_02" class="f01" data-fancybox data-type="iframe" data-src="content.html?pid=f01_02" href="javascript:;">餐廳</a>
+            <a id="f01_03" class="f01" data-fancybox data-type="iframe" data-src="content.html?pid=f01_03" href="javascript:;">廚房</a>
+            <a id="f02_01" class="f02" data-fancybox data-type="iframe" data-src="content.html?pid=f02_01" href="javascript:;" style="display:none">休息室</a>
+            <a id="f02_02" class="f02" data-fancybox data-type="iframe" data-src="content.html?pid=f02_02" href="javascript:;" style="display:none">臥室</a>
+            <a id="f02_03" class="f02" data-fancybox data-type="iframe" data-src="content.html?pid=f02_03" href="javascript:;" style="display:none">臥室</a>
+            <a id="f03_01" class="f03" data-fancybox data-type="iframe" data-src="content.html?pid=f03_01" href="javascript:;" style="display:none">臥室</a>
+            <a id="f03_02" class="f03" data-fancybox data-type="iframe" data-src="content.html?pid=f03_02" href="javascript:;" style="display:none">浴廁</a>
+            <a id="f03_03" class="f03" data-fancybox data-type="iframe" data-src="content.html?pid=f03_03" href="javascript:;" style="display:none">臥室</a>
+            <a id="f04_01" class="f04" data-fancybox data-type="iframe" data-src="content.html?pid=f04_01" href="javascript:;" style="display:none">客廳</a>
+            <a id="f04_02" class="f04" data-fancybox data-type="iframe" data-src="content.html?pid=f04_02" href="javascript:;" style="display:none">小花園</a>
+            <a id="f0R_01" class="f0R" data-fancybox data-type="iframe" data-src="content.html?pid=f0R_01" href="javascript:;" style="display:none">頂樓</a>
+        </div>
+
+        <!--360° view content-->
+        <div id='container'>
+
+        </div>
+
+        <!--route-->
+        <div id="route">
+            <a>現在位置：<span id="route-name">1F 客廳</span></a>
+        </div>
+
+        <!--floor-->
+        <div id="floor">
+            <!--floor button-->
+            <a id="f0B" href="#"><img src="./img/btn_f00.png" ></a>
+            <a id="f01" href="#"><img src="./img/btn_f01.png" ></a>
+            <a id="f02" href="#"><img src="./img/btn_f02.png" ></a>
+            <a id="f03" href="#"><img src="./img/btn_f03.png" ></a>
+            <a id="f04" href="#"><img src="./img/btn_f04.png" ></a>
+            <a id="f0R" href="#"><img src="./img/btn_f05.png" ></a>
+        </div>
+
+        <div id="floor-m">
+            <!--floor button-->
+            <a id="f0B" href="#"><img src="./img/btn_f00.png" ></a>
+            <a id="f01" href="#"><img src="./img/btn_f01.png" ></a>
+            <a id="f02" href="#"><img src="./img/btn_f02.png" ></a>
+            <a id="f03" href="#"><img src="./img/btn_f03.png" ></a>
+            <a id="f04" href="#"><img src="./img/btn_f04.png" ></a>
+            <a id="f0R" href="#"><img src="./img/btn_f05.png" ></a>
+        </div>
+
+        <!--js code start-->
+        <script src="./js/jquery-1.11.3.min.js"></script>
+        <script src="./js/jquery.fancybox.min.js"></script>
+        
+        <!--360° view js-->
+        <script src="./js/three.min.js"></script>
+        <script src="./js/photo-sphere-viewer.min.js"></script>
+        <script src="./js/viewer-init.js"></script>
+
+        <!--button setup-->
+        <script>
+            
+            /*block button click event*/
+            $("#menu > a").click(function () {
+
+                var id = this.id;
+                // var context = this.title;
+                var context = this.innerHTML;
+                /*get floor id*/
+                var str = id;
+                var substr = str.substring(0, 3);
+
+                checkView(id);
+                checkRoute(id.slice(2,3), context);
+
+                /*change the menu background image in left side 
+                when block button clicked*/
+                $("#menu").css("background-image","url(./img/" + id + ".png)");
+
+                $("#menu > a").hide();
+                $("." + substr).show();
+                $("#" + id).hide();
+            });
+
+            /*floor button click event*/
+            $("#floor > a").click(function () {
+
+                /*get floor id*/
+                var id = this.id;
+
+                /*get default string*/
+                var context = document.getElementById(id + "_01").innerHTML;
+
+                checkView(id + "_01");
+                checkRoute(id.slice(2,3), context);
+
+                /*change the menu background default image in left side 
+                when floor button clicked*/
+                $("#menu").css("background-image","url(./img/" + id + "_01.png)");
+
+                /*hide all block button before show*/
+                $("#menu > a").hide();
+                $("#menu > a."+ id +"").show();
+                $("#" + id + "_01").hide();
+
+                //checkRoute(id);
+            });
+
+            /*check route event*/
+            function checkRoute(floor, blockName){
+                /*get route DOM*/
+                var route = document.getElementById('route-name');
+                route.innerHTML = floor + "F\n" + blockName;
+            }
+
+            /*check view event*/
+            function checkView(id){
+                var div = document.getElementById('container');
+                var PSV = new PhotoSphereViewer({
+                    panorama: 'img/' + id + '.jpg',
+                    container: div,
+                    default_position: { long: Math.PI / 0.7, lat: Math.PI / 0.5 },
+                    time_anim: false, //autoplay mode, default 2000ms(2s), bool
+                    navbar: false,
+                    navbar_style: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                    },
+                });
+            }
+
+            /*mobile only*/
+            /*floor-m button click event*/
+            $("#floor-m > a").click(function () {
+
+                var id = this.id;
+
+                /*change the menu background default image in left side 
+                when floor button clicked*/
+                $("#menu-m").css("background-image", "url(./img/" + id + "_01-m.jpg)");
+
+                /*hide all block button before show*/
+                $("#menu-m > a").hide();
+                $("#menu-m > a." + id + "").show();
+
+            });
+        </script>
+        <!--js code end-->
+
+    </body>
+</html>
