@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>比叡山・大津一日手冊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout concept: A4 sheets like a travel-magazine spread; pine-green headings, vermilion seal marks used only as small category stamps. */
+:root{
+  --paper:#E9ECE8; --sheet:#FDFDFB; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5;
+  --pine:#2D5848; --shu:#C2361F; --deer:#8A5C3B; --moss:#E8EFE8; --tint:#F1F4F0;
+  --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00;
+  --shadow:0 1px 3px rgba(20,30,25,.12),0 6px 24px rgba(20,30,25,.08);
+  --f-head:"Shippori Mincho B1","Hiragino Mincho ProN","Noto Serif TC","Yu Mincho",serif;
+  --f-body:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1513; --sheet:#182120; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#33413C;
+  --pine:#86C5AA; --shu:#EE6E55; --deer:#D4A47A; --moss:#202D29; --tint:#1D2926;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1513; --sheet:#182120; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#33413C;
+  --pine:#86C5AA; --shu:#EE6E55; --deer:#D4A47A; --moss:#202D29; --tint:#1D2926;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:13px;line-height:1.62;padding-inline:12px;padding-block:14px}
+a{color:var(--pine);text-decoration-thickness:1px;text-underline-offset:2px;overflow-wrap:anywhere}
+a:focus-visible,input:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+.sheet{width:min(210mm,100%);margin:0 auto 18px;background:var(--sheet);box-shadow:var(--shadow);padding:11mm 12mm 12mm;display:flex;flex-direction:column;gap:10px;position:relative;min-width:0}
+.sheet>*{flex-shrink:0;min-width:0}
+.hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:10.5px;letter-spacing:.06em;color:var(--ink2);border-bottom:1px solid var(--rule);padding-bottom:6px}
+.hd .pg{font-family:var(--f-mono);letter-spacing:0;white-space:nowrap}
+.hd b{font-family:var(--f-head);font-weight:800;color:var(--pine);letter-spacing:.1em}
+h1,h2,h3{font-family:var(--f-head);color:var(--ink);text-wrap:balance;margin:0;line-height:1.3}
+h2{font-size:22px;font-weight:800;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+h2 small{font-family:var(--f-body);font-size:11.5px;font-weight:500;color:var(--ink2);letter-spacing:.04em}
+h3{font-size:14.5px;font-weight:800;color:var(--pine);display:flex;align-items:center;gap:7px;margin-top:2px}
+p{margin:0}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:1.55em;height:1.55em;border:1.5px solid var(--shu);color:var(--shu);font-style:normal;font-family:var(--f-head);font-weight:800;font-size:12px;line-height:1;flex:none;border-radius:2px}
+.lead{font-size:13.5px;color:var(--ink)}
+.mut{color:var(--ink2)}
+.sm{font-size:11.5px}
+.xs{font-size:10.3px;color:var(--ink2)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.t{display:inline-block;font-size:10.5px;line-height:1;padding:2px 4px;border-radius:3px;vertical-align:baseline;white-space:nowrap;font-style:normal}
+.t.ok{background:var(--okbg);color:var(--okfg)}.t.ph{background:var(--phbg);color:var(--phfg)}.t.ng{background:var(--ngbg);color:var(--ngfg)}
+.tw{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:11.8px;line-height:1.5}
+th{background:var(--moss);color:var(--pine);text-align:left;font-weight:700;white-space:nowrap;padding:5px 7px;border-bottom:1.5px solid var(--pine)}
+td{padding:5px 7px;border-bottom:1px solid var(--rule);vertical-align:top}
+td.tm,th.tm{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.dense{font-size:9.6px;line-height:1.38}table.dense td,table.dense th{padding:2.5px 5px}
+table.kv th{width:7.5em;background:var(--tint);border-bottom:1px solid var(--rule);color:var(--ink2);font-weight:500}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+@media (max-width:640px){.grid2,.grid3,.cols{grid-template-columns:1fr}.sheet{padding:16px}}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;max-width:100%;object-fit:cover;aspect-ratio:3/2;background:var(--tint)}
+figure.w img{aspect-ratio:16/9}figure.ww img{aspect-ratio:2.3/1}figure.map img{aspect-ratio:16/9;object-position:50% 45%}figure.sq img{aspect-ratio:4/3}
+figcaption{font-size:9.3px;line-height:1.4;color:var(--ink2);padding-top:3px}
+.box{background:var(--tint);border-left:3px solid var(--pine);padding:7px 10px;font-size:12px}
+.box.warn{background:var(--ngbg);border-left-color:var(--ngfg);color:var(--ink)}
+.box.shu{border-left-color:var(--shu)}
+ul.l,ol.l{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:2px}
+ul.l.c{list-style:none;padding-left:0}
+.chips{display:flex;flex-wrap:wrap;gap:5px 3px;align-items:center}
+.chip{white-space:nowrap;border:1px solid var(--pine);color:var(--pine);padding:2px 8px;font-size:11.5px;border-radius:2px;background:var(--sheet)}
+.chip.k{background:var(--pine);color:var(--sheet)}
+.arr{color:var(--shu);font-size:11px}
+.toc{columns:2;column-gap:20px;font-size:12.5px}
+.toc a{display:flex;gap:8px;text-decoration:none;color:var(--ink);padding:2px 0;border-bottom:1px dotted var(--rule);break-inside:avoid}
+.toc a span.n{font-family:var(--f-mono);color:var(--shu);min-width:1.8em}
+.cover{display:flex;flex-direction:column;gap:12px}
+.cover h1{font-size:40px;font-weight:800;line-height:1.18;letter-spacing:.02em}
+.cover .sub{font-size:15px;color:var(--ink2);letter-spacing:.14em}
+.stamp{display:inline-flex;flex-direction:column;border:2px solid var(--shu);color:var(--shu);font-family:var(--f-head);font-weight:800;padding:6px 10px;line-height:1.25;font-size:15px;align-self:flex-start;transform:rotate(-2deg);border-radius:2px}
+.tl{display:flex;flex-direction:column;border-left:2px solid var(--pine);margin-left:6px}
+.tl>div{display:grid;grid-template-columns:5.6em 1fr;gap:8px;padding:2px 0 5px 12px;position:relative;font-size:11.8px}
+.tl>div::before{content:"";position:absolute;left:-6px;top:7px;width:9px;height:9px;background:var(--sheet);border:2px solid var(--shu);border-radius:50%}
+.tl .tm{font-family:var(--f-mono);font-weight:500;color:var(--pine);white-space:nowrap}
+.star{color:var(--shu);letter-spacing:.05em;white-space:nowrap}
+label.ck{display:flex;gap:8px;align-items:flex-start;padding:2px 0;font-size:12px;cursor:pointer}
+label.ck input{margin-top:3px;accent-color:var(--shu)}
+.ckgrp{display:flex;flex-direction:column;gap:0}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kpi div{border:1px solid var(--rule);padding:6px 8px;background:var(--tint)}
+.kpi b{display:block;font-family:var(--f-mono);font-size:15px;color:var(--pine)}
+.kpi span{font-size:10.5px;color:var(--ink2)}
+@media (max-width:640px){.kpi{grid-template-columns:1fr 1fr}.toc{columns:1}.cover h1{font-size:30px}}
+
+@media print{
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+    --paper:#fff; --sheet:#fff; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5; --pine:#2D5848; --shu:#C2361F; --deer:#8A5C3B; --moss:#E8EFE8; --tint:#F1F4F0;
+    --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00; --shadow:none; color-scheme:light}
+  @page{size:A4;margin:0}
+  html,body{background:#fff}
+  body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;height:297mm;margin:0;padding:10mm 12mm 9mm;box-shadow:none;overflow:hidden;break-after:page;page-break-after:always;gap:7px;font-size:calc(12.2px*var(--k,1));line-height:1.52}
+  .sheet:last-child{break-after:auto;page-break-after:auto}
+  .hd{font-size:.86em}
+  table{font-size:.94em}table.dense{font-size:.84em}
+  h2{font-size:1.65em}h2 small{font-size:.52em}h3{font-size:1.08em}
+  .lead{font-size:1.05em}.box{font-size:.95em;padding:5px 9px}
+  .tl>div{font-size:.95em;padding-bottom:3px}
+  .sm{font-size:.92em}.xs{font-size:.84em}
+  figcaption{font-size:.74em}
+  .t{font-size:.84em}
+  .cover h1{font-size:3.2em}.cover .sub{font-size:1.2em}
+  .tw{overflow:visible}
+}
+</style>
+<main>
+<section class="sheet" id="p1" aria-label="第 1 頁 封面・目錄">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">1 / 24</span></header>
+
+<div class="cover">
+  <div class="stamp"><span>2027.04.08</span><span>木曜日</span></div>
+  <h1>比叡山・大津一日<br>日吉大社・延暦寺・三井寺</h1>
+  <div class="sub">觀光＋御朱印　行程說明書</div>
+  <figure class="w"><img src="img/cable_car.jpg" alt="坂本ケーブルの車両" width="1000" style="object-position:50% 55%"><figcaption>Saigen Jiro・CC0・2019 年攝・<a href="https://commons.wikimedia.org/wiki/File:Cable_car_at_Cable_Sakamoto_Station.jpg">Wikimedia Commons</a></figcaption></figure>
+  <p class="lead">2 人，京都站出發並返回。搭 JR 湖西線到比叡山坂本，走坂本老街到日吉大社，10:00 坐日本最長的坂本ケーブル上延暦寺東塔，中午下山吃蕎麥麵，下午搭京阪到三井寺，最後在びわ湖浜大津、大津港散步，傍晚搭 JR 回京都。</p>
+  <div class="toc"><a href="#p2"><span class="n">02</span><span>旅行基本資訊</span></a><a href="#p3"><span class="n">03</span><span>最需再確認的 5 件事・日文地名</span></a><a href="#p4"><span class="n">04</span><span>今日行程總覽・時間界線</span></a><a href="#p5"><span class="n">05</span><span>今日路線地圖・動線說明</span></a><a href="#p6"><span class="n">06</span><span>區段放大地圖</span></a><a href="#p7"><span class="n">07</span><span>交通總覽</span></a><a href="#p8"><span class="n">08</span><span>鐵路專頁：JR・ケーブル・京阪</span></a><a href="#p9"><span class="n">09</span><span>出發段落：比叡山坂本・坂本老街</span></a><a href="#p10"><span class="n">10</span><span>日吉大社</span></a><a href="#p11"><span class="n">11</span><span>坂本ケーブル</span></a><a href="#p12"><span class="n">12</span><span>延暦寺 東塔（1）根本中堂</span></a><a href="#p13"><span class="n">13</span><span>延暦寺 東塔（2）各堂與御朱印</span></a><a href="#p14"><span class="n">14</span><span>午餐：手打蕎麦 鶴屋喜八</span></a><a href="#p15"><span class="n">15</span><span>三井寺（1）路線</span></a><a href="#p16"><span class="n">16</span><span>三井寺（2）觀音堂・御朱印</span></a><a href="#p17"><span class="n">17</span><span>びわ湖浜大津・大津港・なぎさ公園</span></a><a href="#p18"><span class="n">18</span><span>御朱印攻略</span></a><a href="#p19"><span class="n">19</span><span>時間軸與費用</span></a><a href="#p20"><span class="n">20</span><span>雨天與刪減</span></a><a href="#p21"><span class="n">21</span><span>必看與 Checklist</span></a><a href="#p22"><span class="n">22</span><span>資料來源</span></a><a href="#p23"><span class="n">23</span><span>照片授權與資料處理</span></a><a href="#p24"><span class="n">24</span><span>待確認事項</span></a></div>
+  <p class="xs">查證等級：<i class="t ok">✅</i> 官方原文　<i class="t ph">📷</i> omairi.club 訪客投稿（附日期）　<i class="t ng">⚠️</i> 二手資料或估算。時刻與費用以 2026/10/02 查到的資料為準，2027 年版尚未公布的部分已在內文標示。</p>
+</div>
+</section>
+<section class="sheet" id="p2" aria-label="第 2 頁 旅行基本資訊">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">2 / 24</span></header>
+
+<h2><i class="seal">基</i>旅行基本資訊</h2>
+<div class="tw"><table class="kv "><tbody><tr><th>日期</th><td>2027/04/08（四）。平日。日本 2027 年祝日表未逐項核對 <i class="t ng">⚠️</i></td></tr><tr><th>人數</th><td>2 人</td></tr><tr><th>出發・結束</th><td>京都站。住宿在京都站周邊</td></tr><tr><th>時間</th><td>07:47 京都站發，約 17:52 回到京都站。19:00 前解散，保留約 70 分鐘緩衝</td></tr><tr><th>交通</th><td>JR 湖西線、坂本ケーブル、京阪石山坂本線、JR 琵琶湖線＋步行。不搭巴士，也不需要預約座位</td></tr><tr><th>步行量</th><td>各段採用值合計約 2 小時 20 分 <i class="t ng">⚠️</i>，另加境內走動。延暦寺東塔與三井寺境內有石階與坡道（我的估算）</td></tr><tr><th>預估費用</th><td>每人約 ¥8,600～¥11,100（交通、門票、御朱印、午餐）。明細見第 19 頁</td></tr><tr><th>氣溫</th><td>山上比市區低，延暦寺一帶約冷 4℃ <i class="t ng">⚠️</i>（以標準氣溫遞減率推估），帶薄外套</td></tr><tr><th>櫻花</th><td>日吉大社參道約 150 株，見頃 4 月初旬 <i class="t ok">✅</i>。三井寺境內有千株以上 <i class="t ok">✅</i>。4/8 是否盛開要看當年 <i class="t ng">⚠️</i></td></tr><tr><th>預約</th><td>本日沒有需要事先預約的項目。ケーブル與京阪當日購票、刷 IC 卡</td></tr></tbody></table></div>
+<h3>今日特色</h3>
+<ul class="l "><li><b>一路由北往南，不折返。</b>坂本（北）→ 比叡山 → 坂本 → 三井寺 → 大津港（南），最後走回 JR 大津站。</li><li><b>坂本ケーブル全長 2,025 m、11 分</b><i class="t ok">✅</i>，是日本最長的纜車，昭和 2 年開業 <i class="t ok">✅</i>。</li><li><b>4/8 是延暦寺根本中堂的「8 日縁日」</b><i class="t ok">✅</i>，萬拝堂授與縁日限定的紺紙金字御朱印。</li><li><b>根本中堂內部整修中，2026/1～2028/1 不能入內</b><i class="t ok">✅</i>。這一天看外觀與覆屋，不看本尊。</li></ul>
+<h3>可信度圖例</h3>
+<div class="tw"><table><thead><tr><th>標記</th><th>意思</th><th>本手冊的做法</th></tr></thead><tbody>
+<tr><td><i class="t ok">✅</i></td><td>官方原文核實</td><td>實際開啟寺社、鐵道、店家官網確認。搜尋引擎摘要不算。</td></tr>
+<tr><td><i class="t ph">📷</i></td><td>omairi.club 訪客投稿</td><td>附參拜日期，只用來判斷直書き／書置き、授與位置。</td></tr>
+<tr><td><i class="t ng">⚠️</i></td><td>二手資料或估算</td><td>轉乘網站、Google Maps 估算、我的推算。</td></tr>
+</tbody></table></div>
+<h3>公休與休運檢查（2027/04/08 四）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>結果</th><th>依據</th></tr></thead><tbody><tr><td>日吉大社</td><td>開放（無休）</td><td>官網寫參拜時間、授與所時間，未列公休 <i class="t ok">✅</i></td></tr><tr><td>延暦寺 東塔</td><td>開堂 9:00～16:00（通年）</td><td>官網 <i class="t ok">✅</i>。4/4～4/11 御修法在根本中堂 <i class="t ok">✅</i></td></tr><tr><td>坂本ケーブル</td><td>8:00～17:30 每 30 分一班</td><td>官網 3～11 月時刻 <i class="t ok">✅</i></td></tr><tr><td>三井寺</td><td>年中無休</td><td>官網 <i class="t ok">✅</i></td></tr><tr><td>鶴屋喜八</td><td>營業 11:00～16:00</td><td>官網。定休日 2027 年表未公布，2026 年表 4/20 休 <i class="t ng">⚠️</i></td></tr><tr><td>京阪・JR</td><td>使用平日時刻表</td><td>官網 2026/10 版 <i class="t ok">✅</i>，2027 年版尚未公布</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p3" aria-label="第 3 頁 最需再確認的 5 件事・日文地名">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">3 / 24</span></header>
+
+<h2><i class="seal">基</i>出發前最需要再確認的 5 件事</h2>
+<ol class="l"><li><b>JR 與京阪的 2027 年度時刻。</b>本手冊用 JR 西日本 2026/10/03 改正版（平日）與京阪官網 PDF。2027 年 3 月前後再查 07:47 京都発、14:09 坂本比叡山口発、16:24 三井寺発、17:41 大津発是否仍在。</li><li><b>根本中堂的現況。</b>官網寫內部 2026/1/6～2028/1 不能入內 <i class="t ok">✅</i>；修學ステージ（屋頂見學台）只到 2026 年 12 月前後 <i class="t ok">✅</i>。素屋根（覆屋）何時拆、4 月能看到什麼，等官網更新後確認。</li><li><b>延暦寺各堂御朱印的初穂料與授與時間。</b>官網只列種類與授與場所 <i class="t ok">✅</i>，只有萬拝堂特別御朱印寫明 ¥1,000 <i class="t ok">✅</i>。其餘我抓 ¥500 的估算 <i class="t ng">⚠️</i>。</li><li><b>日吉大社 9:00 前能不能入苑。</b>官網寫開門 6:00、參拜與授與所 9:00 <i class="t ok">✅</i>，入苑協賛料在西受付繳 <i class="t ok">✅</i>，受付開始時間未載 <i class="t ng">⚠️</i>。本手冊 08:50 到、9:00 入苑。</li><li><b>鶴屋喜八 2027/4/8 是否營業。</b>2026 年定休日表有 4/20，2027 年表未公布 <i class="t ng">⚠️</i>。備案是比叡・三九良（週一、第 2 週二休）<i class="t ok">✅</i>。</li></ol>
+<div class="box warn"><b>先知道：</b>我先前的版本寫過「根本中堂 2026 年 3 月完工」，這是錯的。官網是整修到約 2028 年初，內部不能入內。同一版的「大津港旁的芝櫻」也不對：芝櫻在なぎさのプロムナード，離大津港約 2 km，4/8 才剛要開。兩處已改。</div>
+<h3>日文地名對照（貼進 Google Maps 搜尋用）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>日文</th><th>讀音</th><th>中文</th></tr></thead><tbody><tr><td>京都駅</td><td>きょうとえき</td><td>京都站，07:47 湖西線普通為 3 番線 <i class="t ok">✅</i></td></tr><tr><td>比叡山坂本駅</td><td>ひえいざんさかもとえき</td><td>JR 湖西線，去程下車</td></tr><tr><td>日吉大社／西本宮／東本宮</td><td>ひよしたいしゃ／にしほんぐう／ひがしほんぐう</td><td>山王總本宮</td></tr><tr><td>ケーブル坂本駅／ケーブル延暦寺駅</td><td>けーぶるさかもとえき／けーぶるえんりゃくじえき</td><td>坂本ケーブル兩端站</td></tr><tr><td>比叡山延暦寺／根本中堂</td><td>ひえいざんえんりゃくじ／こんぽんちゅうどう</td><td>東塔的中心堂</td></tr><tr><td>萬拝堂／大講堂／大黒堂</td><td>まんぱいどう／だいこうどう／だいこくどう</td><td>東塔御朱印處</td></tr><tr><td>手打蕎麦 鶴屋喜八</td><td>てうちそば つるやきはち</td><td>午餐</td></tr><tr><td>坂本比叡山口駅</td><td>さかもとひえいざんぐちえき</td><td>京阪石山坂本線，午餐後上車</td></tr><tr><td>三井寺駅／三井寺（園城寺）</td><td>みいでらえき／みいでら（おんじょうじ）</td><td>京阪三井寺站、天台寺門宗總本山</td></tr><tr><td>びわ湖浜大津駅／浜大津アーカス</td><td>びわこはまおおつえき／はまおおつあーかす</td><td>京阪終點附近、商場</td></tr><tr><td>びわ湖大津港／大津湖岸なぎさ公園</td><td>びわこおおつこう／おおつこがんなぎさこうえん</td><td>遊覽船碼頭／湖畔公園</td></tr><tr><td>JR大津駅</td><td>じぇいあーるおおつえき</td><td>JR 琵琶湖線，回程上車</td></tr><tr><td>御朱印／直書き／書き置き</td><td>ごしゅいん／じかがき／かきおき</td><td>朱印／現場手寫／預先寫好的紙</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p4" aria-label="第 4 頁 今日行程總覽・時間界線">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">4 / 24</span></header>
+
+<h2><i class="seal">行</i>今日行程總覽</h2>
+<div class="tw"><table class=""><thead><tr><th class="tm">時間</th><th>地點</th><th>行程</th><th>交通</th><th>停留</th></tr></thead><tbody><tr><td class="tm">07:47→08:04</td><td>京都駅→比叡山坂本駅</td><td>JR 湖西線（近江舞子行）</td><td>JR <i class="t ok">✅</i></td><td>17 分</td></tr><tr><td class="tm">08:05～08:50</td><td>坂本老街→日吉大社</td><td>穴太衆積みの石垣、赤鳥居</td><td>步行 20 分＋散步 <i class="t ng">⚠️</i></td><td>45 分</td></tr><tr><td class="tm">08:50～09:40</td><td>日吉大社</td><td>西本宮・東本宮、御朱印（9:00 起）</td><td>境內</td><td>50 分</td></tr><tr><td class="tm">09:40～10:00</td><td>ケーブル坂本駅</td><td>買票、看大正期駅舎</td><td>步行 6 分 <i class="t ng">⚠️</i></td><td>20 分</td></tr><tr><td class="tm">10:00→10:11</td><td>坂本ケーブル</td><td>往ケーブル延暦寺駅</td><td>纜車 <i class="t ok">✅</i></td><td>11 分</td></tr><tr><td class="tm">10:11～12:20</td><td>延暦寺 東塔</td><td>根本中堂（外觀）、萬拝堂、大講堂、大黒堂</td><td>步行 13 分 <i class="t ng">⚠️</i></td><td>約 2 小時</td></tr><tr><td class="tm">12:30→12:41</td><td>坂本ケーブル</td><td>下山</td><td>纜車 <i class="t ok">✅</i></td><td>11 分</td></tr><tr><td class="tm">12:41～13:50</td><td>手打蕎麦 鶴屋喜八</td><td>午餐</td><td>步行 10 分 <i class="t ng">⚠️</i></td><td>約 60 分</td></tr><tr><td class="tm">13:50～14:09</td><td>坂本比叡山口駅</td><td>步行 2 分後候車</td><td>步行 <i class="t ng">⚠️</i></td><td>約 17 分</td></tr><tr><td class="tm">14:09→14:22</td><td>京阪石山坂本線</td><td>往三井寺駅</td><td>京阪 <i class="t ok">✅</i></td><td>13 分 <i class="t ng">⚠️</i></td></tr><tr><td class="tm">14:35～16:10</td><td>三井寺</td><td>金堂、鐘楼、三重塔、観音堂、御朱印</td><td>步行 11 分 <i class="t ng">⚠️</i></td><td>95 分</td></tr><tr><td class="tm">16:24→16:26</td><td>京阪</td><td>往びわ湖浜大津駅（1 站）</td><td>京阪 <i class="t ok">✅</i></td><td>約 2 分 <i class="t ng">⚠️</i></td></tr><tr><td class="tm">16:26～17:15</td><td>浜大津アーカス・大津港</td><td>湖畔散步</td><td>步行</td><td>約 50 分</td></tr><tr><td class="tm">17:41→約 17:52</td><td>JR大津駅→京都駅</td><td>JR 琵琶湖線</td><td>步行 20 分＋JR <i class="t ok">✅</i></td><td>約 10 分 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>今天的時間界線</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>時段</th><th>備註</th></tr></thead><tbody><tr><td>JR 去程（本命）</td><td>京都 07:47 発→比叡山坂本 08:04 着</td><td>備案 08:13 発→08:31 着，晚 27 分 <i class="t ok">✅</i></td></tr><tr><td>日吉大社</td><td>開門 6:00～、參拜與授與所 9:00～16:00、入苑協賛料 ¥500</td><td>9:00 前入苑可否未載 <i class="t ng">⚠️</i>；官網 <i class="t ok">✅</i></td></tr><tr><td>坂本ケーブル</td><td>3～11 月每小時 00 分、30 分發車，8:00～17:30</td><td>本命 10:00 上、12:30 下；備案 13:00 下 <i class="t ok">✅</i></td></tr><tr><td>延暦寺 東塔</td><td>9:00～16:00（巡拝受付 15:45 止）</td><td><i class="t ok">✅</i></td></tr><tr><td>鶴屋喜八</td><td>11:00～16:00（L.O. 15:30）</td><td>賣完即關店 <i class="t ok">✅</i></td></tr><tr><td>京阪 坂本比叡山口 平日</td><td>13:49、14:09、14:29、14:47 發（往三井寺方向）</td><td>14:09 是本命，錯過搭 14:29 <i class="t ok">✅</i></td></tr><tr><td>三井寺</td><td>9:00～16:30，受付 16:00 止；文化財收藏庫 9:30～</td><td>16:00 前一定要入山 <i class="t ok">✅</i></td></tr><tr><td>京阪 三井寺 平日 往浜大津</td><td>16:02、16:09、16:17、16:24、16:33、16:39 發</td><td>本命 16:24 <i class="t ok">✅</i></td></tr><tr><td>JR 大津 往京都（平日）</td><td>17:32 新快速、17:41、17:52、18:02、18:11、18:21</td><td>19:00 前到京都，最晚約 18:47 發（到站時間為估算）<i class="t ng">⚠️</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p5" aria-label="第 5 頁 今日路線地圖・動線說明">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">5 / 24</span></header>
+
+<h2><i class="seal">行</i>今日路線地圖</h2>
+<figure class="map"><img src="img/map_all.jpg" alt="Google Maps 全日路線總覽" width="1428" style="object-position:50% 45%"><figcaption>標出京都駅、比叡山坂本駅、日吉大社、ケーブル延暦寺駅、三井寺金堂、びわ湖大津港。紫線是 Google 的開車路線，只用來串起各點，實際移動依本手冊的鐵道與纜車・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+<div class="chips"><span class="xs">行程順序示意圖（示意圖，非地理比例）</span></div>
+<div class="chips">
+<span class="chip k">京都</span><span class="arr">▶</span><span class="chip">比叡山坂本</span><span class="arr">▶</span><span class="chip">日吉大社</span><span class="arr">▶</span><span class="chip">ケーブル坂本</span><span class="arr">▶</span><span class="chip">延暦寺東塔</span><span class="arr">▶</span><span class="chip">鶴屋喜八</span><span class="arr">▶</span><span class="chip">坂本比叡山口</span><span class="arr">▶</span><span class="chip">三井寺</span><span class="arr">▶</span><span class="chip">浜大津</span><span class="arr">▶</span><span class="chip">大津港</span><span class="arr">▶</span><span class="chip">JR大津</span><span class="arr">▶</span><span class="chip k">京都</span>
+</div>
+<h3>為什麼這樣走最順</h3>
+<p>三個景點都在比叡山東麓與琵琶湖西岸，南北排成一條線。從最北的坂本開始，上午用 10:00 的纜車上山，中午下山吃飯，午後往南一路到大津市區，不用折返。延暦寺一定要在上午，因為纜車的班次與 16:00 閉堂都是硬限制；三井寺放在下午，剛好趕在 16:00 入山截止前。最後的湖畔沒有時間壓力，累了可以直接縮短。</p>
+<div class="grid2">
+<div><h3>順路加入的</h3><ul class="l "><li>坂本老街的石垣：JR 站走到日吉大社的路上</li><li>大宮橋、山王鳥居：日吉大社境內</li><li>大正期的ケーブル坂本駅舎：登録有形文化財 <i class="t ok">✅</i></li><li>三井の晩鐘、弁慶の引き摺り鐘：三井寺境內</li><li>浜大津アーカス：京阪站旁，可吃點心、買伴手禮</li></ul></div>
+<div><h3>值得去但不排的</h3><ul class="l "><li>延暦寺 西塔・横川：要另搭巴士，東塔以外不排 <i class="t ok">✅</i></li><li>八王子山・奥宮：單程約 30 分登山 <i class="t ok">✅</i></li><li>生源寺（4/8 花まつり）：山麓寺院，本日未排，距離未查 <i class="t ok">✅</i></li><li>なぎさ公園のシバザクラ：離大津港約 2 km，4/8 才剛要開 <i class="t ok">✅</i></li><li>三井寺 光浄院・勧学院客殿：2027/7/31 前停止特別拝観 <i class="t ok">✅</i></li></ul></div>
+</div>
+<h3>有沒有更好的走法</h3>
+<p class="sm">若先去三井寺（9:00 開）再上延暦寺，要從大津往北折返，下午才上山，而延暦寺 15:45 受付截止、16:00 閉堂 <i class="t ok">✅</i>，會很趕。所以不採用。</p>
+
+</section>
+<section class="sheet" id="p6" aria-label="第 6 頁 區段放大地圖">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">6 / 24</span></header>
+
+<h2><i class="seal">行</i>區段放大地圖</h2>
+<div class="grid2">
+<figure class="sq"><img src="img/map_sakamoto.jpg" alt="比叡山坂本駅到日吉大社再到ケーブル坂本駅的步行路線" width="1428" style="object-position:50% 50%"><figcaption>① 比叡山坂本駅 → 日吉大社 → ケーブル坂本駅・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+<figure class="sq"><img src="img/map_enryaku.jpg" alt="ケーブル延暦寺駅到根本中堂與萬拝堂的步行路線" width="1428" style="object-position:45% 50%"><figcaption>② ケーブル延暦寺駅 → 萬拝堂・根本中堂（Google 顯示 16 分、950 m）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+<figure class="sq"><img src="img/map_miidera.jpg" alt="三井寺駅到三井寺的步行路線" width="1428" style="object-position:50% 50%"><figcaption>③ 三井寺駅 → 三井寺金堂・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+<figure class="sq"><img src="img/map_otsu.jpg" alt="三井寺駅到びわ湖浜大津、大津港、JR大津駅的步行路線" width="1428" style="object-position:50% 50%"><figcaption>④ 三井寺駅 → びわ湖浜大津 → 大津港 → JR大津駅・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+</div>
+<h3>各段步行時間（Google 估算，<i class="t ng">⚠️</i>）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>區段</th><th>Google</th><th>本手冊採用</th><th>說明</th></tr></thead><tbody><tr><td>比叡山坂本駅 → 日吉大社</td><td>20 分、1.2 km（三條路線 20～23 分）</td><td>45 分</td><td>多留 25 分走坂本老街、看石垣。官網寫 JR 站步行約 20 分 <i class="t ok">✅</i></td></tr><tr><td>日吉大社 → ケーブル坂本駅</td><td>6 分、350 m</td><td>6 分</td><td>上坡約 25 m</td></tr><tr><td>ケーブル延暦寺駅 → 根本中堂</td><td>13 分、750 m（至萬拝堂 16 分、950 m）</td><td>約 15 分</td><td>有坡道</td></tr><tr><td>根本中堂 → 萬拝堂 → 大講堂</td><td>1 分、81 m；2 分、130 m</td><td>各 2～3 分</td><td>三處相鄰</td></tr><tr><td>萬拝堂 → 大黒堂 → 大講堂</td><td>1 分、76 m；3 分、180 m</td><td>各 2～3 分</td><td>大黒堂在一隅會館前廣場 <i class="t ok">✅</i></td></tr><tr><td>大講堂 → ケーブル延暦寺駅</td><td>12 分、800 m</td><td>約 15 分</td><td>預留 12:30 班次</td></tr><tr><td>ケーブル坂本駅 → 鶴屋喜八</td><td>10 分、800 m（10～13 分）</td><td>10 分</td><td>–</td></tr><tr><td>鶴屋喜八 → 坂本比叡山口駅</td><td>2 分、170 m</td><td>2 分</td><td>官網寫站下車 1 分 <i class="t ok">✅</i></td></tr><tr><td>三井寺駅 → 三井寺金堂</td><td>11 分、750 m</td><td>11 分</td><td>官網寫到仁王門約 10 分 <i class="t ok">✅</i></td></tr><tr><td>びわ湖浜大津 → 大津港 → JR大津駅</td><td>4 分、290 m；20 分、1.4 km</td><td>4 分＋20 分</td><td>浜大津直接走 JR 大津為 16 分 / 1.1 km</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p7" aria-label="第 7 頁 交通總覽">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">7 / 24</span></header>
+
+<h2><i class="seal">行</i>交通總覽</h2>
+<div class="tw"><table class="dense"><thead><tr><th>段</th><th>起訖</th><th>工具</th><th class="tm">時間</th><th>費用（每人）</th><th>來源</th></tr></thead><tbody><tr><td>1</td><td>京都→比叡山坂本</td><td>JR 湖西線 07:47 発（近江舞子行，不用轉乘）</td><td class="tm">17 分</td><td>¥320（駅探 16.6 km）</td><td><i class="t ng">⚠️</i></td></tr><tr><td>2</td><td>比叡山坂本→日吉大社</td><td>步行</td><td class="tm">20 分</td><td>–</td><td><i class="t ng">⚠️</i></td></tr><tr><td>3</td><td>日吉大社→ケーブル坂本駅</td><td>步行</td><td class="tm">6 分</td><td>–</td><td><i class="t ng">⚠️</i></td></tr><tr><td>4</td><td>ケーブル坂本→延暦寺</td><td>坂本ケーブル 10:00 発</td><td class="tm">11 分</td><td>往復 ¥1,830（單程 ¥960）</td><td><i class="t ok">✅</i></td></tr><tr><td>5</td><td>延暦寺東塔境內</td><td>步行（含 ケーブル延暦寺駅往返）</td><td class="tm">約 40 分</td><td>巡拝料 ¥1,000</td><td><i class="t ok">✅</i></td></tr><tr><td>6</td><td>延暦寺→坂本</td><td>坂本ケーブル 12:30 発</td><td class="tm">11 分</td><td>含於往復票</td><td><i class="t ok">✅</i></td></tr><tr><td>7</td><td>ケーブル坂本→鶴屋喜八→坂本比叡山口</td><td>步行</td><td class="tm">10 分＋2 分</td><td>–</td><td><i class="t ng">⚠️</i></td></tr><tr><td>8</td><td>坂本比叡山口→三井寺</td><td>京阪石山坂本線 14:09 発</td><td class="tm">13 分</td><td>¥280</td><td><i class="t ok">✅</i></td></tr><tr><td>9</td><td>三井寺駅→三井寺</td><td>步行</td><td class="tm">11 分</td><td>入山料 ¥800</td><td><i class="t ok">✅</i></td></tr><tr><td>10</td><td>三井寺→びわ湖浜大津</td><td>京阪石山坂本線 16:24 発（1 站）</td><td class="tm">約 2 分</td><td>¥200</td><td><i class="t ok">✅</i></td></tr><tr><td>11</td><td>大津港→JR大津駅</td><td>步行</td><td class="tm">20 分</td><td>–</td><td><i class="t ng">⚠️</i></td></tr><tr><td>12</td><td>JR大津→京都</td><td>JR 琵琶湖線 17:41 発</td><td class="tm">約 10 分</td><td>¥200（駅探 10.0 km）</td><td><i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<div class="box "><b>可以比較的選項：</b>坂本ケーブル官網銷售「延暦寺・坂本周遊一日乗車券」¥2,500（含巴士、ケーブル、延暦寺拝観券）<i class="t ok">✅</i>。分開買是往復 ¥1,830＋巡拝 ¥1,000＝¥2,830，差 ¥330。但這張票含的巴士用不到，2027 年 4 月是否仍販售、使用條件與購買期限我沒有核實 <i class="t ng">⚠️</i>，因此本手冊用分開買的價格。</div>
+<h3>交通小提醒</h3>
+<ul class="l "><li><b>ケーブル只在每小時 :00 與 :30 發車，上下行同時發車。</b>錯過就等 30 分，延暦寺回程班次是本日唯一的硬性時間 <i class="t ok">✅</i></li><li><b>京阪石山坂本線可以刷 IC 卡。</b>坂本比叡山口→三井寺→びわ湖浜大津的票價是官網運賃表 <i class="t ok">✅</i>，刷卡扣的金額以車站顯示為準 <i class="t ng">⚠️</i></li><li><b>JR 與京阪都是平日 2026/10 時刻。</b>2027 年 4 月班次可能微調，出發前一週用 JR 西日本「駅の時刻表」與京阪官網再查。</li><li><b>回程 JR 有兩種等級：</b>新快速約 9～10 分，普通約 11～12 分，差距不大 <i class="t ng">⚠️</i></li></ul>
+<h3>備案</h3>
+<div class="tw"><table class="dense"><thead><tr><th>情境</th><th>做法</th></tr></thead><tbody><tr><td>錯過 07:47 JR</td><td>搭 08:13 發的普通，08:31 到比叡山坂本。日吉大社縮短到約 30 分，仍趕得上 10:00 纜車 <i class="t ok">✅</i></td></tr><tr><td>趕不上 10:00 纜車</td><td>搭 10:30，延暦寺只留 1 小時 50 分，大黒堂以後的堂不看</td></tr><tr><td>趕不上 12:30 下山纜車</td><td>搭 13:00，13:11 到坂本；午餐縮成 40 分仍能搭 14:09 京阪（我的估算）</td></tr><tr><td>錯過 14:09 京阪</td><td>14:29 發，到三井寺約 14:42，三井寺減 15 分 <i class="t ok">✅</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p8" aria-label="第 8 頁 鐵路專頁：JR・ケーブル・京阪">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">8 / 24</span></header>
+
+<h2><i class="seal">行</i>鐵路專頁</h2>
+<h3>JR 湖西線（京都→比叡山坂本）　平日，2026/10 版 <i class="t ok">✅</i></h3>
+<div class="tw"><table class="dense"><thead><tr><th>京都発</th><th>種別・行先</th><th>比叡山坂本着</th><th>用途</th></tr></thead><tbody><tr><td>07:47</td><td>普通 近江舞子行（3 番線）</td><td>08:04</td><td><b>本命</b></td></tr><tr><td>08:13</td><td>普通 近江舞子行</td><td>08:31</td><td>備案（晚 27 分）</td></tr></tbody></table></div>
+<p class="xs">JR 西日本「駅の時刻表」京都駅（山科・堅田・近江今津方面）與比叡山坂本駅（堅田・近江今津方面），2026/10/08（木）表示，改正日 2026/10/03 <i class="t ok">✅</i>。07:29、08:09 京都発的特急サンダーバード，比叡山坂本駅的時刻表上沒有特急，不能搭。</p>
+<h3>坂本ケーブル　3～11 月 <i class="t ok">✅</i></h3>
+<div class="tw"><table class="kv "><tbody><tr><th>發車</th><td>每小時 00 分、30 分，8:00～17:30（上、下行同時發車）</td></tr><tr><th>時間・距離</th><td>約 11 分、全長 2,025 m，昭和 2 年（1927）開業，日本最長</td></tr><tr><th>運賃</th><td>大人 單程 ¥960、往復 ¥1,830；小學生 單程 ¥480、往復 ¥920。2026/4/1 起新運賃</td></tr><tr><th>今日班次</th><td>09:00～10:00 之間要搭的是 <b>10:00</b>；回程 <b>12:30</b>（備案 13:00）</td></tr><tr><th>營運狀況</th><td>官網 2026/10/02「通常通り運行中」。2027/4 的狀況無法預先確認 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>京阪石山坂本線　平日，2026/10 版 <i class="t ok">✅</i></h3>
+<div class="tw"><table class="dense"><thead><tr><th>站</th><th>往びわ湖浜大津・石山寺方向的平日發車（節錄）</th></tr></thead><tbody><tr><td>坂本比叡山口</td><td>13:09、13:29、13:49、<b>14:09</b>、14:29、14:47、15:09</td></tr><tr><td>三井寺</td><td>16:02、16:09、16:17、<b>16:24</b>、16:33、16:39、16:47、16:55</td></tr></tbody></table></div>
+<div class="tw"><table class="dense"><thead><tr><th>區間</th><th>運賃</th><th>距離</th><th>來源</th></tr></thead><tbody><tr><td>坂本比叡山口 → 三井寺</td><td>¥280</td><td>6.9 km</td><td>京阪官網運賃表 2025/10/01 改定 <i class="t ok">✅</i></td></tr><tr><td>三井寺 → びわ湖浜大津</td><td>¥200</td><td>0.5 km</td><td>同上 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<p class="xs">時刻取自京阪官網的 PDF 時刻表（石山寺方面・平日）畫面，坂本比叡山口發的 8:31 等少數班次標「近」只到近江神宮前，本日用的 14:09 沒有標記 <i class="t ok">✅</i>。</p>
+<h3>JR 琵琶湖線（大津→京都）　平日，2026/10 版 <i class="t ok">✅</i></h3>
+<p class="sm">大津駅發往京都方向：17:32（新快速）、17:41、17:52（普通・京都行）、18:02、18:11、18:21（普通・京都行）。<b>本命 17:41</b>，約 17:52 抵達 <i class="t ng">⚠️</i>（到站時間依駅探「約 9 分」與普通停靠推估）。運賃 ¥200 <i class="t ng">⚠️</i>。</p>
+<h3>六個關鍵班次與錯過時的備案</h3>
+<div class="tw"><table class="dense"><thead><tr><th>班次</th><th>本命</th><th>錯過了怎麼辦</th></tr></thead><tbody><tr><td>JR 京都→比叡山坂本</td><td>07:47 発</td><td>08:13 発，08:31 到。日吉大社縮短，仍趕得上 10:00 纜車 <i class="t ok">✅</i></td></tr><tr><td>ケーブル 上山</td><td>10:00 発</td><td>10:30 発。延暦寺剩 1 小時 50 分 <i class="t ok">✅</i></td></tr><tr><td>ケーブル 下山</td><td>12:30 発</td><td>13:00 発，13:11 到坂本，午餐縮成 40 分 <i class="t ok">✅</i></td></tr><tr><td>京阪 坂本比叡山口→三井寺</td><td>14:09 発</td><td>14:29 発，約 14:42 到三井寺，少約 20 分 <i class="t ok">✅</i></td></tr><tr><td>京阪 三井寺→びわ湖浜大津</td><td>16:24 発</td><td>16:33 或 16:39 発，浜大津的散步縮短 <i class="t ok">✅</i></td></tr><tr><td>JR 大津→京都</td><td>17:41 発</td><td>17:52（普通）、18:02、18:11；19:00 前到京都的最晚班約 18:47（估算）<i class="t ng">⚠️</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p9" aria-label="第 9 頁 出發段落：比叡山坂本・坂本老街">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">9 / 24</span></header>
+
+<h2><i class="seal">行</i>出發段落　<small>07:47 京都→08:04 比叡山坂本→坂本老街</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/jr_station.jpg" alt="比叡山坂本駅" width="1000" style="object-position:50% 50%"><figcaption>SONIC BLOOMING・CC BY-SA 4.0・2020 年攝・<a href="https://commons.wikimedia.org/wiki/File:Hieizan-Sakamoto_Station.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/sakamoto_wall.jpg" alt="坂本老街的石垣" width="1000" style="object-position:50% 60%"><figcaption>663highland・CC BY 2.5・2008 年攝・<a href="https://commons.wikimedia.org/wiki/File:Sakamoto_Otsu03s4592.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/sakamoto_wall2.jpg" alt="坂本的石垣與水路" width="1000" style="object-position:50% 50%"><figcaption>663highland・CC BY 2.5・2008 年攝・<a href="https://commons.wikimedia.org/wiki/File:Sakamoto_Otsu07s4592.jpg">Wikimedia Commons</a></figcaption></figure>
+</div>
+<h3>為什麼這樣排</h3>
+<p>日吉大社的授與所 9:00 才開 <i class="t ok">✅</i>，所以不需要搭更早的車。07:47 是最接近 07:40 的實際班次；08:04 到站後走老街，邊看石垣邊走，08:50 左右抵達赤鳥居前。</p>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>穴太衆積みの石垣。</b>坂本是延暦寺的門前町，路邊與民宅圍牆的石垣是這一帶的特色。Google 的路線有三條，20～23 分 <i class="t ng">⚠️</i>，選靠水路、石垣最多的那條。</li><li><b>比叡山坂本駅。</b>JR 站本身沒有特別看點，站前有計程車與巴士乘車處，但本日不搭 <i class="t ok">✅</i></li><li><b>日吉大社入口的赤鳥居與大宮橋。</b>日吉大社官網寫入口赤鳥居進去、於西受付繳入苑協賛料 <i class="t ok">✅</i></li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>出發</th><td>京都駅 07:47（近江舞子行普通，3 番線） <i class="t ok">✅</i></td></tr><tr><th>到達</th><td>比叡山坂本駅 08:04 <i class="t ok">✅</i>，車資約 ¥320 <i class="t ng">⚠️</i></td></tr><tr><th>步行</th><td>Google 20 分、1.2 km <i class="t ng">⚠️</i>；官網寫約 20 分 <i class="t ok">✅</i>。採用 45 分含散步</td></tr><tr><th>地圖</th><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%9D%82%E6%9C%AC%E9%A7%85&destination=%E6%97%A5%E5%90%89%E5%A4%A7%E7%A4%BE&travelmode=walking">比叡山坂本駅 → 日吉大社（Google Maps）</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%9D%82%E6%9C%AC%E9%A7%85">開啟車站位置</a></td></tr><tr><th>廁所</th><td>日吉大社境內有 3 處與入口赤鳥居前有觀光者用廁所 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<figure class="map"><img src="img/map_sakamoto.jpg" alt="JR 比叡山坂本駅到日吉大社到ケーブル坂本駅" width="1428" style="object-position:50% 45%"><figcaption>比叡山坂本駅 → 日吉大社 → ケーブル坂本駅（Google 步行路線）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+
+</section>
+<section class="sheet" id="p10" aria-label="第 10 頁 日吉大社">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">10 / 24</span></header>
+
+<h2><i class="seal">観</i>日吉大社　<small>08:50～09:40・山王總本宮</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/hiyoshi_nishi.jpg" alt="日吉大社西本宮本殿" width="1000" style="object-position:50% 55%"><figcaption>663highland・CC BY 2.5・2008 年攝・<a href="https://commons.wikimedia.org/wiki/File:Hiyoshi-taisha_nishihongu-honden01n4592.jpg">Wikimedia Commons</a>・西本宮本殿</figcaption></figure>
+<figure class="sq"><img src="img/hiyoshi_higashi.jpg" alt="日吉大社東本宮本殿" width="1000" style="object-position:50% 55%"><figcaption>663highland・CC BY 2.5・2008 年攝・<a href="https://commons.wikimedia.org/wiki/File:Hiyoshi-taisha_higashihongu-honden01nt3200.jpg">Wikimedia Commons</a>・東本宮本殿</figcaption></figure>
+<figure class="sq"><img src="img/hiyoshi_torii.jpg" alt="山王鳥居" width="1000" style="object-position:50% 55%"><figcaption>puffyjet・CC BY 2.0・2010 年攝・<a href="https://commons.wikimedia.org/wiki/File:Hiyoshi-taisha,_Sann%C5%8D-torii_(a).jpg">Wikimedia Commons</a>・山王鳥居</figcaption></figure>
+</div>
+<h3>推薦理由</h3>
+<p>全國約 3,800 社日吉・日枝・山王神社的總本宮，鎮座約 2,100 年，境內國寶 2 棟、重要文化財 17 棟，面積約 468,000 ㎡ <i class="t ok">✅</i>。西本宮、東本宮是日吉造，背面像被切掉一半，是這裡獨有的樣式 <i class="t ok">✅</i>。境內有水路貫穿，不是平地上的神社。</p>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>西本宮・東本宮本殿（國寶）。</b>屋頂後半部被切掉的日吉造，木製的獅子與狛犬坐在本殿屋頂上 <i class="t ok">✅</i></li><li><b>山王鳥居。</b>明神鳥居上加三角破風，象徵神佛習合 <i class="t ok">✅</i></li><li><b>大宮橋與境內水路。</b>要過大宮川的石橋才能入境內 <i class="t ok">✅</i></li><li><b>參道的櫻花。</b>石の大鳥居到入口的縣道沿線約 150 株，見頃 4 月初旬 <i class="t ok">✅</i>；4/8 是否仍在花期看當年 <i class="t ng">⚠️</i></li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>開門</th><td>4～9 月 6:00～16:00（西・東本宮）；參拜 9:00～16:00；授與所 9:00～16:00 <i class="t ok">✅</i></td></tr><tr><th>入苑協賛料</th><td>大人 ¥500、中高生 ¥300、小學生以下免費。西受付繳 <i class="t ok">✅</i>。omairi 2026/09/10 也寫「拝観料 500 円」<i class="t ph">📷</i></td></tr><tr><th>所要時間</th><td>境內一周約 40 分 <i class="t ok">✅</i></td></tr><tr><th>公休</th><td>官網未列公休 <i class="t ok">✅</i></td></tr><tr><th>交通</th><td>JR 比叡山坂本駅步行約 20 分、京阪坂本比叡山口駅約 10 分 <i class="t ok">✅</i></td></tr><tr><th>地圖</th><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E6%97%A5%E5%90%89%E5%A4%A7%E7%A4%BE&destination=%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%9D%82%E6%9C%AC%E9%A7%85&travelmode=walking">日吉大社 → ケーブル坂本駅</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E6%97%A5%E5%90%89%E5%A4%A7%E7%A4%BE%20%E8%A5%BF%E6%9C%AC%E5%AE%AE">日吉大社 西本宮</a></td></tr></tbody></table></div>
+<h3>御朱印</h3>
+<div class="tw"><table class="dense"><thead><tr><th>種類</th><th>初穂料</th><th>授與處</th><th>備註</th></tr></thead><tbody><tr><td>日吉大社（境內總稱）</td><td>¥500 <i class="t ok">✅</i></td><td>西本宮授與所 <i class="t ok">✅</i></td><td>官網「ご朱印500円」；直書き 2026/05/05、08/14、09/10 <i class="t ph">📷</i></td></tr><tr><td>西本宮・東本宮</td><td>¥500 <i class="t ng">⚠️</i></td><td>東授與所也可 <i class="t ok">✅</i></td><td>官網只寫金額為「ご朱印 500 円」，各社同額未明載 <i class="t ng">⚠️</i></td></tr><tr><td>山王七社的各社（宇佐宮・牛尾宮・白山宮・樹下宮・三宮）</td><td>未載 <i class="t ng">⚠️</i></td><td>授與所 <i class="t ok">✅</i></td><td>2026/07/26 買朱印帳後全部直書き <i class="t ph">📷</i></td></tr></tbody></table></div>
+<p class="xs">授與所 9:00～16:00 <i class="t ok">✅</i>。正月限定朱印 ¥1,000 只在 1/1 授與 <i class="t ok">✅</i>，4 月不適用。JR 東海合作的切り絵朱印需事先在スマートEX申請，2026/9/7 公告，2027 年是否持續未知 <i class="t ng">⚠️</i>。</p>
+
+</section>
+<section class="sheet" id="p11" aria-label="第 11 頁 坂本ケーブル">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">11 / 24</span></header>
+
+<h2><i class="seal">行</i>坂本ケーブル　<small>10:00→10:11・日本最長 2,025 m</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/cable_stn.jpg" alt="ケーブル坂本駅" width="1000" style="object-position:50% 55%"><figcaption>江戸村のとくぞう・CC BY-SA 4.0・2020 年攝・<a href="https://commons.wikimedia.org/wiki/File:Cable_Sakamoto_Station_201125a.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/cable_car.jpg" alt="坂本ケーブルの車両" width="1000" style="object-position:50% 55%"><figcaption>Saigen Jiro・CC0・2019 年攝・<a href="https://commons.wikimedia.org/wiki/File:Cable_car_at_Cable_Sakamoto_Station.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/cable_old.jpg" alt="ケーブル坂本駅發車的ケーブルカー" width="1000" style="object-position:50% 50%"><figcaption>作者見 Commons 頁・CC BY-SA 3.0・2007 年攝・<a href="https://commons.wikimedia.org/wiki/File:Sakamoto_Cable.jpg">Wikimedia Commons</a>・舊塗裝</figcaption></figure>
+</div>
+<h3>推薦理由</h3>
+<p>昭和 2 年（1927）開業，全長 2,025 m、11 分，是日本最長的纜車 <i class="t ok">✅</i>。從門前町坂本直接爬到延暦寺東塔，是歷史上的表參道。官網說車窗可看到山間與琵琶湖，駅舎是大正風格、登錄有形文化財 <i class="t ok">✅</i>。第三張是 2007 年的舊塗裝，2023/12 起改為新設計 <i class="t ok">✅</i>，現場不是這個顏色。</p>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>ケーブル坂本駅舎。</b>大正風格，是登錄有形文化財 <i class="t ok">✅</i>。上車前有 15 分鐘可以拍</li><li><b>車窗。</b>官網寫可看到山間與琵琶湖 <i class="t ok">✅</i>；哪一側座位景色較好我沒有查到 <i class="t ng">⚠️</i></li><li><b>山のデッキ。</b>2023/4/29 開放的觀景處 <i class="t ok">✅</i>，位置與營業時間未查 <i class="t ng">⚠️</i></li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>班次</th><td>3～11 月每小時 :00 與 :30，8:00～17:30。上、下行同時發車，單程約 11 分 <i class="t ok">✅</i></td></tr><tr><th>運賃</th><td>大人 單程 ¥960、往復 ¥1,830；小學生 ¥480／¥920。2026/4/1 改定 <i class="t ok">✅</i></td></tr><tr><th>其他票</th><td>延暦寺・坂本周遊一日乗車券 ¥2,500（含巴士、ケーブル、延暦寺拝観券）<i class="t ok">✅</i>，2027 年 4 月是否販售未知 <i class="t ng">⚠️</i></td></tr><tr><th>買票</th><td>官網有線上購票鈕 <i class="t ok">✅</i>；現場窗口購票的細節未查 <i class="t ng">⚠️</i></td></tr><tr><th>行李</th><td>官網有「お荷物預かり」服務，詳細條件我沒有取得 <i class="t ng">⚠️</i></td></tr><tr><th>聯絡</th><td>比叡山鉄道 077-578-0531、滋賀縣大津市坂本本町4244 <i class="t ok">✅</i></td></tr><tr><th>地圖</th><td><a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%9D%82%E6%9C%AC%E9%A7%85">ケーブル坂本駅</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%BB%B6%E6%9A%A6%E5%AF%BA%E9%A7%85">ケーブル延暦寺駅</a></td></tr></tbody></table></div>
+<h3>時間安排</h3>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>動作</th><th>備註</th></tr></thead><tbody><tr><td class="tm">09:40</td><td>日吉大社出發，步行 6 分</td><td>Google 350 m <i class="t ng">⚠️</i></td></tr><tr><td class="tm">09:46</td><td>到ケーブル坂本駅，買往復票</td><td>約 14 分的緩衝</td></tr><tr><td class="tm">10:00</td><td>搭乘</td><td>本命 <i class="t ok">✅</i></td></tr><tr><td class="tm">10:11</td><td>到ケーブル延暦寺駅</td><td>步行約 13～16 分到根本中堂 <i class="t ng">⚠️</i></td></tr><tr><td class="tm">12:30</td><td>回程發車</td><td>12:41 到坂本；備案 13:00 <i class="t ok">✅</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p12" aria-label="第 12 頁 延暦寺 東塔（1）根本中堂">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">12 / 24</span></header>
+
+<h2><i class="seal">観</i>延暦寺 東塔（上）　<small>10:11～12:20・天台宗總本山</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/suyane.jpg" alt="根本中堂修理用覆屋的入口" width="1000" style="object-position:50% 40%"><figcaption>Indiana jo・CC BY-SA 4.0・2021 年攝・<a href="https://commons.wikimedia.org/wiki/File:Social_distancing_in_Konponchud%C5%8D.jpg">Wikimedia Commons</a>・修理用覆屋</figcaption></figure>
+<figure class="sq"><img src="img/konpon_old.jpg" alt="根本中堂與廻廊" width="1000" style="object-position:50% 50%"><figcaption>663highland・CC BY 2.5・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Enryakuji_Konponchudo04n4272.jpg">Wikimedia Commons</a>・整修前</figcaption></figure>
+<figure class="sq"><img src="img/monjuro.jpg" alt="文殊楼" width="1000" style="object-position:50% 50%"><figcaption>Zairon・CC BY 4.0・2023 年攝・<a href="https://commons.wikimedia.org/wiki/File:Otsu_Enryaku-ji_Monjuro_1.jpg">Wikimedia Commons</a>・文殊楼</figcaption></figure>
+</div>
+<h3>推薦理由</h3>
+<p>「延暦寺」是比叡山約 100 座堂塔的總稱，分東塔、西塔、横川三區 <i class="t ok">✅</i>。東塔是最澄開創的發祥地，也是主要堂宇最密的區域，官網建議停留 1 小時以上 <i class="t ok">✅</i>。這天的上午只走東塔，剛好用 10:00 纜車上、12:30 纜車下。根本中堂建於 788 年（一乘止観院），現在的建物是寛永 19 年（1642）徳川家光再建，堂內有燃了約 1,200 年的「不滅の法灯」<i class="t ok">✅</i>。</p>
+<div class="box warn"><b>2027/4/8 的根本中堂：</b>內部整修中，<b>令和8年1月6日～令和10年1月（約 2 年）不能入內參拜</b><i class="t ok">✅</i>。可以看屋頂高度的「修學ステージ」預定只到 2026 年 12 月前後 <i class="t ok">✅</i>，4 月不一定還在。左上照片是 2021 年的覆屋入口，2027 年的樣子要以現場為準 <i class="t ng">⚠️</i>。本尊的「御前立」與法灯暫奉安於萬拝堂，可以在那裡參拜 <i class="t ok">✅</i>。</div>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>根本中堂外觀與廻廊。</b>建物是國寶、廻廊是重要文化財 <i class="t ok">✅</i>。覆屋是否還包著、能看到多少，到現場才知道 <i class="t ng">⚠️</i></li><li><b>萬拝堂。</b>2026/1/8 起奉安根本中堂本尊的御前立薬師如來與不滅の法灯，可近距離參拜 <i class="t ok">✅</i></li><li><b>文殊樓。</b>延暦寺的山門，隔著高石階在根本中堂東側，現建築是寬文 8 年（1668）燒失後重建、國重要文化財 <i class="t ok">✅</i></li><li><b>4/4～4/11 的御修法。</b>在根本中堂舉行 <i class="t ok">✅</i>，法要時可能限制入堂 <i class="t ok">✅</i>，但本來內部就不開放</li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>開堂時間</th><td>東塔 9:00～16:00（通年）。巡拝受付 15:45 止 <i class="t ok">✅</i></td></tr><tr><th>巡拝料</th><td>東塔・西塔・横川共通券 大人 ¥1,000、中高生 ¥600、小學生 ¥300 <i class="t ok">✅</i>。在各巡拝受付所繳</td></tr><tr><th>國寶殿（不排）</th><td>9:00～16:00、大人 ¥500 <i class="t ok">✅</i>。本日時間不夠，列為有餘裕時的選項</td></tr><tr><th>休息處</th><td>一隅会館：免費休息所，地下有蕎麥麵店 <i class="t ok">✅</i></td></tr><tr><th>步行</th><td>ケーブル延暦寺駅→根本中堂 13 分、750 m；至萬拝堂 16 分、950 m <i class="t ng">⚠️</i></td></tr><tr><th>地圖</th><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%BB%B6%E6%9A%A6%E5%AF%BA%E9%A7%85&destination=%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%BB%B6%E6%9A%A6%E5%AF%BA%20%E6%A0%B9%E6%9C%AC%E4%B8%AD%E5%A0%82&travelmode=walking">ケーブル延暦寺駅 → 根本中堂</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%BB%B6%E6%9A%A6%E5%AF%BA%20%E8%90%AC%E6%8B%9D%E5%A0%82">萬拝堂</a></td></tr></tbody></table></div>
+<h3>東塔的走法（約 2 小時）</h3>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>地點</th><th>做什麼</th></tr></thead><tbody><tr><td class="tm">10:11</td><td>ケーブル延暦寺駅</td><td>下車，往根本中堂方向走。先在巡拝受付所買 ¥1,000 的券</td></tr><tr><td class="tm">10:25～10:55</td><td>根本中堂（外觀）・萬拝堂</td><td>看外觀、參拜御前立，萬拝堂拿御朱印</td></tr><tr><td class="tm">10:55～11:15</td><td>大講堂</td><td>大日如來。御朱印</td></tr><tr><td class="tm">11:15～11:40</td><td>大黒堂・一隅会館</td><td>三面大黒天、御朱印、休息</td></tr><tr><td class="tm">11:40～12:05</td><td>備案：阿弥陀堂・法華総持院東塔</td><td>有時間才去，12:05 前要出發</td></tr><tr><td class="tm">12:05～12:20</td><td>走回ケーブル延暦寺駅</td><td>Google 800 m、12 分 <i class="t ng">⚠️</i>。12:30 發車</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p13" aria-label="第 13 頁 延暦寺 東塔（2）各堂與御朱印">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">13 / 24</span></header>
+
+<h2><i class="seal">印</i>延暦寺 東塔（下）　<small>各堂與御朱印</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/daikodo.jpg" alt="大講堂" width="1000" style="object-position:50% 50%"><figcaption>Zairon・CC BY 4.0・2023 年攝・<a href="https://commons.wikimedia.org/wiki/File:Otsu_Enryaku-ji_Daikodo_Exterior_1.jpg">Wikimedia Commons</a>・大講堂</figcaption></figure>
+<figure class="sq"><img src="img/daikokudo.jpg" alt="大黒堂" width="1000" style="object-position:50% 50%"><figcaption>Guilhem Vellut from Tokyo, Japan・CC BY 2.0・2014 年攝・<a href="https://commons.wikimedia.org/wiki/File:Daikokudo_hall_of_Enryakuji_temple.jpg">Wikimedia Commons</a>・大黒堂</figcaption></figure>
+<figure class="sq"><img src="img/amidado.jpg" alt="阿弥陀堂" width="1000" style="object-position:50% 50%"><figcaption>663highland・CC BY 2.5・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Enryakuji_Amidado01n3200.jpg">Wikimedia Commons</a>・阿弥陀堂（Commons 檔名標示）</figcaption></figure>
+</div>
+<h3>各堂簡介</h3>
+<ul class="l "><li><b>大講堂。</b>昭和 39 年（1964）由山麓坂本的讚佛堂移建，本尊大日如來，兩側供奉在比叡山修行的各宗宗祖木像，國重要文化財 <i class="t ok">✅</i></li><li><b>大黒堂。</b>在一隅会館前廣場。傳說最澄在此感見大黑天，被稱為日本大黑天信仰的發祥地，本尊是大黑天、毘沙門天、辯才天合體的三面出世大黒天 <i class="t ok">✅</i></li><li><b>阿弥陀堂。</b>昭和 12 年（1937）建，供奉丈六阿彌陀如來，堂前有水琴窟，前方鐘樓是國重要文化財 <i class="t ok">✅</i></li><li><b>法華総持院東塔。</b>昭和 55 年（1980）在阿弥陀堂旁再建，供奉大日如來等五智如來 <i class="t ok">✅</i></li><li><b>萬拝堂。</b>在根本中堂大坂上，勸請日本各地神社佛閣的諸佛諸尊奉安 <i class="t ok">✅</i></li></ul>
+<h3>御朱印（官網列出 11 種 <i class="t ok">✅</i>，本日目標標粗體）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>堂</th><th>御朱印</th><th>授與處</th><th>備註</th></tr></thead><tbody><tr><td><b>根本中堂</b>（薬師如来）</td><td>本尊印</td><td>萬拝堂 <i class="t ok">✅</i></td><td><b>4/8 是 8 日縁日，授與紺紙金字特別御朱印 <i class="t ok">✅</i></b>；初穂料未載 <i class="t ng">⚠️</i></td></tr><tr><td><b>根本中堂 特別</b></td><td>御前立・不滅の法灯奉安記念</td><td>萬拝堂 <i class="t ok">✅</i></td><td>冥加料 1 枚 ¥1,000、授與約 2 年（2026/1 起，預定）<i class="t ok">✅</i>。黑色和紙一枚書き 2026/05/20 <i class="t ph">📷</i></td></tr><tr><td><b>大講堂</b>（大日如来）</td><td>大日如來</td><td>大講堂 <i class="t ok">✅</i></td><td>直書き 2026/08/08、07/28 <i class="t ph">📷</i>；初穂料未載 <i class="t ng">⚠️</i></td></tr><tr><td><b>大黒堂</b>（三面大黒天）</td><td>大黒天</td><td>大黒堂 <i class="t ok">✅</i></td><td>直書き 2026/07/28、07/17、04/07 <i class="t ph">📷</i>；初穂料未載 <i class="t ng">⚠️</i></td></tr><tr><td>文殊楼</td><td>文殊菩薩</td><td>大黒堂 <i class="t ok">✅</i></td><td>只有一枚書き，不寫進朱印帳 <i class="t ok">✅</i></td></tr><tr><td>阿弥陀堂・法華総持院東塔</td><td>阿彌陀如來／五佛</td><td>阿弥陀堂 <i class="t ok">✅</i></td><td>本日不排</td></tr><tr><td>正覚院不動</td><td>不動明王</td><td>延暦寺会館フロント <i class="t ok">✅</i></td><td>一枚書きのみ <i class="t ok">✅</i>；本日不排</td></tr></tbody></table></div>
+<h3>縁日與授與的注意點</h3>
+<ul class="l "><li><b>4/8（四）</b>是根本中堂的縁日（毎月 8 日）<i class="t ok">✅</i>。大講堂、法華総持院東塔的縁日是 28 日 <i class="t ok">✅</i>，今天不是</li><li>大黒堂的縁日是子の日，星峯稲荷社是午の日 <i class="t ok">✅</i>。官網表只到 2026 年，2026/4/8 是子の日 <i class="t ok">✅</i>，往後推 365 天，2027/4/8 是<b>巳の日</b>，兩者都不是（我的推算 <i class="t ng">⚠️</i>）</li><li>萬拝堂的御朱印，omairi 2025/04～07 的投稿是在大黒堂授與處拿到書置き <i class="t ph">📷</i>。官網 2026/1 起寫「御朱印所移到萬拝堂」<i class="t ok">✅</i>，以現場告示為準</li><li>延暦寺各堂的授與時間、一般御朱印初穂料，官網沒有逐項載明 <i class="t ng">⚠️</i>。官網寫的電話受付時間是 9:00～16:00 <i class="t ok">✅</i></li></ul>
+<p class="xs">omairi 的「諸堂參拜券込みで 2000 円の志納」是個別投稿的註記，我無法對應到哪一種御朱印，不採用。</p>
+
+</section>
+<section class="sheet" id="p14" aria-label="第 14 頁 午餐：手打蕎麦 鶴屋喜八">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">14 / 24</span></header>
+
+<h2><i class="seal">食</i>午餐　<small>12:41～13:50・坂本的手打蕎麥麵</small></h2>
+<figure class="map"><img src="img/map_lunch.jpg" alt="ケーブル坂本駅から鶴屋喜八と坂本比叡山口駅への步行路線" width="1428" style="object-position:50% 45%"><figcaption>ケーブル坂本駅 → 鶴屋喜八 → 坂本比叡山口駅・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+<h3>推薦理由</h3>
+<p>坂本是延暦寺的門前町。鶴屋喜八說自己是從延暦寺的廚房工作者開始，在坂本創業三百年以上、傳到第九代 <i class="t ok">✅</i>。建物是 1887 年的入母屋造，登錄有形文化財，中庭是比叡山與琵琶湖的枯山水 <i class="t ok">✅</i>。店在坂本比叡山口駅旁，下山後吃完走 2 分鐘就能搭京阪，不用繞路。</p>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>店名・地址</th><td>手打蕎麦 鶴屋喜八、大津市坂本 4-11-40 <i class="t ok">✅</i></td></tr><tr><th>營業時間</th><td>11:00～16:00（L.O. 15:30）。賣完即關店；天候不佳可能提早打烊 <i class="t ok">✅</i></td></tr><tr><th>定休日</th><td>官網 2026 年表：1/26、2/16、3/23、4/20、5/25、6/29、7/27、8/24・25、10/26、12/21（另有 9/28 特別）<i class="t ok">✅</i>。2027 年表未公布，4/8 是否營業需確認 <i class="t ng">⚠️</i></td></tr><tr><th>離れ個室</th><td>有料，11:30～15:00 <i class="t ok">✅</i></td></tr><tr><th>交通</th><td>京阪 坂本比叡山口駅 1 分 <i class="t ok">✅</i>；ケーブル坂本駅走約 10 分、800 m <i class="t ng">⚠️</i></td></tr><tr><th>電話</th><td>077-578-0002（電話受付 10:00～11:00、14:00～16:30）<i class="t ok">✅</i></td></tr><tr><th>價格</th><td>官網菜單（おしながき）我沒有取得，預算抓每人 ¥1,500～¥2,000（我的估算 <i class="t ng">⚠️</i>）</td></tr><tr><th>地圖</th><td><a href="https://www.google.com/maps/search/?api=1&query=%E6%89%8B%E6%89%93%E8%95%8E%E9%BA%A6%20%E9%B6%B4%E5%B1%8B%E5%96%9C%E5%85%AB">鶴屋喜八</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%9D%82%E6%9C%AC%E9%A7%85&destination=%E6%89%8B%E6%89%93%E8%95%8E%E9%BA%A6%20%E9%B6%B4%E5%B1%8B%E5%96%9C%E5%85%AB&travelmode=walking">ケーブル坂本駅 → 鶴屋喜八</a></td></tr></tbody></table></div>
+<h3>備案</h3>
+<div class="tw"><table class="dense"><thead><tr><th>店</th><th>資訊</th><th>備註</th></tr></thead><tbody><tr><td>比叡・三九良（よもぎ餅專門）</td><td>坂本 6-28-3、10:00～17:00（賣完即關）、午餐 11:30～、週一與第 2 週二休 <i class="t ok">✅</i></td><td>4/8 是週四，營業 <i class="t ok">✅</i>。主打蓬餅，是點心用，不是正餐</td></tr><tr><td>一隅会館 地下的蕎麥麵店</td><td>延暦寺東塔境內 <i class="t ok">✅</i></td><td>營業時間未載 <i class="t ng">⚠️</i>。若 12:30 纜車趕不上才用</td></tr></tbody></table></div>
+<h3>時間管理</h3>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>動作</th></tr></thead><tbody><tr><td class="tm">12:41</td><td>纜車到ケーブル坂本駅</td></tr><tr><td class="tm">12:51</td><td>到店（步行 10 分 <i class="t ng">⚠️</i>）。11:00 開店，正午前後可能要等</td></tr><tr><td class="tm">13:40</td><td>最晚這時結帳。13:50 出發走到坂本比叡山口駅</td></tr><tr><td class="tm">14:09</td><td>京阪發車。13:49 的班次趕不上，14:29 為備案 <i class="t ok">✅</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p15" aria-label="第 15 頁 三井寺（1）路線">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">15 / 24</span></header>
+
+<h2><i class="seal">観</i>三井寺（園城寺）　<small>14:35～16:10・天台寺門宗總本山</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/mii_niomon.jpg" alt="三井寺仁王門" width="1000" style="object-position:50% 55%"><figcaption>Daderot・CC0・2012 年攝・<a href="https://commons.wikimedia.org/wiki/File:Niomon_-_Mii-dera_-_Otsu,_Shiga_-_DSC07297.JPG">Wikimedia Commons</a>・仁王門</figcaption></figure>
+<figure class="sq"><img src="img/mii_kondo.jpg" alt="三井寺金堂" width="1000" style="object-position:50% 55%"><figcaption>663highland・CC BY 2.5・2010 年攝・<a href="https://commons.wikimedia.org/wiki/File:Mii-dera_Otsu_Shiga_pref01s5s4592.jpg">Wikimedia Commons</a>・金堂（國寶）</figcaption></figure>
+<figure class="sq"><img src="img/mii_bell.jpg" alt="三井寺鐘楼" width="1000" style="object-position:50% 55%"><figcaption>663highland・CC BY 2.5・2010 年攝・<a href="https://commons.wikimedia.org/wiki/File:Mii-dera_Otsu_Shiga_pref22n4592.jpg">Wikimedia Commons</a>・鐘楼（三井の晩鐘）</figcaption></figure>
+</div>
+<h3>推薦理由</h3>
+<p>正式名稱「長等山園城寺」，是天台寺門宗的總本山，在琵琶湖西南、長等山中腹，歷經多次戰火仍重建，被稱為「不死鳥の寺」<i class="t ok">✅</i>。延暦寺屬天台宗，這裡是天台寺門宗 <i class="t ok">✅</i>，同一天看兩邊很容易比較。金堂是桃山時代名建築，國寶 <i class="t ok">✅</i>。境內有千株以上的染井吉野、山櫻、垂櫻 <i class="t ok">✅</i>，4/8 的花況看當年 <i class="t ng">⚠️</i>。</p>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>拝観時間</th><td>9:00～16:30（受付 16:00 止）、年中無休。文化財收藏庫 9:30～16:30（受付 16:00 止）<i class="t ok">✅</i></td></tr><tr><th>入山料</th><td>大人 ¥800、中高生 ¥500、小學生 ¥300。2026/3/1 起新價 <i class="t ok">✅</i></td></tr><tr><th>交通</th><td>京阪 三井寺駅步行 7 分 <i class="t ok">✅</i>；Google 到金堂 11 分、750 m <i class="t ng">⚠️</i>；官網寫到仁王門約 10 分 <i class="t ok">✅</i></td></tr><tr><th>停止項目</th><td>光浄院客殿・勧学院客殿的特別拝観：2026/12/1～2027/7/31 停止（文化財調查）<i class="t ok">✅</i></td></tr><tr><th>地圖</th><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E4%B8%89%E4%BA%95%E5%AF%BA%E9%A7%85&destination=%E4%B8%89%E4%BA%95%E5%AF%BA%20%E9%87%91%E5%A0%82&travelmode=walking">三井寺駅 → 金堂</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%89%E4%BA%95%E5%AF%BA%EF%BC%88%E5%9C%92%E5%9F%8E%E5%AF%BA%EF%BC%89">三井寺</a></td></tr></tbody></table></div>
+<h3>官網建議的路線（照這個順序走）<i class="t ok">✅</i></h3>
+<div class="tw"><table class="dense"><thead><tr><th>順序</th><th>地點</th><th>看什麼</th></tr></thead><tbody><tr><td>1</td><td>仁王門</td><td>徳川家康寄進，兩側是室町時代的仁王像</td></tr><tr><td>2</td><td>三井の晩鐘</td><td>近江八景之一，日本三名鐘；官網寫可以實際撞鐘</td></tr><tr><td>3</td><td>金堂</td><td>本堂、國寶。堂內可自由參拜，有圓空佛、尊星王、不動明王</td></tr><tr><td>4</td><td>閼伽井屋</td><td>泉水據說是天智、天武、持統三位天皇的産湯，「三井」寺名的由來</td></tr><tr><td>5</td><td>霊鐘堂</td><td>弁慶引き摺り鐘；「鐘みくじ」在這裡</td></tr><tr><td>6</td><td>唐院・三重塔</td><td>開祖智證大師的聖域；三重塔是從奈良世尊寺移建、重要文化財</td></tr><tr><td>7</td><td>ながら茶房 本寿院</td><td>喝朝宮茶的茶房。營業時間未載 <i class="t ng">⚠️</i></td></tr><tr><td>8</td><td>文化財收藏庫</td><td>狩野光信的障壁畫</td></tr><tr><td>9</td><td>観音堂・展望台</td><td>西國三十三所第十四番。再往上走石階有展望台，可看大津市街與琵琶湖</td></tr></tbody></table></div>
+<h3>95 分鐘的分配（我的安排 <i class="t ng">⚠️</i>）</h3>
+<p class="sm">14:22 到三井寺駅，走到仁王門約 10 分，14:35 開始。14:35～14:55 仁王門・鐘楼・金堂；14:55～15:15 閼伽井屋・霊鐘堂；15:15～15:35 唐院・三重塔；15:35～16:00 観音堂・展望台與御朱印（受付 16:00 止，所以這裡要在 16:00 前到）；16:10 前離開，走 11 分回駅趕 16:24。茶房與收藏庫排不進去，略過。</p>
+
+</section>
+<section class="sheet" id="p16" aria-label="第 16 頁 三井寺（2）觀音堂・御朱印">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">16 / 24</span></header>
+
+<h2><i class="seal">印</i>三井寺（下）　<small>觀音堂與御朱印</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/mii_kannon.jpg" alt="三井寺観音堂" width="1000" style="object-position:50% 50%"><figcaption>小倉商事・CC BY-SA 4.0・2020 年攝・<a href="https://commons.wikimedia.org/wiki/File:Miidera-kannondo.jpg">Wikimedia Commons</a>・観音堂</figcaption></figure>
+<figure class="sq"><img src="img/mii_pagoda.jpg" alt="三井寺三重塔" width="1000" style="object-position:30% 50%"><figcaption>Daderot・CC0・2012 年攝・<a href="https://commons.wikimedia.org/wiki/File:Three-storied_pagoda_-_Mii-dera_-_Otsu,_Shiga_-_DSC07182.JPG">Wikimedia Commons</a>・三重塔</figcaption></figure>
+<figure class="sq"><img src="img/mii_benkei.jpg" alt="弁慶の引き摺り鐘" width="1000" style="object-position:50% 40%"><figcaption>Daderot・CC0・2012 年攝・<a href="https://commons.wikimedia.org/wiki/File:Benkei%27s_Bell_-_Mii-dera_-_Otsu,_Shiga_-_DSC07215.JPG">Wikimedia Commons</a>・弁慶の引き摺り鐘</figcaption></figure>
+</div>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>観音堂。</b>西國三十三所第十四番札所。本尊如意輪觀音（平安時代）是每 33 年才開帳一次的秘佛 <i class="t ok">✅</i>。1686 年大火燒毀後，元祿 2 年（1689）舉行上棟法要重建 <i class="t ok">✅</i>，周邊有百體堂、鐘樓、觀月舞台，構成南院札所 <i class="t ok">✅</i></li><li><b>三重塔。</b>從奈良世尊寺（舊比蘇寺）移建，重要文化財。官網提到塔旁的橋是電影《るろうに剣心》的場景 <i class="t ok">✅</i></li><li><b>弁慶の引き摺り鐘。</b>傳說弁慶把鐘搶去比叡山，一敲卻發出「想回去」的聲音，他一怒之下丟進谷底，鐘上留有傷痕 <i class="t ok">✅</i></li><li><b>三井の晩鐘。</b>「音の三井寺」，與「姿の平等院」「銘の神護寺」並稱天下三名鐘 <i class="t ok">✅</i>。我們 15 點前後到，不是傍晚的鐘聲時段（我的推測）</li></ul>
+<h3>御朱印</h3>
+<p class="sm">官網列出 6 種：如意輪觀音、十一面觀音、黃不動尊、釋迦如來、秘佛 彌勒佛、藥師如來 <i class="t ok">✅</i>。納經料（御朱印的金額）2024/4/1 起 ¥500 <i class="t ok">✅</i>。下表是本日目標：</p>
+<div class="tw"><table class="dense"><thead><tr><th>御朱印</th><th>授與處</th><th>初穂料</th><th>備註</th></tr></thead><tbody><tr><td><b>大悲殿</b>（西國十四番）</td><td>観音堂 <i class="t ok">✅</i></td><td>¥500 <i class="t ok">✅</i></td><td>直書き 2026/09/05 <i class="t ph">📷</i>。官網寫「可拿到大悲殿朱印」<i class="t ok">✅</i></td></tr><tr><td><b>彌勒佛</b>（金堂本尊）</td><td>金堂 <i class="t ph">📷</i></td><td>¥500 <i class="t ng">⚠️</i></td><td>直書き 2026/01/31、2025/11/17 <i class="t ph">📷</i></td></tr><tr><td>黃不動尊</td><td>微妙寺 <i class="t ph">📷</i></td><td>冥加料 ¥500 <i class="t ph">📷</i></td><td>直書き 2026/09/05、2026/06/30 <i class="t ph">📷</i>；位置未查，視時間 <i class="t ng">⚠️</i></td></tr><tr><td>藥師如來（水観寺）</td><td>水観寺 <i class="t ph">📷</i></td><td>冥加料 ¥500 <i class="t ph">📷</i></td><td>醫王殿，2026/06/27 <i class="t ph">📷</i>；位置未查，本日不排 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<p class="xs">官網沒有公布各授與處的位置與時間，微妙寺、水観寺在境內的哪裡我沒有查到 <i class="t ng">⚠️</i>。時間有限，建議只收観音堂與金堂兩個。omairi 皆為 2026 年的訪客投稿，2027 年運作可能改變。</p>
+<h3>怎麼收最順</h3>
+<ol class="l"><li>15:35 到観音堂，先拿大悲殿的朱印，再爬展望台看湖（來回約 10 分）</li><li>往回走時在金堂拿彌勒佛朱印</li><li>16:00 前出到仁王門方向；16:10 離開，走 11 分到三井寺駅，16:24 的車 <i class="t ok">✅</i></li></ol>
+
+</section>
+<section class="sheet" id="p17" aria-label="第 17 頁 びわ湖浜大津・大津港・なぎさ公園">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">17 / 24</span></header>
+
+<h2><i class="seal">観</i>びわ湖浜大津・大津港　<small>16:26～17:15・湖畔散步</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/port.jpg" alt="大津港" width="1000" style="object-position:50% 50%"><figcaption>663highland・CC BY 2.5・2007 年攝・<a href="https://commons.wikimedia.org/wiki/File:Otsu_port07s3200.jpg">Wikimedia Commons</a>・大津港</figcaption></figure>
+<figure class="sq"><img src="img/port2.jpg" alt="大津港前的湖岸" width="1000" style="object-position:50% 50%"><figcaption>663highland・CC BY 2.5・2007 年攝・<a href="https://commons.wikimedia.org/wiki/File:Otsu_port05s3200.jpg">Wikimedia Commons</a>・大津港</figcaption></figure>
+<figure class="sq"><img src="img/nagisa.jpg" alt="大津湖岸なぎさ公園" width="1000" style="object-position:50% 55%"><figcaption>Rock.jazz.cafe・CC BY-SA 4.0・2012 年攝・<a href="https://commons.wikimedia.org/wiki/File:Otsu_nagisa_park.JPG">Wikimedia Commons</a>・大津湖岸なぎさ公園</figcaption></figure>
+</div>
+<h3>推薦理由</h3>
+<p>看完三座寺院，最後 50 分鐘不排行程，在湖邊走一走。京阪びわ湖浜大津駅出來就是商場「浜大津アーカス」，到大津港步行 4 分、290 m <i class="t ng">⚠️</i>。這裡沒有御朱印，是留給眼睛和雙腳的休息，離 JR 大津駅也只有 16～20 分 <i class="t ng">⚠️</i>。</p>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>大津港與湖岸。</b>觀光船的碼頭，4/8 的船班與乘船費我沒有查，本日不搭 <i class="t ng">⚠️</i></li><li><b>浜大津アーカス。</b>「湖の駅」賣近江特產與伴手禮，10:00～22:00 <i class="t ok">✅</i>；「Pダイニング」京都發祥的咖啡餐廳，11:00～22:00（O.S. 21:30）<i class="t ok">✅</i>，可以喝點東西</li><li><b>湖岸散步。</b>沿著湖邊走，不趕時間；17:15 前從大津港出發往 JR 大津駅</li></ul>
+<div class="grid2">
+<div class="box warn"><b>シバザクラ（芝櫻）不在大津港旁。</b>大津市的資料寫，約 5 萬株、延長約 300 m 的芝櫻花壇在「なぎさのプロムナード」（におの浜 4 丁目），開花「例年 4 月初旬から」、見頃 4 月中旬～5 月上旬 <i class="t ok">✅</i>。Google 從大津港走過去要 28 分、2.0 km <i class="t ng">⚠️</i>，往返近 1 小時，4/8 又才剛開始，所以本日不去。</div>
+<figure class="sq"><img src="img/map_nagisa.jpg" alt="大津港からなぎさのプロムナードへの步行路線" width="1428" style="object-position:50% 50%"><figcaption>大津港 → なぎさのプロムナード（Google 步行）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/02</figcaption></figure>
+</div>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>浜大津アーカス</th><td>大津市浜町 2-1。京阪びわ湖浜大津駅「下車すぐ」、JR 大津駅步行約 15 分 <i class="t ok">✅</i></td></tr><tr><th>步行</th><td>びわ湖浜大津→大津港 4 分；大津港→JR 大津駅 20 分、1.4 km（直接從浜大津走 16 分、1.1 km）<i class="t ng">⚠️</i></td></tr><tr><th>廁所・休息</th><td>商場內；各店營業時間不同，個別店我沒有逐一確認 <i class="t ng">⚠️</i></td></tr><tr><th>地圖</th><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E3%81%B3%E3%82%8F%E6%B9%96%E5%A4%A7%E6%B4%A5%E6%B8%AF&destination=JR%E5%A4%A7%E6%B4%A5%E9%A7%85&travelmode=walking">びわ湖大津港 → JR大津駅</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E6%B5%9C%E5%A4%A7%E6%B4%A5%E3%82%A2%E3%83%BC%E3%82%AB%E3%82%B9">浜大津アーカス</a></td></tr></tbody></table></div>
+<h3>時間安排</h3>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>動作</th></tr></thead><tbody><tr><td class="tm">16:26</td><td>到びわ湖浜大津駅，走往アーカス</td></tr><tr><td class="tm">16:30～16:45</td><td>湖の駅買伴手禮，或在カフェ小憩</td></tr><tr><td class="tm">16:45～17:10</td><td>大津港周邊湖岸散步</td></tr><tr><td class="tm">17:15</td><td>離開大津港，走 20 分到 JR 大津駅（17:35）</td></tr><tr><td class="tm">17:41</td><td>JR 發車，約 17:52 到京都 <i class="t ng">⚠️</i>。錯過搭 17:52（普通）</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p18" aria-label="第 18 頁 御朱印攻略">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">18 / 24</span></header>
+
+<h2><i class="seal">印</i>御朱印攻略</h2>
+<div class="tw"><table class="dense"><thead><tr><th>寺社</th><th>御朱印</th><th>授與處</th><th>初穂料</th><th>推薦</th></tr></thead><tbody><tr><td>日吉大社</td><td>日吉大社（總稱）</td><td>西本宮授與所 <i class="t ok">✅</i></td><td>¥500 <i class="t ok">✅</i></td><td><span class="star">★★★★★</span></td></tr><tr><td>延暦寺</td><td>根本中堂＋4/8 縁日</td><td>萬拝堂 <i class="t ok">✅</i></td><td>縁日版未載 <i class="t ng">⚠️</i></td><td><span class="star">★★★★★</span></td></tr><tr><td>延暦寺</td><td>根本中堂 特別（法灯奉安）</td><td>萬拝堂 <i class="t ok">✅</i></td><td>¥1,000 <i class="t ok">✅</i>（2 年限定）</td><td><span class="star">★★★★★</span></td></tr><tr><td>延暦寺</td><td>大講堂（大日如来）</td><td>大講堂 <i class="t ok">✅</i></td><td>未載 <i class="t ng">⚠️</i></td><td><span class="star">★★★★☆</span></td></tr><tr><td>延暦寺</td><td>大黒堂（三面大黒天）</td><td>大黒堂 <i class="t ok">✅</i></td><td>未載 <i class="t ng">⚠️</i></td><td><span class="star">★★★☆☆</span></td></tr><tr><td>三井寺</td><td>大悲殿（西國十四番）</td><td>観音堂 <i class="t ok">✅</i></td><td>¥500 <i class="t ok">✅</i></td><td><span class="star">★★★★★</span></td></tr><tr><td>三井寺</td><td>彌勒佛</td><td>金堂 <i class="t ph">📷</i></td><td>¥500 <i class="t ng">⚠️</i></td><td><span class="star">★★★★☆</span></td></tr><tr><td>三井寺</td><td>黃不動尊</td><td>微妙寺 <i class="t ph">📷</i></td><td>¥500 <i class="t ph">📷</i></td><td><span class="star">★★★☆☆</span></td></tr></tbody></table></div>
+<p class="xs">★★★★★ 非常值得收集｜★★★★☆ 推薦｜★★★☆☆ 順路可收。推薦是我的判斷，與官方無關。</p>
+<h3>本日一覽</h3>
+<div class="kpi">
+<div><b>5～8 枚</b><span>目標 <i class="t ng">⚠️</i></span></div>
+<div><b>¥2,000～4,000</b><span>御朱印合計 <i class="t ng">⚠️</i></span></div>
+<div><b>3 處</b><span>日吉、延暦寺、三井寺</span></div>
+<div><b>8 日縁日</b><span>根本中堂（4/8）<i class="t ok">✅</i></span></div>
+</div>
+<h3>收的順序與重點</h3>
+<ul class="l "><li><b>日吉大社：</b>9:00 授與所開始。排在入苑後第一件事，之後逛境內，再往ケーブル坂本駅</li><li><b>延暦寺：</b>先萬拝堂（縁日＋特別各一枚），再大講堂、大黒堂。三處都在 200 m 內 <i class="t ng">⚠️</i>。文殊樓、正覚院不動只有一枚書き，不寫進朱印帳 <i class="t ok">✅</i></li><li><b>三井寺：</b>観音堂（大悲殿）與金堂（彌勒佛）。受付 16:00 止 <i class="t ok">✅</i>，所以最晚 16:00 前到観音堂</li><li><b>帶朱印帳與零錢：</b>多數是直書き 📷，也有書置き（預先寫好）；書置き可以貼在朱印帳。每處準備 ¥500 與 ¥1,000 硬幣／鈔票</li><li><b>排隊成本：</b>延暦寺的 11 種御朱印逐一排隊會超時 <i class="t ng">⚠️</i>，挑 2～3 種即可。</li></ul>
+<h3>本日「不是」目標的御朱印</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>原因</th></tr></thead><tbody><tr><td>日吉大社 正月限定朱印（¥1,000）</td><td>只在 1/1 零點起授與 <i class="t ok">✅</i></td></tr><tr><td>日吉大社 JR 東海切り絵朱印</td><td>要事前在スマートEX申請 <i class="t ok">✅</i>，2027 年是否持續未知 <i class="t ng">⚠️</i></td></tr><tr><td>延暦寺 大黒堂・星峯稲荷社の縁日朱印</td><td>子の日、午の日；2027/4/8 為巳の日（我的推算 <i class="t ng">⚠️</i>）</td></tr><tr><td>延暦寺 大講堂・法華総持院東塔の縁日朱印</td><td>28 日才有 <i class="t ok">✅</i></td></tr><tr><td>日吉大社 奥宮（八王子山）</td><td>單程約 30 分登山 <i class="t ok">✅</i>，本日不排</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p19" aria-label="第 19 頁 時間軸與費用">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">19 / 24</span></header>
+
+<h2><i class="seal">基</i>時間軸與費用</h2>
+<div class="tl">
+<div><span class="tm">07:47</span><span>京都駅發（JR 湖西線）。08:04 到比叡山坂本</span></div>
+<div><span class="tm">08:05</span><span>步行坂本老街，08:50 到日吉大社</span></div>
+<div><span class="tm">09:00</span><span>入苑、參拜、御朱印（授與所 9:00 開）</span></div>
+<div><span class="tm">09:40</span><span>走到ケーブル坂本駅，買票</span></div>
+<div><span class="tm">10:00</span><span>坂本ケーブル上山，10:11 到延暦寺</span></div>
+<div><span class="tm">10:25</span><span>根本中堂・萬拝堂・大講堂・大黒堂</span></div>
+<div><span class="tm">12:30</span><span>ケーブル下山，12:41 到坂本</span></div>
+<div><span class="tm">12:51</span><span>鶴屋喜八午餐，13:50 前出發</span></div>
+<div><span class="tm">14:09</span><span>京阪坂本比叡山口發，14:22 到三井寺駅</span></div>
+<div><span class="tm">14:35</span><span>三井寺（金堂・観音堂・御朱印），16:10 離開</span></div>
+<div><span class="tm">16:24</span><span>京阪往びわ湖浜大津，16:26 到</span></div>
+<div><span class="tm">16:26</span><span>浜大津アーカス・大津港散步，17:15 出發</span></div>
+<div><span class="tm">17:41</span><span>JR 大津駅發，約 17:52 到京都駅。19:00 前解散</span></div>
+</div>
+<h3>費用（每人，日圓）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>金額</th><th>來源</th></tr></thead><tbody><tr><td>JR 京都→比叡山坂本</td><td>320</td><td><i class="t ng">⚠️</i> 駅探，16.6 km</td></tr><tr><td>坂本ケーブル 往復</td><td>1,830</td><td><i class="t ok">✅</i></td></tr><tr><td>延暦寺 巡拝料</td><td>1,000</td><td><i class="t ok">✅</i></td></tr><tr><td>日吉大社 入苑協賛料</td><td>500</td><td><i class="t ok">✅</i></td></tr><tr><td>京阪 坂本比叡山口→三井寺</td><td>280</td><td><i class="t ok">✅</i></td></tr><tr><td>三井寺 入山料</td><td>800</td><td><i class="t ok">✅</i></td></tr><tr><td>京阪 三井寺→びわ湖浜大津</td><td>200</td><td><i class="t ok">✅</i></td></tr><tr><td>JR 大津→京都</td><td>200</td><td><i class="t ng">⚠️</i> 駅探，10.0 km</td></tr><tr><td><b>交通＋門票小計</b></td><td><b>5,130</b></td><td>其中官方確認 4,610，估算 520</td></tr><tr><td>御朱印（日吉 500、萬拝堂特別 1,000、観音堂 500 為基本；加大講堂、大黒堂、金堂、微妙寺各約 500）</td><td>2,000～4,000</td><td>一部分官方 <i class="t ok">✅</i>、其餘估算 <i class="t ng">⚠️</i></td></tr><tr><td>午餐（鶴屋喜八）</td><td>1,500～2,000</td><td><i class="t ng">⚠️</i> 菜單未取得</td></tr><tr><td><b>每人合計</b></td><td><b>8,630～11,130</b></td><td>2 人約 17,300～22,300</td></tr></tbody></table></div>
+<p class="xs">不含：飲料、アーカス的點心與伴手禮、國寶殿（¥500）、乘船。2027 年 4 月起運賃或有變動，請以現場為準。IC 卡可用於 JR 與京阪，儲值金額足夠即可。</p>
+
+</section>
+<section class="sheet" id="p20" aria-label="第 20 頁 雨天與刪減">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">20 / 24</span></header>
+
+<h2><i class="seal">基</i>雨天與刪減</h2>
+<h3>如果下雨</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>怎麼調整</th></tr></thead><tbody><tr><td>坂本老街</td><td>石垣與水路在雨中很好看，但路面濕滑。改走最短路線，省 10 分鐘（我的估算）</td></tr><tr><td>日吉大社</td><td>境內是石板與泥土路，山林氣氛反而更好。西本宮、東本宮附近有屋簷 <i class="t ng">⚠️</i></td></tr><tr><td>坂本ケーブル</td><td>雨天照常運行（官網僅寫「通常通り」，惡劣天候可能停駛 <i class="t ng">⚠️</i>）</td></tr><tr><td>延暦寺 東塔</td><td>比市區冷、可能起霧。堂內可避雨的有萬拝堂、大講堂；步行路段無遮蔽 <i class="t ng">⚠️</i></td></tr><tr><td>三井寺</td><td>金堂、観音堂可入內避雨；展望台與石階濕滑，雨天不上展望台</td></tr><tr><td>大津港・なぎさ公園</td><td>縮短為在浜大津アーカス內逛，不走湖岸</td></tr></tbody></table></div>
+<p class="xs">日吉大社官網寫，暴風警報或特別警報發布時，授與所與各受付可能關閉 <i class="t ok">✅</i>；延暦寺也寫因暴風、降雪可能提前閉堂 <i class="t ok">✅</i>。</p>
+<h3>時間不夠時，由後往前刪</h3>
+<div class="tw"><table class="dense"><thead><tr><th>延誤</th><th>刪什麼</th></tr></thead><tbody><tr><td>晚 30 分（趕不上 10:00 纜車）</td><td>搭 10:30。日吉大社縮到 30 分；延暦寺只走根本中堂・萬拝堂・大講堂，不看大黒堂以後</td></tr><tr><td>晚 1 小時</td><td>放棄日吉大社的境內散步，只拿朱印；午餐改比叡・三九良或縮成 30 分；浜大津縮到 20 分</td></tr><tr><td>延暦寺花太久（趕不上 12:30）</td><td>搭 13:00 下山，午餐 40 分，仍可搭 14:09 或 14:29 京阪（14:29 則三井寺只剩約 75 分）<i class="t ok">✅</i></td></tr><tr><td>三井寺花太久</td><td>16:00 是入山受付與朱印的截止，16:10 起要趕 16:24 的車。放棄展望台與收藏庫</td></tr><tr><td>累了</td><td>浜大津アーカス休息 30 分，之後直接從浜大津走到 JR 大津駅（16 分 <i class="t ng">⚠️</i>）</td></tr></tbody></table></div>
+<h3>優先順序（調整用，不是景點評分）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>等級</th><th>項目</th></tr></thead><tbody><tr><td>S 一定保留</td><td>日吉大社（授與所）、延暦寺 萬拝堂・大講堂、三井寺 観音堂・金堂</td></tr><tr><td>A 推薦保留</td><td>坂本老街、ケーブル本身、鶴屋喜八</td></tr><tr><td>B 有時間再去</td><td>大黒堂、阿弥陀堂、法華総持院東塔、三井寺 展望台、びわ湖浜大津</td></tr><tr><td>C 最先放棄</td><td>大津港散步、アーカス逛街</td></tr></tbody></table></div>
+<h3>備用方案：纜車不通時</h3>
+<p class="sm">官網目前（2026/10/02）寫「通常通り運行中」<i class="t ok">✅</i>。若 2027/4/8 當天纜車停駛，這一天的延暦寺部分建議放棄，改為日吉大社與坂本老街半天，下午照原計畫去三井寺與大津港。延暦寺的巴士路線時刻我沒有查 <i class="t ng">⚠️</i>。</p>
+
+</section>
+<section class="sheet" id="p21" aria-label="第 21 頁 必看與 Checklist">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">21 / 24</span></header>
+
+<h2><i class="seal">基</i>今天必看與 Checklist</h2>
+<div class="grid2">
+<div><h3>必看（依順序）</h3><ol class="l"><li>日吉大社 西本宮・東本宮（國寶）與山王鳥居</li><li>坂本ケーブル：日本最長 2,025 m</li><li>延暦寺 萬拝堂的御前立與不滅の法灯、根本中堂外觀</li><li>大講堂與大黒堂</li><li>三井寺 金堂（國寶）、観音堂、三井の晩鐘</li><li>大津港前的湖景</li></ol></div>
+<div><h3>本日不得不知的 5 個時間</h3><ul class="l "><li><b>07:47</b>：京都発的 JR（本命）</li><li><b>10:00</b>：ケーブル上山</li><li><b>12:30</b>：ケーブル下山</li><li><b>14:09</b>：京阪坂本比叡山口発</li><li><b>16:00</b>：三井寺受付與御朱印截止；<b>16:24</b> 京阪回浜大津</li></ul></div>
+</div>
+<h3>出發前確認</h3>
+<div class="ckgrp">
+<label class="ck"><input type="checkbox" id="c1"><span>JR 07:47、京阪 14:09、16:24、JR 17:41 在 2027 年版時刻表還在（第 3 頁）</span></label>
+<label class="ck"><input type="checkbox" id="c2"><span>坂本ケーブル 官網的運行情報：4 月是否正常</span></label>
+<label class="ck"><input type="checkbox" id="c3"><span>根本中堂的最新狀況（覆屋、萬拝堂的特別御朱印是否仍授與）</span></label>
+<label class="ck"><input type="checkbox" id="c4"><span>日吉大社「お知らせ」：4 月是否有臨時閉所或活動</span></label>
+<label class="ck"><input type="checkbox" id="c5"><span>鶴屋喜八 2027 年定休日；比叡・三九良 4 月營業日</span></label>
+<label class="ck"><input type="checkbox" id="c6"><span>三井寺「お知らせ」：4 月是否有法要或拝観中止</span></label>
+</div>
+<h3>隨身物品</h3>
+<div class="ckgrp">
+<label class="ck"><input type="checkbox" id="b1"><span>御朱印帳（兩本以上也可：日吉、延暦寺、三井寺各一）、筆記用具</span></label>
+<label class="ck"><input type="checkbox" id="b2"><span>零錢：¥100、¥500 硬幣與 ¥1,000 鈔票（日吉 ¥500、延暦寺 ¥1,000、三井寺 ¥500）</span></label>
+<label class="ck"><input type="checkbox" id="b3"><span>IC 卡（JR、京阪）；ケーブル 往復 ¥1,830</span></label>
+<label class="ck"><input type="checkbox" id="b4"><span>好走防滑的鞋、薄外套（山上較冷）、折傘或雨衣</span></label>
+<label class="ck"><input type="checkbox" id="b5"><span>手機行動電源、離線地圖（延暦寺境內訊號未確認 <i class="t ng">⚠️</i>）</span></label>
+<label class="ck"><input type="checkbox" id="b6"><span>水、點心：延暦寺東塔境內店家少，一隅会館有休息處與蕎麥麵店 <i class="t ok">✅</i></span></label>
+</div>
+<h3>拍照與禮儀</h3>
+<p class="sm">寺社境內拍照規則各堂不同，堂內多半禁止攝影，請看現場告示（本手冊沒有逐堂核對 <i class="t ng">⚠️</i>）。御朱印是參拜的紀錄，不是蓋章；請安靜排隊，收下時雙手接。</p>
+
+</section>
+<section class="sheet" id="p22" aria-label="第 22 頁 資料來源">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">22 / 24</span></header>
+
+<h2><i class="seal">基</i>資料來源</h2>
+<p class="xs">查證日 2026/10/02。官方頁面以瀏覽器實際開啟為準。搜尋引擎摘要只用來找到網址，不標 ✅。omairi 連結需通過 Cloudflare 驗證才能開啟。</p>
+<div class="tw"><table class="dense"><thead><tr><th>來源（點名稱開啟）</th><th>網域</th><th>等級</th><th>用在</th></tr></thead><tbody><tr><td><a href="https://hiyoshitaisha.jp/">日吉大社 トップ（参拝時間、入苑協賛料）</a></td><td>hiyoshitaisha.jp</td><td><i class="t ok">✅</i></td><td>開門・授與所時間、¥500</td></tr><tr><td><a href="https://hiyoshitaisha.jp/access/">日吉大社 交通アクセス</a></td><td>hiyoshitaisha.jp</td><td><i class="t ok">✅</i></td><td>駅からの徒歩時間</td></tr><tr><td><a href="https://hiyoshitaisha.jp/faq/">日吉大社 よくあるご質問</a></td><td>hiyoshitaisha.jp</td><td><i class="t ok">✅</i></td><td>一周 40 分、桜 150 本、日吉造、トイレ</td></tr><tr><td><a href="https://hiyoshitaisha.jp/juyohin/">日吉大社 授与品・御朱印</a></td><td>hiyoshitaisha.jp</td><td><i class="t ok">✅</i></td><td>御朱印 ¥500、七社、授與所</td></tr><tr><td><a href="https://hiyoshitaisha.jp/event/">日吉大社 年間行事</a></td><td>hiyoshitaisha.jp</td><td><i class="t ok">✅</i></td><td>山王祭 4/12～14</td></tr><tr><td><a href="https://www.hieizan.or.jp/tickets/">延暦寺 巡拝時間・料金</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>9:00～16:00、¥1,000、国宝殿 ¥500</td></tr><tr><td><a href="https://www.hieizan.or.jp/experience/goshuin.html">延暦寺 御朱印案内</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>11 種、縁日、子の日・午の日</td></tr><tr><td><a href="https://www.hieizan.or.jp/grounds/toudou.html">延暦寺 東塔</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>各堂の由緒</td></tr><tr><td><a href="https://www.hieizan.or.jp/grounds/overview.html">延暦寺 境内の概要・国宝殿</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>約 100 堂塔、所要時間</td></tr><tr><td><a href="https://www.hieizan.or.jp/news/post-341/">延暦寺 根本中堂ご本尊御前立・法灯の奉安</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>内部参拝不可 令和8年1月～令和10年1月</td></tr><tr><td><a href="https://www.hieizan.or.jp/news/post-334/">延暦寺 特別御朱印のご案内</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>萬拝堂、冥加料 ¥1,000、2 年間</td></tr><tr><td><a href="https://www.hieizan.or.jp/renovation/overview.html">延暦寺 根本中堂大改修</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>修学ステージ、改修 15 年</td></tr><tr><td><a href="https://www.hieizan.or.jp/events/annual.html">延暦寺 年間行事</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>御修法 4/4～11、花まつり 4/8</td></tr><tr><td><a href="https://www.hieizan.or.jp/access/">延暦寺 交通案内</a></td><td>www.hieizan.or.jp</td><td><i class="t ok">✅</i></td><td>ケーブル経由約 40 分</td></tr><tr><td><a href="https://sakamoto-cable.jp/guide/">坂本ケーブル 時刻表・運賃</a></td><td>sakamoto-cable.jp</td><td><i class="t ok">✅</i></td><td>毎時 00・30 分、¥960／¥1,830</td></tr><tr><td><a href="https://sakamoto-cable.jp/">坂本ケーブル 運行情報・お知らせ</a></td><td>sakamoto-cable.jp</td><td><i class="t ok">✅</i></td><td>通常運行、運賃改定 2026/4/1、周遊券</td></tr><tr><td><a href="https://ntmg-book-sakamotocable.vercel.app/">坂本ケーブル 乗車チケット</a></td><td>ntmg-book-sakamotocable.vercel.app</td><td><i class="t ok">✅</i></td><td>周遊一日乗車券 ¥2,500（2026/10 時点）</td></tr><tr><td><a href="https://miidera1200.jp/information">三井寺 参拝案内</a></td><td>miidera1200.jp</td><td><i class="t ok">✅</i></td><td>9:00～16:30、¥800</td></tr><tr><td><a href="https://miidera1200.jp/">三井寺 料金改定・納経料・特別拝観のお知らせ</a></td><td>miidera1200.jp</td><td><i class="t ok">✅</i></td><td>2026/3/1 改定、納経 ¥500、光浄院停止</td></tr><tr><td><a href="https://miidera1200.jp/recommended_route/">三井寺 おすすめ参拝コース</a></td><td>miidera1200.jp</td><td><i class="t ok">✅</i></td><td>仁王門から展望台までの順路</td></tr><tr><td><a href="https://miidera1200.jp/sacered_place_and_redseal/">三井寺 霊場巡りと御朱印</a></td><td>miidera1200.jp</td><td><i class="t ok">✅</i></td><td>御朱印 6 種、観音堂</td></tr><tr><td><a href="https://www.keihan.co.jp/traffic/station/620/info.html">京阪 坂本比叡山口駅</a></td><td>www.keihan.co.jp</td><td><i class="t ok">✅</i></td><td>時刻表・運賃表 PDF</td></tr><tr><td><a href="https://www.keihan.co.jp/traffic/station/612/info.html">京阪 三井寺駅</a></td><td>www.keihan.co.jp</td><td><i class="t ok">✅</i></td><td>時刻表・運賃表 PDF</td></tr><tr><td><a href="https://www.keihan.co.jp/traffic/station/611/info.html">京阪 びわ湖浜大津駅</a></td><td>www.keihan.co.jp</td><td><i class="t ok">✅</i></td><td>運賃表 PDF</td></tr><tr><td><a href="https://www.jr-odekake.net/">JR 西日本 駅の時刻表（京都・比叡山坂本・大津）</a></td><td>www.jr-odekake.net</td><td><i class="t ok">✅</i></td><td>2026/10/08 表示、改正日 2026/10/03</td></tr><tr><td><a href="http://www.tsurukisoba.com/">手打蕎麦 鶴屋喜八</a></td><td>www.tsurukisoba.com</td><td><i class="t ok">✅</i></td><td>時間、定休日、建物</td></tr><tr><td><a href="https://sankurou.com/">比叡・三九良</a></td><td>sankurou.com</td><td><i class="t ok">✅</i></td><td>時間、定休日</td></tr><tr><td><a href="https://www.a-qus.com/">浜大津アーカス</a></td><td>www.a-qus.com</td><td><i class="t ok">✅</i></td><td>店舗の営業時間、アクセス</td></tr><tr><td><a href="https://www.hana-otsu-koen.com/">おおつ花フェスタ シバザクラ花壇</a></td><td>www.hana-otsu-koen.com</td><td><i class="t ok">✅</i></td><td>場所、開花時期、アクセス</td></tr><tr><td><a href="https://omairi.club/spots/78683/goshuin">omairi.club 日吉大社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/05/05、07/26、08/14、09/10</td></tr><tr><td><a href="https://omairi.club/spots/77971/goshuin">omairi.club 比叡山延暦寺</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/04/18、05/20 等</td></tr><tr><td><a href="https://omairi.club/spots/109392/goshuin">omairi.club 萬拝堂</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2025/04/30～07/18 書置き</td></tr><tr><td><a href="https://omairi.club/spots/107853/goshuin">omairi.club 大講堂</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/07/28、08/08 等</td></tr><tr><td><a href="https://omairi.club/spots/109173/goshuin">omairi.club 大黒堂</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/04/07、07/17、07/28</td></tr><tr><td><a href="https://omairi.club/spots/81817/goshuin">omairi.club 三井寺（園城寺）</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/01/31、09/05 等</td></tr><tr><td><a href="https://omairi.club/">omairi.club 微妙寺・水観寺</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>冥加料 ¥500：2026/02/22 等</td></tr><tr><td><a href="https://www.google.com/maps/">Google Maps（步行・車程・電車）</a></td><td>www.google.com</td><td><i class="t ng">⚠️</i></td><td>步行時間、距離（截圖 2026/10/02）</td></tr><tr><td><a href="https://ekitan.com/">駅探（京都→比叡山坂本、大津→京都）</a></td><td>ekitan.com</td><td><i class="t ng">⚠️</i></td><td>JR 運賃 ¥320／¥200</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p23" aria-label="第 23 頁 照片授權與資料處理">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">23 / 24</span></header>
+
+<h2><i class="seal">基</i>照片授權與資料處理</h2>
+<h3>照片授權（全部來自 Wikimedia Commons，已縮為寬 1000 px）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>用在</th><th>作者</th><th>授權</th><th>Commons</th></tr></thead><tbody><tr><td>日吉大社西本宮</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Hiyoshi-taisha_nishihongu-honden01n4592.jpg">連結</a></td></tr><tr><td>日吉大社東本宮</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Hiyoshi-taisha_higashihongu-honden01nt3200.jpg">連結</a></td></tr><tr><td>山王鳥居</td><td>puffyjet</td><td>CC BY 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Hiyoshi-taisha,_Sann%C5%8D-torii_(a).jpg">連結</a></td></tr><tr><td>坂本石垣</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Sakamoto_Otsu03s4592.jpg">連結</a></td></tr><tr><td>坂本石垣與水路</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Sakamoto_Otsu07s4592.jpg">連結</a></td></tr><tr><td>比叡山坂本駅</td><td>SONIC BLOOMING</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Hieizan-Sakamoto_Station.jpg">連結</a></td></tr><tr><td>坂本ケーブル車輛</td><td>Saigen Jiro</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Cable_car_at_Cable_Sakamoto_Station.jpg">連結</a></td></tr><tr><td>ケーブル坂本駅</td><td>江戸村のとくぞう</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Cable_Sakamoto_Station_201125a.jpg">連結</a></td></tr><tr><td>坂本ケーブル（舊塗裝）</td><td>見 Commons 頁</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Sakamoto_Cable.jpg">連結</a></td></tr><tr><td>根本中堂覆屋入口</td><td>Indiana jo</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Social_distancing_in_Konponchud%C5%8D.jpg">連結</a></td></tr><tr><td>大講堂</td><td>Zairon</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Otsu_Enryaku-ji_Daikodo_Exterior_1.jpg">連結</a></td></tr><tr><td>文殊楼</td><td>Zairon</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Otsu_Enryaku-ji_Monjuro_1.jpg">連結</a></td></tr><tr><td>阿弥陀堂</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Enryakuji_Amidado01n3200.jpg">連結</a></td></tr><tr><td>大黒堂</td><td>Guilhem Vellut from Tokyo, Japan</td><td>CC BY 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Daikokudo_hall_of_Enryakuji_temple.jpg">連結</a></td></tr><tr><td>根本中堂（整修前）</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Enryakuji_Konponchudo04n4272.jpg">連結</a></td></tr><tr><td>三井寺金堂</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Mii-dera_Otsu_Shiga_pref01s5s4592.jpg">連結</a></td></tr><tr><td>三井寺観音堂</td><td>小倉商事</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Miidera-kannondo.jpg">連結</a></td></tr><tr><td>三井寺鐘楼</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Mii-dera_Otsu_Shiga_pref22n4592.jpg">連結</a></td></tr><tr><td>三井寺三重塔</td><td>Daderot</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Three-storied_pagoda_-_Mii-dera_-_Otsu,_Shiga_-_DSC07182.JPG">連結</a></td></tr><tr><td>三井寺仁王門</td><td>Daderot</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Niomon_-_Mii-dera_-_Otsu,_Shiga_-_DSC07297.JPG">連結</a></td></tr><tr><td>弁慶の引き摺り鐘</td><td>Daderot</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Benkei%27s_Bell_-_Mii-dera_-_Otsu,_Shiga_-_DSC07215.JPG">連結</a></td></tr><tr><td>大津港</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Otsu_port07s3200.jpg">連結</a></td></tr><tr><td>大津港前湖岸</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Otsu_port05s3200.jpg">連結</a></td></tr><tr><td>大津湖岸なぎさ公園</td><td>Rock.jazz.cafe</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Otsu_nagisa_park.JPG">連結</a></td></tr></tbody></table></div>
+<p class="xs">每張照片的圖說都附作者、授權、攝影年份與 Commons 頁面連結。照片多為數年前所攝，與 2027/4/8 現場可能不同，特別是根本中堂整修前後的外觀。</p>
+<h3>地圖</h3>
+<p class="sm">Google Maps 截圖，地圖資料 ©2026 Google，截取日期 2026/10/02，僅作個人行程參考。示意圖為自製，非地理比例。步行時間是 Google 的估算，不含參拜與停留。</p>
+<h3>資料是怎麼查的</h3>
+<ul class="l "><li>官方頁面用瀏覽器（Edge）實際開啟，存下頁面全文再讀，不用搜尋引擎摘要。</li><li>JR 時刻用 JR 西日本「駅の時刻表」，指定 2026/10/08（木）；京阪時刻與運賃用官網 PDF，PDF 文字抽取不全的地方改看畫面。</li><li>御朱印的授與位置與形式（直書き／書置き）以 omairi.club 2026 年的投稿為準，附日期，標 ${PH}。</li><li>JR 運賃官網查不到單一區間，採駅探數字並標 ${NG}。</li><li>所有「我的估算」「我的推算」都標 ${NG}，沒有標 ${OK} 的數字都不是官方原文。</li></ul>
+
+</section>
+<section class="sheet" id="p24" aria-label="第 24 頁 待確認事項">
+<header class="hd"><span><b>比叡山・大津一日手冊</b>　日吉大社・延暦寺・三井寺</span><span>2027/04/08（四）</span><span class="pg">24 / 24</span></header>
+
+<h2><i class="seal">基</i>待確認事項　<small>查證日 2026/10/02</small></h2>
+<p class="sm">這一頁列出我「還沒有確認」的項目，以及這次查證「沒有做到」的部分。需要時，可以依這張表請我逐項再查。</p>
+<h3>一、尚未確認的資訊（標 ⚠️ 的項目）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>#</th><th>項目</th><th>目前狀況</th><th>需要怎麼確認</th></tr></thead><tbody><tr><td>1</td><td>JR、京阪的 2027 年度時刻</td><td>用 JR 2026/10/03 改正版與京阪 PDF（平日）。2027 年版尚未公布</td><td>2027 年 3 月前後查 JR 西日本「駅の時刻表」與京阪官網</td></tr><tr><td>2</td><td>JR 運賃 ¥320（京都→比叡山坂本）、¥200（大津→京都）</td><td>JR 西日本官網查不到單一區間運賃，只有駅探（二手）</td><td>查 JR 西日本運賃表或當天看售票機</td></tr><tr><td>3</td><td>JR 大津→京都 17:41 的到站時間</td><td>時刻表只有大津駅的發車，到站時間是「約 10 分」推估</td><td>查 JR 京都駅到着時刻或乘換案內</td></tr><tr><td>4</td><td>坂本ケーブル 2027/4 的營運狀況、行李寄存</td><td>官網僅顯示 2026/10 「通常通り運行中」；「お荷物預かり」條件未取得</td><td>出發前看運行情報；打 077-578-0531</td></tr><tr><td>5</td><td>延暦寺周遊一日乗車券 ¥2,500</td><td>價格來自官方售票頁，2027 年是否販售、購買期限、使用條件未核實</td><td>看 sakamoto-cable.jp 的「乗車チケット」頁</td></tr><tr><td>6</td><td>根本中堂 2027/4 的外觀與修學ステージ</td><td>內部 2026/1～2028/1 不能入內 <i class="t ok">✅</i>；修學ステージ預定到 2026/12 前後</td><td>看延暦寺官網「国宝根本中堂大改修」與お知らせ</td></tr><tr><td>7</td><td>延暦寺 大講堂・大黒堂 等的御朱印初穂料與授與時間</td><td>官網只列種類與場所；萬拝堂縁日版的金額未載</td><td>現場告示；打 077-578-0001</td></tr><tr><td>8</td><td>萬拝堂 特別御朱印 2027 年是否仍授與</td><td>官網寫「2 年間（予定）」</td><td>看延暦寺官網お知らせ</td></tr><tr><td>9</td><td>日吉大社 9:00 前入苑、各社朱印初穂料</td><td>官網未載受付開始時間、各社朱印金額</td><td>打 077-578-0009；現場確認</td></tr><tr><td>10</td><td>鶴屋喜八 2027/4/8 是否營業、菜單與價格</td><td>2026 年定休日表 4/20 休；2027 年未公布；菜單未取得</td><td>看官網「お知らせ」；打 077-578-0002 或網路預約</td></tr><tr><td>11</td><td>三井寺 金堂・微妙寺・水観寺的御朱印位置、時間、金額</td><td>官網只列種類與觀音堂「大悲殿」；其餘來自 omairi</td><td>現場確認；打 077-522-2238</td></tr><tr><td>12</td><td>三井寺 ながら茶房 本寿院、文化財收藏庫的營業細節</td><td>收藏庫 9:30～16:30 已載 <i class="t ok">✅</i>；茶房時間未載</td><td>官網或現場</td></tr><tr><td>13</td><td>櫻花（日吉參道、三井寺）與芝櫻開花狀況</td><td>官網只給「例年」見頃；2027 年看當年氣象</td><td>4 月初看開花情報（日本氣象協會 tenki.jp、大津市）</td></tr><tr><td>14</td><td>日本 2027 年祝日表</td><td>4/8 是平日，我沒有逐項核對 2027 年祝日</td><td>查內閣府祝日表</td></tr><tr><td>15</td><td>步行時間（全部）</td><td>Google Maps 估算，加我的散步與停留估算</td><td>當天依現場調整</td></tr></tbody></table></div>
+<h3>二、這次查證沒有做到的部分</h3>
+<ul class="l "><li><b>omairi.club</b>：只讀取了日吉大社、延暦寺（本體、萬拝堂、大講堂、大黒堂）、三井寺（本體、微妙寺、水観寺）的御朱印投稿；其他景點未查。讀取時沒有出現需要手動點擊的 Cloudflare 驗證（使用先前通過驗證的瀏覽器設定檔），沒有做任何繞過。</li><li><b>延暦寺 西塔・横川、シャトルバス時刻</b>：本日不去，未查。</li><li><b>浜大津の大津港 觀光船（ミシガン）</b>班次與費用：未查。</li><li><b>浜大津アーカス 個別店家營業時間</b>：只查到湖の駅、Pダイニング、ラウンドワン三家，其餘未查。</li><li><b>日吉東照宮、唐崎神社、生源寺</b>：官網有提及，沒有查營業細節，本日未排。</li><li><b>已發布網頁的視覺檢查：</b>Artifact 發布後，我沒有登入 claude.ai 逐頁瀏覽已發布頁面，只檢查了本機的 HTML 與 PDF；已發布版本的呈現請你開啟後確認。</li></ul>
+
+</section>
+</main>

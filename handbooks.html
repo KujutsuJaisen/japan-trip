@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎌 行程手冊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #1a1a2e;
+      --paper:   #faf9f6;
+      --accent:  #c0392b;
+      --on-accent: #ffffff;
+      --muted:   #6b7375;
+      --border:  #e8e4dc;
+      --card-bg: #ffffff;
+      --chip-bg: #f3efe7;
+      --header-bg: #1a1a2e;
+      --shadow: 0 1px 2px rgba(0,0,0,.05), 0 8px 24px -12px rgba(0,0,0,.18);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink:     #ecebe6;
+        --paper:   #121318;
+        --accent:  #ef7a6b;
+        --on-accent: #1a0d0a;
+        --muted:   #a3a8ab;
+        --border:  #2c2e36;
+        --card-bg: #1b1d24;
+        --chip-bg: #262833;
+        --header-bg: #0b0c12;
+        --shadow: 0 1px 2px rgba(0,0,0,.4);
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --ink:     #ecebe6;
+      --paper:   #121318;
+      --accent:  #ef7a6b;
+      --on-accent: #1a0d0a;
+      --muted:   #a3a8ab;
+      --border:  #2c2e36;
+      --card-bg: #1b1d24;
+      --chip-bg: #262833;
+      --header-bg: #0b0c12;
+      --shadow: 0 1px 2px rgba(0,0,0,.4);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--header-bg);
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 1rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,.03) 40px,
+        rgba(255,255,255,.03) 41px
+      );
+    }
+    .site-header h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: .08em;
+      position: relative;
+    }
+    .site-header .subtitle {
+      margin-top: .5rem;
+      font-size: .9rem;
+      color: rgba(255,255,255,.65);
+      letter-spacing: .05em;
+      position: relative;
+    }
+    .site-header .back {
+      position: relative;
+      display: inline-block;
+      margin-top: 1rem;
+      color: rgba(255,255,255,.8);
+      font-size: .85rem;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+    }
+    .site-header .back:hover { color: #fff; border-color: #fff; }
+
+    /* ── CARDS ── */
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 2rem 16px 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .card figure { position: relative; }
+    .card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: var(--chip-bg);
+    }
+    .card figcaption {
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      font-size: .65rem;
+      color: #fff;
+      background: rgba(0,0,0,.45);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+    .card-body {
+      padding: 1.1rem 1.2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      flex: 1;
+    }
+    .date {
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+    .card h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      line-height: 1.35;
+    }
+    .spots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+    .spots span {
+      font-size: .75rem;
+      background: var(--chip-bg);
+      padding: .1rem .55rem;
+      border-radius: 99px;
+    }
+    .summary {
+      font-size: .88rem;
+      color: var(--muted);
+      flex: 1;
+    }
+    .actions {
+      display: flex;
+      gap: .6rem;
+      margin-top: .4rem;
+    }
+    .btn {
+      flex: 1;
+      white-space: nowrap;
+      text-align: center;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      padding: .6rem .5rem;
+      border-radius: 6px;
+      border: 1.5px solid var(--accent);
+      transition: background .15s, color .15s;
+    }
+    .btn.primary { background: var(--accent); color: var(--on-accent); }
+    .btn.primary:hover { filter: brightness(1.08); }
+    .btn.ghost { color: var(--accent); }
+    .btn.ghost:hover { background: var(--accent); color: var(--on-accent); }
+    .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+    footer {
+      text-align: center;
+      font-size: .75rem;
+      color: var(--muted);
+      padding: 0 16px 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1>🎌 行程手冊</h1>
+    <p class="subtitle">京都出發的一日行程・觀光＋御朱印</p>
+    <a class="back" href="./">← 回京坂行程表</a>
+  </header>
+
+  <main>
+    <article class="card">
+      <figure>
+        <img src="arashiyama/img/train3.jpg" alt="嵯峨野小火車" loading="lazy" />
+        <figcaption>Toshinori baba · CC BY-SA 4.0</figcaption>
+      </figure>
+      <div class="card-body">
+        <p class="date">2027/04/08（四）</p>
+        <h2>嵐山・嵯峨野</h2>
+        <div class="spots">
+          <span>嵯峨野小火車</span><span>天龍寺</span><span>野宮神社</span><span>常寂光寺</span><span>二尊院</span><span>渡月橋</span>
+        </div>
+        <p class="summary">從龜岡搭小火車逆著保津川進入嵐山，沿小倉山麓走過五處寺社，最後在渡月橋收尾。</p>
+        <div class="actions">
+          <a class="btn primary" href="arashiyama/">📖 手冊</a>
+          <a class="btn ghost" href="arashiyama/overview/">🗺️ 總覽</a>
+          <a class="btn ghost" href="arashiyama/嵐山嵯峨野行程手冊_2027-04-08.pdf" title="A4 PDF，9.3MB">📄 PDF</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <figure>
+        <img src="inari-uji/img/senbon.jpg" alt="伏見稲荷大社千本鳥居" loading="lazy" />
+        <figcaption>Luka Peternel · CC BY-SA 4.0</figcaption>
+      </figure>
+      <div class="card-body">
+        <p class="date">2027/04/08（四）</p>
+        <h2>伏見稲荷・宇治</h2>
+        <div class="spots">
+          <span>千本鳥居</span><span>平等院</span><span>宇治橋</span><span>宇治上神社</span><span>宇治神社</span>
+        </div>
+        <p class="summary">清早走千本鳥居到四ツ辻，參道逛街後沿 JR 奈良線南下宇治，走平等院與宇治川兩岸的神社，全程不用轉乘。</p>
+        <div class="actions">
+          <a class="btn primary" href="inari-uji/">📖 手冊</a>
+          <a class="btn ghost" href="inari-uji/overview/">🗺️ 總覽</a>
+          <a class="btn ghost" href="inari-uji/伏見稲荷宇治行程手冊_2027-04-08.pdf" title="A4 PDF，13.5MB">📄 PDF</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <figure>
+        <img src="nara/img/daibutsuden2.jpg" alt="東大寺大佛殿" loading="lazy" />
+        <figcaption>Cun Cun · CC BY-SA 4.0</figcaption>
+      </figure>
+      <div class="card-body">
+        <p class="date">2027/04/08（四）</p>
+        <h2>奈良</h2>
+        <div class="spots">
+          <span>東大寺</span><span>二月堂</span><span>春日大社</span><span>興福寺</span><span>東向商店街</span>
+        </div>
+        <p class="summary">從奈良公園走進東大寺，經二月堂、法華堂上春日大社，下山走興福寺與東向商店街，傍晚搭近鉄回京都。</p>
+        <div class="actions">
+          <a class="btn primary" href="nara/">📖 手冊</a>
+          <a class="btn ghost" href="nara/overview/">🗺️ 總覽</a>
+          <a class="btn ghost" href="nara/奈良東大寺春日大社行程手冊_2027-04-08.pdf" title="A4 PDF，10.6MB">📄 PDF</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <figure>
+        <img src="otsu/img/cable_car.jpg" alt="坂本纜車" loading="lazy" />
+        <figcaption>Saigen Jiro · CC0</figcaption>
+      </figure>
+      <div class="card-body">
+        <p class="date">2027/04/08（四）</p>
+        <h2>比叡山・大津</h2>
+        <div class="spots">
+          <span>日吉大社</span><span>坂本纜車</span><span>延暦寺東塔</span><span>三井寺</span><span>大津港</span>
+        </div>
+        <p class="summary">走坂本老街到日吉大社，坐日本最長的坂本纜車上延暦寺，中午下山吃蕎麥麵，下午三井寺，最後在大津港散步。</p>
+        <div class="actions">
+          <a class="btn primary" href="otsu/">📖 手冊</a>
+          <a class="btn ghost" href="otsu/overview/">🗺️ 總覽</a>
+          <a class="btn ghost" href="otsu/比叡山大津日吉大社延暦寺三井寺行程手冊_2027-04-08.pdf" title="A4 PDF，13.9MB">📄 PDF</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>PDF 為 A4 直式列印版，每份約 10～14MB。照片來自 Wikimedia Commons，授權如各圖所示。</footer>
+</body>
+</html>

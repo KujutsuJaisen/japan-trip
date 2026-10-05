@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>伏見稲荷宇治手冊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout concept: A4 sheets like a travel-magazine spread; tea-green headings, vermilion seal marks used only as small category stamps. */
+:root{
+  --paper:#ECEBE3; --sheet:#FDFDFB; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5;
+  --pine:#3F5E3C; --shu:#C2361F; --deer:#8A5C3B; --moss:#EAF0E3; --tint:#F2F5EC;
+  --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00;
+  --shadow:0 1px 3px rgba(20,30,25,.12),0 6px 24px rgba(20,30,25,.08);
+  --f-head:"Shippori Mincho B1","Hiragino Mincho ProN","Noto Serif TC","Yu Mincho",serif;
+  --f-body:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#12150F; --sheet:#1A2018; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#3A4433;
+  --pine:#A5CB8C; --shu:#EE6E55; --deer:#D4A47A; --moss:#252D1F; --tint:#222A1D;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12150F; --sheet:#1A2018; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#3A4433;
+  --pine:#A5CB8C; --shu:#EE6E55; --deer:#D4A47A; --moss:#252D1F; --tint:#222A1D;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:13px;line-height:1.62;padding-inline:12px;padding-block:14px}
+a{color:var(--pine);text-decoration-thickness:1px;text-underline-offset:2px;overflow-wrap:anywhere}
+a:focus-visible,input:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+.sheet{width:min(210mm,100%);margin:0 auto 18px;background:var(--sheet);box-shadow:var(--shadow);padding:11mm 12mm 12mm;display:flex;flex-direction:column;gap:10px;position:relative;min-width:0}
+.sheet>*{flex-shrink:0;min-width:0}
+.hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:10.5px;letter-spacing:.06em;color:var(--ink2);border-bottom:1px solid var(--rule);padding-bottom:6px}
+.hd .pg{font-family:var(--f-mono);letter-spacing:0;white-space:nowrap}
+.hd b{font-family:var(--f-head);font-weight:800;color:var(--pine);letter-spacing:.1em}
+h1,h2,h3{font-family:var(--f-head);color:var(--ink);text-wrap:balance;margin:0;line-height:1.3}
+h2{font-size:22px;font-weight:800;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+h2 small{font-family:var(--f-body);font-size:11.5px;font-weight:500;color:var(--ink2);letter-spacing:.04em}
+h3{font-size:14.5px;font-weight:800;color:var(--pine);display:flex;align-items:center;gap:7px;margin-top:2px}
+p{margin:0}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:1.55em;height:1.55em;border:1.5px solid var(--shu);color:var(--shu);font-style:normal;font-family:var(--f-head);font-weight:800;font-size:12px;line-height:1;flex:none;border-radius:2px}
+.lead{font-size:13.5px;color:var(--ink)}
+.mut{color:var(--ink2)}
+.sm{font-size:11.5px}
+.xs{font-size:10.3px;color:var(--ink2)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.t{display:inline-block;font-size:10.5px;line-height:1;padding:2px 4px;border-radius:3px;vertical-align:baseline;white-space:nowrap;font-style:normal}
+.t.ok{background:var(--okbg);color:var(--okfg)}.t.ph{background:var(--phbg);color:var(--phfg)}.t.ng{background:var(--ngbg);color:var(--ngfg)}
+.tw{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:11.8px;line-height:1.5}
+th{background:var(--moss);color:var(--pine);text-align:left;font-weight:700;white-space:nowrap;padding:5px 7px;border-bottom:1.5px solid var(--pine)}
+td{padding:5px 7px;border-bottom:1px solid var(--rule);vertical-align:top}
+td.tm,th.tm{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.dense{font-size:9.6px;line-height:1.38}table.dense td,table.dense th{padding:2.5px 5px}
+table.kv th{width:7.5em;background:var(--tint);border-bottom:1px solid var(--rule);color:var(--ink2);font-weight:500}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+@media (max-width:640px){.grid2,.grid3,.cols{grid-template-columns:1fr}.sheet{padding:16px}}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;max-width:100%;object-fit:cover;aspect-ratio:3/2;background:var(--tint)}
+figure.w img{aspect-ratio:16/9}figure.ww img{aspect-ratio:2.3/1}figure.map img{aspect-ratio:16/9;object-position:50% 45%}figure.sq img{aspect-ratio:4/3}
+figcaption{font-size:9.3px;line-height:1.4;color:var(--ink2);padding-top:3px}
+.box{background:var(--tint);border-left:3px solid var(--pine);padding:7px 10px;font-size:12px}
+.box.warn{background:var(--ngbg);border-left-color:var(--ngfg);color:var(--ink)}
+.box.shu{border-left-color:var(--shu)}
+ul.l,ol.l{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:2px}
+ul.l.c{list-style:none;padding-left:0}
+.chips{display:flex;flex-wrap:wrap;gap:5px 3px;align-items:center}
+.chip{white-space:nowrap;border:1px solid var(--pine);color:var(--pine);padding:2px 8px;font-size:11.5px;border-radius:2px;background:var(--sheet)}
+.chip.k{background:var(--pine);color:var(--sheet)}
+.arr{color:var(--shu);font-size:11px}
+.toc{columns:2;column-gap:20px;font-size:12.5px}
+.toc a{display:flex;gap:8px;text-decoration:none;color:var(--ink);padding:2px 0;border-bottom:1px dotted var(--rule);break-inside:avoid}
+.toc a span.n{font-family:var(--f-mono);color:var(--shu);min-width:1.8em}
+.cover{display:flex;flex-direction:column;gap:12px}
+.cover h1{font-size:40px;font-weight:800;line-height:1.18;letter-spacing:.02em}
+.cover .sub{font-size:15px;color:var(--ink2);letter-spacing:.14em}
+.stamp{display:inline-flex;flex-direction:column;border:2px solid var(--shu);color:var(--shu);font-family:var(--f-head);font-weight:800;padding:6px 10px;line-height:1.25;font-size:15px;align-self:flex-start;transform:rotate(-2deg);border-radius:2px}
+.tl{display:flex;flex-direction:column;border-left:2px solid var(--pine);margin-left:6px}
+.tl>div{display:grid;grid-template-columns:5.6em 1fr;gap:8px;padding:2px 0 5px 12px;position:relative;font-size:11.8px}
+.tl>div::before{content:"";position:absolute;left:-6px;top:7px;width:9px;height:9px;background:var(--sheet);border:2px solid var(--shu);border-radius:50%}
+.tl .tm{font-family:var(--f-mono);font-weight:500;color:var(--pine);white-space:nowrap}
+.star{color:var(--shu);letter-spacing:.05em;white-space:nowrap}
+label.ck{display:flex;gap:8px;align-items:flex-start;padding:2px 0;font-size:12px;cursor:pointer}
+label.ck input{margin-top:3px;accent-color:var(--shu)}
+.ckgrp{display:flex;flex-direction:column;gap:0}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kpi div{border:1px solid var(--rule);padding:6px 8px;background:var(--tint)}
+.kpi b{display:block;font-family:var(--f-mono);font-size:15px;color:var(--pine)}
+.kpi span{font-size:10.5px;color:var(--ink2)}
+@media (max-width:640px){.kpi{grid-template-columns:1fr 1fr}.toc{columns:1}.cover h1{font-size:30px}}
+
+@media print{
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+    --paper:#fff; --sheet:#fff; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5; --pine:#3F5E3C; --shu:#C2361F; --deer:#8A5C3B; --moss:#EAF0E3; --tint:#F2F5EC;
+    --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00; --shadow:none; color-scheme:light}
+  @page{size:A4;margin:0}
+  html,body{background:#fff}
+  body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;height:297mm;margin:0;padding:10mm 12mm 9mm;box-shadow:none;overflow:hidden;break-after:page;page-break-after:always;gap:7px;font-size:calc(12.2px*var(--k,1));line-height:1.52}
+  .sheet:last-child{break-after:auto;page-break-after:auto}
+  .hd{font-size:.86em}
+  table{font-size:.94em}table.dense{font-size:.84em}
+  h2{font-size:1.65em}h2 small{font-size:.52em}h3{font-size:1.08em}
+  .lead{font-size:1.05em}.box{font-size:.95em;padding:5px 9px}
+  .tl>div{font-size:.95em;padding-bottom:3px}
+  .sm{font-size:.92em}.xs{font-size:.84em}
+  figcaption{font-size:.74em}
+  .t{font-size:.84em}
+  .cover h1{font-size:3.2em}.cover .sub{font-size:1.2em}
+  .tw{overflow:visible}
+}
+</style>
+<main>
+<section class="sheet" id="p1" aria-label="第 1 頁 封面・目錄">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">1 / 24</span></header>
+
+<div class="cover">
+  <div class="stamp"><span>2027.04.08</span><span>木曜日</span></div>
+  <h1>伏見稲荷・宇治一日<br>千本鳥居・平等院・宇治上神社</h1>
+  <div class="sub">觀光＋御朱印　行程說明書</div>
+  <figure class="w"><img src="img/senbon.jpg" alt="伏見稲荷大社 千本鳥居" width="1000" style="object-position:50% 55%"><figcaption>Luka Peternel・CC BY-SA 4.0・2018 年攝・<a href="https://commons.wikimedia.org/wiki/File:Fushimi-Inari-Shrine-Senbon-Torii-2018-Luka-Peternel.jpg">Wikimedia Commons</a></figcaption></figure>
+  <p class="lead">2 人，京都站出發並返回。07:05 搭 JR 奈良線 6 分鐘到稲荷，趁人少走千本鳥居到四ツ辻，下山領御朱印後在參道逛街（含ちいかわもぐもぐ本舗）。11:02 在同一條線再南下 17 分鐘到宇治，走平等院、宇治橋、宇治上神社、宇治神社，體力夠再到興聖寺，15:37 搭みやこ路快速回京都。全程沒有轉乘。</p>
+  <div class="toc"><a href="#p2"><span class="n">02</span><span>旅行基本資訊</span></a><a href="#p3"><span class="n">03</span><span>最需再確認的 5 件事・日文地名</span></a><a href="#p4"><span class="n">04</span><span>今日行程總覽・時間界線</span></a><a href="#p5"><span class="n">05</span><span>今日路線地圖・動線說明</span></a><a href="#p6"><span class="n">06</span><span>區段地圖</span></a><a href="#p7"><span class="n">07</span><span>交通總覽</span></a><a href="#p8"><span class="n">08</span><span>JR奈良線乘車指南・出發段落</span></a><a href="#p9"><span class="n">09</span><span>伏見稲荷大社（簡介與基本資訊）</span></a><a href="#p10"><span class="n">10</span><span>伏見稲荷大社（參觀路線）</span></a><a href="#p11"><span class="n">11</span><span>參道逛街・ちいかわもぐもぐ本舗</span></a><a href="#p12"><span class="n">12</span><span>平等院</span></a><a href="#p13"><span class="n">13</span><span>宇治橋・宇治川畔</span></a><a href="#p14"><span class="n">14</span><span>宇治上神社</span></a><a href="#p15"><span class="n">15</span><span>宇治神社</span></a><a href="#p16"><span class="n">16</span><span>興聖寺</span></a><a href="#p17"><span class="n">17</span><span>午餐與休息</span></a><a href="#p18"><span class="n">18</span><span>今日御朱印攻略</span></a><a href="#p19"><span class="n">19</span><span>一日時間軸・費用總覽</span></a><a href="#p20"><span class="n">20</span><span>雨天備案・彈性與刪減方案</span></a><a href="#p21"><span class="n">21</span><span>出發前必看・Checklist</span></a><a href="#p22"><span class="n">22</span><span>資料來源</span></a><a href="#p23"><span class="n">23</span><span>照片授權・資料處理</span></a><a href="#p24"><span class="n">24</span><span>待確認事項</span></a></div>
+  <p class="xs">查證等級：<i class="t ok">✅</i> 官方原文　<i class="t ph">📷</i> omairi.club 訪客投稿（附日期）　<i class="t ng">⚠️</i> 二手資料或估算。時刻與費用以 2026/10/03 查到的資料為準，2027 年版時刻尚未公布，內文有標示。</p>
+</div>
+</section>
+<section class="sheet" id="p2" aria-label="第 2 頁 旅行基本資訊">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">2 / 24</span></header>
+
+<h2><i class="seal">基</i>旅行基本資訊</h2>
+<div class="tw"><table class="kv "><tbody><tr><th>日期</th><td>2027/04/08（四）。我用日期換算確認是星期四；4/8 不在日本祝日，但我沒有逐項核對 2027 年祝日表 <i class="t ng">⚠️</i></td></tr><tr><th>人數</th><td>2 人</td></tr><tr><th>出發・結束</th><td>京都站。住宿在京都站周邊</td></tr><tr><th>時間</th><td>07:05 京都発，15:55 回到京都。19:00 前解散，保留約 3 小時緩衝，可用在晚餐或補拍</td></tr><tr><th>交通</th><td>JR 奈良線（京都⇄稲荷⇄宇治）＋步行。不搭巴士，不需要預約座位</td></tr><tr><th>步行量</th><td>Google 估算：稲荷區約 52 分鐘、宇治區約 51 分鐘 <i class="t ng">⚠️</i>，另加境內走動。稲荷山有 100 m 左右的上坡與石階（奥社奉拝所到四つ辻上り 104 m <i class="t ng">⚠️</i>）</td></tr><tr><th>預估費用</th><td>每人約 ¥6,200～¥8,200（交通、門票、御朱印、午茶、午餐）。不含ちいかわ周邊。明細見第 19 頁</td></tr><tr><th>櫻與藤</th><td>平等院官網：桜 見頃 3 月下旬～4 月上旬，藤 4 月中旬～5 月初旬 <i class="t ok">✅</i>。4/8 是櫻的尾聲、藤還早，實際花況看當年 <i class="t ng">⚠️</i></td></tr><tr><th>預約</th><td>沒有需要事先預約的項目。鳳凰堂內部拝観是當天領時間券，中村藤吉不接受預約 <i class="t ok">✅</i>。ちいかわ有預約制的日子，2027/4/8 未載明 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>今日特色</h3>
+<ul class="l "><li><b>北往南一直線，同一條 JR 奈良線。</b>京都 → 稲荷 2.7 km → 宇治 14.9 km，JR 西日本查詢結果轉乘 0 次 <i class="t ok">✅</i>。</li><li><b>稲荷山海拔 233 m</b><i class="t ok">✅</i>，鳥居沿山道一路往上。本行程走到四つ辻折返，不登頂。</li><li><b>今天最大的時間風險是鳳凰堂內部拝観。</b>官網 4 月平日的待ち時間是 1.5 小時前後，2026/10/16 起每回定員由 50 名減為 35 名 <i class="t ok">✅</i>。</li><li><b>4/8 是興聖寺的降誕会（花まつり）</b><i class="t ok">✅</i>，官網寫有行持時可能暫停堂內拝観與御朱印受付。</li></ul>
+<h3>可信度圖例</h3>
+<div class="tw"><table class="dense"><thead><tr><th>標記</th><th>意思</th><th>本手冊的做法</th></tr></thead><tbody>
+<tr><td><i class="t ok">✅</i></td><td>官方原文核實</td><td>開啟寺社、鐵道、店家、市府、觀光協會官網確認，搜尋摘要不算。官網只有圖片的數字，我讀圖後標明。</td></tr>
+<tr><td><i class="t ph">📷</i></td><td>omairi.club 訪客投稿</td><td>附參拜日期，只用來判斷直書き／書置き、授與位置。</td></tr>
+<tr><td><i class="t ng">⚠️</i></td><td>二手資料或估算</td><td>Google Maps 估算、舊資料網站、我的推算。官網沒寫的一律寫「未載明」。</td></tr>
+</tbody></table></div>
+<h3>2027/04/08（四）公休與休運檢查</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>結果</th><th>依據</th></tr></thead><tbody><tr><td>伏見稲荷大社</td><td>開放。4/8 沒有祭事（産業祭 4/11、稲荷祭神幸祭 4/18）</td><td>官網 年間行事 <i class="t ok">✅</i>；ご祈祷「年中無休」 <i class="t ok">✅</i></td></tr><tr><td>ちいかわもぐもぐ本舗</td><td>年中無休。但旺季可能整理券</td><td>官網 <i class="t ok">✅</i></td></tr><tr><td>おせんの里 松屋</td><td>「不定休」，4/8 是否營業無法確認</td><td>官網 <i class="t ok">✅</i></td></tr><tr><td>平等院 庭園・鳳翔館</td><td>年中無休。茶房藤花 月火水休，所以週四營業</td><td>官網 <i class="t ok">✅</i></td></tr><tr><td>中村藤吉 平等院店</td><td>カフェ 10:00～17:00。定休日官網未載明</td><td>官網 <i class="t ok">✅</i>（定休日未載明）</td></tr><tr><td>宇治上神社・宇治神社</td><td>官網沒有列休日</td><td>官網 <i class="t ok">✅</i></td></tr><tr><td>興聖寺</td><td>4/8 降誕会，可能暫停堂內拝観與御朱印</td><td>官網 <i class="t ok">✅</i></td></tr><tr><td>JR 奈良線</td><td>用平日時刻。2027 年版尚未公布</td><td>JR 西日本 <i class="t ok">✅</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p3" aria-label="第 3 頁 最需再確認的 5 件事・日文地名">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">3 / 24</span></header>
+
+<h2><i class="seal">基</i>出發前最需要再確認的 5 件事</h2>
+<ol class="l"><li><b>JR 2027 年 4 月的時刻。</b>JR 西日本官網的時刻只到 2026/12/31 <i class="t ok">✅</i>，本手冊用 2026 年 10 月號的平日時刻。2027 年 2～3 月再查三班：07:05 京都発、11:02 稲荷発、15:37 宇治発。官網目前沒有 2027 春的改正預告 <i class="t ok">✅</i>。</li><li><b>平等院鳳凰堂內部拝観。</b>要先領時間券，4 月平日的待ち時間是 1.5 小時前後 <i class="t ok">✅</i>，每回定員 2026/10/16 起改為 35 名 <i class="t ok">✅</i>。11:30 到院，時間券可能落在 13:00 以後，與原定 12:45 離院衝突。第 12 頁有判斷規則。</li><li><b>興聖寺 4/8 降誕会。</b>官網寫本堂有行持時，堂內拝観與御朱印受付可能暫停 <i class="t ok">✅</i>，當天安排未公布。打 0774-21-2040 確認。另外官網兩處寫的步行時間互相矛盾（JR 25 分／30 分），15:37 的車沒有緩衝。</li><li><b>伏見稲荷的御朱印。</b>inari.jp 沒有御朱印的種類、初穂料、授与時間 <i class="t ok">✅</i>；2026 年的 omairi 投稿顯示授与所有直書き與切り絵書置き <i class="t ph">📷</i>，接近 16 時只剩書置き <i class="t ph">📷</i>。本行程排在 08:55，電話 075-641-7331 可確認。</li><li><b>4/8 當天各店是否營業與排隊。</b>ちいかわ平常自由入店，但混雜時發整理券、2026/10/10～12 是全日預約制 <i class="t ok">✅</i>；松屋與參道稲荷壽司店多為「不定休」 <i class="t ok">✅</i>／<i class="t ng">⚠️</i>。</li></ol>
+<div class="box shu"><b>預約與開賣日：</b>本日沒有需要事先預約或限時開賣的項目。ちいかわ的預約制是臨時措施（2026/10/10～12，前一天先着受付 <i class="t ok">✅</i>），2027/4/8 若有，會在官網與官方 X 公告。</div>
+<h3>日文地名對照（貼進 Google Maps 搜尋用）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>日文</th><th>讀音</th><th>說明</th></tr></thead><tbody><tr><td>京都駅</td><td>きょうとえき</td><td>JR 奈良線 8・9・10 番のりば <i class="t ok">✅</i></td></tr><tr><td>稲荷駅</td><td>いなりえき</td><td>1 番＝京都方面、2 番＝宇治・奈良方面 <i class="t ok">✅</i></td></tr><tr><td>伏見稲荷大社 楼門</td><td>ふしみいなりたいしゃ ろうもん</td><td>單搜「伏見稲荷大社」會落在稲荷山腰，要加「楼門」</td></tr><tr><td>千本鳥居／奥社奉拝所／四ツ辻</td><td>せんぼんとりい／おくしゃほうはいしょ／よつつじ</td><td>稲荷山的折返路線</td></tr><tr><td>ちいかわもぐもぐ本舗 京都伏見店</td><td>ちいかわもぐもぐほんぽ</td><td>參道上，9:30 開店 <i class="t ok">✅</i></td></tr><tr><td>おせんの里 松屋</td><td>おせんのさと まつや</td><td>稲荷煎餅老店</td></tr><tr><td>宇治駅（JR）</td><td>うじえき</td><td>京阪宇治駅是另一站，不要選錯</td></tr><tr><td>平等院／鳳凰堂／鳳翔館</td><td>びょうどういん／ほうおうどう／ほうしょうかん</td><td>集印所稱「御集印」</td></tr><tr><td>中村藤吉 平等院店</td><td>なかむらとうきち びょうどういんてん</td><td>セルフカフェ</td></tr><tr><td>宇治橋／朝霧橋</td><td>うじばし／あさぎりばし</td><td>宇治川上的兩座橋</td></tr><tr><td>宇治上神社／宇治神社</td><td>うじがみじんじゃ／うじじんじゃ</td><td>兩座相鄰，不要搞混</td></tr><tr><td>興聖寺／琴坂</td><td>こうしょうじ／ことざか</td><td>曹洞宗、參道</td></tr><tr><td>御朱印／直書き／書き置き</td><td>ごしゅいん／じかがき／かきおき</td><td>朱印／現場手寫／預先寫好的紙</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p4" aria-label="第 4 頁 今日行程總覽・時間界線">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">4 / 24</span></header>
+
+<h2><i class="seal">行</i>今日行程總覽</h2>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>地點</th><th>行程</th><th>交通</th><th>停留</th></tr></thead><tbody><tr><td class="tm">07:05→07:11</td><td>京都駅→稲荷駅</td><td>普通 宇治行（10 番のりば）</td><td>JR <i class="t ok">✅</i></td><td>6 分</td></tr><tr><td class="tm">07:11～07:15</td><td>稲荷駅</td><td>改札內洗手間（改札外沒有）</td><td>—</td><td>4 分</td></tr><tr><td class="tm">07:15～07:35</td><td>伏見稲荷大社</td><td>楼門・外拝殿・本殿</td><td>步行 5 分 <i class="t ng">⚠️</i></td><td>20 分</td></tr><tr><td class="tm">07:35～08:55</td><td>稲荷山</td><td>千本鳥居→奥社奉拝所→四ツ辻→下山</td><td>步行 45 分 <i class="t ng">⚠️</i></td><td>80 分</td></tr><tr><td class="tm">08:55～09:15</td><td>本殿授与所</td><td>御朱印</td><td>—</td><td>20 分</td></tr><tr><td class="tm">09:15～09:30</td><td>参道</td><td>走回參道</td><td>—</td><td>15 分</td></tr><tr><td class="tm">09:30～10:55</td><td>伏見稲荷参道</td><td>ちいかわもぐもぐ本舗（9:30 開）、松屋、稲荷壽司</td><td>步行</td><td>85 分</td></tr><tr><td class="tm">11:02→11:19</td><td>稲荷駅→宇治駅</td><td>普通 奈良行（2 番のりば）</td><td>JR <i class="t ok">✅</i></td><td>17 分</td></tr><tr><td class="tm">11:19～11:30</td><td>宇治駅→平等院</td><td>平等院官網寫徒歩 10 分</td><td>步行 <i class="t ok">✅</i></td><td>11 分</td></tr><tr><td class="tm">11:30～12:45</td><td>平等院</td><td>領內部拝観時間券→鳳翔館→庭園→御集印</td><td>境內</td><td>75 分</td></tr><tr><td class="tm">12:45～13:20</td><td>平等院表参道</td><td>中村藤吉 平等院店（午茶）</td><td>步行 1 分 <i class="t ng">⚠️</i></td><td>35 分</td></tr><tr><td class="tm">13:20～13:45</td><td>宇治橋・宇治川畔</td><td>散步，橋西詰洗手間</td><td>步行 4 分 <i class="t ng">⚠️</i></td><td>25 分</td></tr><tr><td class="tm">13:45～14:20</td><td>宇治上神社</td><td>國寶本殿、御朱印</td><td>步行 10 分 <i class="t ng">⚠️</i></td><td>35 分</td></tr><tr><td class="tm">14:20～14:40</td><td>宇治神社</td><td>みかえり兎、御朱印</td><td>步行 2 分 <i class="t ng">⚠️</i></td><td>20 分</td></tr><tr><td class="tm">14:40～15:10</td><td>興聖寺</td><td>彈性：琴坂、御朱印（降誕会）</td><td>步行 6 分 <i class="t ng">⚠️</i></td><td>30 分</td></tr><tr><td class="tm">15:10～15:37</td><td>→JR 宇治駅</td><td>沿河走回，Google 20 分，官網 25～30 分</td><td>步行 <i class="t ng">⚠️</i></td><td>27 分</td></tr><tr><td class="tm">15:37→15:55</td><td>宇治駅→京都駅</td><td>Dみやこ路快速（京都 10 番）</td><td>JR <i class="t ok">✅</i></td><td>18 分</td></tr></tbody></table></div>
+<h3>今天的時間界線</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th class="tm">時間</th><th>備註</th></tr></thead><tbody><tr><td>京都発 JR（去程）</td><td class="tm">06:48／07:05／07:15／07:29</td><td>本命 07:05。全部停稲荷 <i class="t ok">✅</i></td></tr><tr><td>稲荷発（往宇治）</td><td class="tm">10:50／11:02／11:09（みや快）／11:20</td><td>本命 11:02 到 11:19。11:09 みや快 11:21 到 <i class="t ok">✅</i></td></tr><tr><td>宇治発（回京都）</td><td class="tm">15:37（みや快）／15:40（普通）／15:52／16:07（みや快）</td><td>本命 15:37 到 15:55。錯過搭 15:40 到 16:02 <i class="t ok">✅</i></td></tr><tr><td>ちいかわ 開店</td><td class="tm">9:30～17:30</td><td>混雜時整理券 <i class="t ok">✅</i></td></tr><tr><td>伏見稲荷 御朱印</td><td class="tm">官網未載明</td><td>📷 接近 16 時只剩書置き。本行程 08:55</td></tr><tr><td>平等院 內部拝観受付</td><td class="tm">9:10 起，各回 :10／:30／:50，最終 16:10</td><td>先着，每回 35 名（2026/10/16 起） <i class="t ok">✅</i></td></tr><tr><td>平等院 集印所</td><td class="tm">9:10～17:00（受付 16:45）</td><td>現金 <i class="t ok">✅</i></td></tr><tr><td>平等院 庭園／鳳翔館</td><td class="tm">8:45～17:30（受付 17:15）／9:00～17:00（16:45）</td><td><i class="t ok">✅</i></td></tr><tr><td>中村藤吉 平等院店</td><td class="tm">カフェ 10:00～17:00（LO 16:30）</td><td>不預約，客滿會提早收 <i class="t ok">✅</i></td></tr><tr><td>宇治上神社</td><td class="tm">授与所 9:00～15:50，閉門 16:00</td><td>過時不授與 <i class="t ok">✅</i></td></tr><tr><td>宇治神社</td><td class="tm">御守・御朱印 16:30，祈禱 16:00</td><td><i class="t ok">✅</i></td></tr><tr><td>興聖寺</td><td class="tm">拝観受付 10:00～16:00</td><td>4/8 降誕会，行事で入山規制あり <i class="t ok">✅</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p5" aria-label="第 5 頁 今日路線地圖・動線說明">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">5 / 24</span></header>
+
+<h2><i class="seal">行</i>今日路線地圖</h2>
+<figure class="map"><img src="img/map_all.jpg" alt="京都駅、稲荷、宇治的JR奈良線轉乘路線" width="1428" style="object-position:50% 50%"><figcaption>MAP 01 全日總覽：JR 宇治駅→京都駅的轉乘路線，涵蓋京都、稲荷、宇治三站與奈良線・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/03</figcaption></figure>
+<p class="xs">Google Maps 的轉乘路線只能查兩點，所以全日不能畫成一條線。上圖是其中一段轉乘，三站都在同一條奈良線上，這就是今天不折返的原因。圖上稲荷駅字樣被別的標籤擠掉，位置在伏見稲荷大社與龍谷大前深草之間。</p>
+<h3>行程順序示意圖（示意圖，非地理比例）</h3>
+<div class="chips">
+  <span class="chip k">京都駅</span><span class="arr">→ JR 6 分 →</span>
+  <span class="chip k">稲荷駅</span><span class="arr">→ 步行 →</span>
+  <span class="chip">伏見稲荷大社</span><span class="arr">→</span><span class="chip">稲荷山 四ツ辻</span><span class="arr">→</span><span class="chip">参道</span><span class="arr">→ JR 17 分 →</span>
+  <span class="chip k">宇治駅</span><span class="arr">→</span><span class="chip">平等院</span><span class="arr">→</span><span class="chip">宇治橋</span><span class="arr">→</span><span class="chip">宇治上神社</span><span class="arr">→</span><span class="chip">宇治神社</span><span class="arr">→</span><span class="chip">興聖寺</span><span class="arr">→ 步行 →</span>
+  <span class="chip k">宇治駅</span><span class="arr">→ JR 18 分 →</span><span class="chip k">京都駅</span>
+</div>
+<div class="grid2">
+<div>
+<h3>為什麼這樣走最順</h3>
+<ul class="l "><li>稲荷與宇治都在 JR 奈良線上，由京都往南，去程 6 分＋17 分，回程 18 分，沒有轉乘 <i class="t ok">✅</i>。</li><li>稲荷放在早上：千本鳥居一早人少，御朱印趁授与所剛開就領。</li><li>宇治放在中午以後：平等院的內部拝観、宇治上神社（15:50 截止）、宇治神社都在開放時間內。</li><li>宇治區內走「宇治橋→宇治上神社→宇治神社→興聖寺」，Google 估算 18 分、約 1.34 km，比先去宇治神社短 3 分 <i class="t ng">⚠️</i>。</li></ul>
+<h3>順路加入的景點</h3>
+<ul class="l "><li>ちいかわもぐもぐ本舗：在稲荷駅到楼門的參道上，不繞路。</li><li>宇治神社：離宇治上神社 190 m，步行 2～3 分 <i class="t ng">⚠️</i>。</li><li>興聖寺：在宇治川上游方向，離宇治神社 450 m <i class="t ng">⚠️</i>，但回 JR 宇治駅要走 20～30 分。</li></ul>
+</div>
+<div>
+<h3>值得去但不排的景點</h3>
+<ul class="l "><li><b>稲荷山一ノ峰（最高峰 233 m）</b><i class="t ok">✅</i>：官網沒有寫所要時間，攻頂會吃掉參道逛街與宇治的時間。</li><li><b>三室戸寺</b>：離宇治駅另有一段交通，本次未查官網，不排。</li><li><b>源氏物語ミュージアム</b>：週一休，4/8 開館 <i class="t ok">✅</i>，可當洗手間，但不是參觀重點。</li><li><b>対鳳庵（市営茶室）</b>：4/8 開席，1,000 円起（宇治市観光協会，約 10:00～16:00 <i class="t ng">⚠️</i>）。午茶已排中村藤吉。</li></ul>
+<h3>反向走法（宇治→稲荷）比較</h3>
+<ul class="l "><li>優點：一早到平等院，9:10 領時間券就能排 9:30 前後的回，待ち時間短；宇治上神社與御集印也寬鬆。</li><li>缺點：稲荷放到下午，千本鳥居人潮最高峰，御朱印接近 16 時只剩書置き <i class="t ph">📷</i>；ちいかわ整理券的風險也在下午。</li><li>結論：維持順向。若最在意鳳凰堂內部，可以把「先宇治、再稲荷」當作替代案。</li></ul>
+</div>
+</div>
+
+</section>
+<section class="sheet" id="p6" aria-label="第 6 頁 區段地圖">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">6 / 24</span></header>
+
+<h2><i class="seal">行</i>區段地圖<small>Google 估算的步行時間，不含參拜</small></h2>
+<figure class="ww"><img src="img/map_fushimi.jpg" alt="稲荷駅からちいかわ、楼門、奥社奉拝所、四つ辻までの步行路線" width="1428" style="object-position:50% 46%"><figcaption>MAP 02 稲荷：稲荷駅→ちいかわ→楼門→奥社奉拝所→四つ辻（31 分、1.7 km <i class="t ng">⚠️</i>）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/03</figcaption></figure>
+<div class="tw"><table class="dense"><thead><tr><th>區間</th><th class="tm">時間</th><th>距離</th><th>備註（Google 估算 <i class="t ng">⚠️</i>）</th></tr></thead><tbody><tr><td>稲荷駅→ちいかわもぐもぐ本舗</td><td class="tm">2 分</td><td>130 m</td><td>平坦</td></tr><tr><td>ちいかわ→楼門</td><td class="tm">3 分</td><td>200 m</td><td></td></tr><tr><td>楼門→奥社奉拝所</td><td class="tm">6 分</td><td>350 m</td><td>平坦，途中經千本鳥居</td></tr><tr><td>奥社奉拝所→四つ辻</td><td class="tm">20 分</td><td>1.0 km</td><td>上り 104 m，最高點 164 m，最低點 60 m</td></tr><tr><td>四つ辻→楼門</td><td class="tm">19 分</td><td>1.2 km</td><td>下り 124 m</td></tr><tr><td>楼門→稲荷駅</td><td class="tm">2 分</td><td>170 m</td><td></td></tr></tbody></table></div>
+<figure class="ww"><img src="img/map_uji.jpg" alt="JR宇治駅から平等院、宇治橋、宇治上神社、宇治神社、興聖寺までの步行路線" width="1428" style="object-position:50% 47%"><figcaption>MAP 03 宇治：JR宇治駅→平等院→宇治橋→宇治上神社→宇治神社→興聖寺（32 分、2.2 km <i class="t ng">⚠️</i>）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/03</figcaption></figure>
+<div class="tw"><table class="dense"><thead><tr><th>區間</th><th class="tm">時間</th><th>距離</th><th>備註（Google 估算 <i class="t ng">⚠️</i>）</th></tr></thead><tbody><tr><td>JR 宇治駅→平等院</td><td class="tm">9 分</td><td>650 m</td><td>上り 60 m。官網寫 10 分 <i class="t ok">✅</i></td></tr><tr><td>平等院→宇治橋</td><td class="tm">4 分</td><td>240 m</td><td>經表參道</td></tr><tr><td>宇治橋→宇治上神社</td><td class="tm">10 分</td><td>700 m</td><td>另有 11 分、750～800 m 的路線</td></tr><tr><td>宇治上神社→宇治神社</td><td class="tm">2 分</td><td>190 m</td><td>反向 3 分</td></tr><tr><td>宇治神社→興聖寺</td><td class="tm">6 分</td><td>450 m</td><td>直線路徑，兩地之間隔著宇治川支流，現場確認</td></tr><tr><td>興聖寺→JR 宇治駅</td><td class="tm">20 分</td><td>1.4 km</td><td>興聖寺官網寫 25 分與 30 分，兩處不一致 <i class="t ok">✅</i></td></tr><tr><td>興聖寺→宇治橋</td><td class="tm">13 分</td><td>950 m</td><td>另有 14 分的路線</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p7" aria-label="第 7 頁 交通總覽">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">7 / 24</span></header>
+
+<h2><i class="seal">行</i>交通總覽</h2>
+<div class="tw"><table class="dense"><thead><tr><th>段</th><th>起訖</th><th>工具・時間</th><th>徒步</th><th>轉乘</th><th>費用</th><th>來源</th></tr></thead><tbody><tr><td>1</td><td>京都駅→稲荷駅</td><td>JR 奈良線 普通，07:05→07:11（6 分），10 番のりば</td><td>稲荷駅→楼門 2 分 <i class="t ng">⚠️</i></td><td>0</td><td>¥150（2.7 km）</td><td><i class="t ok">✅</i></td></tr><tr><td>2</td><td>稲荷駅→宇治駅</td><td>JR 奈良線 普通，11:02→11:19（17 分），稲荷 2 番のりば</td><td>宇治駅→平等院 10 分</td><td>0</td><td>¥240（12.2 km）</td><td><i class="t ok">✅</i></td></tr><tr><td>3</td><td>宇治駅→京都駅</td><td>JR 奈良線 Dみやこ路快速，15:37→15:55（18 分），京都 10 番のりば</td><td>興聖寺→宇治駅 20～30 分</td><td>0</td><td>¥240（14.9 km）</td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<p class="xs">運賃是 JR 西日本「マイ・ダイヤ」查到的乗車券運賃 <i class="t ok">✅</i>。IC 卡運賃是否同額，官網未載明 <i class="t ng">⚠️</i>。合計每人 ¥630，2 人 ¥1,260。「快速うれしート」指定席另加 ¥530，自由席不用加價 <i class="t ok">✅</i>。</p>
+<h3>每段的 Google Maps 導航（點開在手機看即時路線）</h3>
+<div class="chips">
+  <a href="https://www.google.com/maps/dir/?api=1&origin=%E4%BA%AC%E9%83%BD%E9%A7%85&destination=%E7%A8%B2%E8%8D%B7%E9%A7%85&travelmode=transit">京都駅→稲荷駅</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E7%A8%B2%E8%8D%B7%E9%A7%85&destination=%E5%AE%87%E6%B2%BB%E9%A7%85%20%E4%BA%AC%E9%83%BD%E5%BA%9C%E5%AE%87%E6%B2%BB%E5%B8%82&travelmode=transit">稲荷駅→宇治駅</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E9%A7%85%20%E4%BA%AC%E9%83%BD%E5%BA%9C%E5%AE%87%E6%B2%BB%E5%B8%82&destination=%E4%BA%AC%E9%83%BD%E9%A7%85&travelmode=transit">宇治駅→京都駅</a>
+</div>
+<div class="chips">
+  <a href="https://www.google.com/maps/dir/?api=1&origin=%E7%A8%B2%E8%8D%B7%E9%A7%85&destination=%E4%BC%8F%E8%A6%8B%E7%A8%B2%E8%8D%B7%E5%A4%A7%E7%A4%BE%20%E6%A5%BC%E9%96%80&travelmode=walking">稲荷駅→楼門</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E9%A7%85%20%E4%BA%AC%E9%83%BD%E5%BA%9C%E5%AE%87%E6%B2%BB%E5%B8%82&destination=%E5%B9%B3%E7%AD%89%E9%99%A2&travelmode=walking">宇治駅→平等院</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%B9%B3%E7%AD%89%E9%99%A2&destination=%E5%AE%87%E6%B2%BB%E6%A9%8B&travelmode=walking">平等院→宇治橋</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E6%A9%8B&destination=%E5%AE%87%E6%B2%BB%E4%B8%8A%E7%A5%9E%E7%A4%BE&travelmode=walking">宇治橋→宇治上神社</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E7%A5%9E%E7%A4%BE&destination=%E8%88%88%E8%81%96%E5%AF%BA&travelmode=walking">宇治神社→興聖寺</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E8%88%88%E8%81%96%E5%AF%BA&destination=%E5%AE%87%E6%B2%BB%E9%A7%85%20%E4%BA%AC%E9%83%BD%E5%BA%9C%E5%AE%87%E6%B2%BB%E5%B8%82&travelmode=walking">興聖寺→宇治駅</a>
+</div>
+<div class="grid2">
+<div>
+<h3>交通方式比較</h3>
+<div class="tw"><table class="dense"><thead><tr><th>方式</th><th>時間・費用</th><th>評價</th></tr></thead><tbody><tr><td>JR 奈良線（本案）</td><td>京都→稲荷 6 分、稲荷→宇治 17 分、宇治→京都 18 分；¥630</td><td>零轉乘，三站同一條線 <i class="t ok">✅</i></td></tr><tr><td>京阪（替代）</td><td>京都→三条或祇園四条再搭京阪，去宇治要在中書島轉乘，市官網寫約 30 分 <i class="t ok">✅</i></td><td>要先到京阪沿線，轉乘多。京阪宇治駅離宇治橋較近（すぐ） <i class="t ok">✅</i></td></tr><tr><td>步行／計程車</td><td>未查</td><td>不列入</td></tr></tbody></table></div>
+</div>
+<div>
+<h3>一日券判斷</h3>
+<ul class="l "><li>單買最划算：每人 ¥630。</li><li>「關西地區鐵路周遊券」已於 2026/9/30 停止販售 <i class="t ok">✅</i>（舊價 1 日 ¥2,800）。</li><li>京都觀光一日券是否含 JR 奈良線，官網未開成，一般不含 JR，我未核實 <i class="t ng">⚠️</i>。本行程不需要。</li></ul>
+</div>
+</div>
+<h3>特別注意</h3>
+<ul class="l "><li>稲荷駅的改札外沒有洗手間，改札內有 <i class="t ok">✅</i>，07:11 下車先用。</li><li>宇治有兩個「宇治駅」：JR 與京阪。請選 JR 宇治駅（奈良線）。</li><li>末班：京都発 23:46（奈良行）、宇治発 23:47，不影響今天 <i class="t ok">✅</i>。</li></ul>
+
+</section>
+<section class="sheet" id="p8" aria-label="第 8 頁 JR奈良線乘車指南・出發段落">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">8 / 24</span></header>
+
+<h2><i class="seal">行</i>JR 奈良線乘車指南與出發段落</h2>
+<div class="grid2">
+<div><figure class="sq"><img src="img/jr_nara.jpg" alt="JR奈良線的電車" width="1000" style="object-position:50% 50%"><figcaption>Mr.ちゅらさん・CC BY-SA 4.0・2023 年攝・<a href="https://commons.wikimedia.org/wiki/File:JR_West_221_Nara_Line2023.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<div>
+<h3>怎麼認車、怎麼搭</h3>
+<ul class="l "><li>京都駅的奈良線在 8・9・10 番のりば <i class="t ok">✅</i>。從八条口側改札進去較近（構內圖判讀 <i class="t ng">⚠️</i>）。</li><li>07:05 是 10 番、宇治行；07:15 是 9 番、奈良行。上哪一班都會停稲荷 <i class="t ok">✅</i>。</li><li>稲荷駅：1 番＝京都方面，2 番＝宇治・奈良方面，單一改札在 1 樓，ICOCA 可用 <i class="t ok">✅</i>。</li><li>宇治駅：改札在 2 樓，1・2 番＝京都方面，3・4 番＝奈良方面 <i class="t ok">✅</i>。</li></ul>
+</div></div>
+<h3>各種別停靠的站</h3>
+<div class="tw"><table class="dense"><thead><tr><th>種別</th><th>停靠站（京都～宇治）</th></tr></thead><tbody><tr><td>普通</td><td>京都・東福寺・稲荷・JR 藤森・桃山・六地蔵・木幡・黄檗・宇治 <i class="t ok">✅</i></td></tr><tr><td>みやこ路快速／区間快速</td><td>京都・東福寺・稲荷・六地蔵・宇治（JR 藤森、桃山、木幡、黄檗 通過） <i class="t ok">✅</i></td></tr></tbody></table></div>
+<p class="xs">時刻表以 JR 西日本「JR 時刻表 2026 年 10 月號」平日為準，10/08 與 12/03 兩個平日內容相同 <i class="t ok">✅</i>。官網時刻只到 2026/12/31，2027/04/08 查不到 <i class="t ok">✅</i>。</p>
+<h3>三段的候選班次（平日）</h3>
+<div class="grid3">
+<div><div class="tw"><table class="dense"><thead><tr><th>京都発</th><th>種別</th><th>番線</th><th>稲荷着</th></tr></thead><tbody><tr><td>06:48</td><td>普通 奈良</td><td>9</td><td>06:53</td></tr><tr><td><b>07:05</b></td><td><b>普通 宇治</b></td><td>10</td><td><b>07:11</b></td></tr><tr><td>07:15</td><td>普通 奈良</td><td>9</td><td>07:21</td></tr><tr><td>07:29</td><td>普通 奈良</td><td>10</td><td>07:35</td></tr><tr><td>07:40</td><td>普通 宇治</td><td>8</td><td>07:47</td></tr><tr><td>07:51</td><td>D区間快速</td><td>10</td><td>07:57</td></tr></tbody></table></div></div>
+<div><div class="tw"><table class="dense"><thead><tr><th>稲荷発</th><th>種別</th><th>宇治着</th></tr></thead><tbody><tr><td>10:50</td><td>普通</td><td>11:07</td></tr><tr><td><b>11:02</b></td><td><b>普通 奈良</b></td><td><b>11:19</b></td></tr><tr><td>11:09</td><td>Dみやこ路快速</td><td>11:21</td></tr><tr><td>11:20</td><td>普通</td><td>11:37</td></tr><tr><td>11:39</td><td>Dみやこ路快速</td><td>11:51</td></tr></tbody></table></div></div>
+<div><div class="tw"><table class="dense"><thead><tr><th>宇治発</th><th>種別</th><th>京都着</th></tr></thead><tbody><tr><td>15:07</td><td>みやこ路快速</td><td>15:25</td></tr><tr><td>15:10</td><td>普通</td><td>15:32</td></tr><tr><td>15:22</td><td>普通</td><td>15:43</td></tr><tr><td><b>15:37</b></td><td><b>Dみやこ路快速</b></td><td><b>15:55</b></td></tr><tr><td>15:40</td><td>普通</td><td>16:02</td></tr><tr><td>15:52</td><td>普通</td><td>16:14</td></tr><tr><td>16:07</td><td>みやこ路快速</td><td>16:25</td></tr></tbody></table></div></div>
+</div>
+<div class="box warn">與已確認行程的差異：原定「07:00 發、07:05 到」「11:00 發、11:16 到」「15:40 搭みやこ路快速」，實際班次沒有這三個時刻。我改用最近的 07:05→07:11、11:02→11:19、15:37→15:55，行程其他部分順延或縮短 5 分鐘內。15:40 是普通，16:02 才到京都 <i class="t ok">✅</i>。</div>
+<h3>出發段落（06:55 京都駅集合）</h3>
+<figure class="ww"><img src="img/map_T1.jpg" alt="京都駅から稲荷駅までのJR奈良線の轉乘路線" width="1428" style="object-position:50% 45%"><figcaption>MAP T1 京都駅→稲荷駅（轉乘，Google 估算 5 分、¥150）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/03</figcaption></figure>
+
+</section>
+<section class="sheet" id="p9" aria-label="第 9 頁 伏見稲荷大社（簡介與基本資訊）">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">9 / 24</span></header>
+
+<h2><i class="seal">観</i>伏見稲荷大社<small>簡介與基本資訊</small></h2>
+<div class="grid2"><figure class="w"><img src="img/romon.jpg" alt="伏見稲荷大社の楼門" width="1000"><figcaption>Saigen Jiro・CC0・2020 年攝・<a href="https://commons.wikimedia.org/wiki/File:Fushimiinari-taisha,_roumon-1.jpg">Wikimedia Commons</a></figcaption></figure><figure class="w"><img src="img/honden.jpg" alt="伏見稲荷大社 本殿" width="1000"><figcaption>Saigen Jiro・CC0・2020 年攝・<a href="https://commons.wikimedia.org/wiki/File:Fushimiinari-taisha,_honden-3.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<h3>為什麼推薦這裡？</h3>
+<p>全日的開場，也是最需要早到的一站。稲荷神社約 3 萬社的總本宮 <i class="t ok">✅</i>，楼門是神社楼門中規模最大的一群 <i class="t ok">✅</i>，本殿是重要文化財 <i class="t ok">✅</i>。京都市觀光協會在 2025/1/30 公告這一帶非常擁擠 <i class="t ok">✅</i>，所以 07:15 抵達：鳥居隧道人少、御朱印趁授与所剛開就領，9:30 起的參道逛街再把時間還給自己。</p>
+<h3>景點簡介</h3>
+<p class="sm">稲荷山是東山三十六峰最南端的山，海拔 233 m，一ノ峰・二ノ峰・三ノ峰由西往東漸高，山中有數萬座お塚 <i class="t ok">✅</i>。稲荷大神是穀物與商業的神，狐狸是神使「白狐」，不是山裡看到的狐狸；朱色是驅邪與豐收的顏色 <i class="t ok">✅</i>。楼門是天正 17 年（1589）豊臣秀吉為母親祈願所造，昭和 48 年解體修理時發現同年的墨書 <i class="t ok">✅</i>。本殿在應仁之亂燒毀後於明応 8 年（1499）再興，稱「稲荷造」 <i class="t ok">✅</i>。千本鳥居是奥社參道上由崇敬者奉納形成的名所，奉納風氣在江戶時代已興起 <i class="t ok">✅</i>。鳥居數量官網兩處不一致：FAQ 寫約 1 萬基，地圖頁寫「数千」 <i class="t ok">✅</i>。</p>
+<h3>現場看什麼？</h3>
+<ul class="l "><li><b>楼門與外拝殿</b>：神社楼門中規模最大的一群，07:15 逆光較少。</li><li><b>本殿（重要文化財）</b>：稲荷造，懸魚與蟇股的裝飾。</li><li><b>千本鳥居</b>：奥社參道，兩條並行；柱面有奉納者姓名與年份。</li><li><b>奥社奉拝所與おもかる石</b>：位在命婦谷，石燈籠空輪抬起時比預想輕表示願望可成 <i class="t ok">✅</i>。</li><li><b>熊鷹社（新池）</b>：池畔小社，別稱谺ヶ池 <i class="t ok">✅</i>。</li><li><b>四ツ辻</b>：稲荷山中腰的十字路口，本行程折返點，可看京都市區。</li></ul>
+<p class="mut sm">建議停留：07:15～09:30，約 2 小時 15 分（含御朱印，不含逛街）。</p>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>地址・電話</th><td>〒612-0882 京都市伏見区深草薮之内町68番地，TEL 075-641-7331 <i class="t ok">✅</i></td></tr><tr><th>開放時間</th><td>官網沒有寫參拝時間 <i class="t ok">✅</i>。Impress Watch 寫「全年終日開門」 <i class="t ng">⚠️</i>；ご祈祷 8:30～16:30（受付約 16:00 前）、年中無休 <i class="t ok">✅</i></td></tr><tr><th>門票</th><td>官網沒有拝観料的說明 <i class="t ok">✅</i>（沒有收費頁面）</td></tr><tr><th>離上一點</th><td>稲荷駅→楼門：官網寫「Right next to Inari Station」 <i class="t ok">✅</i>；Google 170 m、2 分 <i class="t ng">⚠️</i></td></tr><tr><th>行事</th><td>4/8 沒有祭事；産業祭 4/11（日）、稲荷祭 神幸祭 4/18（日）是我依官網「4 月 8 日最近的日曜日」「4 月 20 日最近の日曜日」換算 <i class="t ng">⚠️</i></td></tr><tr><th>設施</th><td>稲荷駅改札內有洗手間、改札外沒有 <i class="t ok">✅</i>；コインロッカー在表参道南側駐輪場內，大 ¥500／中 ¥300／小 ¥200（2024/4 公告，現況要確認） <i class="t ok">✅</i></td></tr><tr><th>注意</th><td>官網禁止在無料休憩所以外邊走邊吃與站著吃、禁帶寵物、禁在狹窄參道擋路拍照；2025/12/28 公告稲荷山有野豬出沒 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>御朱印資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>官網</th><td>種類、初穂料、授与時間、窗口、直書き或書置き都未載明 <i class="t ok">✅</i></td></tr><tr><th>授與位置</th><td>授与所（本殿側）。2026/08/20 投稿寫「授与所にて直書きと切絵タイプ」 <i class="t ph">📷</i></td></tr><tr><th>形式</th><td>直書き：2026/09/15、09/08、08/20 <i class="t ph">📷</i>；切り絵書置き：2026/09/26、08/20 <i class="t ph">📷</i>；接近 16 時只剩書置き（2026/09 下旬投稿） <i class="t ph">📷</i></td></tr><tr><th>期間限定</th><td>夏季限定御朱印 ¥500、書置きのみ（2026/08/28） <i class="t ph">📷</i>。4 月是否有限定未載明</td></tr><tr><th>初穂料</th><td>通常款的金額未載明。我預估 ¥300～500 <i class="t ng">⚠️</i></td></tr><tr><th>推薦</th><td>收集價值 <span class="star">★★★★★</span>（總本宮，切り絵款特色）。值得收集與值得參觀都高</td></tr></tbody></table></div>
+<p class="xs"><a href="https://www.google.com/maps/dir/?api=1&origin=%E4%BC%8F%E8%A6%8B%E7%A8%B2%E8%8D%B7%E5%A4%A7%E7%A4%BE%20%E6%A5%BC%E9%96%80&destination=%E7%A8%B2%E8%8D%B7%E9%A7%85&travelmode=walking">在 Google Maps 開啟楼門</a>　（單搜「伏見稲荷大社」會落在山腰約 760 m 外）</p>
+
+</section>
+<section class="sheet" id="p10" aria-label="第 10 頁 伏見稲荷大社（參觀路線）">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">10 / 24</span></header>
+
+<h2><i class="seal">観</i>伏見稲荷大社<small>參觀路線與時間不夠時</small></h2>
+<div class="grid2"><figure class="sq"><img src="img/okusha.jpg" alt="奥社奉拝所のおもかる石" width="1000"><figcaption>そらみみ・CC BY-SA 3.0・2013 年攝・<a href="https://commons.wikimedia.org/wiki/File:%E2%80%9COmokaruishi%E2%80%9D_(Heavy-Light_Stone)_at_Fushimi_Inari_Grand_Shrine.JPG">Wikimedia Commons</a></figcaption></figure><figure class="sq"><img src="img/yotsutsuji.jpg" alt="稲荷山から京都市街を望む" width="1000"><figcaption>Jakub Hałun・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:View_of_Kyoto_from_Mount_Inari,_20240818_1435_4549.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<h3>建議路線（楼門→千本鳥居→奥社奉拝所→四ツ辻→原路下山）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>順</th><th>區間・內容</th><th class="tm">時間</th><th>看什麼、做什麼</th></tr></thead><tbody><tr><td>1</td><td>稲荷駅→楼門</td><td class="tm">2 分 <i class="t ng">⚠️</i></td><td>改札內洗手間先用（改札外沒有 <i class="t ok">✅</i>）</td></tr><tr><td>2</td><td>楼門・外拝殿・本殿</td><td class="tm">20 分</td><td>1589 年的楼門、重要文化財的本殿</td></tr><tr><td>3</td><td>楼門→奥社奉拝所</td><td class="tm">6 分 <i class="t ng">⚠️</i></td><td>千本鳥居。第一段較窄，邊走邊拍，不要擋路（官網禁止在窄參道擋路拍照 <i class="t ok">✅</i>）</td></tr><tr><td>4</td><td>奥社奉拝所・おもかる石</td><td class="tm">10 分</td><td>石燈籠空輪在奉拝所右後方 <i class="t ok">✅</i></td></tr><tr><td>5</td><td>奥社→四つ辻</td><td class="tm">20 分 <i class="t ng">⚠️</i></td><td>1.0 km，上り 104 m，石階。沿路有熊鷹社（新池） <i class="t ok">✅</i></td></tr><tr><td>6</td><td>四ツ辻 展望</td><td class="tm">10 分</td><td>折返點。看京都市區</td></tr><tr><td>7</td><td>四つ辻→楼門</td><td class="tm">19 分 <i class="t ng">⚠️</i></td><td>1.2 km，下り 124 m，下坡對膝蓋較吃力</td></tr><tr><td>8</td><td>授与所 御朱印</td><td class="tm">20 分</td><td>本行程 08:55。見第 9 頁</td></tr></tbody></table></div>
+<div class="grid2">
+<div>
+<h3>只剩 60 分鐘怎麼走</h3>
+<ul class="l "><li>楼門・本殿 10 分，千本鳥居走到奥社奉拝所 15 分（含拍照），おもかる石 5 分，原路回 6 分，御朱印 15 分。</li><li>放棄四ツ辻：往返約 39 分 <i class="t ng">⚠️</i>，這是最先刪的部分。</li></ul>
+<h3>時間充裕怎麼加</h3>
+<ul class="l "><li>熊鷹社的池畔多停留。官網沒有寫離奥社的距離與時間 <i class="t ok">✅</i>。</li><li>荒神峰：官網寫後方視野開闊，四辻看不到的京都市中心以北清楚可見 <i class="t ok">✅</i>。所要時間未載明。</li><li>一ノ峰（最高峰 233 m、末広大神） <i class="t ok">✅</i>：官網沒有寫所要時間，搜尋摘要寫往返約 1 小時，我沒有採用。</li></ul>
+</div>
+<div>
+<h3>山上補給與注意</h3>
+<ul class="l "><li><b>啼鳥菴</b>（八島ヶ池畔）是 2017/12 新設的休憩所，附露台席 <i class="t ok">✅</i>。官網沒寫營業時間。</li><li><b>大藪茶亭</b>（奥社前）9:00～16:00，寫「木曜日休」（月末月初與祝日另有規定）；<b>にしむら亭</b>（四ッ辻）9:00～17:00、第 3・4・5 金休。來源是商店街舊網站（憑證失效、更新停在 2020 年） <i class="t ng">⚠️</i>。4/8 是木曜，大藪茶亭很可能休息，早上登山也趕不上 9:00 開店，水自己帶。</li><li>官網禁止邊走邊吃，只能在無料休憩所吃 <i class="t ok">✅</i>。2025/12/28 公告稲荷山有野豬出沒 <i class="t ok">✅</i>。</li><li>颱風等天候時，夜間稲荷山參拜會被限制（2026/6 公告 <i class="t ok">✅</i>）。</li></ul>
+</div>
+</div>
+<p class="xs">四ツ辻在官網只於荒神峰的說明裡提到，沒有單獨的介紹與所要時間 <i class="t ok">✅</i>。上表時間皆為 Google 估算，不含參拜與拍照 <i class="t ng">⚠️</i>。</p>
+
+</section>
+<section class="sheet" id="p11" aria-label="第 11 頁 參道逛街・ちいかわもぐもぐ本舗">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">11 / 24</span></header>
+
+<h2><i class="seal">食</i>參道逛街<small>09:30～10:55，今天保留的悠閒時段</small></h2>
+<div class="grid2"><figure class="sq"><img src="img/sando.jpg" alt="伏見稲荷参道" width="1000"><figcaption>inunami・CC BY 2.0・2020 年攝・<a href="https://commons.wikimedia.org/wiki/File:Fushimi_inari_20200405093637_(50258910481).jpg">Wikimedia Commons</a></figcaption></figure><figure class="sq"><img src="img/map_fushimi_sando.jpg" alt="稲荷駅から楼門までの参道" width="1428" style="object-position:30% 50%"><figcaption>MAP 稲荷駅→楼門 参道（Google 估算 2～3 分）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/03</figcaption></figure></div>
+<h3>ちいかわもぐもぐ本舗 京都伏見店</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>位置</th><td>〒612-0807 京都市伏見区深草稲荷中之町46-1，TEL 075-643-0050。JR 稲荷駅徒歩 5 分，在稲荷駅到楼門的參道上 <i class="t ok">✅</i></td></tr><tr><th>營業</th><td>9:30～17:30，年中無休；「狀況により營業時間が變更になる場合」 <i class="t ok">✅</i></td></tr><tr><th>入店</th><td>平常自由入店（2024/1/5 公告 <i class="t ok">✅</i>）。大混雜時改整理券，會在官方 X 公告；2025/10/30 公告「急遽の入店制限や整理券」 <i class="t ok">✅</i>。2026/10/10～12 是全日預約制（前一天先着） <i class="t ok">✅</i>。2027/4/8 未載明</td></tr><tr><th>付款</th><td>現金、信用卡、電子マネー、條碼支付；交通系 IC 未特別載明 <i class="t ok">✅</i></td></tr><tr><th>購買</th><td>部分商品有購買限制，不取り置き <i class="t ok">✅</i>。攝影規則官網未載明</td></tr><tr><th>商品</th><td>伏見稲荷なぬいぐるみ ¥2,530、マスコット ¥1,760、かわらせんべい ¥1,350（2023/10 開幕價，現價要確認） <i class="t ok">✅</i></td></tr><tr><th>怎麼排</th><td>9:30 剛下山就到。若發整理券或排隊超過 30 分，先逛松屋與稲荷壽司店再回頭，10:55 一定要走（11:02 的車）</td></tr></tbody></table></div>
+<h3>其他店家（營業時間 4/8 是否營業都不確定）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>店</th><th>資訊</th><th>4/8（四）</th><th>來源</th></tr></thead><tbody><tr><td>おせんの里 松屋（稲荷煎餅）</td><td>〒612-0012 深草一ノ坪町27，TEL 075-641-1906，8:00～18:00，不定休。官網寫伏見稲荷大社徒歩 4 分、京阪伏見稲荷駅徒歩 1 分，另一頁寫 JR 稲荷駅徒歩 3 分，位置要用 Google Maps 確認</td><td>未確認</td><td><i class="t ok">✅</i></td></tr><tr><td>日野家（稲荷壽司）</td><td>9:00～18:00，不定休</td><td>未確認</td><td><i class="t ng">⚠️</i> 舊資料</td></tr><tr><td>近江家</td><td>9:00～18:30，不定休</td><td>未確認</td><td><i class="t ng">⚠️</i> 舊資料</td></tr><tr><td>花家</td><td>8:30～17:00，不定休</td><td>未確認</td><td><i class="t ng">⚠️</i> 舊資料</td></tr><tr><td>祢ざめ家</td><td>商店街站寫 9:00～18:00，另一網站寫 10:00～16:00、賣完即止、不可刷卡、預算 ¥1,000～2,500</td><td>未確認；開店時間不一致</td><td><i class="t ng">⚠️</i></td></tr><tr><td>稲福</td><td>9:00～17:00，第 2・3・4 火休；定食 ¥2,000 起（沒有稲荷壽司價）</td><td>週四開</td><td><i class="t ng">⚠️</i> 舊資料</td></tr></tbody></table></div>
+<p class="xs">商店街網站（fusimi-inari.com）憑證無效、最新活動停在 2020 年，營業時間可能已改 <i class="t ng">⚠️</i>。稲荷壽司的價格在官方網站都查不到，我不列價格。官網禁止邊走邊吃，要在店內或休憩所吃 <i class="t ok">✅</i>。</p>
+<h3>怎麼用這 85 分鐘</h3>
+<ul class="l "><li>09:30 ちいかわ（30～40 分，視排隊）。</li><li>10:10 稲荷壽司當午餐（開 9:00 起的日野家、近江家、稲福，或 8:30 起的花家；先看門口有沒有開）。</li><li>10:40 伴手禮與松屋（離楼門 4 分，是一段折返 <i class="t ng">⚠️</i>，趕時間就跳過）。</li><li>10:55 回稲荷駅，11:02 發車。</li></ul>
+
+</section>
+<section class="sheet" id="p12" aria-label="第 12 頁 平等院">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">12 / 24</span></header>
+
+<h2><i class="seal">観</i>平等院<small>鳳凰堂・鳳翔館・御集印</small></h2>
+<div class="grid2"><figure class="w"><img src="img/byodo_hoo.jpg" alt="平等院鳳凰堂と阿字池" width="1000"><figcaption>Zairon・CC BY-SA 4.0・2018 年攝・<a href="https://commons.wikimedia.org/wiki/File:Uji_Byodo-in_Ph%C3%B6nixhalle_05.jpg">Wikimedia Commons</a></figcaption></figure><figure class="w"><img src="img/byodo_museum.jpg" alt="平等院ミュージアム鳳翔館" width="1000"><figcaption>663highland・CC BY 2.5・2010 年攝・<a href="https://commons.wikimedia.org/wiki/File:Byodoin_Uji_Kyoto19s3s4410.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">宇治的核心，也是今天最需要管理時間的一站。庭園是「平安時代に完成した最古の浄土庭園」，國史跡・名勝 <i class="t ok">✅</i>。內部拝観看得到定朝作的國寶阿弥陀如来坐像，由職員說明約 15 分 <i class="t ok">✅</i>；鳳翔館收藏國寶梵鐘、雲中供養菩薩像 26 躯、鳳凰一對 <i class="t ok">✅</i>。外觀＋鳳翔館約 40 分，加內部拝観的待ち時間要另算 <i class="t ok">✅</i>。</p>
+<h3>現場看什麼？</h3>
+<ul class="l "><li>阿字池對岸看鳳凰堂，4 月初還有阿字池沿岸的櫻（官網見頃 3 月下旬～4 月上旬 <i class="t ok">✅</i>）。</li><li>鳳凰堂內部：國寶阿弥陀如来坐像（定朝作）。</li><li>鳳翔館：國寶梵鐘、雲中供養菩薩像、鳳凰、十一面観音菩薩立像（重文），另有復原映像 <i class="t ok">✅</i>。</li><li>藤棚：官網見頃 4 月中旬～5 月初旬，4/8 偏早 <i class="t ok">✅</i>。</li><li>觀音堂保存修理：官網 2026/3/20 公告落慶「2027 年春以降の見込み」，周圍仍有圍籬 <i class="t ok">✅</i>。</li></ul>
+<div class="box warn"><b>今天最大的衝突：鳳凰堂內部拝観的時間券。</b>官網寫「事前に内部拝観受付にて時間券をお求めの上、開始 5 分前に集合」，9:10 起發放、先着、發完為止 <i class="t ok">✅</i>。待ち時間表（2025 年實績）4 月平日是 1.5 小時前後（△），4 月土日祝是 2 小時前後（▲） <i class="t ok">✅</i>，我讀的是官網表上的符號。2026/10/16 起每回定員由 50 名減為 35 名，官網說繁忙季待ち時間會比以往更長 <i class="t ok">✅</i>。omairi 2026/06/28 投稿寫「内部拝観、２時間待ちで諦めました」 <i class="t ph">📷</i>。11:30 抵達的話，時間券很可能落在 13:00 以後，與原定 12:45 離院不合。</div>
+<h3>到院後的判斷規則（先到庭園內「內部拝観受付」看次回的時間）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>次回時間</th><th>做法</th></tr></thead><tbody><tr><td>12:30 以前</td><td>照原計畫。官網寫「1 小時左右的待ち時間在庭園與鳳翔館的所要時間內」，先逛鳳翔館與庭園 <i class="t ok">✅</i></td></tr><tr><td>12:30～13:30</td><td>領券。持內部拝観券可在受付門出示後再入場，開始 5 分前要回到集合處；遲到不能改時間或退費 <i class="t ok">✅</i>。等待時間去表参道午茶或茶房藤花，興聖寺刪除</td></tr><tr><td>13:30 以後或已發完</td><td>放棄內部拝観。外觀、鳳翔館、御集印照收，S 級的部分不受影響。往下走宇治橋，行程提早</td></tr></tbody></table></div>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>住所・電話</th><td>京都府宇治市宇治蓮華116，TEL 0774-21-2861 <i class="t ok">✅</i></td></tr><tr><th>時間</th><td>庭園 8:45～17:30（受付 17:15）；鳳翔館 9:00～17:00（16:45）；內部拝観 9:30～16:10，每 20 分一回（:10／:30／:50），受付 9:10 起；集印所 9:10～17:00（受付 16:45）；茶房藤花 10:00～16:30（LO 16:00） <i class="t ok">✅</i></td></tr><tr><th>料金</th><td>庭園＋鳳翔館 大人 ¥700／中高 ¥400／小 ¥300（庭園沒有單買）；內部拝観志納 ¥300，受付與集印所只收現金；庭園拝観料可刷卡 <i class="t ok">✅</i></td></tr><tr><th>公休</th><td>庭園、鳳翔館年中無休；內部拝観可能因荒天或行事休止；茶房藤花月火水休，4/8（四）營業 <i class="t ok">✅</i></td></tr><tr><th>規則</th><td>境內禁止飲食與帶入，只有可密閉的水壺與寶特瓶可以；外帶杯不行（官網お知らせ <i class="t ok">✅</i>）。表參道買的抹茶冰淇淋不能帶進去。不能再入場（內部拝観券持有者例外） <i class="t ok">✅</i></td></tr><tr><th>設施</th><td>境內 2 處洗手間都有輪椅對應；庭園是碎石路 <i class="t ok">✅</i>。距 JR 宇治駅：官網寫徒歩 10 分 <i class="t ok">✅</i>，Google 9 分 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>御朱印資訊（官網稱「御集印」）</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>種類・初穂料</th><td>「鳳凰堂」「阿弥陀如来」兩種，各 ¥300，現金 <i class="t ok">✅</i></td></tr><tr><th>形式</th><td>官網寫「目の前で丁寧にお書きします」，但「帳面への記帳・書き置きの対応は日によって異なります」 <i class="t ok">✅</i>。2026/05/10、2025/12/03 投稿都是直書き <i class="t ph">📷</i></td></tr><tr><th>貼帳・限定</th><td>能否貼帳、期間限定御集印官網未載明；夜間特別拝観已於 2026 年春後休止 <i class="t ok">✅</i></td></tr><tr><th>推薦</th><td>收集價值 <span class="star">★★★★☆</span>。要先買庭園拝観券才進得去集印所</td></tr></tbody></table></div>
+<p class="xs"><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E9%A7%85%20%E4%BA%AC%E9%83%BD%E5%BA%9C%E5%AE%87%E6%B2%BB%E5%B8%82&destination=%E5%B9%B3%E7%AD%89%E9%99%A2&travelmode=walking">宇治駅→平等院</a></p>
+
+</section>
+<section class="sheet" id="p13" aria-label="第 13 頁 宇治橋・宇治川畔">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">13 / 24</span></header>
+
+<h2><i class="seal">観</i>宇治橋・宇治川畔<small>13:20～13:45，平等院與宇治上神社之間</small></h2>
+<div class="grid2"><figure class="w"><img src="img/uji_bridge.jpg" alt="宇治橋" width="1000"><figcaption>User:御影守駒氏・CC BY-SA 4.0・2023 年攝・<a href="https://commons.wikimedia.org/wiki/File:IMG_ujibasi.jpg">Wikimedia Commons</a></figcaption></figure><figure class="w"><img src="img/uji_asagiri.jpg" alt="宇治川と朝霧橋" width="1000"><figcaption>御影守駒氏・CC BY-SA 4.0・2026 年攝・<a href="https://commons.wikimedia.org/wiki/File:Asagiri_Bashi.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<h3>為什麼走這一段？</h3>
+<p class="sm">這是平等院到宇治上神社的必經路，順便休息、拍照、上洗手間。宇治市官網寫「646 年に僧道登によって架橋」，日本三大古橋之一，上游側突出的是「三の間」，現在的橋在 1996/3 完成 <i class="t ok">✅</i>。宇治橋西詰的「夢の浮橋広場」有紫式部像（2004/2 整備） <i class="t ok">✅</i>，宇治十帖是《源氏物語》最後十帖的舞台，橋畔另有宇治十帖モニュメント <i class="t ok">✅</i>。</p>
+<h3>現場看什麼？</h3>
+<ul class="l "><li>宇治橋與三の間（橋中央突出處）。</li><li>夢の浮橋広場的紫式部像（橋西詰）。</li><li>塔の島的十三重石塔：約 15 m，1286 年叡尊建 <i class="t ok">✅</i>；從橋走過去約 10 分 <i class="t ok">✅</i>，本行程不去。</li><li>あじろぎの道：平等院官網寫它連接表門與南門 <i class="t ok">✅</i>。</li></ul>
+<h3>洗手間（宇治上神社境內沒有）</h3>
+<ul class="l "><li>夢浮橋ひろば公衆トイレ：2026/3/6 改修後重開 <i class="t ok">✅</i>，13:20 在這裡用。</li><li>宇治市観光センター（平等院東側河畔）有無障礙廁所 <i class="t ok">✅</i>。</li><li>源氏物語ミュージアム：週一休，4/8 開館 <i class="t ok">✅</i>，也可以使用。</li></ul>
+<div class="tw"><table class="kv "><tbody><tr><th>官方步行時間</th><td>宇治橋：JR 宇治駅徒歩 10 分、京阪宇治駅すぐ；平等院：宇治橋西詰徒歩 5 分；宇治上神社：宇治橋東詰徒歩 10 分 <i class="t ok">✅</i></td></tr><tr><th>Google 估算</th><td>平等院→宇治橋 4 分、宇治橋→宇治上神社 10 分 <i class="t ng">⚠️</i></td></tr><tr><th>官方模範行程</th><td>宇治市官網的模範行程是平等院→表参道→塔の島→宇治上神社・宇治神社→宇治川周辺→抹茶スイーツ <i class="t ok">✅</i></td></tr><tr><th>4/8 行事</th><td>宇治川さくらまつり 2027 年的日期官方未公告 <i class="t ok">✅</i>，2026 年為 4/4～5（只有搜尋摘要） <i class="t ng">⚠️</i></td></tr><tr><th>御朱印</th><td>本區沒有</td></tr></tbody></table></div>
+<figure class="ww"><img src="img/map_uji_area.jpg" alt="宇治周邊：宇治橋、JR宇治駅、平等院、宇治上神社、宇治神社、興聖寺" width="1428" style="object-position:50% 55%"><figcaption>MAP 04 宇治周邊（搜尋「平等院」）：可看到宇治橋、JR 宇治、平等院、宇治上神社、宇治神社、興聖寺、朝霧橋・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/03</figcaption></figure>
+
+</section>
+<section class="sheet" id="p14" aria-label="第 14 頁 宇治上神社">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">14 / 24</span></header>
+
+<h2><i class="seal">観</i>宇治上神社<small>國寶本殿，13:45～14:20</small></h2>
+<div class="grid2"><figure class="sq"><img src="img/ujigami_honden.jpg" alt="宇治上神社 本殿" width="1000"><figcaption>Saigen Jiro・CC0・2016 年攝・<a href="https://commons.wikimedia.org/wiki/File:Ujigami-jinja,_honden.jpg">Wikimedia Commons</a></figcaption></figure><figure class="sq"><img src="img/ujigami_haiden.jpg" alt="宇治上神社 拝殿" width="1000"><figcaption>Saigen Jiro・CC0・2016 年攝・<a href="https://commons.wikimedia.org/wiki/File:Ujigami-jinja,_haiden.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">今天最安靜的一站，也是「值得參觀」與「值得收集」都高的一處。官網標示「世界文化遺産」，本殿依宇治市観光協会是「国宝」、平安時代後期、「現存する日本最古の神社建築」 <i class="t ok">✅</i>（宇治上神社自己的官網沒有建築說明）。放在下午是因為授与所只到 15:50，13:45 到有 2 小時的餘裕；它離宇治神社只有 190 m，兩座一起走。</p>
+<h3>由緒（官網「縁起」）</h3>
+<p class="sm">祭神菟道稚郎子是応神天皇的末子，被立為皇太子後把位子讓給兄長仁徳天皇，在宇治建離宮，之後為了讓世間不再因讓位而紛亂而自盡，仁徳天皇哀悼厚葬，成為創建的由來 <i class="t ok">✅</i>。「兔」是祭神名「菟」字與宇治古名「菟道」的由來，所以境內有兔子授与品 <i class="t ok">✅</i>。</p>
+<h3>現場看什麼？</h3>
+<ul class="l "><li>本殿（國寶）：檜皮葺的屋頂與比例。</li><li>拝殿（鎌倉時代、國寶，官網沒寫，來自搜尋摘要 <i class="t ng">⚠️</i>）。</li><li>うさぎ授与品：朱印帳 ¥2,000、七宝守 ¥700、鈴守 ¥800、姿守 ¥700、みくじ ¥500 <i class="t ok">✅</i>。</li><li>桐原水：官網未載明，不列。</li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>住所</th><td>京都府宇治市宇治山田59 <i class="t ok">✅</i></td></tr><tr><th>時間</th><td>開門 5:00、閉門 16:00；授与所與御朱印 9:00～15:50（最終受付）。授与所開前與關後不授與 <i class="t ok">✅</i></td></tr><tr><th>料金</th><td>拝観料無料 <i class="t ok">✅</i></td></tr><tr><th>設施</th><td><b>境內沒有洗手間、自動販賣機、垃圾桶</b>，官網請用源氏物語ミュージアム或宇治川沿いのトイレ，垃圾自己帶走 <i class="t ok">✅</i></td></tr><tr><th>步行</th><td>宇治橋東詰徒歩 10 分（宇治市官網 <i class="t ok">✅</i>）。官網兩頁寫法不一致：access 頁「京阪 10 分／JR 20 分」，map 頁「京阪 5 分／JR 20 分」 <i class="t ok">✅</i>。Google：宇治橋→宇治上神社 10 分 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>御朱印資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>種類</th><td>「い」白紙、¥500；「ろ」色紙、¥500（價格在官網圖片上，我讀圖） <i class="t ok">✅</i>。初穂料現金 <i class="t ok">✅</i></td></tr><tr><th>形式</th><td>官網：墨字的「い」才直書き，「ろ」色紙要自己貼；有書き手時才直書き，否則書置き，開始書寫時刻每天不同 <i class="t ok">✅</i>。2026/09/21、05/10 投稿都是直書き <i class="t ph">📷</i>，2026/05/10 另有書置き ¥800 <i class="t ph">📷</i>。要貼帶雙面膠</td></tr><tr><th>期間限定</th><td>官網季節朱印連結頁 404，未載明。2026/01/10 有丙午御朱印 ¥500 <i class="t ph">📷</i></td></tr><tr><th>推薦</th><td>收集價值 <span class="star">★★★★★</span>。授与所在 13:45 時應該已開，15:50 是最後</td></tr></tbody></table></div>
+<p class="xs"><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E6%A9%8B&destination=%E5%AE%87%E6%B2%BB%E4%B8%8A%E7%A5%9E%E7%A4%BE&travelmode=walking">宇治橋→宇治上神社</a></p>
+
+</section>
+<section class="sheet" id="p15" aria-label="第 15 頁 宇治神社">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">15 / 24</span></header>
+
+<h2><i class="seal">観</i>宇治神社<small>みかえり兎，14:20～14:40</small></h2>
+<div class="grid2"><figure class="sq"><img src="img/ujijinja.jpg" alt="宇治神社" width="1000"><figcaption>Saigen Jiro・CC0・2016 年攝・<a href="https://commons.wikimedia.org/wiki/File:Uji-jinja,_Kirihara-den.jpg">Wikimedia Commons</a></figcaption></figure><figure class="sq"><img src="img/ujijinja_torii.jpg" alt="宇治神社の鳥居と参道" width="1000"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Uji_Jinja_(Uji,_Kyoto)_Shrine_hdsr_S5_179.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">離宇治上神社只有 190 m，走 2～3 分鐘 <i class="t ng">⚠️</i>，是今天「順路收集」最典型的一站。官網寫宇治神社在宇治橋上游、宇治川右岸，是応神天皇離宮「桐原日桁宮」的遺址 <i class="t ok">✅</i>，兩座神社祭祀同一位祭神，風格不同：宇治上神社安靜厚重，這裡有兔子與御朱印帳的可愛一面。</p>
+<h3>由緒（官網）</h3>
+<p class="sm">祭神菟道稚郎子命（応神天皇之子），創祀是 313 年 5 月，仁徳天皇即位後祭祀其神靈 <i class="t ok">✅</i>。本殿是國指定重要文化財，鎌倉時代初期、三間社流造、檜皮葺；木造坐像也是重文 <i class="t ok">✅</i>。神使「みかえり兎」：祭神從河內往宇治途中迷路，一隻兔子一邊回頭一邊引路 <i class="t ok">✅</i>。御神徳是學業成就、合格與安產 <i class="t ok">✅</i>。</p>
+<h3>現場看什麼？</h3>
+<ul class="l "><li>本殿（重要文化財）與拝殿（桐原殿）。</li><li>みかえり兎的石像與授与品（おみくじ ¥500 <i class="t ok">✅</i>）。</li><li>御朱印帳：白、水色、紫、粉紅、抹茶色、焙茶色，各 ¥2,000 <i class="t ok">✅</i>。</li><li>本殿屋根葺き替え（第二期）時程未定，是否影響參拜未載明 <i class="t ok">✅</i>。</li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>住所・電話</th><td>京都府宇治市宇治山田1，TEL 0774-21-3041 <i class="t ok">✅</i></td></tr><tr><th>時間</th><td>境內自由；御守・御朱印到 16:30；祈禱到 16:00 <i class="t ok">✅</i></td></tr><tr><th>料金</th><td>參拜無料 <i class="t ok">✅</i></td></tr><tr><th>步行</th><td>京阪宇治駅約 9 分、JR 宇治駅約 15 分（官網 <i class="t ok">✅</i>）；離宇治上神社的距離官網未載明，Google 190 m、2 分 <i class="t ng">⚠️</i>。洗手間官網未載明</td></tr></tbody></table></div>
+<h3>御朱印資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>種類</th><td>神社名朱印 ¥500（可直書き）、御祭神名朱印 ¥500（紙のみ）、みかえりうさぎ朱印 ¥500（紙のみ） <i class="t ok">✅</i></td></tr><tr><th>形式</th><td>2026/09/21、05/10、04/02 投稿都是直書き <i class="t ph">📷</i>；2026/01/10 的ウサギ御朱印是印刷書置き ¥500 <i class="t ph">📷</i>。兔子款是紙，要貼帳（帶雙面膠）</td></tr><tr><th>郵寄</th><td>可郵寄授與，另收匯款與郵寄手續費 <i class="t ok">✅</i></td></tr><tr><th>推薦</th><td>收集價值 <span class="star">★★★★☆</span>。想收兔子就三種紙都拿，不想就只拿神社名直書き</td></tr></tbody></table></div>
+<p class="xs"><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E4%B8%8A%E7%A5%9E%E7%A4%BE&destination=%E5%AE%87%E6%B2%BB%E7%A5%9E%E7%A4%BE&travelmode=walking">宇治上神社→宇治神社</a></p>
+
+</section>
+<section class="sheet" id="p16" aria-label="第 16 頁 興聖寺">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">16 / 24</span></header>
+
+<h2><i class="seal">観</i>興聖寺<small>彈性行程，14:40～15:10</small></h2>
+<div class="grid2"><figure class="sq"><img src="img/koshoji_kotozaka.jpg" alt="興聖寺 琴坂" width="1000"><figcaption>Motokoka・CC BY-SA 4.0・2011 年攝・<a href="https://commons.wikimedia.org/wiki/File:Koto-saka_slope_to_K%C5%8Dsh%C5%8D-ji_01.jpg">Wikimedia Commons</a></figcaption></figure><figure class="sq"><img src="img/koshoji_sanmon.jpg" alt="興聖寺 山門" width="1000"><figcaption>Motokoka・CC BY-SA 4.0・2011 年攝・<a href="https://commons.wikimedia.org/wiki/File:Sanmon_gate,_K%C5%8Dsh%C5%8D-ji_02.jpg">Wikimedia Commons</a></figcaption></figure></div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">B 級，是今天最容易被拿掉的一站，但琴坂的石坂與安靜是宇治核心區沒有的。官網寫它是曹洞宗高祖道元禅師「初開之道場」，1233 年開創，1648 年永井尚政再興 <i class="t ok">✅</i>。4/8 恰逢降誕会，既有氣氛也有風險（見下）。</p>
+<h3>現場看什麼？</h3>
+<ul class="l "><li>琴坂：宇治川畔石柱後的石坂參道，水聲像琴音而得名 <i class="t ok">✅</i>。</li><li>山門（1844 年建、龍宮造、宇治市指定） <i class="t ok">✅</i>，樓上是鐘楼「興聖の晩鐘」。</li><li>法堂：伏見城遺構，有鶯張りの廊下與血天井 <i class="t ok">✅</i>。</li><li>祠堂殿「手習観音」：宇治市指定有形文化財，與《源氏物語》宇治十帖「手習」有關 <i class="t ok">✅</i>。</li><li>大書院庭園（官網寫春天櫻很美）與茶筅塚。</li></ul>
+<div class="box warn"><b>4/8 是降誕会（花まつり）。</b>官網年中行事寫「4 月 8 日 降誕会」，公告另寫「本堂で行持がある場合、堂内拝観、御朱印の受付を一時的に停止する場合がございます」，拝観頁寫「行事により、入山規制あり」 <i class="t ok">✅</i>。2027/4/8 的具體安排未載明，打 0774-21-2040 確認。若停止，直接刪掉這一站，15:10 前回宇治駅。</div>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>住所・電話</th><td>京都府宇治市宇治山田27-1，TEL 0774-21-2040 <i class="t ok">✅</i></td></tr><tr><th>時間・料金</th><td>拝観受付 10:00～16:00，志納 ¥500；買御朱印帳後，下次起憑帳免拝観料 <i class="t ok">✅</i></td></tr><tr><th>步行</th><td>官網寫法互相矛盾並列：首頁與「興聖寺について」寫 JR 25 分、京阪 15 分；「拝観・交通案内」與頁尾寫 JR 30 分、京阪 20 分 <i class="t ok">✅</i>。Google 估算：興聖寺→JR 宇治駅 20 分、1.4 km <i class="t ng">⚠️</i>。本行程 15:10 離開、15:37 發車，只有 27 分，我採官網較長的說法，沒有緩衝</td></tr><tr><th>離上一點</th><td>宇治神社→興聖寺 6 分、450 m（Google <i class="t ng">⚠️</i>），中間隔著宇治川支流，現場確認路線</td></tr><tr><th>休日</th><td>定休日、2027/4 入山規制日程官網未載明</td></tr></tbody></table></div>
+<h3>御朱印資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>官網</th><td>提供御朱印；沒有御朱印帳的人給紙朱印。初穂料、授与時間、直書き與書置き的規則未載明 <i class="t ok">✅</i></td></tr><tr><th>授與位置</th><td>境內右側的寺務所（2025/12/18 投稿） <i class="t ph">📷</i></td></tr><tr><th>形式</th><td>直書き只有「承陽大師」（道元禪師諡號），納経料 ¥500（2025/12/18） <i class="t ph">📷</i>；2026/05/06 帳面直書き <i class="t ph">📷</i>。秋季限定是書置きのみ（2025/11/29） <i class="t ph">📷</i>；切り絵、本尊是書置き（2025/07/27） <i class="t ph">📷</i></td></tr><tr><th>推薦</th><td>收集價值 <span class="star">★★★☆☆</span>。降誕会當天可能暫停</td></tr></tbody></table></div>
+<p class="xs"><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%AE%87%E6%B2%BB%E7%A5%9E%E7%A4%BE&destination=%E8%88%88%E8%81%96%E5%AF%BA&travelmode=walking">宇治神社→興聖寺</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E8%88%88%E8%81%96%E5%AF%BA&destination=%E5%AE%87%E6%B2%BB%E9%A7%85%20%E4%BA%AC%E9%83%BD%E5%BA%9C%E5%AE%87%E6%B2%BB%E5%B8%82&travelmode=walking">興聖寺→宇治駅</a></p>
+
+</section>
+<section class="sheet" id="p17" aria-label="第 17 頁 午餐與休息">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">17 / 24</span></header>
+
+<h2><i class="seal">食</i>午餐與休息</h2>
+<h3>主選（順路，不繞路）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>時段</th><th>店</th><th>資訊</th><th>來源</th></tr></thead><tbody><tr><td>10:10 午餐</td><td>稲荷参道的稲荷壽司店</td><td>日野家、近江家、稲福（週四開）、花家，營業時間見第 11 頁。價格官方查不到。要在店內吃，官網禁止邊走邊吃</td><td><i class="t ng">⚠️</i> 舊資料</td></tr><tr><td>12:45 午茶</td><td><b>中村藤吉 平等院店</b></td><td>宇治市宇治蓮華5-1，TEL 0774-22-9500。カフェ 10:00～17:00（LO 16:30），銘茶売場 10:00～17:00。<b>不接受預約</b>、セルフサービス、客滿時會比 LO 更早收。定休日官網未載明。在表參道上，離平等院約 1 分 <i class="t ng">⚠️</i></td><td><i class="t ok">✅</i>（定休日未載明）</td></tr><tr><td>菜單</td><td>2026/10 時點（價格 2027 年可能變）</td><td>まるとパフェ ¥2,280、うじきんソフト ¥1,280、抹茶［薄茶］と抹茶ゼリイ ¥980、抹茶［薄茶］¥880。生茶蕎麥目前休止。菜單是圖片，我讀圖</td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>當天不可用或要注意</h3>
+<div class="tw"><table class="dense"><thead><tr><th>店</th><th>原因</th><th>來源</th></tr></thead><tbody><tr><td>伊藤久右衛門 平等院店</td><td>只有賣場（9:30～17:30），<b>沒有茶房</b>，不能當午茶</td><td><i class="t ok">✅</i></td></tr><tr><td>茶寮 FUKUCHA 宇治店（福寿園）</td><td>2 樓喫茶只在土日祝營業，4/8 是週四，<b>不可用</b></td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>備案</h3>
+<div class="tw"><table class="dense"><thead><tr><th>店</th><th>時間・資訊</th><th>什麼時候用</th><th>來源</th></tr></thead><tbody><tr><td>茶房藤花（平等院境內）</td><td>10:00～16:30（LO 16:00），月火水休，4/8 營業；抹茶 ¥1,000、煎茶 ¥800，附和菓子</td><td>內部拝観的等待時間</td><td><i class="t ok">✅</i></td></tr><tr><td>伊藤久右衛門 JR 宇治駅前店茶房</td><td>10:00～18:00（LO 17:30），不預約、順番制，官網有待ち時間顯示；伊藤久右衛門パフェ 單品 ¥1,090／茶セット ¥1,590。南口徒歩約 1 分</td><td>回程 15:37 前若有空檔</td><td><i class="t ok">✅</i></td></tr><tr><td>通圓 本店茶房</td><td>10:30～17:30（LO 16:00），年中無休；茶そば・茶だんご。宇治橋東詰</td><td>午茶客滿時</td><td><i class="t ok">✅</i></td></tr><tr><td>対鳳庵（市営茶室）</td><td>每月末日休席，4/8 開席；約 10:00～16:00、¥1,000 起（觀光協會）</td><td>想坐下來喝茶時</td><td><i class="t ok">✅</i>（時間 <i class="t ng">⚠️</i>）</td></tr></tbody></table></div>
+<h3>洗手間與休息</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>結果</th></tr></thead><tbody><tr><td>稲荷駅</td><td>改札內有（含無障礙），改札外沒有 <i class="t ok">✅</i></td></tr><tr><td>平等院境內</td><td>2 處，都有輪椅對應 <i class="t ok">✅</i></td></tr><tr><td>宇治橋西詰</td><td>夢浮橋ひろば公衆トイレ，2026/3/6 改修後重開 <i class="t ok">✅</i></td></tr><tr><td>宇治上神社</td><td><b>沒有</b>（也沒有自販機與垃圾桶） <i class="t ok">✅</i></td></tr><tr><td>JR 宇治駅</td><td>改札內有輪椅對應洗手間 <i class="t ok">✅</i>；コインロッカー有，設置場所未載明 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<p class="xs">價格與營業時間以 2026/10/03 官網為準，2027/4 可能變動 <i class="t ng">⚠️</i>。中村藤吉不預約，12:45 若客滿，換茶房藤花或通圓。</p>
+
+</section>
+<section class="sheet" id="p18" aria-label="第 18 頁 今日御朱印攻略">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">18 / 24</span></header>
+
+<h2><i class="seal">印</i>今日御朱印攻略<small>順路收集，不為多收一張而繞路</small></h2>
+<div class="tw"><table class="dense"><thead><tr><th>寺社</th><th>參觀</th><th>收集</th><th>御朱印</th><th>授與位置</th><th>授與時間</th><th>取得方式</th><th>推薦</th></tr></thead><tbody><tr><td>伏見稲荷大社</td><td>S</td><td>S</td><td>本社印；切り絵、限定款</td><td>授与所（本殿側） <i class="t ph">📷</i></td><td>官網未載明 <i class="t ok">✅</i>；本行程 08:55</td><td>直書き 📷2026/09；接近 16 時只剩書置き</td><td><span class="star">★★★★★</span></td></tr><tr><td>平等院</td><td>S</td><td>A</td><td>御集印「鳳凰堂」「阿弥陀如来」各 ¥300</td><td>境內集印所</td><td>9:10～17:00（受付 16:45） <i class="t ok">✅</i></td><td>直書き 📷2026/05/10；官網「日により異なる」</td><td><span class="star">★★★★☆</span></td></tr><tr><td>宇治上神社</td><td>S</td><td>A</td><td>「い」¥500、「ろ」色紙 ¥500</td><td>授与所</td><td>9:00～15:50 <i class="t ok">✅</i></td><td>書き手がいれば直書き 📷2026/09/21；ろ要貼</td><td><span class="star">★★★★★</span></td></tr><tr><td>宇治神社</td><td>A</td><td>A</td><td>神社名／御祭神名／みかえりうさぎ 各 ¥500</td><td>授与所</td><td>16:30 まで <i class="t ok">✅</i></td><td>神社名は直書き 📷2026/09/21；他は紙</td><td><span class="star">★★★★☆</span></td></tr><tr><td>興聖寺</td><td>B</td><td>B</td><td>承陽大師（納経料 ¥500）</td><td>境內右側の寺務所 <i class="t ph">📷</i></td><td>拝観 10:00～16:00 <i class="t ok">✅</i>；御朱印時間未載明</td><td>直書き 📷2025/12/18；4/8 降誕会で停止の可能性</td><td><span class="star">★★★☆☆</span></td></tr></tbody></table></div>
+<h3>今天預計收集幾張</h3>
+<ul class="l "><li><b>基本 4 張</b>：伏見稲荷、平等院（鳳凰堂）、宇治上神社（「い」）、宇治神社（神社名）。有走興聖寺則 5 張。</li><li><b>最多約 10 張</b>：稲荷切り絵、平等院兩種、宇治上「ろ」、宇治神社三種、興聖寺。這個數字是上限，不是目標，兔子款與切り絵是自己愛不愛的問題。</li></ul>
+<div class="grid2">
+<div>
+<h3>御朱印排程</h3>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>在哪領</th></tr></thead><tbody><tr><td class="tm">08:55</td><td>伏見稲荷 授与所</td></tr><tr><td class="tm">11:35～12:45</td><td>平等院 集印所（領券後或等候時）</td></tr><tr><td class="tm">13:50</td><td>宇治上神社 授与所</td></tr><tr><td class="tm">14:25</td><td>宇治神社 授与所</td></tr><tr><td class="tm">14:45</td><td>興聖寺 寺務所（降誕会時可能停止）</td></tr></tbody></table></div>
+</div>
+<div>
+<h3>要不要帶膠水</h3>
+<ul class="l "><li>要。宇治上神社的「ろ」色紙是貼付式 <i class="t ok">✅</i>，宇治神社兔子款、稲荷切り絵、興聖寺書置き都是紙，帶雙面膠或口紅膠。</li><li>帶 2 本御朱印帳：一本給寺（平等院、興聖寺），一本給神社，直書き時不用換。</li><li>零錢：¥100、¥500 硬幣與 ¥1,000 鈔，平等院集印所只收現金 <i class="t ok">✅</i>。</li></ul>
+</div>
+</div>
+<h3>景點還開著，但御朱印可能不辦</h3>
+<ul class="l "><li><b>宇治上神社</b>：16:00 才閉門，但授与所 15:50 最後，過了不授與 <i class="t ok">✅</i>。</li><li><b>平等院</b>：集印所 17:00，受付 16:45；人多時內部拝観會提早截止，集印所未載明 <i class="t ok">✅</i>。</li><li><b>興聖寺</b>：4/8 降誕会，本堂有行持時暫停堂內拝観與御朱印 <i class="t ok">✅</i>；拝観受付 16:00 止。</li><li><b>伏見稲荷</b>：官網沒有時間，下午直書き可能沒有 <i class="t ph">📷</i>，不要拖到午後。</li></ul>
+
+</section>
+<section class="sheet" id="p19" aria-label="第 19 頁 一日時間軸・費用總覽">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">19 / 24</span></header>
+
+<h2><i class="seal">行</i>一日時間軸</h2>
+<div class="tl">
+<div><span class="tm">06:55</span><span>京都駅 10 番のりば集合（07:05 發）</span></div>
+<div><span class="tm">07:11</span><span>稲荷駅，改札內洗手間 → 07:15 楼門</span></div>
+<div><span class="tm">07:35</span><span>千本鳥居、奥社奉拝所、四ツ辻（折返 08:25 前後）</span></div>
+<div><span class="tm">08:55</span><span>授与所領御朱印 → 09:15 下到參道</span></div>
+<div><span class="tm">09:30</span><span>ちいかわもぐもぐ本舗開店。10:10 稲荷壽司午餐 → <b>10:55 離開</b></span></div>
+<div><span class="tm">11:02</span><span>稲荷駅 2 番 發車，11:19 宇治駅（錯過搭 11:09 みや快，11:21 到）</span></div>
+<div><span class="tm">11:30</span><span>平等院：先領內部拝観時間券，再逛鳳翔館、庭園、御集印</span></div>
+<div><span class="tm">12:45</span><span>中村藤吉 平等院店 午茶（內部拝観排到後面時，改在藤花或晚一點）</span></div>
+<div><span class="tm">13:20</span><span>宇治橋、橋西詰洗手間</span></div>
+<div><span class="tm">13:45</span><span>宇治上神社（授与所 15:50 止）→ 14:20 宇治神社</span></div>
+<div><span class="tm">14:40</span><span>興聖寺（降誕会，先電話確認）→ <b>15:10 必須離開</b></span></div>
+<div><span class="tm">15:37</span><span>宇治駅 發車（Dみやこ路快速），15:55 京都駅。錯過搭 15:40 普通，16:02 到</span></div>
+<div><span class="tm">16:00</span><span>解散，到 19:00 還有約 3 小時</span></div>
+</div>
+<h2><i class="seal">基</i>費用總覽<small>每人，日幣</small></h2>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>金額</th><th>來源</th><th>備註</th></tr></thead><tbody><tr><td>JR 三段</td><td>¥630</td><td><i class="t ok">✅</i></td><td>乗車券運賃；IC 同額與否未載明 <i class="t ng">⚠️</i></td></tr><tr><td>伏見稲荷 御朱印</td><td>約 ¥500</td><td><i class="t ng">⚠️</i></td><td>金額未載明，我預估 ¥300～500</td></tr><tr><td>平等院 庭園＋鳳翔館</td><td>¥700</td><td><i class="t ok">✅</i></td><td>沒有單買庭園</td></tr><tr><td>平等院 內部拝観</td><td>¥300</td><td><i class="t ok">✅</i></td><td>現金，可不去</td></tr><tr><td>平等院 御集印</td><td>¥300</td><td><i class="t ok">✅</i></td><td>現金</td></tr><tr><td>宇治上神社 御朱印</td><td>¥500</td><td><i class="t ok">✅</i></td><td>「い」「ろ」同價</td></tr><tr><td>宇治神社 御朱印</td><td>¥500</td><td><i class="t ok">✅</i></td><td>神社名；兔子款另 ¥500</td></tr><tr><td>興聖寺 拝観＋納経</td><td>¥1,000</td><td><i class="t ok">✅</i>／<i class="t ph">📷</i></td><td>拝観 ¥500 官網；納経 ¥500 投稿。可不去</td></tr><tr><td>午茶</td><td>¥980～¥2,280</td><td><i class="t ok">✅</i></td><td>抹茶ゼリイ＋薄茶 到 まるとパフェ（2026/10 菜單）</td></tr><tr><td>稲荷壽司午餐</td><td>約 ¥800～¥1,500</td><td><i class="t ng">⚠️</i></td><td>官方查不到價格，我估算</td></tr><tr><td>ちいかわ周邊</td><td>依購買</td><td><i class="t ok">✅</i></td><td>例：なぬいぐるみ ¥2,530（2023 價）；不計入合計</td></tr></tbody></table></div>
+<p class="sm"><b>合計：每人約 ¥6,200～¥8,200（含興聖寺，不含ちいかわ周邊與伴手禮）</b>，2 人約 ¥12,400～¥16,400。沒有一日券或套票比單買划算：JR 三段只要 ¥630，平等院庭園與鳳翔館本來就是一張票。</p>
+
+</section>
+<section class="sheet" id="p20" aria-label="第 20 頁 雨天備案・彈性與刪減方案">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">20 / 24</span></header>
+
+<h2><i class="seal">基</i>雨天備案</h2>
+<div class="grid2">
+<div>
+<h3>下雨仍然值得去</h3>
+<ul class="l "><li>ちいかわもぐもぐ本舗、參道的店（屋內）。</li><li>平等院 鳳翔館與鳳凰堂內部拝観（屋內），庭園仍可走，但碎石路濕 <i class="t ok">✅</i>。</li><li>中村藤吉、茶房藤花、通圓（屋內喝茶）。</li><li>宇治上神社、宇治神社：參拜時間短，殿前有屋簷 <i class="t ng">⚠️</i>。</li></ul>
+</div>
+<div>
+<h3>建議縮短或刪掉</h3>
+<ul class="l "><li>稲荷山：石階濕滑 <i class="t ng">⚠️</i>，只走到奥社奉拝所，不上四ツ辻；颱風時夜間參拜與山道可能被限制（2026/6 事例 <i class="t ok">✅</i>）。</li><li>興聖寺琴坂：石板路濕，優先刪。</li><li>宇治橋・川畔：縮短，改在平等院與午茶多停留。</li><li>平等院內部拝観：荒天時官網寫可能休止 <i class="t ok">✅</i>。</li></ul>
+</div>
+</div>
+<h2><i class="seal">基</i>行程彈性與刪減方案</h2>
+<div class="tw"><table class="dense"><thead><tr><th>情境</th><th>怎麼調整</th></tr></thead><tbody><tr><td>晚出發 30 分</td><td>搭 07:29 發、07:35 到稲荷。四ツ辻縮為奥社奉拝所折返，参道逛街縮到 55 分，11:02 照搭</td></tr><tr><td>晚出發 1 小時</td><td>搭 07:51（D区間快速）、07:57 到。放棄四ツ辻，ちいかわ 40 分內結束，11:02 照搭</td></tr><tr><td>ちいかわ整理券或排隊超過 30 分</td><td>先逛松屋與稲荷壽司店，回頭看；若仍滿，放棄。10:55 一定離開</td></tr><tr><td>錯過 11:02</td><td>搭 11:09 みや快、11:21 到宇治（延 2 分）。11:20 普通 11:37 到則平等院縮短</td></tr><tr><td>鳳凰堂時間券排到 13:30 以後或發完</td><td>放棄內部拝観，其他照走；詳見第 12 頁判斷規則</td></tr><tr><td>興聖寺降誕会停止或走不動</td><td>刪除。14:40 就往 JR 宇治駅走，可搭 15:07 みや快（15:25 到）或 15:22 普通</td></tr><tr><td>錯過 15:37</td><td>15:40 普通（16:02）、15:52 普通（16:14）、16:07 みや快（16:25），都在 19:00 前 <i class="t ok">✅</i></td></tr><tr><td>稲荷山封閉或臨時關閉</td><td>改在參道與本殿停留，早點到宇治，鳳凰堂時間券可以領更早的回</td></tr></tbody></table></div>
+<h3>優先順序（調整用，不是景點評分）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>等級</th><th>項目</th></tr></thead><tbody><tr><td>S 一定保留</td><td>伏見稲荷 楼門・本殿・千本鳥居與御朱印；平等院外觀・鳳翔館・御集印；宇治上神社</td></tr><tr><td>A 推薦保留</td><td>四ツ辻；宇治神社；鳳凰堂內部拝観；ちいかわ（你指定要逛）；中村藤吉午茶</td></tr><tr><td>B 有時間再去</td><td>興聖寺；宇治橋散步；松屋；稲荷壽司午餐的第二家</td></tr><tr><td>C 最先放棄</td><td>稲荷山一ノ峰、荒神峰；三室戸寺；対鳳庵</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p21" aria-label="第 21 頁 出發前必看・Checklist">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">21 / 24</span></header>
+
+<h2><i class="seal">基</i>出發前必看與 Checklist</h2>
+<div class="grid2">
+<div><h3>必看（依順序）</h3><ol class="l"><li>千本鳥居與奥社奉拝所（07:30 前後人最少）</li><li>平等院鳳凰堂與阿字池，鳳翔館的雲中供養菩薩像</li><li>宇治上神社本殿（國寶）</li><li>宇治橋與宇治川畔</li><li>宇治神社的みかえり兎</li></ol></div>
+<div><h3>今天不得不知的 5 個時間</h3><ul class="l "><li><b>07:05</b>：京都発。11:02：稲荷発。</li><li><b>9:10</b>：平等院內部拝観受付開始；到院後<b>先領券</b></li><li><b>15:50</b>：宇治上神社授与所最後</li><li><b>15:37</b>：宇治発（Dみやこ路快速）</li><li><b>16:00</b>：興聖寺拝観受付與宇治上神社閉門</li></ul></div>
+</div>
+<h3>出發前確認</h3>
+<div class="ckgrp">
+<label class="ck"><input type="checkbox" id="c1"><span>JR 奈良線 2027 年 4 月時刻：07:05 京都発、11:02 稲荷発、15:37 宇治発（2027/2～3 月）</span></label>
+<label class="ck"><input type="checkbox" id="c2"><span>平等院：鳳凰堂內部拝観的定員與待ち時間、4 月的行事（官網お知らせ）</span></label>
+<label class="ck"><input type="checkbox" id="c3"><span>興聖寺降誕会：電話 0774-21-2040，堂內拝観與御朱印是否停止</span></label>
+<label class="ck"><input type="checkbox" id="c4"><span>伏見稲荷：御朱印授与所時間與直書き、ちいかわ的整理券與預約制（電話 075-641-7331、官方 X）</span></label>
+<label class="ck"><input type="checkbox" id="c5"><span>松屋與稲荷壽司店 4/8 是否營業；中村藤吉的定休日與營業時間變更</span></label>
+<label class="ck"><input type="checkbox" id="c6"><span>天氣預報；決定是否走四ツ辻與興聖寺</span></label>
+</div>
+<h3>隨身物品</h3>
+<div class="ckgrp">
+<label class="ck"><input type="checkbox" id="b1"><span>御朱印帳 2 本、筆記用具、雙面膠或口紅膠（貼書置き、色紙）</span></label>
+<label class="ck"><input type="checkbox" id="b2"><span>零錢：¥100、¥500 硬幣與 ¥1,000 鈔（平等院與御朱印多為現金）</span></label>
+<label class="ck"><input type="checkbox" id="b3"><span>IC 卡（ICOCA 或 Suica，JR 與店家）</span></label>
+<label class="ck"><input type="checkbox" id="b4"><span>好走防滑的鞋（稲荷山石階與下坡）、薄外套、折傘</span></label>
+<label class="ck"><input type="checkbox" id="b5"><span>水（稲荷山店家少、官網禁止邊走邊吃；平等院只能帶可密閉的水壺）</span></label>
+<label class="ck"><input type="checkbox" id="b6"><span>行動電源、離線地圖；環保袋給ちいかわ周邊</span></label>
+</div>
+<p class="xs">勾選會存在這台裝置的瀏覽器裡（localStorage），換裝置或清除資料就會消失。列印成 PDF 的版本不會保留勾選。山上氣溫、當天花況沒有可靠官方數字，出發前看預報 <i class="t ng">⚠️</i>。</p>
+
+</section>
+<section class="sheet" id="p22" aria-label="第 22 頁 資料來源">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">22 / 24</span></header>
+
+<h2><i class="seal">基</i>資料來源</h2>
+<p class="xs">查證日 2026/10/03。官方頁面以瀏覽器（Edge）實際開啟並存下全文為準，搜尋引擎摘要只用來找網址，不標 ✅。官網只有圖片的數字（平等院待ち時間表、宇治上神社御朱印價、中村藤吉菜單）是我讀圖後標明。omairi 連結需通過 Cloudflare 驗證才能開啟。</p>
+<div class="tw"><table class="dense"><thead><tr><th>來源（點名稱開啟）</th><th>網域</th><th>等級</th><th>用在</th></tr></thead><tbody><tr><td><a href="https://inari.jp/trip/map01/">伏見稲荷大社 稲荷山の見どころ</a></td><td>inari.jp</td><td><i class="t ok">✅</i></td><td>稲荷山 233 m、楼門、本殿、千本鳥居、奥社奉拝所、熊鷹社、一ノ峰、荒神峰、啼鳥菴</td></tr><tr><td><a href="https://inari.jp/en/faq/">伏見稲荷大社 FAQ（英語）</a></td><td>inari.jp</td><td><i class="t ok">✅</i></td><td>白狐、朱色、鳥居約 1 万基、境內 87 万 ㎡、稲荷社約 3 万</td></tr><tr><td><a href="https://inari.jp/grace/gokito/">伏見稲荷大社 ご祈祷</a></td><td>inari.jp</td><td><i class="t ok">✅</i></td><td>8:30～16:30、受付 16:00 頃、年中無休</td></tr><tr><td><a href="https://inari.jp/rite/?month=4月">伏見稲荷大社 年間行事（4 月）</a></td><td>inari.jp</td><td><i class="t ok">✅</i></td><td>4/1、産業祭、4/12、稲荷祭神幸祭</td></tr><tr><td><a href="https://inari.jp/request/">伏見稲荷大社 お願い</a></td><td>inari.jp</td><td><i class="t ok">✅</i></td><td>食べ歩き禁止、窄參道拍照、寵物</td></tr><tr><td><a href="https://inari.jp/news/topics/">伏見稲荷大社 お知らせ（10 頁）</a></td><td>inari.jp</td><td><i class="t ok">✅</i></td><td>野豬、夜間規制、コインロッカー、特別御朱印帳（2026）</td></tr><tr><td><a href="https://inari.jp/en/access/">伏見稲荷大社 アクセス（英語）</a></td><td>inari.jp</td><td><i class="t ok">✅</i></td><td>Right next to Inari Station</td></tr><tr><td><a href="https://kyoto.travel/en/news/fushimi_crowds.html">京都市観光協会 伏見稲荷混雜公告</a></td><td>kyoto.travel</td><td><i class="t ok">✅</i></td><td>2025/1/30 非常擁擠</td></tr><tr><td><a href="https://www.chiikawamogumogu.jp/stores/fushimi/">ちいかわもぐもぐ本舗 京都伏見店</a></td><td>www.chiikawamogumogu.jp</td><td><i class="t ok">✅</i></td><td>地址、9:30～17:30、徒歩 5 分</td></tr><tr><td><a href="https://www.chiikawamogumogu.jp/news/">ちいかわもぐもぐ本舗 お知らせ・FAQ</a></td><td>www.chiikawamogumogu.jp</td><td><i class="t ok">✅</i></td><td>2024/1/5、2025/10/30、2026/10/10～12 預約制、購買限制、付款</td></tr><tr><td><a href="https://k-matsuya.jp/">おせんの里 松屋</a></td><td>k-matsuya.jp</td><td><i class="t ok">✅</i></td><td>8:00～18:00、不定休、地址、徒歩時間</td></tr><tr><td><a href="http://www.fusimi-inari.com/">伏見稲荷参道商店街（舊網站）</a></td><td>www.fusimi-inari.com</td><td><i class="t ng">⚠️</i></td><td>稲荷壽司店、山上茶店（憑證失效、2020 年資料）</td></tr><tr><td><a href="https://www.gltjp.com/ja/directory/item/14674/">Global Link Travel 祢ざめ家</a></td><td>www.gltjp.com</td><td><i class="t ng">⚠️</i></td><td>10:00～16:00、¥1,000～2,500</td></tr><tr><td><a href="https://travel.watch.impress.co.jp/docs/news/2074503.html">Impress Watch（初詣報導）</a></td><td>travel.watch.impress.co.jp</td><td><i class="t ng">⚠️</i></td><td>終日開門、初詣は書き置きのみ（2026 初詣）</td></tr><tr><td><a href="https://www.jr-odekake.net/eki/top?id=0621613">JR 西日本 稲荷駅・宇治駅・バリアフリー</a></td><td>www.jr-odekake.net</td><td><i class="t ok">✅</i></td><td>番線、改札、ICOCA、洗手間、コインロッカー</td></tr><tr><td><a href="https://www.jr-odekake.net/railroad/mydia/">JR 西日本 駅の時刻表・マイ・ダイヤ</a></td><td>www.jr-odekake.net</td><td><i class="t ok">✅</i></td><td>平日時刻（2026/10 號）、運賃、乗換 0 回、停車駅</td></tr><tr><td><a href="https://www.westjr.co.jp/travel-information/tc/tickets-passes/jrwest-rail-pass/kansai/">JR 西日本 關西地區鐵路周遊券</a></td><td>www.westjr.co.jp</td><td><i class="t ok">✅</i></td><td>2026/9/30 停止販售</td></tr><tr><td><a href="https://www.city.uji.kyoto.jp/site/murasaki/64197.html">宇治市 公共交通機関利用のお願い</a></td><td>www.city.uji.kyoto.jp</td><td><i class="t ok">✅</i></td><td>步行時間、京都→宇治約 16 分</td></tr><tr><td><a href="https://www.kyoto-uji-kankou.or.jp/">宇治市観光協会</a></td><td>www.kyoto-uji-kankou.or.jp</td><td><i class="t ok">✅</i></td><td>宇治橋、対鳳庵、散步路線</td></tr><tr><td><a href="https://www.byodoin.or.jp/guide/">平等院 拝観案内・内部拝観</a></td><td>www.byodoin.or.jp</td><td><i class="t ok">✅</i></td><td>時間、料金、時間券、待ち時間表（圖片）</td></tr><tr><td><a href="https://www.byodoin.or.jp/guide/goshuin/">平等院 御集印</a></td><td>www.byodoin.or.jp</td><td><i class="t ok">✅</i></td><td>2 種、¥300、9:10～17:00</td></tr><tr><td><a href="https://www.byodoin.or.jp/faq/public/">平等院 よくある質問・鳳翔館・茶房藤花・歳時記</a></td><td>www.byodoin.or.jp</td><td><i class="t ok">✅</i></td><td>年中無休、再入場、所要時間、桜藤見頃、藤花、鳳翔館收藏</td></tr><tr><td><a href="https://www.byodoin.or.jp/news/">平等院 お知らせ</a></td><td>www.byodoin.or.jp</td><td><i class="t ok">✅</i></td><td>2026/10/16 定員 35 名、飲食禁止、観音堂修理、夜間特別拝観休止</td></tr><tr><td><a href="https://www.ujikamijinja.jp/cont4/main.html">宇治上神社</a></td><td>www.ujikamijinja.jp</td><td><i class="t ok">✅</i></td><td>時間、拝観料、洗手間、御朱印規則、うさぎ授与品</td></tr><tr><td><a href="https://www.ujikamijinja.jp/cont5/12.html">宇治上神社 御朱印・縁起</a></td><td>www.ujikamijinja.jp</td><td><i class="t ok">✅</i></td><td>い・ろ ¥500（圖片）、縁起</td></tr><tr><td><a href="https://uji-jinja.com/">宇治神社</a></td><td>uji-jinja.com</td><td><i class="t ok">✅</i></td><td>時間、御朱印 3 種、由緒、文化財</td></tr><tr><td><a href="https://www.uji-koushouji.jp/access/">興聖寺</a></td><td>www.uji-koushouji.jp</td><td><i class="t ok">✅</i></td><td>10:00～16:00、¥500、步行時間、御朱印</td></tr><tr><td><a href="https://www.uji-koushouji.jp/event/">興聖寺 境内案内・年中行事・お知らせ</a></td><td>www.uji-koushouji.jp</td><td><i class="t ok">✅</i></td><td>降誕会 4/8、堂內拝観與御朱印暫停、境內建築</td></tr><tr><td><a href="https://tokichi.jp/pages/byodo-in-store-page">中村藤吉 平等院店</a></td><td>tokichi.jp</td><td><i class="t ok">✅</i></td><td>カフェ 10:00～17:00、不預約、菜單（圖片）</td></tr><tr><td><a href="https://www.itohkyuemon.co.jp/corporate/shop/byodoin/">伊藤久右衛門 平等院店・JR 宇治駅前店茶房</a></td><td>www.itohkyuemon.co.jp</td><td><i class="t ok">✅</i></td><td>平等院店只有賣場、茶房時間與價格</td></tr><tr><td><a href="https://tsuentea.com/pages/shop">通圓 本店茶房</a></td><td>tsuentea.com</td><td><i class="t ok">✅</i></td><td>10:30～17:30、年中無休</td></tr><tr><td><a href="https://fukucha.fukujuen.com/">茶寮 FUKUCHA 宇治店</a></td><td>fukucha.fukujuen.com</td><td><i class="t ok">✅</i></td><td>2 樓喫茶僅土日祝</td></tr><tr><td><a href="https://omairi.club/spots/77978/goshuin">omairi.club 伏見稲荷大社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/08/20、08/28、09/08、09/15、09/26 等</td></tr><tr><td><a href="https://omairi.club/spots/81830/goshuin">omairi.club 平等院</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/05/10、06/28、2025/12/03 等</td></tr><tr><td><a href="https://omairi.club/spots/78676/goshuin">omairi.club 宇治上神社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/09/21、05/10、01/10 等</td></tr><tr><td><a href="https://omairi.club/spots/80682/goshuin">omairi.club 宇治神社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/09/21、05/10、01/10、04/02 等</td></tr><tr><td><a href="https://omairi.club/spots/82349/goshuin">omairi.club 興聖寺</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2025/12/18、2026/05/06、2025/11/29 等</td></tr><tr><td><a href="https://www.google.com/maps/">Google Maps（步行・轉乘）</a></td><td>www.google.com</td><td><i class="t ng">⚠️</i></td><td>步行時間、距離、爬升（截圖 2026/10/03）</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p23" aria-label="第 23 頁 照片授權・資料處理">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">23 / 24</span></header>
+
+<h2><i class="seal">基</i>照片授權與資料處理</h2>
+<h3>照片授權（全部來自 Wikimedia Commons，已縮為寬 1000 px）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>用在</th><th>作者</th><th>授權</th><th>Commons</th></tr></thead><tbody><tr><td>伏見稲荷大社 千本鳥居</td><td>Luka Peternel</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Fushimi-Inari-Shrine-Senbon-Torii-2018-Luka-Peternel.jpg">連結</a></td></tr><tr><td>伏見稲荷大社 楼門</td><td>Saigen Jiro</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Fushimiinari-taisha,_roumon-1.jpg">連結</a></td></tr><tr><td>伏見稲荷大社 本殿</td><td>Saigen Jiro</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Fushimiinari-taisha,_honden-3.jpg">連結</a></td></tr><tr><td>おもかる石（奥社奉拝所）</td><td>そらみみ</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:%E2%80%9COmokaruishi%E2%80%9D_(Heavy-Light_Stone)_at_Fushimi_Inari_Grand_Shrine.JPG">連結</a></td></tr><tr><td>稲荷山からの京都市街</td><td>Jakub Hałun</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:View_of_Kyoto_from_Mount_Inari,_20240818_1435_4549.jpg">連結</a></td></tr><tr><td>伏見稲荷参道</td><td>inunami</td><td>CC BY 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Fushimi_inari_20200405093637_(50258910481).jpg">連結</a></td></tr><tr><td>平等院鳳凰堂</td><td>Zairon</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Uji_Byodo-in_Ph%C3%B6nixhalle_05.jpg">連結</a></td></tr><tr><td>平等院ミュージアム鳳翔館</td><td>663highland</td><td>CC BY 2.5</td><td><a href="https://commons.wikimedia.org/wiki/File:Byodoin_Uji_Kyoto19s3s4410.jpg">連結</a></td></tr><tr><td>宇治橋</td><td>User:御影守駒氏</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:IMG_ujibasi.jpg">連結</a></td></tr><tr><td>朝霧橋と宇治川</td><td>御影守駒氏</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Asagiri_Bashi.jpg">連結</a></td></tr><tr><td>宇治上神社 本殿</td><td>Saigen Jiro</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Ujigami-jinja,_honden.jpg">連結</a></td></tr><tr><td>宇治上神社 拝殿</td><td>Saigen Jiro</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Ujigami-jinja,_haiden.jpg">連結</a></td></tr><tr><td>宇治神社 桐原殿</td><td>Saigen Jiro</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Uji-jinja,_Kirihara-den.jpg">連結</a></td></tr><tr><td>宇治神社 鳥居と参道</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Uji_Jinja_(Uji,_Kyoto)_Shrine_hdsr_S5_179.jpg">連結</a></td></tr><tr><td>興聖寺 琴坂</td><td>Motokoka</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Koto-saka_slope_to_K%C5%8Dsh%C5%8D-ji_01.jpg">連結</a></td></tr><tr><td>興聖寺 山門</td><td>Motokoka</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Sanmon_gate,_K%C5%8Dsh%C5%8D-ji_02.jpg">連結</a></td></tr><tr><td>JR 奈良線 221 系</td><td>Mr.ちゅらさん</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:JR_West_221_Nara_Line2023.jpg">連結</a></td></tr></tbody></table></div>
+<p class="xs">每張照片的圖說都附作者、授權、攝影年份與 Commons 頁面連結。照片多為數年前所攝，與 2027/4/8 現場可能不同。「宇治神社」與「宇治上神社」在 Commons 上有檔案名稱混用，本手冊的圖都已目視核對過內容。</p>
+<h3>地圖</h3>
+<p class="sm">Google Maps 截圖，地圖資料 ©2026 Google，截取日期 2026/10/03，僅作個人行程參考。示意圖為自製，非地理比例。步行時間是 Google 的估算，不含參拜與停留。轉乘只能查兩點，所以全日路線用分段圖。</p>
+<h3>資料是怎麼查的</h3>
+<ul class="l "><li>官方頁面用 Playwright 開 Edge 存全文再讀；JR 時刻用 JR 西日本「駅の時刻表」「マイ・ダイヤ」，平日 2026/10/08 與 12/03 內容相同。</li><li>御朱印的授與位置與形式（直書き／書置き）以 omairi.club 2026 年的投稿為準，附日期，標 <i class="t ph">📷</i>；omairi 的驗證由使用者在視窗手動通過。</li><li>JR 運賃用 マイ・ダイヤ 的乗車券運賃（<i class="t ok">✅</i>）；IC 運賃是否同額官網未載明（<i class="t ng">⚠️</i>）。</li><li>所有「我的估算」「我的推算」都標 <i class="t ng">⚠️</i>，沒有標 <i class="t ok">✅</i> 的數字都不是官方原文。</li></ul>
+
+</section>
+<section class="sheet" id="p24" aria-label="第 24 頁 待確認事項">
+<header class="hd"><span><b>伏見稲荷・宇治一日手冊</b>　伏見稲荷大社・平等院・宇治上神社</span><span>2027/04/08（四）</span><span class="pg">24 / 24</span></header>
+
+<h2><i class="seal">基</i>待確認事項</h2>
+<p class="sm">這一頁列出這次沒能查到或只能估算的資訊，以及建議的確認方式。接近 2027/04/08 時照這份清單再查一次。</p>
+<div class="tw"><table class="dense"><thead><tr><th>#</th><th>待確認</th><th>現況</th><th>建議確認方式</th></tr></thead><tbody><tr><td>1</td><td>JR 2027/4 的時刻</td><td>官網只到 2026/12/31 <i class="t ok">✅</i>；2026/10 版平日</td><td>2027/2～3 月看 JR 西日本時刻表；先查 07:05、11:02、15:37</td></tr><tr><td>2</td><td>平等院 鳳凰堂內部拝観的時間券、定員、待ち時間</td><td>2026/10/16 起 35 名；待ち時間表是 2025 年實績 <i class="t ok">✅</i></td><td>官網お知らせ；到院後先領券</td></tr><tr><td>3</td><td>興聖寺 4/8 降誕会的安排</td><td>行持時可能暫停堂內拝観與御朱印；具體未載明 <i class="t ok">✅</i></td><td>打 0774-21-2040</td></tr><tr><td>4</td><td>興聖寺→JR 宇治駅的步行時間</td><td>官網 25 分與 30 分並存；Google 20 分</td><td>現場走一次，不夠就刪興聖寺</td></tr><tr><td>5</td><td>伏見稲荷 御朱印的授与時間、種類、初穂料、直書き</td><td>官網全部未載明 <i class="t ok">✅</i>；2026 年投稿為直書き與切り絵書置き <i class="t ph">📷</i></td><td>打 075-641-7331；當天上午領</td></tr><tr><td>6</td><td>ちいかわ 4/8 的整理券、預約制</td><td>平常自由入店；混雜時整理券 <i class="t ok">✅</i></td><td>官方 X 與官網お知らせ</td></tr><tr><td>7</td><td>松屋、稲荷壽司店 4/8 是否營業與價格</td><td>多為不定休；商店街網站是舊資料 <i class="t ng">⚠️</i></td><td>4 月看各店官網或當天現場</td></tr><tr><td>8</td><td>中村藤吉 平等院店 4/8 營業與定休日</td><td>カフェ 10:00～17:00；定休日未載明 <i class="t ok">✅</i></td><td>店舗お知らせ；備案茶房藤花、通圓</td></tr><tr><td>9</td><td>宇治上神社 御朱印的季節款</td><td>官網季節款連結 404 <i class="t ok">✅</i></td><td>當天現場</td></tr><tr><td>10</td><td>稲荷山 四ツ辻的所要時間與展望</td><td>官網未寫；Google 20 分往上 <i class="t ng">⚠️</i></td><td>當天依體力調整</td></tr><tr><td>11</td><td>櫻與藤的花況</td><td>官網只有「見頃」；4/8 櫻尾聲、藤偏早 <i class="t ok">✅</i></td><td>4 月初看開花情報</td></tr><tr><td>12</td><td>2027 年祝日表</td><td>4/8 是平日，我沒有逐項核對 <i class="t ng">⚠️</i></td><td>查內閣府祝日表</td></tr><tr><td>13</td><td>步行時間（全部）</td><td>Google 估算，不含參拜與拍照 <i class="t ng">⚠️</i></td><td>當天依現場調整</td></tr></tbody></table></div>
+
+</section>
+</main>
+<script>
+(function(){
+  var KEY='inari_uji_ck_v1', store={};
+  try{ store=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ store={}; }
+  document.querySelectorAll('label.ck input[type=checkbox]').forEach(function(cb){
+    if(store[cb.id]) cb.checked=true;
+    cb.addEventListener('change',function(){
+      store[cb.id]=cb.checked;
+      try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){}
+    });
+  });
+})();
+</script>

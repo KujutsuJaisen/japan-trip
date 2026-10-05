@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>奈良時刻盤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout: one day drawn as a deer-brown thread. A painted route-landscape on top (WebGL sky and Sarusawa pond under a Canvas 2D land),
+   a time dial below it, then the day as a Gantt strip and a ledger of every stop. Single deliberate light "washi" look. */
+:root{
+  --paper:#E7E6DA; --sheet:#F5F4EC; --ink:#26221D; --ink2:#5F594E; --rule:#CFCBBB;
+  --shika:#8C5A2E; --wakakusa:#6C8C2C; --shu:#C2361F; --ai:#24375A; --kin:#A27A22; --mist:#DEDCCD;
+  --f-head:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif TC",serif;
+  --f-body:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.6;margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:16px;padding-block:22px 40px;display:flex;flex-direction:column;gap:18px}
+button,input{font:inherit}
+:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+
+/* masthead */
+.mast{display:grid;grid-template-columns:auto 1fr auto;gap:18px 26px;align-items:end}
+.stamp{width:78px;height:78px;border:2.5px solid var(--shu);color:var(--shu);font-family:var(--f-head);font-weight:800;display:grid;place-items:center;text-align:center;line-height:1.05;font-size:15px;transform:rotate(-3deg);border-radius:3px;background:color-mix(in srgb,var(--shu) 6%,transparent)}
+.stamp b{display:block;font-size:24px}
+.eyebrow{margin:0 0 2px;font-size:11.5px;letter-spacing:.22em;color:var(--ink2)}
+h1{font-family:var(--f-head);font-weight:800;font-size:clamp(30px,5vw,52px);line-height:1.08;margin:0;letter-spacing:.04em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--shika)}
+.sub{margin:6px 0 0;color:var(--ink2);max-width:62ch}
+.facts{display:grid;grid-template-columns:repeat(5,auto);gap:4px 18px;margin:0;align-self:end}
+.facts div{display:flex;flex-direction:column;border-left:2px solid var(--rule);padding-left:10px}
+.facts dt{font-size:11px;color:var(--ink2);letter-spacing:.08em}
+.facts dd{margin:0;font-family:var(--f-mono);font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:980px){.mast{grid-template-columns:auto 1fr}.facts{grid-column:1/-1;grid-template-columns:repeat(5,1fr)}}
+@media (max-width:560px){.facts{grid-template-columns:repeat(2,1fr)}.stamp{width:64px;height:64px;font-size:13px}.stamp b{font-size:19px}}
+
+/* stage */
+.stage{position:relative;height:clamp(300px,46vw,520px);border-radius:3px;overflow:hidden;background:#cfdbe2;box-shadow:0 1px 0 var(--rule),0 18px 40px -26px rgba(40,30,20,.55)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage .note{position:absolute;right:10px;bottom:8px;font-size:10.5px;color:var(--ink2);background:color-mix(in srgb,var(--sheet) 78%,transparent);padding:1px 7px;border-radius:2px;letter-spacing:.06em}
+.stage .tlabel{position:absolute;left:12px;top:10px;font-family:var(--f-mono);font-weight:600;font-size:clamp(20px,3.4vw,34px);color:var(--ink);text-shadow:0 0 8px rgba(255,255,255,.7);font-variant-numeric:tabular-nums;letter-spacing:.02em;pointer-events:none}
+
+/* deck */
+.deck{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:16px;align-items:stretch}
+@media (max-width:820px){.deck{grid-template-columns:1fr}}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:3px;padding:14px 16px;min-width:0}
+.clock .lbl{font-size:11px;letter-spacing:.18em;color:var(--ink2)}
+.clock .now{font-family:var(--f-mono);font-weight:600;font-size:46px;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.clock .phase{font-family:var(--f-head);font-weight:800;font-size:18px;color:var(--shika);min-height:1.6em}
+.ctrl{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.btn{border:1.5px solid var(--ink);background:var(--ink);color:var(--sheet);padding:6px 14px;border-radius:2px;cursor:pointer;font-weight:700;letter-spacing:.06em}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn[aria-pressed="true"]{background:var(--shika);border-color:var(--shika);color:#fff}
+.scrub{width:100%;margin-top:12px;accent-color:var(--shika)}
+.scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;color:var(--ink2)}
+.card{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-content:start}
+.card .seal{grid-row:1/span 3;width:54px;height:54px;border:2px solid var(--shu);color:var(--shu);display:grid;place-items:center;font-family:var(--f-head);font-weight:800;font-size:28px;border-radius:2px;transform:rotate(-2deg)}
+.card .seal.k-train,.card .seal.k-walk,.card .seal.k-pause{border-color:var(--ai);color:var(--ai)}
+.card .seal.k-eat{border-color:var(--kin);color:var(--kin)}
+.card .seal.k-see.todaiji{border-color:var(--shika);color:var(--shika)}
+.card .seal.k-see.town{border-color:var(--wakakusa);color:var(--wakakusa)}
+.card .span{font-family:var(--f-mono);font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.card h2{font-family:var(--f-head);font-weight:800;font-size:clamp(20px,2.6vw,28px);margin:0;line-height:1.25;text-wrap:balance}
+.card .jp{color:var(--ink2);font-size:13.5px}
+.card .note{grid-column:1/-1;margin-top:6px;font-size:13.5px}
+.card .warn{grid-column:1/-1;background:#FFF0D6;color:#6E4300;border-left:3px solid #C98A12;padding:6px 10px;font-size:12.8px;border-radius:0 2px 2px 0}
+.card .next{grid-column:1/-1;margin-top:8px;padding-top:8px;border-top:1px dashed var(--rule);font-size:13px;color:var(--ink2)}
+.card .next b{color:var(--ink);font-weight:700}
+
+/* gantt */
+.chart h3,.ledger h3{font-family:var(--f-head);font-weight:800;font-size:19px;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.chart h3 small,.ledger h3 small{font-family:var(--f-body);font-size:12px;font-weight:400;color:var(--ink2)}
+.scroll{overflow-x:auto;overscroll-behavior-x:contain}
+#gantt svg{display:block;font-family:var(--f-body)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--ink2);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:16px;height:10px;display:inline-block;border-radius:2px}
+
+/* ledger */
+.rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+@media (max-width:820px){.rows{grid-template-columns:1fr}}
+.row{display:grid;grid-template-columns:96px 26px minmax(0,1fr);gap:4px 10px;padding:7px 6px;border-bottom:1px solid var(--rule);cursor:pointer;align-items:start;border-radius:2px;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left;color:inherit;width:100%}
+.row:hover{background:var(--mist)}
+.row.on{background:color-mix(in srgb,var(--shika) 12%,var(--sheet));box-shadow:inset 3px 0 0 var(--shika)}
+.row .t{font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:1px}
+.row .k{width:22px;height:22px;border:1.5px solid currentColor;display:grid;place-items:center;font-family:var(--f-head);font-weight:800;font-size:12px;border-radius:2px}
+.row .k.train,.row .k.walk,.row .k.pause{color:var(--ai)}
+.row .k.see{color:var(--shu)} .row .k.see.todaiji{color:var(--shika)} .row .k.see.town{color:var(--wakakusa)} .row .k.eat{color:var(--kin)} .row .k.seal{color:var(--shu)}
+.row b{display:block;font-weight:700}
+.row span.d{display:block;font-size:12.3px;color:var(--ink2)}
+.row .flag{color:#9A5A00;font-size:12px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="stamp" aria-hidden="true"><span>2027<b>4.8</b>木</span></div>
+    <div>
+      <p class="eyebrow">奈良一日手冊　別冊</p>
+      <h1>今日行程<em>總覽</em></h1>
+      <p class="sub">京都駅 07:06 搭近鉄，在大和西大寺轉一次車，07:58 到奈良。早上從奈良公園走進東大寺，經二月堂、法華堂到春日大社；下午沿參道下山，到興福寺、猿澤池與東向商店街，17:50 搭特急回京都。</p>
+    </div>
+    <dl class="facts">
+      <div><dt>出發</dt><dd>07:06</dd></div>
+      <div><dt>回到京都</dt><dd>18:27</dd></div>
+      <div><dt>近鉄往返</dt><dd>¥2,040</dd></div>
+      <div><dt>御朱印</dt><dd>7 張</dd></div>
+      <div><dt>步行（估）</dt><dd>6–8 km</dd></div>
+    </dl>
+  </header>
+
+  <section class="stage" id="stage" aria-label="今日路線示意畫：京都駅、近鉄奈良、東大寺、春日大社、興福寺">
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <canvas id="cv" aria-hidden="true"></canvas>
+    <div class="tlabel" id="tlabel">06:55</div>
+    <div class="note">示意圖，非地理比例</div>
+  </section>
+
+  <section class="deck">
+    <div class="panel clock">
+      <div class="lbl">時刻盤</div>
+      <div class="now" id="now">06:55</div>
+      <div class="phase" id="phase">近鉄京都駅</div>
+      <div class="ctrl">
+        <button class="btn" id="play" type="button">播放一天</button>
+        <button class="btn ghost" id="sound" type="button" aria-pressed="false">鈴聲 關</button>
+      </div>
+      <input class="scrub" id="scrub" type="range" min="415" max="1140" step="1" value="415" aria-label="拖曳時刻">
+      <div class="scale"><span>06:55</span><span>13:00</span><span>19:00</span></div>
+    </div>
+    <article class="panel card" id="card" aria-live="polite"></article>
+  </section>
+
+  <section class="panel chart">
+    <h3>一日的時間帶<small>橫軸是時刻；點或拖曳圖面可以移動時刻盤</small></h3>
+    <div class="scroll"><div id="gantt"></div></div>
+    <div class="legend">
+      <span><i style="background:var(--ai)"></i>近鉄</span>
+      <span><i style="background:var(--wakakusa)"></i>站前・興福寺</span>
+      <span><i style="background:var(--shika)"></i>奈良公園・東大寺</span>
+      <span><i style="background:var(--shu)"></i>春日大社</span>
+      <span><i style="background:var(--kin)"></i>早午餐・逛街</span>
+      <span><i style="background:repeating-linear-gradient(45deg,#857d70 0 2px,transparent 2px 5px);border:1px solid #857d70"></i>步行・等車</span>
+      <span><i style="border:1.5px dashed var(--wakakusa)"></i>彈性</span>
+      <span><i style="border:1.5px solid var(--shu)"></i>御朱印</span>
+    </div>
+  </section>
+
+  <section class="panel ledger">
+    <h3>時刻帳<small>點一列，時刻盤就跳到那裡</small></h3>
+    <div class="rows" id="rows"></div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tone@14.8.49/build/Tone.js"></script>
+<script>
+(function () {
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const hm = s => { const [a, b] = s.split(':').map(Number); return a * 60 + b; };
+  const fmt = t => { t = Math.round(t); return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
+  const T0 = 415, T1 = 1140;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const C = { shu: css('--shu'), shika: css('--shika'), waka: css('--wakakusa'), kin: css('--kin'), ai: css('--ai'), ink: css('--ink'), ink2: css('--ink2'), rule: css('--rule'), sheet: css('--sheet') };
+
+  /* ---------- itinerary (same as the handbook) ---------- */
+  const ITEMS = [
+    { s: '06:55', e: '07:06', lane: 'kin', kind: 'pause', short: '集合', title: '近鉄京都駅 集合', jp: '近鉄京都線のりば', note: '07:06 是急行「橿原神宮前」行，不是近鉄奈良行，在大和西大寺下車。' },
+    { s: '07:06', e: '07:46', lane: 'kin', kind: 'train', short: '京都→西大寺', title: '京都 → 大和西大寺', jp: '近鉄京都線 急行 橿原神宮前行', note: '40 分。京都→近鉄奈良通票 ¥760。' },
+    { s: '07:46', e: '07:52', lane: 'kin', kind: 'pause', short: '轉乘', title: '大和西大寺 轉乘', jp: '奈良線 近鉄奈良方面', note: '錯過 07:52 就搭 07:58 準急（08:04 到）。', warn: '轉乘月台位置未確認，下車後看「近鉄奈良方面」指標。' },
+    { s: '07:52', e: '07:58', lane: 'kin', kind: 'train', short: '西大寺→奈良', title: '大和西大寺 → 近鉄奈良', jp: '快速急行 近鉄奈良行', note: '6 分，不另收費。' },
+    { s: '07:58', e: '08:00', lane: 'town', kind: 'walk', short: '4號出口', title: '4 號出口 → ROKUMEI', jp: '小西さくら通り', note: '出站 1 分、52 m。鹿の暖簾是店的標誌。' },
+    { s: '08:00', e: '08:45', lane: 'town', kind: 'eat', short: '早餐', title: 'ROKUMEI COFFEE 早餐', jp: 'ロクメイコーヒー 奈良店', note: '8:00 開店。現烤可頌配本日のコーヒー ¥580，可外帶。', warn: '早餐套餐的時段說法不一，到店確認。' },
+    { s: '08:45', e: '09:20', lane: 'todaiji', kind: 'see', short: '奈良公園・鹿', title: '走進奈良公園', jp: '登大路・奈良公園', note: 'Google 估算 22 分，多留 13 分看鹿與拍照。鹿仙貝 10 片 ¥200，只能餵鹿仙貝。', warn: '興福寺五重塔被工程覆屋包住，路過看不到塔身。' },
+    { s: '09:20', e: '09:30', lane: 'todaiji', kind: 'see', short: '南大門', title: '東大寺 南大門', jp: '金剛力士像・門前的鹿', note: '看完大門往北走到大佛殿，約 7 分。' },
+    { s: '09:30', e: '10:15', lane: 'todaiji', kind: 'see', short: '大佛殿', title: '大佛殿・花祭', jp: '盧舎那仏 14.98 m・仏生会', note: '入堂 ¥800，現金。御朱印「華厳」¥300，有多位書寫者可選隊。4/8 大佛殿前設花御堂（2026 年資料）。' },
+    { s: '10:15', e: '10:25', lane: 'todaiji', kind: 'walk', short: '上坡', title: '往二月堂', jp: '石階・坡道', note: 'Google 估算 8 分，有石階。' },
+    { s: '10:25', e: '10:55', lane: 'todaiji', kind: 'see', short: '二月堂', title: '二月堂', jp: '舞台眺望・御朱印「南無観」', note: '從舞台往西看奈良的街。御朱印 ¥300，受付 7:30～17:30。' },
+    { s: '10:55', e: '11:00', lane: 'todaiji', kind: 'walk', short: '步行', title: '往法華堂', jp: '徒歩 5 分', note: '' },
+    { s: '11:00', e: '11:30', lane: 'todaiji', kind: 'see', short: '法華堂', title: '法華堂（三月堂）', jp: '不空羂索観音・御朱印「不空羂索」', note: '入堂 ¥800。大佛殿很擠，這裡人少，可以慢慢看。御朱印 ¥300。', warn: '法華堂 16:00 關門，所以排在上午。' },
+    { s: '11:30', e: '11:50', lane: 'kasuga', kind: 'walk', short: '林間路', title: '林間路往春日大社', jp: '手向山八幡宮のそば', note: 'Google 沒畫完這段，抓 20 分。' },
+    { s: '11:50', e: '13:05', lane: 'kasuga', kind: 'see', short: '春日大社', title: '春日大社', jp: '本社・夫婦大國社', note: '本社御朱印 ¥500 直書き；夫婦大國社是書置き，帶膠水。本殿前特別參拝 ¥700 選用（9:00～16:00）。', warn: '混雜期只給紙本御朱印，不寫入御朱印帳。' },
+    { s: '13:05', e: '13:40', lane: 'kasuga', kind: 'walk', short: '參道下山', title: '參道下山', jp: '二之鳥居 → 一之鳥居 → 猿澤池', note: '石燈籠參道。累了可在「春日大社本殿」搭巴士回車站（11～15 分）。' },
+    { s: '13:40', e: '14:25', lane: 'town', kind: 'eat', short: '平宗 午餐', title: '平宗 午餐', jp: '柿の葉ずし 平宗 奈良店 はなれ', note: '柿の葉ずし盛り合わせ ¥1,650。週一公休，4/8 週四營業。2 人現場排隊。' },
+    { s: '14:25', e: '14:30', lane: 'town', kind: 'walk', short: '步行', title: '往興福寺', jp: '猿澤池東側北上', note: '' },
+    { s: '14:30', e: '15:45', lane: 'town', kind: 'see', short: '興福寺', title: '興福寺', jp: '東金堂・中金堂・南円堂納経所', note: '東金堂、中金堂各 ¥500，現金。先參拜再到南圓堂納經所領御朱印（最後受理 16:30）。', warn: '五重塔被覆屋包住，預定 2034 年度完成。' },
+    { s: '15:45', e: '16:30', lane: 'town', kind: 'see', short: '猿澤池', title: '猿澤池', jp: '池畔散步・休息', note: '時間吃緊時縮成 15 分，換商店街逛久一點。', flex: true },
+    { s: '16:30', e: '17:35', lane: 'town', kind: 'eat', short: '東向商店街', title: '東向商店街', jp: '伴手禮・點心', note: '有頂拱廊，下雨也能逛。17:35 離開。' },
+    { s: '17:35', e: '17:50', lane: 'kin', kind: 'pause', short: '購票', title: '近鉄奈良駅 買特急券', jp: '京都＋特急券 ¥1,280', note: '備案：17:17 急行（18:06 到）、18:20 特急（18:57 到）。' },
+    { s: '17:50', e: '18:27', lane: 'kin', kind: 'train', short: '奈良→京都', title: '近鉄奈良 → 京都', jp: '近鉄 特急', note: '37 分、¥1,280。' },
+    { s: '18:27', e: '19:00', lane: 'kin', kind: 'pause', short: '解散', title: '京都駅 晚餐・解散', jp: '緩衝 33 分', note: '19:00 前結束一天。' }
+  ].map(o => ({ ...o, a: hm(o.s), b: hm(o.e) }));
+  const SEALS = [
+    { t: hm('09:40'), name: '大佛殿' }, { t: hm('10:40'), name: '二月堂' }, { t: hm('11:15'), name: '法華堂' },
+    { t: hm('12:10'), name: '春日大社' }, { t: hm('12:40'), name: '夫婦大國社' },
+    { t: hm('15:15'), name: '興福寺 中金堂' }, { t: hm('15:35'), name: '興福寺 東金堂' }
+  ];
+  const PINS = [
+    { t: hm('08:00'), txt: 'ROKUMEI 開店', lane: 'town' },
+    { t: hm('16:00'), txt: '法華堂 閉門', lane: 'todaiji' },
+    { t: hm('16:30'), txt: '納經所 最後受理', lane: 'town' }
+  ];
+  const DEPART = [hm('07:06'), hm('07:52'), hm('17:50')];
+  const KCH = { train: '行', walk: '行', pause: '待', see: '観', eat: '食', seal: '印' };
+  const LANE = { kin: '近鉄', town: '站前・興福寺', todaiji: '奈良公園・東大寺', kasuga: '春日大社' };
+
+  /* where the two of you are: [minute, u, v] in stage coordinates (0..1) */
+  const KEYS = [
+    [415, .05, .90], [426, .05, .90], [466, .17, .90], [472, .17, .90], [478, .30, .90], [480, .285, .85], [525, .285, .85],
+    [533, .33, .765], [545, .44, .755], [553, .50, .75], [560, .555, .715], [570, .635, .625], [615, .635, .625], [620, .685, .54], [625, .73, .475],
+    [655, .73, .475], [660, .765, .515], [690, .765, .515], [700, .80, .565], [710, .885, .625], [785, .885, .625],
+    [795, .83, .70], [805, .71, .775], [812, .55, .835], [816, .47, .875], [818, .43, .895], [819, .43, .94], [820, .385, .962],
+    [865, .385, .962], [867, .43, .94], [868, .432, .872], [870, .435, .80], [895, .40, .812], [920, .37, .822],
+    [945, .39, .872], [990, .39, .872], [995, .325, .858], [1055, .325, .858], [1058, .30, .90], [1070, .30, .90],
+    [1107, .05, .90], [1140, .05, .90]
+  ];
+  const TRAIN = [[426, 466], [472, 478], [1070, 1107]];
+  const posAt = t => {
+    if (t <= KEYS[0][0]) return [KEYS[0][1], KEYS[0][2]];
+    for (let i = 1; i < KEYS.length; i++) {
+      const [ta, ua, va] = KEYS[i - 1], [tb, ub, vb] = KEYS[i];
+      if (t <= tb) { const f = tb === ta ? 1 : (t - ta) / (tb - ta); return [ua + (ub - ua) * f, va + (vb - va) * f]; }
+    }
+    const k = KEYS[KEYS.length - 1]; return [k[1], k[2]];
+  };
+  const inTrain = t => TRAIN.some(([a, b]) => t > a && t < b);
+  const itemAt = t => ITEMS.find(o => t >= o.a && t < o.b) || ITEMS[ITEMS.length - 1];
+
+  /* Sarusawa pond, shared by the shader and the land cut-out (an ellipse in u,v space) */
+  const POND = { u: 0.39, v: 0.905, ru: 0.03, rv: 0.022 };
+  const inPond = (u, v) => Math.pow((u - POND.u) / POND.ru, 2) + Math.pow((v - POND.v) / POND.rv, 2);
+
+  /* ---------- state ---------- */
+  const state = { t: T0 };
+  let playing = false, tween = null, lastShown = -1, soundOn = false, synth = null, prevT = T0;
+
+  /* ---------- stage ---------- */
+  const stage = $('#stage'), cv = $('#cv'), glc = $('#gl');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, DPR = 1, bg = null, petals = [];
+
+  function mkNoise(seed) {
+    const r = []; let s = seed;
+    for (let i = 0; i < 256; i++) { s = (s * 16807) % 2147483647; r.push(s / 2147483647); }
+    return x => { const i = Math.floor(x), f = x - i, a = r[i & 255], b = r[(i + 1) & 255], t = f * f * (3 - 2 * f); return a + (b - a) * t; };
+  }
+  function rand(seed) { let s = seed; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; }
+  const bump = (u, c, w) => Math.exp(-Math.pow((u - c) / w, 2));
+
+  function ridge(c, fn, fill) {
+    c.beginPath(); c.moveTo(0, H);
+    for (let x = 0; x <= W; x += 4) c.lineTo(x, fn(x / W) * H);
+    c.lineTo(W, H); c.closePath(); c.fillStyle = fill; c.fill();
+  }
+  function torii(c, x, y, s, col) {
+    c.fillStyle = col;
+    const w = s * 0.9, p = Math.max(1, s * 0.11);
+    c.fillRect(x - w * 0.36, y - s, p, s); c.fillRect(x + w * 0.36 - p, y - s, p, s);
+    c.fillRect(x - w * 0.42, y - s * 0.72, w * 0.84, Math.max(1, s * 0.08));
+    c.beginPath(); c.moveTo(x - w * 0.6, y - s * 0.92); c.quadraticCurveTo(x, y - s * 1.0, x + w * 0.6, y - s * 0.92);
+    c.lineTo(x + w * 0.56, y - s * 1.05); c.quadraticCurveTo(x, y - s * 1.12, x - w * 0.56, y - s * 1.05); c.closePath(); c.fill();
+  }
+  function roof(c, x, y, w, h, col) {
+    c.fillStyle = col; c.beginPath();
+    c.moveTo(x - w / 2, y); c.quadraticCurveTo(x - w * 0.3, y - h * 0.35, x - w * 0.22, y - h);
+    c.lineTo(x + w * 0.22, y - h); c.quadraticCurveTo(x + w * 0.3, y - h * 0.35, x + w / 2, y); c.closePath(); c.fill();
+  }
+  function lantern(c, x, y, s) {
+    c.fillStyle = '#8E8B80';
+    c.fillRect(x - s * 0.12, y - s * 0.55, s * 0.24, s * 0.55);
+    c.fillRect(x - s * 0.3, y - s * 0.78, s * 0.6, s * 0.24);
+    c.beginPath(); c.moveTo(x - s * 0.42, y - s * 0.78); c.lineTo(x, y - s * 1.02); c.lineTo(x + s * 0.42, y - s * 0.78); c.closePath(); c.fill();
+  }
+  function deer(c, x, y, s, flip) {
+    c.save(); c.translate(x, y); c.scale(flip ? -s : s, s);
+    c.fillStyle = '#8A5D35';
+    c.beginPath(); c.ellipse(0, -6, 6, 3.2, 0, 0, Math.PI * 2); c.fill();
+    c.fillRect(-5, -4, 1.4, 5); c.fillRect(-2.5, -4, 1.4, 5); c.fillRect(2.4, -4, 1.4, 5); c.fillRect(4.6, -4, 1.4, 5);
+    c.beginPath(); c.moveTo(4.5, -8); c.lineTo(7.5, -13); c.lineTo(9.5, -12); c.lineTo(7.5, -7); c.closePath(); c.fill();
+    c.beginPath(); c.ellipse(9.5, -13, 2.4, 1.6, -0.3, 0, Math.PI * 2); c.fill();
+    c.fillStyle = 'rgba(250,240,220,.8)'; c.beginPath(); c.arc(-1, -7, 0.8, 0, Math.PI * 2); c.arc(2, -6.2, 0.8, 0, Math.PI * 2); c.fill();
+    c.restore();
+  }
+  function sakura(c, x, y, r, R) {
+    for (let i = 0; i < 7; i++) { c.fillStyle = `rgba(${238 + R() * 12},${190 + R() * 25},${200 + R() * 20},${0.55 + R() * 0.3})`; c.beginPath(); c.arc(x + (R() - 0.5) * r * 1.6, y + (R() - 0.5) * r, r * (0.45 + R() * 0.35), 0, Math.PI * 2); c.fill(); }
+    c.fillStyle = '#5B4636'; c.fillRect(x - 1, y + r * 0.3, 2, r * 0.9);
+  }
+  function label(c, text, x, y, opt = {}) {
+    const size = opt.size || 13;
+    c.font = `${opt.weight || 800} ${size}px ${opt.mono ? '"IBM Plex Mono"' : '"Shippori Mincho B1"'},serif`;
+    c.textAlign = opt.align || 'center'; c.textBaseline = 'middle';
+    c.lineWidth = 4; c.strokeStyle = 'rgba(245,244,236,.88)'; c.lineJoin = 'round';
+    c.strokeText(text, x, y); c.fillStyle = opt.color || C.ink; c.fillText(text, x, y);
+  }
+
+  function buildStatic() {
+    bg = document.createElement('canvas'); bg.width = Math.round(W * DPR); bg.height = Math.round(H * DPR);
+    const c = bg.getContext('2d'); c.scale(DPR, DPR);
+    const n1 = mkNoise(7), n2 = mkNoise(19), n3 = mkNoise(41), R = rand(99);
+    const s = Math.max(0.7, W / 1100), big = W >= 640, tiny = W < 560;
+    // far ranges: 生駒 to the west, 春日山・高円山 to the east
+    ridge(c, u => 0.40 + 0.06 * n1(u * 6) + 0.025 * n2(u * 19) - 0.05 * bump(u, 0.12, 0.12), 'rgba(122,140,150,.50)');
+    ridge(c, u => 0.50 + 0.05 * n2(u * 5 + 3) + 0.02 * n3(u * 23) - 0.08 * bump(u, 0.95, 0.12), 'rgba(104,124,112,.68)');
+    // ground
+    const g = c.createLinearGradient(0, H * 0.70, 0, H);
+    g.addColorStop(0, '#C5CBB0'); g.addColorStop(1, '#D9D7C2');
+    c.fillStyle = g; c.fillRect(0, H * 0.74, W, H * 0.26);
+    ridge(c, u => Math.min(0.80, 0.80 - 0.05 * bump(u, 0.30, 0.18)), '#C7CCB2');
+    // 春日山 primeval forest
+    const fg = c.createLinearGradient(0, H * 0.3, 0, H * 0.8);
+    fg.addColorStop(0, '#3E5B3D'); fg.addColorStop(1, '#5E7A52');
+    ridge(c, u => Math.min(0.80, 0.80 - 0.42 * bump(u, 1.0, 0.16) - 0.012 * n3(u * 50)), fg);
+    for (let i = 0; i < 700; i++) {
+      const u = 0.80 + R() * 0.2, top = 0.80 - 0.42 * bump(u, 1.0, 0.16), v = top + R() * (0.80 - top);
+      c.fillStyle = `rgba(${25 + R() * 25},${55 + R() * 35},${35 + R() * 20},${0.25 + R() * 0.3})`;
+      c.beginPath(); c.arc(u * W, v * H, 1 + R() * 2.6, 0, Math.PI * 2); c.fill();
+    }
+    // 若草山: the bald grass hill in three tiers
+    const wg = c.createLinearGradient(0, H * 0.28, 0, H * 0.62);
+    wg.addColorStop(0, '#A9B86A'); wg.addColorStop(1, '#8FA458');
+    c.beginPath(); c.moveTo(W * 0.69, H * 0.62);
+    for (let u = 0.69; u <= 0.93; u += 0.004) c.lineTo(u * W, (0.62 - 0.30 * bump(u, 0.81, 0.07) - 0.04 * bump(u, 0.74, 0.04) - 0.03 * bump(u, 0.88, 0.04)) * H);
+    c.lineTo(W * 0.93, H * 0.62); c.closePath(); c.fillStyle = wg; c.fill();
+    c.strokeStyle = 'rgba(90,110,50,.35)'; c.lineWidth = 1;
+    [0.40, 0.48].forEach(v0 => { c.beginPath(); for (let u = 0.74; u <= 0.88; u += 0.005) { const top = 0.62 - 0.30 * bump(u, 0.81, 0.07); const v = Math.max(top + 0.01, v0 + 0.02 * Math.sin(u * 40)); u === 0.74 ? c.moveTo(u * W, v * H) : c.lineTo(u * W, v * H); } c.stroke(); });
+    // forest skirt behind Todaiji and Kasuga
+    for (let i = 0; i < 520; i++) {
+      const u = 0.62 + R() * 0.30, v = 0.50 + R() * 0.20;
+      c.fillStyle = `rgba(${40 + R() * 30},${72 + R() * 40},${45 + R() * 20},${0.35 + R() * 0.35})`;
+      c.beginPath(); c.arc(u * W, v * H, 2 + R() * 4, 0, Math.PI * 2); c.fill();
+    }
+    // Nara Park lawn
+    const pg = c.createRadialGradient(0.53 * W, 0.80 * H, 4, 0.53 * W, 0.80 * H, 0.17 * W);
+    pg.addColorStop(0, 'rgba(150,175,95,.75)'); pg.addColorStop(1, 'rgba(150,175,95,0)');
+    c.fillStyle = pg; c.fillRect(0.34 * W, 0.66 * H, 0.40 * W, 0.30 * H);
+    // Kyoto city and tower
+    for (let i = 0; i < 50; i++) { const u = R() * 0.11, w = 4 + R() * 12, h = 3 + R() * 10; c.fillStyle = `rgba(70,76,74,${0.18 + R() * 0.22})`; c.fillRect(u * W, H * 0.885 - h, w, h); }
+    const kx = 0.05 * W, kb = 0.885 * H, kt = 0.62 * H;
+    c.fillStyle = '#F2F2EC'; c.fillRect(kx - 3.5, kt + 14, 7, kb - kt - 14); c.fillRect(kx - 13, kb - 16, 26, 16);
+    c.fillStyle = C.shu; c.fillRect(kx - 3.5, kt + 9, 7, 6); c.fillStyle = '#F2F2EC'; c.beginPath(); c.ellipse(kx, kt + 6, 7, 6, 0, 0, Math.PI * 2); c.fill();
+    c.fillRect(kx - 1, kt - 8, 2, 10);
+    // fields between the cities
+    c.strokeStyle = 'rgba(110,130,70,.35)'; c.lineWidth = 1;
+    for (let k = 0; k < 6; k++) { c.beginPath(); c.moveTo(0.10 * W, (0.82 + k * 0.012) * H); c.lineTo(0.25 * W, (0.83 + k * 0.012) * H); c.stroke(); }
+    // Nara town: low roofs
+    for (let i = 0; i < 70; i++) {
+      const u = 0.255 + R() * 0.20, v = 0.80 + R() * 0.17;
+      if (inPond(u, v) < 1.6) continue;
+      c.fillStyle = `rgba(${70 + R() * 20},${70 + R() * 20},${72 + R() * 20},${0.35 + R() * 0.25})`;
+      const w = 6 + R() * 8; c.beginPath(); c.moveTo(u * W - w / 2, v * H); c.lineTo(u * W, v * H - 4); c.lineTo(u * W + w / 2, v * H); c.closePath(); c.fill();
+    }
+    // pond cut-out (the WebGL water shows through)
+    c.save(); c.globalCompositeOperation = 'destination-out'; c.beginPath();
+    c.ellipse(POND.u * W, POND.v * H, POND.ru * W, POND.rv * H, 0, 0, Math.PI * 2); c.fill(); c.restore();
+    c.strokeStyle = 'rgba(60,70,55,.45)'; c.lineWidth = 1.4; c.beginPath(); c.ellipse(POND.u * W, POND.v * H, POND.ru * W, POND.rv * H, 0, 0, Math.PI * 2); c.stroke();
+    // willows on the pond bank
+    [[-0.9, -0.3], [0.85, -0.5], [0.2, 1.05]].forEach(([a, b]) => {
+      const x = (POND.u + a * POND.ru) * W, y = (POND.v + b * POND.rv) * H;
+      c.strokeStyle = 'rgba(110,140,60,.8)'; c.lineWidth = 1;
+      for (let k = -4; k <= 4; k++) { c.beginPath(); c.moveTo(x, y - 12 * s); c.quadraticCurveTo(x + k * 2 * s, y - 10 * s, x + k * 2.6 * s, y - 1 * s); c.stroke(); }
+      c.fillStyle = '#4E3D30'; c.fillRect(x - 1, y - 12 * s, 2, 12 * s);
+    });
+    // rail
+    const ry = 0.90 * H;
+    c.strokeStyle = 'rgba(40,46,44,.75)'; c.lineWidth = 1.4;
+    c.beginPath(); c.moveTo(0, ry - 2); c.lineTo(0.30 * W, ry - 2); c.moveTo(0, ry + 2); c.lineTo(0.30 * W, ry + 2); c.stroke();
+    c.strokeStyle = 'rgba(40,46,44,.35)'; c.lineWidth = 1;
+    for (let x = 4; x < 0.30 * W; x += 7) { c.beginPath(); c.moveTo(x, ry - 4); c.lineTo(x, ry + 4); c.stroke(); }
+    [[.05, '京都駅'], [.17, '大和西大寺'], [.30, '近鉄奈良']].forEach(([u, n]) => {
+      if (tiny && u === 0.17) { c.fillStyle = C.sheet; c.strokeStyle = C.ink; c.lineWidth = 2; c.beginPath(); c.arc(u * W, ry, 5, 0, Math.PI * 2); c.fill(); c.stroke(); return; }
+      c.fillStyle = C.sheet; c.strokeStyle = C.ink; c.lineWidth = 2; c.beginPath(); c.arc(u * W, ry, 6, 0, Math.PI * 2); c.fill(); c.stroke();
+      label(c, n, u * W, ry + 20, { size: W < 560 ? 11 : 14 });
+    });
+    if (big) label(c, '近鉄京都線', 0.11 * W, ry - 13, { size: 11, weight: 600, color: C.ink2 });
+    // Higashimuki arcade
+    const ax = 0.325 * W, ay = 0.858 * H;
+    c.fillStyle = 'rgba(235,238,236,.9)'; c.strokeStyle = 'rgba(70,80,80,.6)'; c.lineWidth = 1;
+    c.beginPath(); c.moveTo(ax - 4 * s, ay + 8 * s); c.lineTo(ax - 4 * s, ay - 20 * s); c.quadraticCurveTo(ax, ay - 25 * s, ax + 4 * s, ay - 20 * s); c.lineTo(ax + 4 * s, ay + 8 * s); c.closePath(); c.fill(); c.stroke();
+    for (let k = 0; k < 5; k++) { c.beginPath(); c.moveTo(ax - 4 * s, ay - 16 * s + k * 5 * s); c.lineTo(ax + 4 * s, ay - 16 * s + k * 5 * s); c.stroke(); }
+    // ROKUMEI: a small shop with a deer noren
+    const rx = 0.285 * W, rby = 0.85 * H;
+    c.fillStyle = '#E9E2D2'; c.fillRect(rx - 7 * s, rby - 9 * s, 14 * s, 9 * s);
+    roof(c, rx, rby - 9 * s, 20 * s, 5 * s, '#4A3E33');
+    c.fillStyle = C.shika; c.fillRect(rx - 4 * s, rby - 8 * s, 8 * s, 4 * s);
+    // Kofukuji: Chukondo, Tokondo, Nanendo and the covered pagoda
+    const hall = (u, v, w, col) => { const x = u * W, y = v * H; c.fillStyle = col; c.fillRect(x - w * 0.36 * s, y - 7 * s, w * 0.72 * s, 7 * s); roof(c, x, y - 7 * s, w * s, 8 * s, '#34322D'); };
+    hall(0.40, 0.812, 26, '#B4472C');
+    hall(0.435, 0.80, 20, '#6E5A46');
+    const nx = 0.37 * W, ny = 0.822 * H; c.fillStyle = '#7A5B44'; c.fillRect(nx - 5 * s, ny - 6 * s, 10 * s, 6 * s); roof(c, nx, ny - 6 * s, 16 * s, 8 * s, '#34322D');
+    const px = 0.458 * W, py = 0.80 * H; c.fillStyle = 'rgba(244,244,240,.95)'; c.strokeStyle = 'rgba(110,115,120,.7)';
+    c.fillRect(px - 6 * s, py - 38 * s, 12 * s, 38 * s); c.strokeRect(px - 6 * s, py - 38 * s, 12 * s, 38 * s);
+    for (let k = 1; k < 6; k++) { c.beginPath(); c.moveTo(px - 6 * s, py - 38 * s + k * 6.3 * s); c.lineTo(px + 6 * s, py - 38 * s + k * 6.3 * s); c.stroke(); }
+    // Hiramune
+    const hx = 0.385 * W, hy = 0.962 * H; c.fillStyle = '#E3D7BE'; c.fillRect(hx - 7 * s, hy - 7 * s, 14 * s, 7 * s); roof(c, hx, hy - 7 * s, 20 * s, 5 * s, '#3F3A33');
+    // Todaiji: Nandaimon, Daibutsuden, Nigatsudo on its stage, Hokkedo
+    const gx = 0.555 * W, gy = 0.715 * H;
+    c.fillStyle = '#6E4B32'; c.fillRect(gx - 9 * s, gy - 12 * s, 3 * s, 12 * s); c.fillRect(gx + 6 * s, gy - 12 * s, 3 * s, 12 * s);
+    roof(c, gx, gy - 12 * s, 26 * s, 6 * s, '#2F2D29'); c.fillStyle = '#6E4B32'; c.fillRect(gx - 8 * s, gy - 18 * s, 16 * s, 3 * s); roof(c, gx, gy - 19 * s, 26 * s, 7 * s, '#2F2D29');
+    const dx = 0.635 * W, dy = 0.625 * H;
+    c.fillStyle = '#E9E3D2'; c.fillRect(dx - 22 * s, dy - 10 * s, 44 * s, 10 * s);
+    c.fillStyle = '#3A3430'; for (let k = -3; k <= 3; k++) c.fillRect(dx + k * 6 * s - 1, dy - 10 * s, 2, 10 * s);
+    roof(c, dx, dy - 10 * s, 58 * s, 9 * s, '#2C2A27'); c.fillStyle = '#E9E3D2'; c.fillRect(dx - 16 * s, dy - 24 * s, 32 * s, 6 * s);
+    roof(c, dx, dy - 23 * s, 52 * s, 12 * s, '#2C2A27');
+    c.fillStyle = '#D6A93A'; [-1, 1].forEach(k => { c.beginPath(); c.ellipse(dx + k * 11 * s, dy - 36 * s, 2 * s, 3.4 * s, k * 0.4, 0, Math.PI * 2); c.fill(); });
+    const ngx = 0.73 * W, ngy = 0.475 * H;
+    c.strokeStyle = '#5A4330'; c.lineWidth = 1.2;
+    for (let k = -2; k <= 2; k++) { c.beginPath(); c.moveTo(ngx + k * 5 * s, ngy); c.lineTo(ngx + k * 5 * s, ngy + 12 * s); c.stroke(); }
+    c.beginPath(); c.moveTo(ngx - 12 * s, ngy + 4 * s); c.lineTo(ngx + 12 * s, ngy + 4 * s); c.stroke();
+    c.fillStyle = '#E5DCC8'; c.fillRect(ngx - 11 * s, ngy - 8 * s, 22 * s, 8 * s); roof(c, ngx, ngy - 8 * s, 30 * s, 9 * s, '#2C2A27');
+    const hkx = 0.765 * W, hky = 0.515 * H; c.fillStyle = '#E2D8C2'; c.fillRect(hkx - 8 * s, hky - 6 * s, 16 * s, 6 * s); roof(c, hkx, hky - 6 * s, 24 * s, 7 * s, '#34322D');
+    // Kasuga: vermilion halls and hanging lanterns
+    const kgx = 0.885 * W, kgy = 0.625 * H;
+    c.fillStyle = '#D2482A'; c.fillRect(kgx - 20 * s, kgy - 7 * s, 40 * s, 7 * s);
+    c.fillStyle = '#F2EBDC'; for (let k = -3; k <= 3; k++) c.fillRect(kgx + k * 5.6 * s - 1, kgy - 6 * s, 2, 5 * s);
+    roof(c, kgx, kgy - 7 * s, 48 * s, 6 * s, '#3A3631');
+    c.fillStyle = '#D2482A'; c.fillRect(kgx - 6 * s, kgy - 17 * s, 12 * s, 9 * s); roof(c, kgx, kgy - 17 * s, 22 * s, 8 * s, '#3A3631');
+    c.fillStyle = '#E2B13C'; for (let k = -3; k <= 3; k++) { c.beginPath(); c.arc(kgx + k * 6 * s, kgy + 2 * s, 1.6 * s, 0, Math.PI * 2); c.fill(); }
+    // sando: stone lanterns from 二之鳥居 to 一之鳥居
+    const SANDO = [[.83, .70], [.71, .775], [.55, .835]];
+    c.strokeStyle = 'rgba(120,110,95,.45)'; c.lineWidth = 3 * s; c.beginPath(); SANDO.forEach(([u, v], i) => i ? c.lineTo(u * W, v * H) : c.moveTo(u * W, v * H)); c.stroke();
+    for (let i = 0; i < 2; i++) {
+      const [ua, va] = SANDO[i], [ub, vb] = SANDO[i + 1], L = Math.hypot((ub - ua) * W, (vb - va) * H), n = Math.floor(L / (11 * s));
+      for (let k = 1; k < n; k++) { const f = k / n, x = (ua + (ub - ua) * f) * W, y = (va + (vb - va) * f) * H; lantern(c, x, y - 4 * s, 7 * s); lantern(c, x + 3 * s, y + 5 * s, 6 * s); }
+    }
+    torii(c, 0.83 * W, 0.70 * H, 14 * s, C.shu); torii(c, 0.55 * W, 0.835 * H, 18 * s, C.shu);
+    // cherry trees and deer in the park
+    [[.47, .74], [.51, .72], [.60, .77], [.665, .745], [.48, .84], [.52, .87], [.68, .82], [.33, .775], [.27, .80]].forEach(([u, v]) => sakura(c, u * W, v * H, 7 * s, R));
+    [[.49, .80, 0], [.52, .785, 1], [.60, .80, 0], [.655, .79, 1], [.68, .70, 0], [.78, .73, 1], [.47, .90, 1]].forEach(([u, v, f]) => deer(c, u * W, v * H, 0.85 * s, f));
+    // labels (neighbours split left / right)
+    label(c, '若草山', 0.81 * W, 0.30 * H, { size: big ? 20 : 15, color: 'rgba(60,72,30,.65)' });
+    if (!tiny) label(c, '春日山', 0.955 * W, 0.52 * H, { size: big ? 16 : 13, color: 'rgba(30,50,30,.75)' });
+    label(c, '大佛殿', dx, dy - 46 * s, { size: big ? 14 : 12 });
+    if (!tiny) label(c, '南大門', gx + 16 * s, gy - 4 * s, { size: 12, align: 'left' });
+    label(c, '二月堂', ngx - 18 * s, ngy - 14 * s, { size: 12, align: 'right' });
+    if (!tiny) label(c, '法華堂', hkx + 15 * s, hky - 4 * s, { size: 11, align: 'left' });
+    label(c, '春日大社', kgx, kgy + 14 * s, { size: big ? 14 : 12 });
+    if (!tiny) label(c, '興福寺', 0.40 * W, 0.812 * H - 26 * s, { size: big ? 13 : 11 });
+    if (!tiny) label(c, '猿澤池', (POND.u - POND.ru) * W - 6, POND.v * H, { size: 11, align: 'right' });
+    if (big) {
+      label(c, '五重塔（覆屋）', px, py - 46 * s, { size: 10, weight: 600, color: C.ink2 });
+      label(c, '奈良公園', 0.505 * W, 0.825 * H, { size: 12, color: 'rgba(60,72,30,.75)' });
+      label(c, '一之鳥居', 0.55 * W, 0.835 * H + 12, { size: 10.5, weight: 600 });
+      label(c, '二之鳥居', 0.83 * W + 10, 0.70 * H + 10, { size: 10.5, weight: 600, align: 'left' });
+      label(c, 'ROKUMEI', rx - 10 * s, rby + 4 * s, { size: 10.5, weight: 600, align: 'right' });
+      label(c, '東向商店街', ax - 8 * s, ay - 26 * s, { size: 10.5, weight: 600, align: 'right' });
+      label(c, '平宗', hx - 12 * s, hy - 4 * s, { size: 10.5, weight: 600, align: 'right' });
+    }
+    // the whole day's route, faint
+    c.strokeStyle = 'rgba(40,30,20,.24)'; c.lineWidth = 1.2; c.setLineDash([1, 5]); c.beginPath();
+    KEYS.forEach(([t, u, v], i) => i ? c.lineTo(u * W, v * H) : c.moveTo(u * W, v * H)); c.stroke(); c.setLineDash([]);
+  }
+
+  function seedPetals() {
+    const n = reduce ? 0 : Math.round(W / 18), R = rand(5);
+    petals = Array.from({ length: n }, () => ({ x: R() * W, y: R() * H, vx: 0.25 + R() * 0.5, vy: 0.3 + R() * 0.55, a: R() * 6.28, va: (R() - 0.5) * 0.06, s: 2.2 + R() * 2.4 }));
+  }
+
+  function resize() {
+    W = stage.clientWidth; H = stage.clientHeight; DPR = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    glc.width = Math.round(W * DPR); glc.height = Math.round(H * DPR);
+    buildStatic(); seedPetals(); if (gl) gl.viewport(0, 0, glc.width, glc.height);
+  }
+
+  /* ---------- WebGL sky and Sarusawa pond ---------- */
+  let gl = null, prog = null, U = {};
+  const FS = `precision mediump float;
+uniform vec2 r; uniform float tm; uniform float day; uniform vec4 pond;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*n(p);p*=2.03;a*=.5;}return s;}
+void main(){
+  vec2 q=gl_FragCoord.xy/r; float u=q.x, v=1.-q.y;
+  float a=smoothstep(0.,.30,day), b=smoothstep(.62,.95,day), dusk=smoothstep(.90,1.,day);
+  vec3 zen=mix(mix(vec3(.55,.67,.82),vec3(.36,.60,.83),a),vec3(.44,.54,.74),b);
+  vec3 hor=mix(mix(vec3(.97,.83,.69),vec3(.82,.90,.93),a),vec3(.97,.76,.55),b);
+  zen=mix(zen,vec3(.30,.33,.55),dusk); hor=mix(hor,vec3(.95,.62,.55),dusk);
+  vec3 col=mix(zen,hor,smoothstep(.0,.62,v));
+  vec2 sp=vec2(mix(.92,.08,day),.30-.22*sin(3.14159*min(day*1.04,1.)));
+  float d=length((vec2(u,v)-sp)*vec2(r.x/r.y,1.));
+  col+=vec3(1.,.93,.75)*(.55*exp(-d*d*180.)+.18*exp(-d*7.))*(1.-.5*dusk);
+  float cl=fbm(vec2(u*3.+tm*.006,v*6.)); col=mix(col,vec3(1.,.97,.95),smoothstep(.55,.85,cl)*.35*(1.-smoothstep(.2,.5,v)));
+  float e=pow((u-pond.x)/pond.z,2.)+pow((v-pond.y)/pond.w,2.);
+  if(e<1.08){
+    vec3 wc=mix(vec3(.24,.40,.40),vec3(.33,.52,.50),a);
+    wc=mix(wc,vec3(.42,.40,.48),dusk);
+    float fl=fbm(vec2(u*90.+tm*.08,v*60.)), rip=sin((sqrt(e)*40.)-tm*1.6)*.5+.5;
+    wc+=vec3(.10,.12,.11)*(fl-.5)+vec3(.85,.92,.90)*smoothstep(.85,1.,rip)*.12;
+    float glint=exp(-pow((u-sp.x)*4.,2.))*smoothstep(.7,.92,n(vec2(u*140.,v*60.-tm*1.4)));
+    wc+=vec3(1.,.92,.75)*glint*.5;
+    col=mix(wc,vec3(.80,.82,.72),smoothstep(.92,1.08,e));
+  }
+  gl_FragColor=vec4(col,1.);
+}`;
+  const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  function initGL() {
+    try {
+      gl = glc.getContext('webgl', { premultipliedAlpha: false, antialias: false });
+      if (!gl) return;
+      const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
+      prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(prog); gl.useProgram(prog);
+      const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      U = { r: gl.getUniformLocation(prog, 'r'), tm: gl.getUniformLocation(prog, 'tm'), day: gl.getUniformLocation(prog, 'day'), pond: gl.getUniformLocation(prog, 'pond') };
+    } catch (e) { gl = null; }
+  }
+  function drawGL(sec) {
+    if (!gl) {
+      const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#8FB3D6'); g.addColorStop(0.6, '#E3E9E2'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#4E7672'; ctx.beginPath(); ctx.ellipse(POND.u * W, POND.v * H, POND.ru * W, POND.rv * H, 0, 0, Math.PI * 2); ctx.fill();
+      return false;
+    }
+    gl.uniform2f(U.r, glc.width, glc.height); gl.uniform1f(U.tm, sec); gl.uniform1f(U.day, (state.t - T0) / (T1 - T0));
+    gl.uniform4f(U.pond, POND.u, POND.v, POND.ru, POND.rv);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); return true;
+  }
+
+  /* ---------- per-frame drawing ---------- */
+  function drawTrain(x, y, dir, s, express) {
+    const L = 64 * s, h = 11 * s;
+    ctx.save(); ctx.translate(x, y - 5 * s); ctx.scale(dir, 1);
+    ctx.fillStyle = express ? '#E8862F' : '#ECE6D9'; ctx.strokeStyle = '#3A3530'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(-L / 2, -h / 2); ctx.lineTo(L / 2 - 6 * s, -h / 2); ctx.quadraticCurveTo(L / 2, -h / 2, L / 2, 0); ctx.lineTo(L / 2, h / 2); ctx.lineTo(-L / 2, h / 2); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = express ? '#1F2D52' : '#A3242E'; ctx.fillRect(-L / 2, h * 0.12, L, h * 0.2);
+    ctx.fillStyle = '#2C3436'; for (let i = 0; i < 6; i++) ctx.fillRect(-L / 2 + 4 * s + i * 9 * s, -h * 0.32, 6 * s, h * 0.3);
+    ctx.fillRect(L / 2 - 5 * s, -h * 0.32, 4 * s, h * 0.3);
+    ctx.restore();
+  }
+  function frame(ms) {
+    const sec = ms / 1000;
+    const glOk = drawGL(sec);
+    if (glOk) ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(bg, 0, 0, W, H);
+    const t = state.t;
+    // the deer-brown thread: the route travelled so far
+    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.strokeStyle = 'rgba(140,90,46,.25)'; ctx.lineWidth = 7; tracePath(t); ctx.stroke();
+    ctx.strokeStyle = C.shika; ctx.lineWidth = 2.6; tracePath(t); ctx.stroke(); ctx.restore();
+    // petals
+    ctx.fillStyle = 'rgba(242,190,204,.85)';
+    for (const p of petals) {
+      p.x += p.vx; p.y += p.vy; p.a += p.va;
+      if (p.y > H + 6 || p.x > W + 6) { p.x = Math.random() * W * 0.8 - 20; p.y = -6; }
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.beginPath(); ctx.ellipse(0, 0, p.s, p.s * 0.55, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    }
+    // you two, or the train
+    const [u, v] = posAt(t), x = u * W, y = v * H, s = Math.max(0.65, W / 1100);
+    if (inTrain(t)) {
+      const back = t > TRAIN[2][0];
+      drawTrain(x, y, back ? -1 : 1, s, back);
+    } else {
+      const bob = reduce ? 0 : Math.sin(sec * 3) * 1.2;
+      ctx.fillStyle = 'rgba(255,255,255,.78)'; ctx.beginPath(); ctx.arc(x, y - 6 + bob, 11, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = C.shika; ctx.beginPath(); ctx.arc(x - 3.5, y - 7 + bob, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = C.ai; ctx.beginPath(); ctx.arc(x + 3.5, y - 5 + bob, 4, 0, Math.PI * 2); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  function tracePath(t) {
+    ctx.beginPath(); ctx.moveTo(KEYS[0][1] * W, KEYS[0][2] * H);
+    for (let i = 1; i < KEYS.length; i++) {
+      if (KEYS[i][0] <= t) ctx.lineTo(KEYS[i][1] * W, KEYS[i][2] * H);
+      else { const [u, v] = posAt(t); ctx.lineTo(u * W, v * H); break; }
+    }
+  }
+
+  /* ---------- clock, card, ledger ---------- */
+  const nowEl = $('#now'), phaseEl = $('#phase'), card = $('#card'), scrub = $('#scrub'), tlabel = $('#tlabel');
+  function phaseName(it, t) { return inTrain(t) ? '近鉄 乘車中' : LANE[it.lane] + '・' + it.title.replace(/（.*?）/g, ''); }
+  function renderCard(t) {
+    const it = itemAt(t), i = ITEMS.indexOf(it), nx = ITEMS[i + 1];
+    const left = nx ? Math.max(0, Math.round(nx.a - t)) : 0;
+    card.innerHTML = `<div class="seal k-${it.kind} ${it.lane}" aria-hidden="true">${KCH[it.kind]}</div>
+      <div class="span">${it.s} – ${it.e}　${LANE[it.lane]}　停留 ${it.b - it.a} 分${it.flex ? '　彈性' : ''}</div>
+      <h2>${it.title}</h2><div class="jp">${it.jp || ''}</div>
+      ${it.note ? `<div class="note">${it.note}</div>` : ''}
+      ${it.warn ? `<div class="warn">⚠ ${it.warn}</div>` : ''}
+      ${nx ? `<div class="next">下一站 <b>${nx.s} ${nx.title}</b>，還有 ${left} 分</div>` : `<div class="next">今天的行程到這裡結束。</div>`}`;
+  }
+  const rowsEl = $('#rows');
+  rowsEl.innerHTML = ITEMS.map((o, i) => `<button class="row" type="button" data-i="${i}">
+      <span class="t">${o.s}–${o.e}</span><span class="k ${o.kind} ${o.lane}" aria-hidden="true">${KCH[o.kind]}</span>
+      <span><b>${o.title}${o.flex ? '（彈性）' : ''}</b><span class="d">${o.jp || ''}${o.warn ? ' <span class="flag">⚠ 注意</span>' : ''}</span></span></button>`).join('');
+  rowsEl.addEventListener('click', e => { const b = e.target.closest('.row'); if (!b) return; stop(); setT(ITEMS[+b.dataset.i].a + 0.5); });
+
+  function setT(t, fromPlay) {
+    t = Math.max(T0, Math.min(T1, t));
+    if (fromPlay && soundOn) chimes(prevT, t);
+    prevT = t; state.t = t;
+    const m = Math.floor(t);
+    if (m !== lastShown) {
+      lastShown = m;
+      const s = fmt(m); nowEl.textContent = s; tlabel.textContent = s; scrub.value = m;
+      const it = itemAt(t); phaseEl.textContent = phaseName(it, t); renderCard(t);
+      rowsEl.querySelectorAll('.row').forEach((r, i) => r.classList.toggle('on', ITEMS[i] === it));
+      if (gantt.update) gantt.update(t);
+    }
+  }
+
+  /* ---------- playback (GSAP, with a plain fallback) ---------- */
+  const playBtn = $('#play');
+  function play() {
+    if (state.t >= T1 - 1) setT(T0);
+    playing = true; playBtn.textContent = '暫停'; playBtn.setAttribute('aria-pressed', 'true');
+    const dur = 46 * (T1 - state.t) / (T1 - T0);
+    if (window.gsap) tween = gsap.to(state, { t: T1, duration: dur, ease: 'none', onUpdate: () => setT(state.t, true), onComplete: stop });
+    else { const t0 = performance.now(), s0 = state.t; const step = n => { if (!playing) return; const f = Math.min(1, (n - t0) / (dur * 1000)); setT(s0 + (T1 - s0) * f, true); f < 1 ? requestAnimationFrame(step) : stop(); }; requestAnimationFrame(step); }
+  }
+  function stop() { playing = false; if (tween) { tween.kill(); tween = null; } playBtn.textContent = '播放一天'; playBtn.setAttribute('aria-pressed', 'false'); }
+  playBtn.addEventListener('click', () => playing ? stop() : play());
+  scrub.addEventListener('input', () => { stop(); setT(+scrub.value); });
+
+  /* ---------- sound (Tone.js) ---------- */
+  const soundBtn = $('#sound');
+  if (!window.Tone) soundBtn.hidden = true;
+  soundBtn.addEventListener('click', async () => {
+    soundOn = !soundOn; soundBtn.setAttribute('aria-pressed', String(soundOn)); soundBtn.textContent = soundOn ? '鈴聲 開' : '鈴聲 關';
+    if (soundOn && window.Tone) {
+      try {
+        await Tone.start();
+        if (!synth) { const rv = new Tone.Reverb({ decay: 3.2, wet: 0.35 }).toDestination(); synth = new Tone.PolySynth(Tone.FMSynth, { harmonicity: 3.01, modulationIndex: 9, envelope: { attack: 0.002, decay: 1.4, sustain: 0, release: 1.6 }, volume: -16 }).connect(rv); }
+        synth.triggerAttackRelease(['E6'], 0.6);
+      } catch (e) { soundOn = false; soundBtn.setAttribute('aria-pressed', 'false'); soundBtn.textContent = '鈴聲 關'; }
+    }
+  });
+  function chimes(a, b) {
+    if (!synth || b <= a) return;
+    SEALS.forEach(sl => { if (a < sl.t && sl.t <= b) synth.triggerAttackRelease(['E6', 'B6'], 0.8); });
+    DEPART.forEach(d => { if (a < d && d <= b) { const now = Tone.now(); synth.triggerAttackRelease('G5', 0.25, now); synth.triggerAttackRelease('C6', 0.4, now + 0.22); } });
+  }
+
+  /* ---------- Gantt (D3 + Rough.js) ---------- */
+  const gantt = {};
+  function drawGantt() {
+    const host = $('#gantt'); host.innerHTML = '';
+    if (!window.d3) { host.innerHTML = '<p style="font-size:12px;color:var(--ink2)">圖表程式庫沒有載入，請看下方時刻帳。</p>'; return; }
+    const w = Math.max(1080, host.parentElement.clientWidth), h = 388, ml = 128, mr = 26;
+    const x = d3.scaleLinear().domain([hm('06:50'), hm('19:06')]).range([ml, w - mr]);
+    const lanes = { kin: 50, town: 120, todaiji: 192, kasuga: 264 }, sealY = 328, bh = 26;
+    const svg = d3.select(host).append('svg').attr('width', w).attr('height', h).attr('viewBox', `0 0 ${w} ${h}`).attr('role', 'img').attr('aria-label', '一日時間帶圖');
+    const defs = svg.append('defs');
+    defs.append('pattern').attr('id', 'hatch').attr('width', 6).attr('height', 6).attr('patternUnits', 'userSpaceOnUse').attr('patternTransform', 'rotate(45)')
+      .append('rect').attr('width', 2).attr('height', 6).attr('fill', '#857d70');
+    const hours = d3.range(7, 20);
+    svg.append('g').selectAll('line').data(hours).join('line').attr('x1', d => x(d * 60)).attr('x2', d => x(d * 60)).attr('y1', 22).attr('y2', h - 18).attr('stroke', C.rule).attr('stroke-width', 1);
+    svg.append('g').selectAll('text').data(hours).join('text').attr('x', d => x(d * 60)).attr('y', h - 4).attr('text-anchor', 'middle')
+      .attr('font-family', 'IBM Plex Mono, monospace').attr('font-size', 11).attr('fill', C.ink2).text(d => String(d).padStart(2, '0') + ':00');
+    const laneLabels = [['kin', '近鉄'], ['town', '站前・興福寺'], ['todaiji', '奈良公園・東大寺'], ['kasuga', '春日大社'], ['seal', '御朱印']];
+    svg.append('g').selectAll('text').data(laneLabels).join('text').attr('x', 8).attr('y', d => (d[0] === 'seal' ? sealY : lanes[d[0]]) + 4)
+      .attr('font-family', 'Shippori Mincho B1, serif').attr('font-weight', 800).attr('font-size', 13.5).attr('fill', C.ink).text(d => d[1]);
+    const areaCol = { town: C.waka, todaiji: C.shika, kasuga: C.shu };
+    const fill = o => o.kind === 'train' ? C.ai : (o.kind === 'walk' || o.kind === 'pause') ? 'url(#hatch)' : o.kind === 'eat' ? C.kin : areaCol[o.lane];
+    const g = svg.append('g');
+    const bars = g.selectAll('g').data(ITEMS).join('g').attr('class', 'bar').style('cursor', 'pointer');
+    bars.append('rect').attr('x', o => x(o.a)).attr('y', o => lanes[o.lane] - bh / 2).attr('width', o => Math.max(2, x(o.b) - x(o.a))).attr('height', bh).attr('rx', 2)
+      .attr('fill', fill).attr('stroke', o => (o.kind === 'walk' || o.kind === 'pause') ? '#857d70' : o.flex ? C.ink : 'none').attr('stroke-dasharray', o => o.flex ? '3 2' : null)
+      .attr('fill-opacity', o => o.flex ? 0.55 : 1);
+    bars.filter(o => o.kind === 'train').append('line').attr('x1', o => x(o.a) + 2).attr('x2', o => Math.max(x(o.a) + 2, x(o.b) - 2)).attr('y1', o => lanes[o.lane] + 6).attr('y2', o => lanes[o.lane] + 6).attr('stroke', '#ECE6D3').attr('stroke-width', 2);
+    const stag = { kin: 0, town: 0, todaiji: 0, kasuga: 0 };
+    bars.each(function (o) {
+      const wpx = x(o.b) - x(o.a), short = o.short;
+      const fits = wpx > short.length * 12.5 + 10;
+      const sel = d3.select(this);
+      const light = o.kind === 'walk' || o.kind === 'pause';
+      if (fits) sel.append('text').attr('x', x(o.a) + 6).attr('y', lanes[o.lane] + 5).attr('font-size', 12).attr('font-weight', 700)
+        .attr('fill', light || o.flex ? C.ink : '#fff').attr('paint-order', light ? 'stroke' : null).attr('stroke', light ? C.sheet : null).attr('stroke-width', light ? 3 : null).text(short);
+      else if (!(light && o.b - o.a < 12)) {
+        const row = stag[o.lane]++ % 2, ly = lanes[o.lane] + bh / 2 + 12 + row * 12, cx = (x(o.a) + x(o.b)) / 2;
+        sel.append('line').attr('x1', cx).attr('x2', cx).attr('y1', lanes[o.lane] + bh / 2).attr('y2', ly - 9).attr('stroke', C.ink2).attr('stroke-width', 0.8);
+        sel.append('text').attr('x', cx).attr('y', ly).attr('text-anchor', 'middle').attr('font-size', 10.5).attr('fill', C.ink).text(short);
+      }
+      sel.append('title').text(`${o.s}–${o.e} ${o.title}${o.jp ? '｜' + o.jp : ''}`);
+    });
+    // departures
+    svg.append('g').selectAll('text').data(DEPART).join('text').attr('x', d => x(d)).attr('y', lanes.kin - bh / 2 - 5).attr('text-anchor', 'middle')
+      .attr('font-family', 'IBM Plex Mono, monospace').attr('font-size', 10.5).attr('font-weight', 600).attr('fill', C.ai).text(d => fmt(d));
+    // time boundaries (alternate left / right so neighbours do not collide)
+    const pg = svg.append('g').selectAll('g').data(PINS).join('g');
+    pg.append('path').attr('d', d => `M${x(d.t)},${lanes[d.lane] - bh / 2 - 1} l-4,-7 h8 z`).attr('fill', '#B4741A');
+    pg.append('text').attr('x', (d, i) => x(d.t) + (i % 2 ? 7 : -7)).attr('y', d => lanes[d.lane] - bh / 2 - 5)
+      .attr('text-anchor', (d, i) => i % 2 ? 'start' : 'end').attr('font-size', 10.5).attr('fill', '#8A5410').text(d => fmt(d.t) + ' ' + d.txt);
+    // seals with Rough.js
+    const sg = svg.append('g');
+    const rc2 = window.rough ? rough.svg(svg.node()) : null;
+    SEALS.forEach((sl, i) => {
+      const cx = x(sl.t), sz = 22;
+      if (rc2) sg.node().appendChild(rc2.rectangle(cx - sz / 2, sealY - sz / 2 - 2, sz, sz, { stroke: C.shu, strokeWidth: 1.6, roughness: 1.1, seed: 11 + i, fill: 'rgba(194,54,31,.08)', fillStyle: 'solid' }));
+      else sg.append('rect').attr('x', cx - sz / 2).attr('y', sealY - sz / 2 - 2).attr('width', sz).attr('height', sz).attr('fill', 'none').attr('stroke', C.shu);
+      sg.append('text').attr('x', cx).attr('y', sealY + 3).attr('text-anchor', 'middle').attr('font-family', 'Shippori Mincho B1, serif').attr('font-weight', 800).attr('font-size', 13).attr('fill', C.shu).text('印');
+      sg.append('text').attr('x', cx).attr('y', sealY + 24 + (i % 2) * 12).attr('text-anchor', 'middle').attr('font-size', 10.5).attr('fill', C.ink2).text(sl.name);
+    });
+    // playhead
+    const ph = svg.append('g').attr('pointer-events', 'none');
+    const pl = ph.append('line').attr('y1', 18).attr('y2', h - 18).attr('stroke', C.shu).attr('stroke-width', 2);
+    const pb = ph.append('rect').attr('y', 2).attr('width', 46).attr('height', 17).attr('rx', 2).attr('fill', C.shu);
+    const pt = ph.append('text').attr('y', 15).attr('text-anchor', 'middle').attr('font-family', 'IBM Plex Mono, monospace').attr('font-size', 11.5).attr('font-weight', 600).attr('fill', '#fff');
+    gantt.update = t => { const px = x(t); pl.attr('x1', px).attr('x2', px); pb.attr('x', px - 23); pt.attr('x', px).text(fmt(t)); };
+    gantt.update(state.t);
+    const toT = ev => x.invert(d3.pointer(ev, svg.node())[0]);
+    svg.on('pointerdown', ev => { stop(); setT(toT(ev)); svg.on('pointermove.drag', e => setT(toT(e))); })
+      .on('pointerup pointerleave', () => svg.on('pointermove.drag', null));
+  }
+
+  /* ---------- boot ---------- */
+  initGL();
+  const boot = () => { resize(); drawGantt(); lastShown = -1; setT(state.t); requestAnimationFrame(frame); if (!reduce) setTimeout(() => { if (!playing && state.t <= T0 + 1) play(); }, 900); };
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { resize(); drawGantt(); }, 150); });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(boot);
+})();
+</script>

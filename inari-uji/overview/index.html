@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>稲荷宇治時刻盤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout: one day as a single vermilion thread. A painted route-landscape on top (WebGL sky and river under a Canvas 2D land),
+   a time dial below it, then the day as a Gantt strip and a ledger of every stop. Single deliberate light "washi" look. */
+:root{
+  --paper:#E8EBE2; --sheet:#F5F6F0; --ink:#1D2725; --ink2:#56615B; --rule:#C9D0C1;
+  --shu:#C7351C; --matcha:#58792C; --river:#2E6C82; --kin:#A27A22; --ai:#23365C; --mist:#DDE3D6;
+  --f-head:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","Noto Serif TC",serif;
+  --f-body:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.6;margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:16px;padding-block:22px 40px;display:flex;flex-direction:column;gap:18px}
+a{color:var(--river)}
+button,input{font:inherit}
+:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+
+/* masthead */
+.mast{display:grid;grid-template-columns:auto 1fr auto;gap:18px 26px;align-items:end}
+.stamp{width:78px;height:78px;border:2.5px solid var(--shu);color:var(--shu);font-family:var(--f-head);font-weight:800;display:grid;place-items:center;text-align:center;line-height:1.05;font-size:15px;transform:rotate(-3deg);border-radius:3px;background:color-mix(in srgb,var(--shu) 6%,transparent)}
+.stamp b{display:block;font-size:24px}
+.eyebrow{margin:0 0 2px;font-size:11.5px;letter-spacing:.22em;color:var(--ink2)}
+h1{font-family:var(--f-head);font-weight:800;font-size:clamp(30px,5vw,52px);line-height:1.08;margin:0;letter-spacing:.04em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--shu)}
+.sub{margin:6px 0 0;color:var(--ink2);max-width:60ch}
+.facts{display:grid;grid-template-columns:repeat(5,auto);gap:4px 18px;margin:0;align-self:end}
+.facts div{display:flex;flex-direction:column;border-left:2px solid var(--rule);padding-left:10px}
+.facts dt{font-size:11px;color:var(--ink2);letter-spacing:.08em}
+.facts dd{margin:0;font-family:var(--f-mono);font-weight:600;font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:980px){.mast{grid-template-columns:auto 1fr}.facts{grid-column:1/-1;grid-template-columns:repeat(5,1fr)}}
+@media (max-width:560px){.facts{grid-template-columns:repeat(2,1fr)}.stamp{width:64px;height:64px;font-size:13px}.stamp b{font-size:19px}}
+
+/* stage */
+.stage{position:relative;height:clamp(300px,46vw,520px);border-radius:3px;overflow:hidden;background:#cfdfe6;box-shadow:0 1px 0 var(--rule),0 18px 40px -26px rgba(20,35,30,.55)}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.stage .note{position:absolute;right:10px;bottom:8px;font-size:10.5px;color:var(--ink2);background:color-mix(in srgb,var(--sheet) 78%,transparent);padding:1px 7px;border-radius:2px;letter-spacing:.06em}
+.stage .tlabel{position:absolute;left:12px;top:10px;font-family:var(--f-mono);font-weight:600;font-size:clamp(20px,3.4vw,34px);color:var(--ink);text-shadow:0 0 8px rgba(255,255,255,.7);font-variant-numeric:tabular-nums;letter-spacing:.02em;pointer-events:none}
+
+/* deck */
+.deck{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:16px;align-items:stretch}
+@media (max-width:820px){.deck{grid-template-columns:1fr}}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:3px;padding:14px 16px;min-width:0}
+.clock .lbl{font-size:11px;letter-spacing:.18em;color:var(--ink2)}
+.clock .now{font-family:var(--f-mono);font-weight:600;font-size:46px;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.clock .phase{font-family:var(--f-head);font-weight:800;font-size:18px;color:var(--shu);min-height:1.6em}
+.ctrl{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.btn{border:1.5px solid var(--ink);background:var(--ink);color:var(--sheet);padding:6px 14px;border-radius:2px;cursor:pointer;font-weight:700;letter-spacing:.06em}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn[aria-pressed="true"]{background:var(--shu);border-color:var(--shu);color:#fff}
+.scrub{width:100%;margin-top:12px;accent-color:var(--shu)}
+.scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;color:var(--ink2)}
+.card{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-content:start}
+.card .seal{grid-row:1/span 3;width:54px;height:54px;border:2px solid var(--shu);color:var(--shu);display:grid;place-items:center;font-family:var(--f-head);font-weight:800;font-size:28px;border-radius:2px;transform:rotate(-2deg)}
+.card .seal.k-train,.card .seal.k-walk,.card .seal.k-pause{border-color:var(--ai);color:var(--ai)}
+.card .seal.k-eat{border-color:var(--kin);color:var(--kin)}
+.card .seal.k-see.uji{border-color:var(--matcha);color:var(--matcha)}
+.card .span{font-family:var(--f-mono);font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.card h2{font-family:var(--f-head);font-weight:800;font-size:clamp(20px,2.6vw,28px);margin:0;line-height:1.25;text-wrap:balance}
+.card .jp{color:var(--ink2);font-size:13.5px}
+.card .note{grid-column:1/-1;margin-top:6px;font-size:13.5px}
+.card .warn{grid-column:1/-1;background:#FFF0D6;color:#6E4300;border-left:3px solid #C98A12;padding:6px 10px;font-size:12.8px;border-radius:0 2px 2px 0}
+.card .next{grid-column:1/-1;margin-top:8px;padding-top:8px;border-top:1px dashed var(--rule);font-size:13px;color:var(--ink2)}
+.card .next b{color:var(--ink);font-weight:700}
+
+/* gantt */
+.chart h3,.ledger h3{font-family:var(--f-head);font-weight:800;font-size:19px;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.chart h3 small,.ledger h3 small{font-family:var(--f-body);font-size:12px;font-weight:400;color:var(--ink2)}
+.scroll{overflow-x:auto;overscroll-behavior-x:contain}
+#gantt svg{display:block;font-family:var(--f-body)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--ink2);margin-top:6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:16px;height:10px;display:inline-block;border-radius:2px}
+
+/* ledger */
+.rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+@media (max-width:820px){.rows{grid-template-columns:1fr}}
+.row{display:grid;grid-template-columns:96px 26px minmax(0,1fr);gap:4px 10px;padding:7px 6px;border-bottom:1px solid var(--rule);cursor:pointer;align-items:start;border-radius:2px;background:transparent;border-left:0;border-right:0;border-top:0;text-align:left;color:inherit;width:100%}
+.row:hover{background:var(--mist)}
+.row.on{background:color-mix(in srgb,var(--shu) 10%,var(--sheet));box-shadow:inset 3px 0 0 var(--shu)}
+.row .t{font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:1px}
+.row .k{width:22px;height:22px;border:1.5px solid currentColor;display:grid;place-items:center;font-family:var(--f-head);font-weight:800;font-size:12px;border-radius:2px}
+.row .k.train,.row .k.walk,.row .k.pause{color:var(--ai)}
+.row .k.see{color:var(--shu)} .row .k.see.uji{color:var(--matcha)} .row .k.eat{color:var(--kin)} .row .k.seal{color:var(--shu)}
+.row b{display:block;font-weight:700}
+.row span.d{display:block;font-size:12.3px;color:var(--ink2)}
+.row .flag{color:#9A5A00;font-size:12px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="stamp" aria-hidden="true"><span>2027<b>4.8</b>木</span></div>
+    <div>
+      <p class="eyebrow">伏見稲荷・宇治一日手冊　別冊</p>
+      <h1>今日行程<em>總覽</em></h1>
+      <p class="sub">京都駅 07:05 發車，沿 JR 奈良線一路南下：早上走稲荷山的千本鳥居，中午到宇治看平等院與宇治川兩岸的神社，15:37 搭みやこ路快速回京都。全程零轉乘。</p>
+    </div>
+    <dl class="facts">
+      <div><dt>出發</dt><dd>07:05</dd></div>
+      <div><dt>回到京都</dt><dd>15:55</dd></div>
+      <div><dt>JR 三段</dt><dd>¥630</dd></div>
+      <div><dt>御朱印</dt><dd>4–5 張</dd></div>
+      <div><dt>步行（估）</dt><dd>約 1h45</dd></div>
+    </dl>
+  </header>
+
+  <section class="stage" id="stage" aria-label="今日路線示意畫：京都駅、伏見稲荷、宇治">
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <canvas id="cv" aria-hidden="true"></canvas>
+    <div class="tlabel" id="tlabel">07:00</div>
+    <div class="note">示意圖，非地理比例</div>
+  </section>
+
+  <section class="deck">
+    <div class="panel clock">
+      <div class="lbl">時刻盤</div>
+      <div class="now" id="now">07:00</div>
+      <div class="phase" id="phase">京都駅</div>
+      <div class="ctrl">
+        <button class="btn" id="play" type="button">播放一天</button>
+        <button class="btn ghost" id="sound" type="button" aria-pressed="false">鈴聲 關</button>
+      </div>
+      <input class="scrub" id="scrub" type="range" min="415" max="960" step="1" value="420" aria-label="拖曳時刻">
+      <div class="scale"><span>06:55</span><span>11:00</span><span>16:00</span></div>
+    </div>
+    <article class="panel card" id="card" aria-live="polite"></article>
+  </section>
+
+  <section class="panel chart">
+    <h3>一日的時間帶<small>橫軸是時刻；點或拖曳圖面可以移動時刻盤</small></h3>
+    <div class="scroll"><div id="gantt"></div></div>
+    <div class="legend">
+      <span><i style="background:var(--ai)"></i>JR 奈良線</span>
+      <span><i style="background:var(--shu)"></i>伏見稲荷 參觀</span>
+      <span><i style="background:var(--matcha)"></i>宇治 參觀</span>
+      <span><i style="background:var(--kin)"></i>逛街・午茶</span>
+      <span><i style="background:repeating-linear-gradient(45deg,#7d8a84 0 2px,transparent 2px 5px);border:1px solid #7d8a84"></i>步行・等車</span>
+      <span><i style="border:1.5px solid var(--shu)"></i>御朱印</span>
+    </div>
+  </section>
+
+  <section class="panel ledger">
+    <h3>時刻帳<small>點一列，時刻盤就跳到那裡</small></h3>
+    <div class="rows" id="rows"></div>
+  </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tone@14.8.49/build/Tone.js"></script>
+<script>
+(function () {
+  'use strict';
+  const $ = s => document.querySelector(s);
+  const hm = s => { const [a, b] = s.split(':').map(Number); return a * 60 + b; };
+  const fmt = t => { t = Math.round(t); return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
+  const T0 = 415, T1 = 960;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const C = { shu: css('--shu'), matcha: css('--matcha'), river: css('--river'), kin: css('--kin'), ai: css('--ai'), ink: css('--ink'), ink2: css('--ink2'), rule: css('--rule'), sheet: css('--sheet') };
+
+  /* ---------- itinerary (same as the handbook) ---------- */
+  const ITEMS = [
+    { s: '06:55', e: '07:05', lane: 'jr', kind: 'pause', title: '京都駅 集合', jp: 'JR 奈良線 10 番のりば', note: '07:05 發的普通 宇治行。上哪一班奈良線都會停稲荷。' },
+    { s: '07:05', e: '07:11', lane: 'jr', kind: 'train', title: '京都駅 → 稲荷駅', jp: 'JR 奈良線 普通 宇治行', note: '6 分、¥150。稲荷 1 番＝京都方面、2 番＝宇治・奈良方面。' },
+    { s: '07:11', e: '07:15', lane: 'inari', kind: 'pause', title: '稲荷駅 洗手間', jp: '改札內', note: '改札內有洗手間，改札外沒有。下車先用。' },
+    { s: '07:15', e: '07:35', lane: 'inari', kind: 'see', title: '楼門・外拝殿・本殿', jp: '伏見稲荷大社', note: '楼門是 1589 年豊臣秀吉所造，本殿是重要文化財。' },
+    { s: '07:35', e: '08:55', lane: 'inari', kind: 'see', title: '千本鳥居 → 奥社奉拝所 → 四ツ辻', jp: '稲荷山（海拔 233 m）', note: '一早人最少。奥社到四つ辻上り 104 m，往返步行約 45 分（Google 估算）。' },
+    { s: '08:55', e: '09:15', lane: 'inari', kind: 'seal', title: '本殿授与所 御朱印', jp: '伏見稲荷大社', note: '官網沒有寫授与時間。2026 年投稿有直書き與切り絵書置き，接近 16 時只剩書置き。', warn: '官網未載明御朱印時間，趁早上領。' },
+    { s: '09:15', e: '09:30', lane: 'inari', kind: 'walk', title: '走回參道', jp: '伏見稲荷参道', note: '' },
+    { s: '09:30', e: '10:55', lane: 'inari', kind: 'eat', title: '參道逛街・稲荷壽司午餐', jp: 'ちいかわもぐもぐ本舗・おせんの里 松屋', note: 'ちいかわ 9:30 開店，混雜時改整理券。官網禁止邊走邊吃，稲荷壽司在店內吃。10:55 一定要離開。' },
+    { s: '10:55', e: '11:02', lane: 'jr', kind: 'pause', title: '稲荷駅 候車', jp: '2 番のりば', note: '錯過可搭 11:09 みやこ路快速，11:21 到宇治。' },
+    { s: '11:02', e: '11:19', lane: 'jr', kind: 'train', title: '稲荷駅 → 宇治駅', jp: 'JR 奈良線 普通 奈良行', note: '17 分、¥240。宇治有 JR 與京阪兩個站，這是 JR 宇治駅。' },
+    { s: '11:19', e: '11:30', lane: 'uji', kind: 'walk', title: '宇治駅 → 平等院', jp: '徒歩 10 分（平等院官網）', note: '' },
+    { s: '11:30', e: '12:45', lane: 'uji', kind: 'see', title: '平等院', jp: '鳳凰堂・鳳翔館・御集印', note: '先到庭園內「內部拝観受付」領時間券，再逛鳳翔館與庭園。御集印 2 種各 ¥300，現金。', warn: '內部拝観 4 月平日待約 1.5 小時，每回 35 名。次回在 13:30 以後就放棄內部。' },
+    { s: '12:45', e: '13:20', lane: 'uji', kind: 'eat', title: '午茶', jp: '中村藤吉 平等院店', note: 'カフェ 10:00～17:00（LO 16:30），不預約、セルフ。客滿改茶房藤花或通圓。' },
+    { s: '13:20', e: '13:45', lane: 'uji', kind: 'see', title: '宇治橋・宇治川畔', jp: '夢の浮橋広場・紫式部像', note: '橋西詰的公衆トイレ先用：宇治上神社境內沒有洗手間。' },
+    { s: '13:45', e: '14:20', lane: 'uji', kind: 'see', title: '宇治上神社', jp: '國寶本殿・御朱印', note: '授与所 9:00～15:50，閉門 16:00。「い」「ろ」各 ¥500，色紙要自己貼。' },
+    { s: '14:20', e: '14:40', lane: 'uji', kind: 'see', title: '宇治神社', jp: 'みかえり兎・御朱印', note: '離宇治上神社 190 m。神社名朱印可直書き，兔子款是紙。授与 16:30 まで。' },
+    { s: '14:40', e: '15:10', lane: 'uji', kind: 'see', title: '興聖寺（彈性）', jp: '琴坂・降誕会', note: '拝観 10:00～16:00、志納 ¥500。走不動就刪。', warn: '4/8 降誕会，本堂有行持時暫停堂內拝観與御朱印。', flex: true },
+    { s: '15:10', e: '15:37', lane: 'uji', kind: 'walk', title: '走回 JR 宇治駅', jp: 'Google 20 分，官網 25～30 分', note: '沒有緩衝。錯過 15:37 就搭 15:40 普通（16:02 到）。' },
+    { s: '15:37', e: '15:55', lane: 'jr', kind: 'train', title: '宇治駅 → 京都駅', jp: 'JR 奈良線 Dみやこ路快速', note: '18 分、¥240，京都 10 番のりば到著。' },
+    { s: '15:55', e: '16:00', lane: 'jr', kind: 'pause', title: '京都駅 解散', jp: '到 19:00 還有約 3 小時', note: '晚餐或補拍的時間。' }
+  ].map(o => ({ ...o, a: hm(o.s), b: hm(o.e) }));
+  ['集合', '京都→稲荷', '洗手間', '楼門・本殿', '千本鳥居・四ツ辻', '御朱印', '回參道', '參道逛街・午餐', '候車', '稲荷→宇治', '步行', '平等院', '午茶', '宇治橋', '宇治上神社', '宇治神社', '興聖寺', '走回車站', '宇治→京都', '解散']
+    .forEach((s, i) => { ITEMS[i].short = s; });
+  const SEALS = [
+    { t: hm('08:55'), name: '伏見稲荷大社' }, { t: hm('12:20'), name: '平等院 御集印' },
+    { t: hm('13:55'), name: '宇治上神社' }, { t: hm('14:25'), name: '宇治神社' }, { t: hm('14:50'), name: '興聖寺', flex: true }
+  ];
+  const PINS = [{ t: hm('09:30'), txt: 'ちいかわ 開店' }, { t: hm('15:50'), txt: '宇治上 授与所止' }, { t: hm('16:00'), txt: '興聖寺 受付止' }];
+  const DEPART = [hm('07:05'), hm('11:02'), hm('15:37')];
+  const KCH = { train: '行', walk: '行', pause: '待', see: '観', eat: '食', seal: '印' };
+  const LANE = { jr: 'JR 奈良線', inari: '伏見稲荷', uji: '宇治' };
+
+  /* where the two of you are: [minute, u, v] in stage coordinates (0..1) */
+  const KEYS = [
+    [415, .07, .90], [425, .07, .90], [431, .30, .90], [435, .335, .82], [455, .355, .77], [465, .38, .68], [480, .40, .60], [505, .44, .42],
+    [535, .355, .77], [555, .335, .82], [570, .315, .86], [610, .326, .874], [640, .306, .862], [655, .30, .90], [662, .30, .90], [679, .62, .90],
+    [690, .72, .76], [765, .72, .76], [770, .75, .71], [800, .75, .71], [805, .80, .66], [815, .91, .66], [825, .955, .50], [860, .955, .50],
+    [863, .925, .58], [880, .925, .58], [886, .95, .70], [910, .95, .70], [920, .91, .66], [925, .80, .66], [937, .62, .90], [955, .07, .90], [960, .07, .90]
+  ];
+  const TRAIN = [[425, 431], [662, 679], [937, 955]];
+  const posAt = t => {
+    if (t <= KEYS[0][0]) return [KEYS[0][1], KEYS[0][2]];
+    for (let i = 1; i < KEYS.length; i++) {
+      const [ta, ua, va] = KEYS[i - 1], [tb, ub, vb] = KEYS[i];
+      if (t <= tb) { const f = tb === ta ? 1 : (t - ta) / (tb - ta); return [ua + (ub - ua) * f, va + (vb - va) * f]; }
+    }
+    const k = KEYS[KEYS.length - 1]; return [k[1], k[2]];
+  };
+  const inTrain = t => TRAIN.some(([a, b]) => t > a && t < b);
+  const itemAt = t => ITEMS.find(o => t >= o.a && t < o.b) || ITEMS[ITEMS.length - 1];
+
+  /* river geometry, shared by the shader and the land cut-out */
+  const RV0 = 0.40;
+  const rc = v => 0.90 - 0.14 * Math.max(0, v - RV0) / 0.6 + 0.02 * Math.sin(12 * v);
+  const rh = v => 0.022 + 0.03 * Math.max(0, v - RV0) / 0.6;
+
+  /* ---------- state ---------- */
+  const state = { t: 420 };
+  let playing = false, tween = null, lastShown = -1, soundOn = false, synth = null, prevT = 420;
+
+  /* ---------- stage ---------- */
+  const stage = $('#stage'), cv = $('#cv'), glc = $('#gl');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, DPR = 1, bg = null, petals = [];
+
+  function mkNoise(seed) {
+    const r = []; let s = seed;
+    for (let i = 0; i < 256; i++) { s = (s * 16807) % 2147483647; r.push(s / 2147483647); }
+    return x => { const i = Math.floor(x), f = x - i, a = r[i & 255], b = r[(i + 1) & 255], t = f * f * (3 - 2 * f); return a + (b - a) * t; };
+  }
+  function rand(seed) { let s = seed; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; }
+
+  function ridge(c, fn, fill) {
+    c.beginPath(); c.moveTo(0, H);
+    for (let x = 0; x <= W; x += 4) c.lineTo(x, fn(x / W) * H);
+    c.lineTo(W, H); c.closePath(); c.fillStyle = fill; c.fill();
+  }
+  function torii(c, x, y, s, col) {
+    c.fillStyle = col;
+    const w = s * 0.9, p = Math.max(1, s * 0.11);
+    c.fillRect(x - w * 0.36, y - s, p, s); c.fillRect(x + w * 0.36 - p, y - s, p, s);
+    c.fillRect(x - w * 0.42, y - s * 0.72, w * 0.84, Math.max(1, s * 0.08));
+    c.beginPath(); c.moveTo(x - w * 0.6, y - s * 0.92); c.quadraticCurveTo(x, y - s * 1.0, x + w * 0.6, y - s * 0.92);
+    c.lineTo(x + w * 0.56, y - s * 1.05); c.quadraticCurveTo(x, y - s * 1.12, x - w * 0.56, y - s * 1.05); c.closePath(); c.fill();
+  }
+  function roof(c, x, y, w, h, col) {
+    c.fillStyle = col; c.beginPath();
+    c.moveTo(x - w / 2, y); c.quadraticCurveTo(x - w * 0.3, y - h * 0.35, x - w * 0.22, y - h);
+    c.lineTo(x + w * 0.22, y - h); c.quadraticCurveTo(x + w * 0.3, y - h * 0.35, x + w / 2, y); c.closePath(); c.fill();
+  }
+  function label(c, text, x, y, opt = {}) {
+    const size = opt.size || 13;
+    c.font = `${opt.weight || 800} ${size}px ${opt.mono ? '"IBM Plex Mono"' : '"Shippori Mincho B1"'},serif`;
+    c.textAlign = opt.align || 'center'; c.textBaseline = 'middle';
+    c.lineWidth = 4; c.strokeStyle = 'rgba(245,246,240,.85)'; c.lineJoin = 'round';
+    c.strokeText(text, x, y); c.fillStyle = opt.color || C.ink; c.fillText(text, x, y);
+  }
+
+  const TRAIL = [[.30, .90], [.315, .86], [.335, .82], [.355, .77], [.38, .68], [.40, .60], [.42, .51], [.44, .42]];
+
+  function buildStatic() {
+    bg = document.createElement('canvas'); bg.width = Math.round(W * DPR); bg.height = Math.round(H * DPR);
+    const c = bg.getContext('2d'); c.scale(DPR, DPR);
+    const n1 = mkNoise(7), n2 = mkNoise(19), n3 = mkNoise(41), R = rand(99);
+    ridge(c, u => 0.36 + 0.07 * n1(u * 6) + 0.03 * n2(u * 19), 'rgba(116,142,140,.55)');
+    ridge(c, u => 0.47 + 0.06 * n2(u * 5 + 3) + 0.02 * n3(u * 23), 'rgba(98,128,112,.72)');
+    const g = c.createLinearGradient(0, H * 0.74, 0, H);
+    g.addColorStop(0, '#C9CFB7'); g.addColorStop(1, '#DCDDC8');
+    c.fillStyle = g; c.fillRect(0, H * 0.78, W, H * 0.22);
+    ridge(c, u => Math.min(0.80, 0.80 - 0.10 * Math.exp(-(((u - 0.18) / 0.2) ** 2))), '#C9CFB7');
+    // 稲荷山
+    const ig = c.createLinearGradient(0, H * 0.3, 0, H * 0.85);
+    ig.addColorStop(0, '#4E6E4A'); ig.addColorStop(1, '#79936A');
+    c.beginPath(); c.moveTo(W * 0.16, H * 0.86);
+    for (let u = 0.16; u <= 0.72; u += 0.004) c.lineTo(u * W, (0.84 - 0.50 * Math.exp(-(((u - 0.43) / 0.12) ** 2)) - 0.015 * n3(u * 40)) * H);
+    c.lineTo(W * 0.72, H * 0.86); c.closePath(); c.fillStyle = ig; c.fill();
+    // forest stipple on 稲荷山
+    for (let i = 0; i < 900; i++) {
+      const u = 0.2 + R() * 0.48, top = 0.84 - 0.50 * Math.exp(-(((u - 0.43) / 0.12) ** 2)), v = top + R() * (0.84 - top);
+      c.fillStyle = `rgba(${30 + R() * 30},${60 + R() * 40},${40 + R() * 20},${0.25 + R() * 0.3})`;
+      c.beginPath(); c.arc(u * W, v * H, 1 + R() * 2.4, 0, Math.PI * 2); c.fill();
+    }
+    // 宇治 hills
+    const ug = c.createLinearGradient(0, H * 0.3, 0, H * 0.9);
+    ug.addColorStop(0, '#567752'); ug.addColorStop(1, '#88A06F');
+    ridge(c, u => Math.min(0.86, 0.86 - 0.52 * Math.exp(-(((u - 1.03) / 0.13) ** 2)) - 0.12 * Math.exp(-(((u - 0.79) / 0.05) ** 2))), ug);
+    // tea rows on the east bank
+    c.save(); c.strokeStyle = 'rgba(58,96,38,.55)'; c.lineWidth = 2.2;
+    for (let k = 0; k < 9; k++) { c.beginPath(); for (let u = 0.90; u <= 1.0; u += 0.01) { const v = 0.80 + k * 0.022 + 0.01 * Math.sin(u * 30); u === 0.90 ? c.moveTo(u * W, v * H) : c.lineTo(u * W, v * H); } c.stroke(); }
+    c.restore();
+    // city of Kyoto
+    for (let i = 0; i < 70; i++) { const u = R() * 0.24, w = 4 + R() * 12, h = 3 + R() * 10; c.fillStyle = `rgba(70,82,80,${0.18 + R() * 0.22})`; c.fillRect(u * W, H * 0.885 - h, w, h); }
+    // Kyoto Tower
+    const kx = 0.07 * W, kb = 0.885 * H, kt = 0.60 * H;
+    c.fillStyle = '#F2F2EC'; c.fillRect(kx - 3.5, kt + 14, 7, kb - kt - 14); c.fillRect(kx - 13, kb - 16, 26, 16);
+    c.fillStyle = C.shu; c.fillRect(kx - 3.5, kt + 9, 7, 6); c.fillStyle = '#F2F2EC'; c.beginPath(); c.ellipse(kx, kt + 6, 7, 6, 0, 0, Math.PI * 2); c.fill();
+    c.fillRect(kx - 1, kt - 8, 2, 10);
+    // river cut-out (the WebGL river shows through)
+    c.save(); c.globalCompositeOperation = 'destination-out'; c.beginPath();
+    for (let v = RV0; v <= 1.001; v += 0.01) c.lineTo((rc(v) - rh(v)) * W, v * H);
+    for (let v = 1.0; v >= RV0; v -= 0.01) c.lineTo((rc(v) + rh(v)) * W, v * H);
+    c.closePath(); c.fill(); c.restore();
+    // river banks
+    c.strokeStyle = 'rgba(40,60,50,.35)'; c.lineWidth = 1.2;
+    [-1, 1].forEach(sg => { c.beginPath(); for (let v = RV0 + 0.02; v <= 1.0; v += 0.01) c.lineTo((rc(v) + sg * rh(v)) * W, v * H); c.stroke(); });
+    // rail
+    const ry = 0.90 * H;
+    c.strokeStyle = 'rgba(40,46,44,.75)'; c.lineWidth = 1.4;
+    c.beginPath(); c.moveTo(0, ry - 2); c.lineTo(0.70 * W, ry - 2); c.moveTo(0, ry + 2); c.lineTo(0.70 * W, ry + 2); c.stroke();
+    c.strokeStyle = 'rgba(40,46,44,.35)'; c.lineWidth = 1;
+    for (let x = 4; x < 0.70 * W; x += 7) { c.beginPath(); c.moveTo(x, ry - 4); c.lineTo(x, ry + 4); c.stroke(); }
+    const fade = c.createLinearGradient(0.62 * W, 0, 0.72 * W, 0); fade.addColorStop(0, 'rgba(201,207,183,0)'); fade.addColorStop(1, 'rgba(201,207,183,1)');
+    c.fillStyle = fade; c.fillRect(0.62 * W, ry - 6, 0.1 * W, 12);
+    // stations
+    [[.07, '京都駅'], [.30, '稲荷駅'], [.62, '宇治駅']].forEach(([u, n]) => {
+      c.fillStyle = C.sheet; c.strokeStyle = C.ink; c.lineWidth = 2; c.beginPath(); c.arc(u * W, ry, 6, 0, Math.PI * 2); c.fill(); c.stroke();
+      label(c, n, u * W, ry + 20, { size: W < 560 ? 12 : 14 });
+    });
+    if (W >= 560) label(c, 'JR 奈良線', 0.185 * W, ry + 20, { size: 11, weight: 600, color: C.ink2 });
+    // Inari trail, torii and gates
+    c.strokeStyle = 'rgba(30,40,35,.35)'; c.setLineDash([2, 4]); c.lineWidth = 1.4; c.beginPath();
+    TRAIL.forEach(([u, v], i) => i ? c.lineTo(u * W, v * H) : c.moveTo(u * W, v * H)); c.stroke(); c.setLineDash([]);
+    const along = (a, b, step, s0, s1) => {
+      const [ua, va] = a, [ub, vb] = b, L = Math.hypot((ub - ua) * W, (vb - va) * H), n = Math.max(1, Math.floor(L / step));
+      for (let i = 0; i <= n; i++) { const f = i / n; torii(c, (ua + (ub - ua) * f) * W, (va + (vb - va) * f) * H, s0 + (s1 - s0) * f, C.shu); }
+    };
+    const ts = Math.max(0.7, W / 1100);
+    along(TRAIL[3], TRAIL[4], 4.5 * ts, 10 * ts, 8 * ts);
+    along(TRAIL[4], TRAIL[5], 5 * ts, 8 * ts, 6.5 * ts);
+    along(TRAIL[5], TRAIL[6], 13 * ts, 6 * ts, 5 * ts);
+    along(TRAIL[6], TRAIL[7], 15 * ts, 5 * ts, 4.5 * ts);
+    roof(c, 0.335 * W, 0.80 * H, 30 * ts, 9 * ts, '#3B3029'); c.fillStyle = C.shu; c.fillRect(0.335 * W - 11 * ts, 0.80 * H, 22 * ts, 12 * ts);
+    roof(c, 0.335 * W, 0.794 * H + 0.5, 22 * ts, 6 * ts, '#3B3029');
+    // 参道 shops and lanterns
+    for (let i = 0; i < 5; i++) { const u = 0.303 + i * 0.007, v = 0.885 - i * 0.012; roof(c, u * W, v * H, 12 * ts, 4 * ts, '#5C4B3E'); c.fillStyle = '#EAD9B8'; c.fillRect(u * W - 4 * ts, v * H, 8 * ts, 5 * ts); }
+    // 平等院 and its pond
+    const bx = 0.72 * W, by = 0.765 * H, s = Math.max(0.75, W / 1000);
+    c.fillStyle = 'rgba(70,120,140,.55)'; c.beginPath(); c.ellipse(bx, by + 9 * s, 46 * s, 8 * s, 0, 0, Math.PI * 2); c.fill();
+    c.fillStyle = '#4A3A2E';
+    c.fillRect(bx - 34 * s, by - 6 * s, 68 * s, 2 * s);
+    roof(c, bx - 26 * s, by - 6 * s, 18 * s, 6 * s, '#3A3A38'); roof(c, bx + 26 * s, by - 6 * s, 18 * s, 6 * s, '#3A3A38');
+    c.fillStyle = '#B04A2A'; c.fillRect(bx - 12 * s, by - 10 * s, 24 * s, 10 * s);
+    roof(c, bx, by - 9 * s, 34 * s, 10 * s, '#2F302E'); roof(c, bx, by - 16 * s, 20 * s, 6 * s, '#2F302E');
+    c.globalAlpha = 0.25; c.save(); c.translate(0, 2 * by + 6 * s); c.scale(1, -0.5); roof(c, bx, by - 9 * s, 34 * s, 10 * s, '#2F302E'); c.restore(); c.globalAlpha = 1;
+    // 宇治橋
+    const yb = 0.66 * H, x0 = 0.795 * W, x1 = 0.915 * W;
+    c.strokeStyle = '#6B5A48'; c.lineWidth = 4 * s; c.beginPath(); c.moveTo(x0, yb); c.quadraticCurveTo((x0 + x1) / 2, yb - 7 * s, x1, yb); c.stroke();
+    c.strokeStyle = '#4A3E33'; c.lineWidth = 1;
+    for (let x = x0; x <= x1; x += 6 * s) { const yy = yb - 7 * s * 4 * ((x - x0) / (x1 - x0)) * (1 - (x - x0) / (x1 - x0)) / 2; c.beginPath(); c.moveTo(x, yy - 1); c.lineTo(x, yy + 7 * s); c.stroke(); }
+    c.fillStyle = '#6B5A48'; c.fillRect((x0 + x1) / 2 - 4 * s, yb - 12 * s, 8 * s, 6 * s);
+    // shrines and the temple gate across the river
+    const shrine = (u, v, tor) => { const x = u * W, y = v * H; c.fillStyle = '#7A5A3C'; c.fillRect(x - 9 * s, y - 6 * s, 18 * s, 6 * s); roof(c, x, y - 6 * s, 26 * s, 8 * s, '#3E3A33'); if (tor) torii(c, x - 18 * s, y + 2 * s, 9 * s, C.shu); };
+    shrine(0.955, 0.50, false); shrine(0.925, 0.58, true);
+    const gx = 0.95 * W, gy = 0.70 * H; c.fillStyle = '#EDEBE2'; c.fillRect(gx - 9 * s, gy - 9 * s, 18 * s, 9 * s); c.fillStyle = '#3E3A33'; c.fillRect(gx - 3 * s, gy - 6 * s, 6 * s, 6 * s); roof(c, gx, gy - 9 * s, 24 * s, 8 * s, '#33312C');
+    // labels
+    const big = W >= 640;
+    label(c, '稲荷山', 0.43 * W, 0.30 * H, { size: big ? 22 : 16, color: 'rgba(30,45,35,.55)' });
+    label(c, '四ツ辻', 0.455 * W, 0.375 * H, { size: 12 });
+    if (big) { label(c, '千本鳥居', 0.43 * W, 0.68 * H, { size: 12, color: C.shu }); label(c, '奥社奉拝所', 0.47 * W, 0.58 * H, { size: 11 }); }
+    label(c, '伏見稲荷大社', 0.335 * W, 0.745 * H - 10, { size: big ? 13 : 11 });
+    label(c, '平等院', bx, by + 26 * s, { size: big ? 14 : 12 });
+    label(c, '宇治橋', (x0 + x1) / 2, yb + 16 * s, { size: 12 });
+    label(c, big ? '宇治上神社' : '宇治上', 0.94 * W, 0.45 * H, { size: 12, align: 'right' });
+    label(c, '宇治神社', 0.902 * W, 0.565 * H, { size: 11, align: 'right' });
+    label(c, '興聖寺', 0.95 * W, 0.745 * H, { size: 11 });
+    if (big) label(c, '宇治川', 0.775 * W, 0.95 * H, { size: 12, color: 'rgba(240,248,250,.9)' });
+    // the whole day's route, faint
+    c.strokeStyle = 'rgba(30,40,35,.22)'; c.lineWidth = 1.2; c.setLineDash([1, 5]); c.beginPath();
+    KEYS.forEach(([t, u, v], i) => i ? c.lineTo(u * W, v * H) : c.moveTo(u * W, v * H)); c.stroke(); c.setLineDash([]);
+  }
+
+  function seedPetals() {
+    const n = reduce ? 0 : Math.round(W / 16), R = rand(5);
+    petals = Array.from({ length: n }, () => ({ x: R() * W, y: R() * H, vx: 0.25 + R() * 0.5, vy: 0.3 + R() * 0.55, a: R() * 6.28, va: (R() - 0.5) * 0.06, s: 2.2 + R() * 2.4 }));
+  }
+
+  function resize() {
+    W = stage.clientWidth; H = stage.clientHeight; DPR = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    glc.width = Math.round(W * DPR); glc.height = Math.round(H * DPR);
+    buildStatic(); seedPetals(); if (gl) gl.viewport(0, 0, glc.width, glc.height);
+  }
+
+  /* ---------- WebGL sky and river ---------- */
+  let gl = null, prog = null, U = {};
+  const FS = `precision mediump float;
+uniform vec2 r; uniform float tm; uniform float day;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*n(p);p*=2.03;a*=.5;}return s;}
+void main(){
+  vec2 q=gl_FragCoord.xy/r; float u=q.x, v=1.-q.y;
+  float a=smoothstep(0.,.35,day), b=smoothstep(.62,1.,day);
+  vec3 zen=mix(mix(vec3(.55,.67,.82),vec3(.36,.60,.83),a),vec3(.47,.60,.76),b);
+  vec3 hor=mix(mix(vec3(.97,.83,.69),vec3(.82,.90,.93),a),vec3(.96,.80,.58),b);
+  vec3 col=mix(zen,hor,smoothstep(.0,.62,v));
+  vec2 sp=vec2(mix(.12,.88,day),.30-.20*sin(3.14159*day));
+  float d=length((vec2(u,v)-sp)*vec2(r.x/r.y,1.));
+  col+=vec3(1.,.93,.75)*(.55*exp(-d*d*180.)+.18*exp(-d*7.));
+  float cl=fbm(vec2(u*3.+tm*.006,v*6.)); col=mix(col,vec3(1.),smoothstep(.55,.85,cl)*.35*(1.-smoothstep(.2,.5,v)));
+  float t=max(0.,v-.40);
+  float c=.90-.14*t/.6+.02*sin(12.*v), w=.022+.03*t/.6;
+  float dx=abs(u-c);
+  if(v>.40 && dx<w+.004){
+    vec3 wc=mix(vec3(.18,.39,.47),vec3(.29,.52,.58),a);
+    float fl=fbm(vec2(u*55.,v*14.-tm*.55)), st=fbm(vec2(u*120.,v*40.-tm*1.1));
+    wc+=vec3(.10,.12,.12)*(fl-.5)+vec3(.9,.95,.95)*smoothstep(.78,.95,st)*.35;
+    float glint=exp(-pow((u-sp.x)*6.,2.))*smoothstep(.7,.9,n(vec2(u*90.,v*30.-tm*1.6)));
+    wc+=vec3(1.,.92,.75)*glint*.45;
+    wc=mix(wc,vec3(.86,.90,.86),smoothstep(w-.004,w+.004,dx)*.6);
+    col=wc;
+  }
+  gl_FragColor=vec4(col,1.);
+}`;
+  const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  function initGL() {
+    try {
+      gl = glc.getContext('webgl', { premultipliedAlpha: false, antialias: false });
+      if (!gl) return;
+      const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
+      prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(prog); gl.useProgram(prog);
+      const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      U = { r: gl.getUniformLocation(prog, 'r'), tm: gl.getUniformLocation(prog, 'tm'), day: gl.getUniformLocation(prog, 'day') };
+    } catch (e) { gl = null; }
+  }
+  function drawGL(sec) {
+    if (!gl) { const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#8FB3D6'); g.addColorStop(0.6, '#E3E9E2'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); return false; }
+    gl.uniform2f(U.r, glc.width, glc.height); gl.uniform1f(U.tm, sec); gl.uniform1f(U.day, (state.t - T0) / (T1 - T0));
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4); return true;
+  }
+
+  /* ---------- per-frame drawing ---------- */
+  function drawTrain(x, y, dir, s) {
+    const L = 64 * s, h = 11 * s;
+    ctx.save(); ctx.translate(x, y - 5 * s); ctx.scale(dir, 1);
+    ctx.fillStyle = '#ECE6D3'; ctx.strokeStyle = '#3A3530'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(-L / 2, -h / 2); ctx.lineTo(L / 2 - 6 * s, -h / 2); ctx.quadraticCurveTo(L / 2, -h / 2, L / 2, 0); ctx.lineTo(L / 2, h / 2); ctx.lineTo(-L / 2, h / 2); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#7A4A2B'; ctx.fillRect(-L / 2, h * 0.12, L, h * 0.18);
+    ctx.fillStyle = '#2C3436'; for (let i = 0; i < 6; i++) ctx.fillRect(-L / 2 + 4 * s + i * 9 * s, -h * 0.32, 6 * s, h * 0.3);
+    ctx.fillRect(L / 2 - 5 * s, -h * 0.32, 4 * s, h * 0.3);
+    ctx.restore();
+  }
+  function frame(ms) {
+    const sec = ms / 1000;
+    const glOk = drawGL(sec);
+    if (glOk) ctx.clearRect(0, 0, W, H);
+    ctx.drawImage(bg, 0, 0, W, H);
+    const t = state.t;
+    // vermilion thread: the route travelled so far
+    ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.strokeStyle = 'rgba(199,53,28,.25)'; ctx.lineWidth = 7; tracePath(t); ctx.stroke();
+    ctx.strokeStyle = C.shu; ctx.lineWidth = 2.6; tracePath(t); ctx.stroke(); ctx.restore();
+    // petals
+    ctx.fillStyle = 'rgba(242,190,204,.85)';
+    for (const p of petals) {
+      p.x += p.vx; p.y += p.vy; p.a += p.va;
+      if (p.y > H + 6 || p.x > W + 6) { p.x = Math.random() * W * 0.8 - 20; p.y = -6; }
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.beginPath(); ctx.ellipse(0, 0, p.s, p.s * 0.55, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    }
+    // you two, or the train
+    const [u, v] = posAt(t), x = u * W, y = v * H, s = Math.max(0.65, W / 1100);
+    if (inTrain(t)) {
+      const dir = (TRAIN[2][0] < t) ? -1 : 1;
+      drawTrain(x, y, dir, s);
+    } else {
+      const bob = reduce ? 0 : Math.sin(sec * 3) * 1.2;
+      ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.beginPath(); ctx.arc(x, y - 6 + bob, 11, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = C.shu; ctx.beginPath(); ctx.arc(x - 3.5, y - 7 + bob, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = C.ai; ctx.beginPath(); ctx.arc(x + 3.5, y - 5 + bob, 4, 0, Math.PI * 2); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  }
+  function tracePath(t) {
+    ctx.beginPath(); ctx.moveTo(KEYS[0][1] * W, KEYS[0][2] * H);
+    for (let i = 1; i < KEYS.length; i++) {
+      if (KEYS[i][0] <= t) ctx.lineTo(KEYS[i][1] * W, KEYS[i][2] * H);
+      else { const [u, v] = posAt(t); ctx.lineTo(u * W, v * H); break; }
+    }
+  }
+
+  /* ---------- clock, card, ledger ---------- */
+  const nowEl = $('#now'), phaseEl = $('#phase'), card = $('#card'), scrub = $('#scrub'), tlabel = $('#tlabel');
+  function phaseName(it, t) { return inTrain(t) ? 'JR 奈良線 乘車中' : LANE[it.lane] + '・' + it.title.replace(/（.*?）/g, ''); }
+  function renderCard(t) {
+    const it = itemAt(t), i = ITEMS.indexOf(it), nx = ITEMS[i + 1];
+    const k = it.kind === 'seal' ? 'seal' : it.kind;
+    const left = nx ? Math.max(0, Math.round(nx.a - t)) : 0;
+    card.innerHTML = `<div class="seal k-${k} ${it.lane}" aria-hidden="true">${KCH[it.kind]}</div>
+      <div class="span">${it.s} – ${it.e}　${LANE[it.lane]}　停留 ${it.b - it.a} 分</div>
+      <h2>${it.title}</h2><div class="jp">${it.jp || ''}</div>
+      ${it.note ? `<div class="note">${it.note}</div>` : ''}
+      ${it.warn ? `<div class="warn">⚠ ${it.warn}</div>` : ''}
+      ${nx ? `<div class="next">下一站 <b>${nx.s} ${nx.title}</b>，還有 ${left} 分</div>` : `<div class="next">今天的行程到這裡結束。</div>`}`;
+  }
+  const rowsEl = $('#rows');
+  rowsEl.innerHTML = ITEMS.map((o, i) => `<button class="row" type="button" data-i="${i}">
+      <span class="t">${o.s}–${o.e}</span><span class="k ${o.kind} ${o.lane}" aria-hidden="true">${KCH[o.kind]}</span>
+      <span><b>${o.title}</b><span class="d">${o.jp || ''}${o.warn ? ' <span class="flag">⚠ 注意</span>' : ''}</span></span></button>`).join('');
+  rowsEl.addEventListener('click', e => { const b = e.target.closest('.row'); if (!b) return; stop(); setT(ITEMS[+b.dataset.i].a + 0.5); });
+
+  function setT(t, fromPlay) {
+    t = Math.max(T0, Math.min(T1, t));
+    if (fromPlay && soundOn) chimes(prevT, t);
+    prevT = t; state.t = t;
+    const m = Math.floor(t);
+    if (m !== lastShown) {
+      lastShown = m;
+      const s = fmt(m); nowEl.textContent = s; tlabel.textContent = s; scrub.value = m;
+      const it = itemAt(t); phaseEl.textContent = phaseName(it, t); renderCard(t);
+      rowsEl.querySelectorAll('.row').forEach((r, i) => r.classList.toggle('on', ITEMS[i] === it));
+      if (gantt.update) gantt.update(t);
+    }
+  }
+
+  /* ---------- playback (GSAP, with a plain fallback) ---------- */
+  const playBtn = $('#play');
+  function play() {
+    if (state.t >= T1 - 1) setT(T0);
+    playing = true; playBtn.textContent = '暫停'; playBtn.setAttribute('aria-pressed', 'true');
+    const dur = 46 * (T1 - state.t) / (T1 - T0);
+    if (window.gsap) tween = gsap.to(state, { t: T1, duration: dur, ease: 'none', onUpdate: () => setT(state.t, true), onComplete: stop });
+    else { const t0 = performance.now(), s0 = state.t; const step = n => { if (!playing) return; const f = Math.min(1, (n - t0) / (dur * 1000)); setT(s0 + (T1 - s0) * f, true); f < 1 ? requestAnimationFrame(step) : stop(); }; requestAnimationFrame(step); }
+  }
+  function stop() { playing = false; if (tween) { tween.kill(); tween = null; } playBtn.textContent = '播放一天'; playBtn.setAttribute('aria-pressed', 'false'); }
+  playBtn.addEventListener('click', () => playing ? stop() : play());
+  scrub.addEventListener('input', () => { stop(); setT(+scrub.value); });
+
+  /* ---------- sound (Tone.js) ---------- */
+  const soundBtn = $('#sound');
+  if (!window.Tone) soundBtn.hidden = true;
+  soundBtn.addEventListener('click', async () => {
+    soundOn = !soundOn; soundBtn.setAttribute('aria-pressed', String(soundOn)); soundBtn.textContent = soundOn ? '鈴聲 開' : '鈴聲 關';
+    if (soundOn && window.Tone) {
+      try {
+        await Tone.start();
+        if (!synth) { const rv = new Tone.Reverb({ decay: 3.2, wet: 0.35 }).toDestination(); synth = new Tone.PolySynth(Tone.FMSynth, { harmonicity: 3.01, modulationIndex: 9, envelope: { attack: 0.002, decay: 1.4, sustain: 0, release: 1.6 }, volume: -16 }).connect(rv); }
+        synth.triggerAttackRelease(['E6'], 0.6);
+      } catch (e) { soundOn = false; soundBtn.setAttribute('aria-pressed', 'false'); soundBtn.textContent = '鈴聲 關'; }
+    }
+  });
+  function chimes(a, b) {
+    if (!synth || b <= a) return;
+    SEALS.forEach(sl => { if (a < sl.t && sl.t <= b) synth.triggerAttackRelease(['E6', 'B6'], 0.8); });
+    DEPART.forEach(d => { if (a < d && d <= b) { const now = Tone.now(); synth.triggerAttackRelease('G5', 0.25, now); synth.triggerAttackRelease('C6', 0.4, now + 0.22); } });
+  }
+
+  /* ---------- Gantt (D3 + Rough.js) ---------- */
+  const gantt = {};
+  function drawGantt() {
+    const host = $('#gantt'); host.innerHTML = '';
+    if (!window.d3) { host.innerHTML = '<p style="font-size:12px;color:var(--ink2)">圖表程式庫沒有載入，請看下方時刻帳。</p>'; return; }
+    const w = Math.max(980, host.parentElement.clientWidth), h = 318, ml = 92, mr = 30;
+    const x = d3.scaleLinear().domain([hm('06:50'), hm('16:08')]).range([ml, w - mr]);
+    const lanes = { jr: 48, inari: 112, uji: 196 }, sealY = 262, bh = 28;
+    const svg = d3.select(host).append('svg').attr('width', w).attr('height', h).attr('viewBox', `0 0 ${w} ${h}`).attr('role', 'img').attr('aria-label', '一日時間帶圖');
+    const defs = svg.append('defs');
+    defs.append('pattern').attr('id', 'hatch').attr('width', 6).attr('height', 6).attr('patternUnits', 'userSpaceOnUse').attr('patternTransform', 'rotate(45)')
+      .append('rect').attr('width', 2).attr('height', 6).attr('fill', '#7d8a84');
+    const hours = d3.range(7, 17);
+    svg.append('g').selectAll('line').data(hours).join('line').attr('x1', d => x(d * 60)).attr('x2', d => x(d * 60)).attr('y1', 22).attr('y2', h - 18).attr('stroke', C.rule).attr('stroke-width', 1);
+    svg.append('g').selectAll('text').data(hours).join('text').attr('x', d => x(d * 60)).attr('y', h - 4).attr('text-anchor', 'middle')
+      .attr('font-family', 'IBM Plex Mono, monospace').attr('font-size', 11).attr('fill', C.ink2).text(d => String(d).padStart(2, '0') + ':00');
+    const laneLabels = [['jr', 'JR 奈良線'], ['inari', '伏見稲荷'], ['uji', '宇治'], ['seal', '御朱印']];
+    svg.append('g').selectAll('text').data(laneLabels).join('text').attr('x', 10).attr('y', d => (d[0] === 'seal' ? sealY : lanes[d[0]]) + 4)
+      .attr('font-family', 'Shippori Mincho B1, serif').attr('font-weight', 800).attr('font-size', 14).attr('fill', C.ink).text(d => d[1]);
+    const fill = o => o.kind === 'train' ? C.ai : (o.kind === 'walk' || o.kind === 'pause') ? 'url(#hatch)' : o.kind === 'eat' ? C.kin : (o.lane === 'uji' ? C.matcha : C.shu);
+    const g = svg.append('g');
+    const bars = g.selectAll('g').data(ITEMS).join('g').attr('class', 'bar').style('cursor', 'pointer');
+    bars.append('rect').attr('x', o => x(o.a)).attr('y', o => lanes[o.lane] - bh / 2).attr('width', o => Math.max(2, x(o.b) - x(o.a))).attr('height', bh).attr('rx', 2)
+      .attr('fill', fill).attr('stroke', o => (o.kind === 'walk' || o.kind === 'pause') ? '#7d8a84' : 'none').attr('stroke-dasharray', o => o.flex ? '3 2' : null)
+      .attr('fill-opacity', o => o.flex ? 0.6 : 1);
+    bars.filter(o => o.kind === 'train').append('line').attr('x1', o => x(o.a) + 2).attr('x2', o => x(o.b) - 2).attr('y1', o => lanes[o.lane] + 6).attr('y2', o => lanes[o.lane] + 6).attr('stroke', '#ECE6D3').attr('stroke-width', 2);
+    const stag = { jr: 0, inari: 0, uji: 0 };
+    bars.each(function (o) {
+      const wpx = x(o.b) - x(o.a), short = o.short;
+      const fits = wpx > short.length * 12.5 + 10;
+      const sel = d3.select(this);
+      const light = o.kind === 'walk' || o.kind === 'pause';
+      if (fits) sel.append('text').attr('x', x(o.a) + 6).attr('y', lanes[o.lane] + 5).attr('font-size', 12).attr('font-weight', 700)
+        .attr('fill', light ? C.ink : '#fff').attr('paint-order', light ? 'stroke' : null).attr('stroke', light ? C.sheet : null).attr('stroke-width', light ? 3 : null).text(short);
+      else if (!(light && o.b - o.a < 12) && o.lane !== 'jr') {
+        const row = stag[o.lane]++ % 2, ly = lanes[o.lane] + bh / 2 + 12 + row * 12, cx = (x(o.a) + x(o.b)) / 2;
+        sel.append('line').attr('x1', cx).attr('x2', cx).attr('y1', lanes[o.lane] + bh / 2).attr('y2', ly - 9).attr('stroke', C.ink2).attr('stroke-width', 0.8);
+        sel.append('text').attr('x', cx).attr('y', ly).attr('text-anchor', 'middle').attr('font-size', 10.5).attr('fill', C.ink).text(short);
+      }
+      sel.append('title').text(`${o.s}–${o.e} ${o.title}${o.jp ? '｜' + o.jp : ''}`);
+    });
+    // departures
+    svg.append('g').selectAll('text').data(DEPART).join('text').attr('x', d => x(d)).attr('y', lanes.jr - bh / 2 - 5).attr('text-anchor', 'middle')
+      .attr('font-family', 'IBM Plex Mono, monospace').attr('font-size', 10.5).attr('font-weight', 600).attr('fill', C.ai).text(d => fmt(d));
+    // time boundaries
+    const pg = svg.append('g').selectAll('g').data(PINS).join('g');
+    pg.append('path').attr('d', d => `M${x(d.t)},${lanes.uji - bh / 2 - 2} l-4,-7 h8 z`).attr('fill', '#B4741A');
+    pg.append('text').attr('x', d => x(d.t) + (d.t === hm('16:00') ? 6 : -6)).attr('y', (d, i) => lanes.uji - bh / 2 - 12 - (i === 2 ? 11 : 0))
+      .attr('text-anchor', d => d.t === hm('16:00') ? 'end' : 'end').attr('font-size', 10.5).attr('fill', '#8A5410').text(d => fmt(d.t) + ' ' + d.txt);
+    // seals with Rough.js
+    const sg = svg.append('g');
+    const rc2 = window.rough ? rough.svg(svg.node()) : null;
+    SEALS.forEach((sl, i) => {
+      const cx = x(sl.t), sz = 22;
+      if (rc2) sg.node().appendChild(rc2.rectangle(cx - sz / 2, sealY - sz / 2 - 2, sz, sz, { stroke: C.shu, strokeWidth: 1.6, roughness: 1.1, seed: 11 + i, fill: 'rgba(199,53,28,.08)', fillStyle: 'solid', strokeLineDash: sl.flex ? [3, 3] : undefined }));
+      else sg.append('rect').attr('x', cx - sz / 2).attr('y', sealY - sz / 2 - 2).attr('width', sz).attr('height', sz).attr('fill', 'none').attr('stroke', C.shu);
+      sg.append('text').attr('x', cx).attr('y', sealY + 3).attr('text-anchor', 'middle').attr('font-family', 'Shippori Mincho B1, serif').attr('font-weight', 800).attr('font-size', 13).attr('fill', C.shu).text('印');
+      sg.append('text').attr('x', cx).attr('y', sealY + 24 + (i % 2) * 12).attr('text-anchor', 'middle').attr('font-size', 10.5).attr('fill', C.ink2).text(sl.name + (sl.flex ? '（彈性）' : ''));
+    });
+    // playhead
+    const ph = svg.append('g').attr('pointer-events', 'none');
+    const pl = ph.append('line').attr('y1', 18).attr('y2', h - 18).attr('stroke', C.shu).attr('stroke-width', 2);
+    const pb = ph.append('rect').attr('y', 2).attr('width', 46).attr('height', 17).attr('rx', 2).attr('fill', C.shu);
+    const pt = ph.append('text').attr('y', 15).attr('text-anchor', 'middle').attr('font-family', 'IBM Plex Mono, monospace').attr('font-size', 11.5).attr('font-weight', 600).attr('fill', '#fff');
+    gantt.update = t => { const px = x(t); pl.attr('x1', px).attr('x2', px); pb.attr('x', px - 23); pt.attr('x', px).text(fmt(t)); };
+    gantt.update(state.t);
+    const toT = ev => x.invert(d3.pointer(ev, svg.node())[0]);
+    svg.on('pointerdown', ev => { stop(); setT(toT(ev)); svg.on('pointermove.drag', e => setT(toT(e))); })
+      .on('pointerup pointerleave', () => svg.on('pointermove.drag', null));
+  }
+
+  /* ---------- boot ---------- */
+  initGL();
+  const boot = () => { resize(); drawGantt(); lastShown = -1; setT(state.t); requestAnimationFrame(frame); if (!reduce) setTimeout(() => { if (!playing && state.t <= 421) play(); }, 900); };
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { resize(); drawGantt(); }, 150); });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(boot);
+})();
+</script>

@@ -1,0 +1,1083 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>嵐山嵯峨野行程手冊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho+B1:wght@800&display=swap">
+<style>
+/* layout concept: A4 magazine sheets, cool green-grey paper, sumi ink, bamboo green, vermilion (goshuin seal) used only as the stamp colour */
+:root{
+  --paper:#e9eee8; --page:#fbfcf9; --ink:#16201b; --ink2:#465650; --mute:#6b7a72; --line:#cfd9d1; --line2:#e4eae2;
+  --bamboo:#2b5a47; --bamboo-soft:#dfeae2; --shu:#bf2f1c; --shu-soft:#f7dfd8; --shu-ink:#ffffff;
+  --ok:#1d6a44; --ok-bg:#dbeee2; --ph:#245a8a; --ph-bg:#dce9f5; --warn:#7a5000; --warn-bg:#f8edd2;
+  --f-disp:'Shippori Mincho B1','Noto Serif TC','Hiragino Mincho ProN','PMingLiU',serif;
+  --f-body:'Noto Sans TC','PingFang TC','Microsoft JhengHei','Hiragino Sans',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0c120f; --page:#151c18; --ink:#e8efe9; --ink2:#b0beb5; --mute:#8a988e; --line:#2c3932; --line2:#222c27;
+  --bamboo:#86c6a5; --bamboo-soft:#1c3126; --shu:#ef6f5a; --shu-soft:#3a1f1b; --shu-ink:#1a0d0a;
+  --ok:#7fd0a3; --ok-bg:#183024; --ph:#93bfe9; --ph-bg:#1a2a3b; --warn:#ecc476; --warn-bg:#33291a; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0c120f; --page:#151c18; --ink:#e8efe9; --ink2:#b0beb5; --mute:#8a988e; --line:#2c3932; --line2:#222c27;
+  --bamboo:#86c6a5; --bamboo-soft:#1c3126; --shu:#ef6f5a; --shu-soft:#3a1f1b; --shu-ink:#1a0d0a;
+  --ok:#7fd0a3; --ok-bg:#183024; --ph:#93bfe9; --ph-bg:#1a2a3b; --warn:#ecc476; --warn-bg:#33291a; color-scheme:dark;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:13px;line-height:1.62;padding:20px 16px 48px;font-feature-settings:"palt" 0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:var(--bamboo);text-underline-offset:2px}
+img{max-width:100%;display:block}
+.sheet{width:min(210mm,100%);margin:0 auto 22px;background:var(--page);padding:14mm 14mm 12mm;min-height:297mm;position:relative;display:flex;flex-direction:column;gap:11px;box-shadow:0 1px 0 var(--line),0 16px 34px -22px rgba(0,0,0,.45)}
+.sheet>*{flex-shrink:0}
+.dense td,.dense th{padding:1px 6px;font-size:9.4px;line-height:1.28}
+.dense .xs{font-size:9px}
+.rh{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;color:var(--mute);border-bottom:1px solid var(--line);padding-bottom:6px;text-transform:uppercase}
+.rh-r{font-variant-numeric:tabular-nums;white-space:nowrap}
+.pt{display:flex;align-items:center;gap:11px;margin:2px 0 0;font-family:var(--f-disp);font-weight:800;font-size:24px;line-height:1.25;letter-spacing:.01em;text-wrap:balance}
+.kind{flex:none;display:inline-grid;place-items:center;width:30px;height:30px;background:var(--shu);color:var(--shu-ink);font-family:var(--f-disp);font-weight:800;font-size:18px;line-height:1;border-radius:2px;transform:rotate(-3deg)}
+h3{font-family:var(--f-disp);font-weight:800;font-size:15.5px;margin:6px 0 3px;color:var(--bamboo);letter-spacing:.02em;text-wrap:balance}
+h4{font-size:12px;margin:0 0 2px;color:var(--ink2);letter-spacing:.06em}
+p{margin:0}
+p+p{margin-top:6px}
+ul,ol{margin:0;padding-left:1.2em}
+li{margin:1px 0}
+.lead{font-size:14px;line-height:1.75;color:var(--ink)}
+.sm{font-size:11.5px;color:var(--ink2)}
+.xs{font-size:10.5px;color:var(--mute)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.cols2>*,.cols3>*{min-width:0}
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;align-items:start}
+.split>*{min-width:0}
+/* figures */
+figure{margin:0}
+figure img{width:100%;height:auto;object-fit:cover;border-radius:2px;background:var(--line2)}
+figcaption{font-size:10.5px;color:var(--ink2);margin-top:3px;line-height:1.4}
+.cr{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.02em;color:var(--mute);margin-top:1px;word-break:break-word}
+.ph-a img{aspect-ratio:16/9}.ph-b img{aspect-ratio:4/3}.ph-c img{aspect-ratio:3/2}.ph-t img{aspect-ratio:3/4}.ph-w img{aspect-ratio:2.4/1}.ph-s img{aspect-ratio:16/10}
+figure.map img{height:auto;object-fit:contain;border:1px solid var(--line)}
+figure.map.crop img{aspect-ratio:2/1;object-fit:cover;object-position:50% 47%}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.row2>*,.row3>*{min-width:0}
+/* tables */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:11.5px;line-height:1.5}
+th{white-space:nowrap;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;text-align:left;color:var(--mute);font-weight:500;padding:4px 6px;border-bottom:1.5px solid var(--ink)}
+td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+td.t,th.t{white-space:nowrap;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+tr.hl td{background:var(--bamboo-soft)}
+/* facts */
+dl.facts{display:grid;grid-template-columns:auto 1fr;gap:0 12px;margin:0;font-size:12px}
+dl.facts dt{color:var(--mute);padding:4px 0;border-bottom:1px solid var(--line2);font-size:11px;letter-spacing:.04em;white-space:nowrap}
+dl.facts dd{margin:0;padding:4px 0;border-bottom:1px solid var(--line2);min-width:0}
+/* chips */
+.v{display:inline-flex;align-items:center;gap:3px;font-size:10px;line-height:1;padding:1px 4px;border-radius:2px;margin-left:3px;vertical-align:1px;white-space:nowrap;font-style:normal}
+.v i{font-style:normal;font-size:9.5px}
+.v-ok{background:var(--ok-bg);color:var(--ok)}.v-ph{background:var(--ph-bg);color:var(--ph)}.v-w{background:var(--warn-bg);color:var(--warn)}
+.box{background:var(--bamboo-soft);padding:8px 10px;border-radius:2px;font-size:12px}
+.warnbox{background:var(--warn-bg);color:var(--ink);padding:8px 10px;border-radius:2px;font-size:12px}
+.warnbox b:first-child{color:var(--warn)}
+.shubox{background:var(--shu-soft);padding:8px 10px;border-radius:2px;font-size:12px}
+.tag{display:inline-block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.05em;padding:1px 5px;border:1px solid var(--line);border-radius:2px;color:var(--ink2);margin-right:3px;white-space:nowrap}
+.tag.s{background:var(--shu);border-color:var(--shu);color:var(--shu-ink)}
+.tag.a{background:var(--bamboo);border-color:var(--bamboo);color:var(--page)}
+.stars{color:var(--shu);letter-spacing:.06em;white-space:nowrap}
+.gm,.ext{font-size:11px;white-space:nowrap}
+/* stamp */
+.hanko{display:inline-grid;place-items:center;background:var(--shu);color:var(--shu-ink);font-family:var(--f-disp);font-weight:800;line-height:1.05;border-radius:3px;text-align:center}
+/* flow strip */
+.flow{display:flex;flex-wrap:wrap;gap:4px 0;align-items:center;font-size:11px}
+.flow span.n{display:inline-block;padding:2px 7px;border:1px solid var(--line);border-radius:2px;background:var(--page);white-space:nowrap}
+.flow span.n.k{background:var(--bamboo);color:var(--page);border-color:var(--bamboo)}
+.flow span.n.g{background:var(--shu-soft);border-color:var(--shu-soft)}
+.flow span.a{color:var(--mute);padding:0 3px;font-size:10px;white-space:nowrap}
+.flow span.a small{font-size:9px;letter-spacing:.02em}
+/* timeline */
+.tl{position:relative;margin:0;padding:0;list-style:none}
+.tl li{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:5px 0;border-bottom:1px solid var(--line2);margin:0}
+.tl .tm{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-weight:500;font-size:12px;color:var(--bamboo)}
+.tl .tt{min-width:0}
+.tl b{font-family:var(--f-disp);font-size:13.5px}
+.tl li.go .tm{color:var(--shu)}
+.tl li.mv{opacity:.85;font-size:11.5px}
+.tl li.mv b{font-family:var(--f-body);font-size:11.5px;font-weight:500}
+/* checklist */
+.ck{list-style:none;padding:0;margin:0}
+.ck li{display:flex;gap:7px;align-items:flex-start;padding:2px 0;margin:0}
+.ck input{margin-top:3px;accent-color:var(--bamboo);flex:none}
+.ck label{min-width:0}
+/* cover */
+.cover{padding:0;min-height:297mm;gap:0;overflow:hidden}
+.cover .hero{position:relative;height:118mm;overflow:hidden}
+.cover .hero img{width:100%;height:100%;object-fit:cover}
+.cover .hero .cr{position:absolute;left:10px;top:8px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);font-size:8.5px}
+.cover .body{position:relative;flex:1;padding:10mm 14mm 8mm;display:grid;grid-template-columns:auto 1fr;gap:14mm;align-content:start}
+.cover .v-title{writing-mode:vertical-rl;font-family:var(--f-disp);font-weight:800;font-size:76px;line-height:1;letter-spacing:.14em;margin-top:-26mm;background:var(--page);padding:12px 6px 14px;color:var(--ink)}
+.cover h1{font-family:var(--f-disp);font-weight:800;font-size:30px;line-height:1.3;margin:0;text-wrap:balance}
+.cover .eyebrow{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
+.cover .stampwrap{position:absolute;right:14mm;top:-16mm}
+.cover .stampwrap .hanko{width:64px;height:64px;font-size:22px;transform:rotate(6deg);box-shadow:0 4px 12px -6px rgba(0,0,0,.5)}
+.cover .meta{display:grid;grid-template-columns:auto 1fr;gap:3px 14px;font-size:12.5px;margin-top:10px}
+.cover .meta dt{color:var(--mute);font-size:11px;letter-spacing:.06em}
+.cover .meta dd{margin:0}
+.cover .rh{display:none}
+.toc{list-style:none;margin:0;padding:0;columns:3;column-gap:16px;font-size:11.5px}
+.toc li{break-inside:avoid;margin:0;padding:2px 0;border-bottom:1px solid var(--line2)}
+.toc a{color:var(--ink);text-decoration:none;display:flex;gap:8px}
+.toc .mono{color:var(--shu);font-size:10.5px;flex:none}
+.tiny{font-size:9.5px;color:var(--mute)}
+.noprint{display:block}
+@media (max-width:700px){
+  body{padding:12px 16px 40px}
+  .sheet{padding:18px 16px;min-height:0;gap:12px}
+  .pt{font-size:21px}
+  .split,.cols2,.cols3,.row2{grid-template-columns:1fr}
+  .row3{grid-template-columns:1fr 1fr}
+  .cover{padding:0}.cover .hero{height:56vw;min-height:200px}
+  .cover .body{grid-template-columns:1fr;padding:18px 16px;gap:10px}
+  .cover .v-title{writing-mode:horizontal-tb;font-size:44px;margin-top:0;padding:0;letter-spacing:.1em}
+  .cover .stampwrap{top:-30px;right:16px}
+  .tl li{grid-template-columns:64px 1fr}
+  .toc{columns:2}
+  dl.facts{grid-template-columns:1fr;}
+  dl.facts dt{border-bottom:0;padding-bottom:0}
+}
+@media print{
+  @page{size:A4;margin:0}
+  :root:root{--paper:#fff;--page:#fff;--ink:#16201b;--ink2:#465650;--mute:#6b7a72;--line:#cfd9d1;--line2:#e4eae2;--bamboo:#2b5a47;--bamboo-soft:#dfeae2;--shu:#bf2f1c;--shu-soft:#f7dfd8;--shu-ink:#fff;--ok:#1d6a44;--ok-bg:#dbeee2;--ph:#245a8a;--ph-bg:#dce9f5;--warn:#7a5000;--warn-bg:#f8edd2}
+  body{padding:0;background:#fff;font-size:12.4px}
+  .sheet{margin:0;width:210mm;height:297mm;min-height:0;overflow:hidden;box-shadow:none;break-after:page;page-break-after:always}
+  .sheet:last-child{break-after:auto;page-break-after:auto}
+  .cover{height:297mm}
+  .noprint{display:none}
+  a{color:inherit;text-decoration:none}
+}
+</style></head><body><section class="sheet cover" id="p1">
+<div class="hero"><img src="img/train3.jpg" alt="嵯峨野小火車行經保津川溪谷"><span class="cr">Photo: Toshinori baba · CC BY-SA 4.0 · Wikimedia Commons</span></div>
+<div class="body">
+  <div class="stampwrap"><span class="hanko" aria-hidden="true">朱印</span></div>
+  <div class="v-title" aria-hidden="true">嵯峨野</div>
+  <div>
+    <div class="eyebrow">Kyoto · Arashiyama &amp; Sagano · One-day guide</div>
+    <h1>嵐山・嵯峨野<br>一日行程說明書</h1>
+    <p class="lead" style="margin-top:8px">從龜岡搭小火車逆著保津川進入嵐山，沿小倉山麓走過五處寺社，最後在渡月橋收尾。觀光為主，御朱印順路收。</p>
+    <dl class="meta">
+      <dt>日期</dt><dd>2027 年 4 月 8 日（四）</dd>
+      <dt>人數</dt><dd>2 人</dd>
+      <dt>出發／返回</dt><dd>京都站（住宿在京都站周邊）</dd>
+      <dt>交通</dt><dd>JR 嵯峨野線・嵯峨野小火車・步行</dd>
+      <dt>行程時間</dt><dd class="mono">08:16 出發 → 約 17:20 返抵京都站</dd>
+      <dt>資料截至</dt><dd class="mono">2026-09-30（2027 年時刻表尚未公布）</dd>
+    </dl>
+  </div>
+  <nav style="grid-column:1/-1;margin-top:6mm" aria-label="目錄">
+    <div class="eyebrow" style="margin-bottom:6px">Contents</div>
+    <ul class="toc">
+      <li><a href="#p2"><span class="mono">02</span>旅行基本資訊</a></li>
+      <li><a href="#p3"><span class="mono">03</span>今日行程總覽</a></li>
+      <li><a href="#p4"><span class="mono">04</span>今日路線地圖</a></li>
+      <li><a href="#p5"><span class="mono">05</span>交通總覽</a></li>
+      <li><a href="#p6"><span class="mono">06</span>嵯峨野小火車</a></li>
+      <li><a href="#p7"><span class="mono">07</span>京都站到小火車站</a></li>
+      <li><a href="#p8"><span class="mono">08</span>御髮神社</a></li>
+      <li><a href="#p9"><span class="mono">09</span>大河內山莊</a></li>
+      <li><a href="#p10"><span class="mono">10</span>常寂光寺</a></li>
+      <li><a href="#p11"><span class="mono">11</span>二尊院</a></li>
+      <li><a href="#p12"><span class="mono">12</span>竹林小徑與野宮神社</a></li>
+      <li><a href="#p13"><span class="mono">13</span>午餐與休息</a></li>
+      <li><a href="#p14"><span class="mono">14</span>天龍寺（簡介）</a></li>
+      <li><a href="#p15"><span class="mono">15</span>天龍寺（參觀路線）</a></li>
+      <li><a href="#p16"><span class="mono">16</span>渡月橋與嵐山街區</a></li>
+      <li><a href="#p17"><span class="mono">17</span>今日御朱印攻略</a></li>
+      <li><a href="#p18"><span class="mono">18</span>一日時間軸</a></li>
+      <li><a href="#p19"><span class="mono">19</span>費用總覽</a></li>
+      <li><a href="#p20"><span class="mono">20</span>雨天備案</a></li>
+      <li><a href="#p21"><span class="mono">21</span>行程彈性與刪減</a></li>
+      <li><a href="#p22"><span class="mono">22</span>出發前必看</a></li>
+      <li><a href="#p23"><span class="mono">23</span>旅行 Checklist</a></li>
+      <li><a href="#p24"><span class="mono">24</span>資料來源與圖片授權</a></li>
+    </ul>
+  </nav>
+</div>
+</section>
+<section class="sheet " id="p2">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.02</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">基</span><span>旅行基本資訊</span></h2>
+
+<p class="lead">這份手冊只整理「已確認的行程」，方便出發前閱讀、當天在路上查閱。每個數字都標了來源等級，請先看下面的圖例。</p>
+<div class="split">
+  <dl class="facts">
+    <dt>旅行日期</dt><dd class="mono">2027/04/08（星期四）</dd>
+    <dt>人數</dt><dd>2 人</dd>
+    <dt>出發地</dt><dd>京都站（JR）</dd>
+    <dt>結束地</dt><dd>京都站（住宿在站周邊）</dd>
+    <dt>旅行時間</dt><dd class="mono">08:16 → 約 17:20<br><span class="xs">設定上限 19:00，保留約 1 小時 40 分機動</span></dd>
+    <dt>主要交通</dt><dd>JR 嵯峨野線、嵯峨野觀光鐵道（小火車）、步行</dd>
+    <dt>全日步行</dt><dd>Google Maps 估算約 3.6 km／50 分（純移動，不含參觀）<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></dd>
+    <dt>預估花費</dt><dd>約 ¥8,500～11,000／人<br><span class="xs">含交通、門票、御朱印、午餐與小吃，詳見費用頁</span></dd>
+    <dt>景點數</dt><dd>8 處主要景點＋小火車＋午餐</dd>
+    <dt>御朱印</dt><dd>5 處寺社，預計 5～7 張</dd>
+  </dl>
+  <div style="display:grid;gap:8px">
+    <div class="box"><h3 style="margin-top:0">今日旅行特色</h3>
+      <ol class="sm" style="margin:0">
+        <li><b>坐小火車入山：</b>從龜岡出發，約 20 分沿保津川進到嵐山。</li>
+        <li><b>小倉山麓的寺社：</b>御髮神社、常寂光寺、二尊院都在同一片山腳，步行連得起來。</li>
+        <li><b>竹林與野宮神社：</b>嵯峨野最有代表性的一段路。</li>
+        <li><b>天龍寺曹源池：</b>世界遺產禪寺，作為午後主場。</li>
+        <li><b>收尾在渡月橋：</b>慢慢走回 JR 嵯峨嵐山站。</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<h3>資料可信度圖例</h3>
+<div class="tw"><table>
+<tr><td style="width:70px"><span class="v v-ok" title="官方原文核實">✅</span></td><td><b>已用官方網站原文核實</b>：開啟寺社、交通機構或觀光協會官網頁面確認，不是搜尋引擎摘要。</td></tr>
+<tr><td><span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td><b>御朱印社群平台（Omairi）的真實訪客投稿</b>：我已用瀏覽器實際開啟頁面讀取，並標示投稿或參拜日期，優先採用 2026 年內的紀錄。</td></tr>
+<tr><td><span class="v v-w" title="二手資料／待確認">⚠️</span></td><td><b>二手資料或未經證實</b>：轉乘網站、旅遊網站、Google Maps 估算、我自己的估算。僅供參考，出發前請再確認。</td></tr>
+</table></div>
+<h3>出發前最需要再確認的 5 件事</h3>
+<ol class="sm">
+<li><b>小火車 2027 年運行日曆與時刻表：</b>目前只有 2026 年版（2026/3/14 改正）。官網另預告 2027 年春新型車輛登場，可能影響班次。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+<li><b>小火車訂位：</b>2027/3/8 日本時間 00:00 開賣（搭乘日前一個月 00:00）。這是全行程最需要事先做的事。<span class="v v-ok" title="官方原文核實">✅</span></li>
+<li><b>御髮神社的御朱印授與時間：</b>各來源說法不同（9:00、9:30、10:00 起）。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+<li><b>二尊院的御朱印授與時間：</b>官網與社群投稿都沒有寫明。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+<li><b>JR 嵯峨野線 2027 年早晨班次：</b>目前用的是二手時刻表。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+</ol>
+<h3>地名對照（用日文名稱搜尋 Google Maps 最準）</h3>
+<div class="tw dense"><table>
+<tr><th>中文</th><th>日文（搜尋用）</th><th>讀音</th></tr>
+<tr><td>京都站／馬堀站</td><td>京都駅／馬堀駅</td><td>きょうとえき／うまほりえき</td></tr>
+<tr><td>小火車 龜岡站／嵐山站</td><td>トロッコ亀岡駅／トロッコ嵐山駅</td><td>とろっこかめおか／とろっこあらしやま</td></tr>
+<tr><td>御髮神社</td><td>御髪神社</td><td>みかみじんじゃ</td></tr>
+<tr><td>大河內山莊</td><td>大河内山荘庭園</td><td>おおこうちさんそうていえん</td></tr>
+<tr><td>常寂光寺／二尊院</td><td>常寂光寺／二尊院</td><td>じょうじゃっこうじ／にそんいん</td></tr>
+<tr><td>野宮神社／天龍寺</td><td>野宮神社／天龍寺</td><td>ののみやじんじゃ／てんりゅうじ</td></tr>
+<tr><td>渡月橋／JR 嵯峨嵐山站</td><td>渡月橋／嵯峨嵐山駅</td><td>とげつきょう／さがあらしやまえき</td></tr>
+</table></div>
+
+</section>
+<section class="sheet " id="p3">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.03</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>今日行程總覽</span></h2>
+
+<p class="sm">時間為預估值。粗體時間是「固定不能改」的時刻（有訂位的小火車）；其餘為彈性時間。步行時間除註明外，皆為 Google Maps 或我的估算<span class="v v-w" title="二手資料／待確認">⚠️</span>。</p>
+<div class="tw"><table>
+<tr><th class="t">時間</th><th>地點</th><th>行程</th><th>交通</th><th class="t">停留</th></tr>
+<tr><td class="t">08:16</td><td><b>京都站</b></td><td>搭 JR 嵯峨野線（普通車，往園部／龜岡方向）</td><td>JR 約 25 分，¥320</td><td class="t">—</td></tr>
+<tr><td class="t">08:41</td><td>馬堀站</td><td>步行前往トロッコ亀岡站，確認電子票券</td><td>步行 7～9 分（550～650 m）</td><td class="t">約 10 分</td></tr>
+<tr class="hl"><td class="t"><b>09:30</b></td><td><b>トロッコ亀岡</b></td><td>嵯峨野小火車「嵯峨野 2 號」→ 嵐山</td><td>小火車約 20 分，¥880（全席指定）</td><td class="t">約 23 分</td></tr>
+<tr><td class="t">09:53</td><td>トロッコ嵐山</td><td>下車，往北側寺社區</td><td>步行約 3～5 分</td><td class="t">—</td></tr>
+<tr><td class="t">10:00</td><td><b>御髮神社</b></td><td>參拜、御髮塚、御朱印</td><td>步行</td><td class="t">20 分</td></tr>
+<tr><td class="t">10:25</td><td><b>大河內山莊</b></td><td>庭園散步、抹茶點心</td><td>步行約 3 分</td><td class="t">40 分</td></tr>
+<tr><td class="t">11:15</td><td><b>常寂光寺</b></td><td>多寶塔、山腰展望、御朱印</td><td>步行約 10 分（爬坡）</td><td class="t">40 分</td></tr>
+<tr><td class="t">12:05</td><td><b>二尊院</b></td><td>總門、參道、本堂、御朱印</td><td>步行 5～8 分</td><td class="t">40 分</td></tr>
+<tr><td class="t">12:45</td><td><b>竹林小徑</b></td><td>南下慢走、拍照</td><td>步行</td><td class="t">20 分</td></tr>
+<tr><td class="t">13:05</td><td><b>野宮神社</b></td><td>黑木鳥居、縁結び、御朱印</td><td>步行</td><td class="t">25 分</td></tr>
+<tr><td class="t">13:30</td><td>午餐</td><td>天龍寺周邊（湯豆腐等）</td><td>步行</td><td class="t">60 分</td></tr>
+<tr><td class="t">14:30</td><td><b>天龍寺</b></td><td>曹源池庭園、百花苑、御朱印</td><td>步行</td><td class="t">75 分</td></tr>
+<tr><td class="t">15:45</td><td><b>渡月橋</b></td><td>橋上與河畔散步、拍照</td><td>步行</td><td class="t">20 分</td></tr>
+<tr><td class="t">16:05</td><td>嵐山街區</td><td>小吃、伴手禮</td><td>步行</td><td class="t">40 分</td></tr>
+<tr><td class="t">16:45</td><td>JR 嵯峨嵐山站</td><td>步行前往車站</td><td>步行約 15 分</td><td class="t">—</td></tr>
+<tr><td class="t">17:05</td><td>→ 京都站</td><td>搭 JR 回京都（約 17:22 抵達）</td><td>JR 約 17 分，¥240</td><td class="t">—</td></tr>
+</table></div>
+<div class="box"><b>節奏檢查：</b>純參觀與用餐約 6 小時 20 分，其餘是移動與緩衝。全程只有一個硬性時刻（09:30 小火車）。若當天有延誤，先刪二尊院與街區（見「行程彈性與刪減方案」）。</div>
+<h3>今天的四個時間界線</h3>
+<div class="tw"><table>
+<tr><th class="t">時間</th><th>界線</th><th>意義</th></tr>
+<tr><td class="t">09:30</td><td><b>小火車發車</b></td><td>唯一不能錯過的班次；錯過就改 10:30，並刪二尊院與街區。</td></tr>
+<tr><td class="t">16:00</td><td>二尊院御朱印</td><td>授與時間官方未載明，一律在 16:00 前完成（本行程約 12:20 就領）。</td></tr>
+<tr><td class="t">16:30</td><td>多數寺院最後入場</td><td>大河內山莊、常寂光寺、二尊院都在 16:30 前截止（本行程 12:45 前都已離開）。</td></tr>
+<tr><td class="t">16:50</td><td>天龍寺庭園最後受付</td><td>本行程 14:30 進入，緩衝約 2 小時。</td></tr>
+</table></div>
+<p class="xs">大型景點的停留時間已包含景區內移動、拍照與御朱印排隊。天龍寺建議只看庭園，不全部走完（見天龍寺頁）。</p>
+
+</section>
+<section class="sheet " id="p4">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.04</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>今日路線地圖</span></h2>
+
+<figure class="map ph-m"><img src="maps/map01_arashiyama_all.jpg" alt="MAP 01｜嵐山・嵯峨野全日步行路線（トロッコ嵐山駅 → 御髮神社 → 大河內山莊 → 常寂光寺 → 二尊院 → 野宮神社 → 天龍寺 → 渡月橋 → 嵯峨嵐山駅）。Google Maps 估算：3.6 km／50 分。"><figcaption>MAP 01｜嵐山・嵯峨野全日步行路線（トロッコ嵐山駅 → 御髮神社 → 大河內山莊 → 常寂光寺 → 二尊院 → 野宮神社 → 天龍寺 → 渡月橋 → 嵯峨嵐山駅）。Google Maps 估算：3.6 km／50 分。<span class="cr">地圖截圖：Google Maps（地圖資料 ©2026 Google）· 截取於 2026-09-30</span></figcaption></figure>
+<h3>行程順序示意圖（示意圖，非地理比例）</h3>
+<div class="flow">
+<span class="n">京都站</span><span class="a">→<small> JR</small> →</span><span class="n">馬堀</span><span class="a">→<small> 步行</small> →</span><span class="n k">トロッコ亀岡</span><span class="a">→<small> 小火車</small> →</span><span class="n k">トロッコ嵐山</span><span class="a">→</span><span class="n g">御髮神社</span><span class="a">→</span><span class="n">大河內山莊</span><span class="a">→</span><span class="n g">常寂光寺</span><span class="a">→</span><span class="n g">二尊院</span><span class="a">→</span><span class="n">竹林</span><span class="a">→</span><span class="n g">野宮神社</span><span class="a">→</span><span class="n">午餐</span><span class="a">→</span><span class="n g">天龍寺</span><span class="a">→</span><span class="n">渡月橋</span><span class="a">→</span><span class="n">嵐山街區</span><span class="a">→<small> JR</small> →</span><span class="n">京都站</span>
+</div>
+<p class="xs">粉紅底＝有御朱印的寺社；綠底＝交通節點。</p>
+<div class="cols2">
+<div><h3>為什麼這樣走最順</h3>
+<ul class="sm">
+<li>トロッコ嵐山站在嵯峨野的西南角，出站就進小倉山麓。</li>
+<li>行程分成兩段：先<b>往北</b>走完御髮神社、大河內山莊、常寂光寺、二尊院（Google 估算 1.0 km／15 分，總爬升約 122 m），再<b>往南</b>回到野宮神社、天龍寺、渡月橋（2.6 km／35 分）。</li>
+<li>兩段是一個環，沒有原路折返；重點是把山腳的四個點一次走完，不在中午回頭補。</li>
+<li>終點 JR 嵯峨嵐山站直達京都站，住宿在站旁最省事。</li>
+</ul></div>
+<div><h3>取捨說明</h3>
+<ul class="sm">
+<li><b>順路加入：</b>大河內山莊（離小火車站很近）、常寂光寺、二尊院（都在北段路上）。</li>
+<li><b>雖值得但不排：</b>化野念佛寺、愛宕念佛寺（在更西北，來回多 20～30 分且要回頭）；大覺寺（偏東，要另外搭車）；松尾大社（要搭阪急）<span class="v v-w" title="二手資料／待確認">⚠️</span>。</li>
+<li><b>反向走法：</b>先從嵐山中心走天龍寺再往北，竹林與天龍寺會落在上午 10～12 點的人潮尖峰；小火車若放在最後，收尾會在龜岡，還要再走去馬堀搭 JR，整天反而更趕，所以不採用。</li>
+</ul></div>
+</div>
+<p class="xs"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%90%E5%B1%B1%E9%A7%85&destination=%E5%B5%AF%E5%B3%A8%E5%B5%90%E5%B1%B1%E9%A7%85&travelmode=walking">整段步行路線（Google Maps 開新分頁）<span aria-hidden="true"> ↗</span></a>　地圖上的路線是 Google 的最短步行路徑，實際可能因為參拜動線略有不同。</p>
+
+</section>
+<section class="sheet " id="p5">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.05</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>交通總覽</span></h2>
+
+<div class="tw"><table>
+<tr><th>#</th><th>起點 → 終點</th><th>工具</th><th class="t">時間</th><th>徒步</th><th>轉乘</th><th>費用</th><th>注意事項</th></tr>
+<tr><td>1</td><td>京都站 → 馬堀站</td><td>JR 嵯峨野線</td><td class="t">25 分</td><td>站內</td><td>直達</td><td>¥320<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td><td>搭「普通」，認清「園部・亀岡方面」看板。<span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr><td>2</td><td>馬堀站 → トロッコ亀岡</td><td>步行</td><td class="t">7～9 分</td><td>550～650 m</td><td>—</td><td>—</td><td>不要在龜岡站下車，龜岡站離小火車站要走 33 分。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td></tr>
+<tr class="hl"><td>3</td><td>トロッコ亀岡 → トロッコ嵐山</td><td>嵯峨野小火車</td><td class="t">約 20 分</td><td>—</td><td>—</td><td>¥880<span class="v v-ok" title="官方原文核實">✅</span></td><td>全席指定，必須訂位；下車站是嵐山站，不是終點嵯峨站。<span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr><td>4</td><td>トロッコ嵐山 → 二尊院<br><span class="xs">（途經御髮神社、大河內山莊、常寂光寺）</span></td><td>步行</td><td class="t">合計約 15 分</td><td>1.0 km，爬升約 122 m</td><td>—</td><td>—</td><td>路上有坡與石階，穿好走的鞋。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td></tr>
+<tr><td>5</td><td>二尊院 → 野宮神社 → 天龍寺 → 渡月橋 → 嵯峨嵐山站</td><td>步行</td><td class="t">合計約 35 分</td><td>2.6 km</td><td>—</td><td>—</td><td>大致平坦，下坡居多。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td></tr>
+<tr><td>6</td><td>嵯峨嵐山站 → 京都站</td><td>JR 嵯峨野線</td><td class="t">17 分</td><td>站內</td><td>直達</td><td>¥240<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td><td>傍晚站內較擠，見出發前必看。</td></tr>
+</table></div>
+<p class="xs">合計交通費：¥320 ＋ ¥880 ＋ ¥240 ＝ <b>¥1,440／人</b>。</p>
+<h3>各段導航連結（開新分頁，手機可直接導航）</h3>
+<div class="cols2 sm">
+<div><ul>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E4%BA%AC%E9%83%BD%E9%A7%85&destination=%E9%A6%AC%E5%A0%80%E9%A7%85&travelmode=transit">京都站 → 馬堀站<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E9%A6%AC%E5%A0%80%E9%A7%85&destination=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E4%BA%80%E5%B2%A1%E9%A7%85&travelmode=walking">馬堀站 → トロッコ亀岡<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E4%BA%80%E5%B2%A1%E9%A7%85&destination=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%90%E5%B1%B1%E9%A7%85&travelmode=transit">トロッコ亀岡 → トロッコ嵐山<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%90%E5%B1%B1%E9%A7%85&destination=%E5%BE%A1%E9%AB%AA%E7%A5%9E%E7%A4%BE&travelmode=walking">トロッコ嵐山 → 御髮神社<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%BE%A1%E9%AB%AA%E7%A5%9E%E7%A4%BE&destination=%E5%A4%A7%E6%B2%B3%E5%86%85%E5%B1%B1%E8%8D%98%E5%BA%AD%E5%9C%92&travelmode=walking">御髮神社 → 大河內山莊<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%A4%A7%E6%B2%B3%E5%86%85%E5%B1%B1%E8%8D%98%E5%BA%AD%E5%9C%92&destination=%E5%B8%B8%E5%AF%82%E5%85%89%E5%AF%BA&travelmode=walking">大河內山莊 → 常寂光寺<span aria-hidden="true"> ↗</span></a></li>
+</ul></div>
+<div><ul>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%B8%B8%E5%AF%82%E5%85%89%E5%AF%BA&destination=%E4%BA%8C%E5%B0%8A%E9%99%A2&travelmode=walking">常寂光寺 → 二尊院<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E4%BA%8C%E5%B0%8A%E9%99%A2&destination=%E9%87%8E%E5%AE%AE%E7%A5%9E%E7%A4%BE&travelmode=walking">二尊院 → 野宮神社<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E9%87%8E%E5%AE%AE%E7%A5%9E%E7%A4%BE&destination=%E5%A4%A9%E9%BE%8D%E5%AF%BA&travelmode=walking">野宮神社 → 天龍寺<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%A4%A9%E9%BE%8D%E5%AF%BA&destination=%E6%B8%A1%E6%9C%88%E6%A9%8B&travelmode=walking">天龍寺 → 渡月橋<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E6%B8%A1%E6%9C%88%E6%A9%8B&destination=%E5%B5%AF%E5%B3%A8%E5%B5%90%E5%B1%B1%E9%A7%85&travelmode=walking">渡月橋 → 嵯峨嵐山站<span aria-hidden="true"> ↗</span></a></li>
+<li><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%B5%AF%E5%B3%A8%E5%B5%90%E5%B1%B1%E9%A7%85&destination=%E4%BA%AC%E9%83%BD%E9%A7%85&travelmode=transit">嵯峨嵐山站 → 京都站<span aria-hidden="true"> ↗</span></a></li>
+</ul></div>
+</div>
+<h3>交通方式比較</h3>
+<div class="tw"><table>
+<tr><th>方案</th><th>時間</th><th>轉乘／徒步</th><th>判斷</th></tr>
+<tr><td><b>本行程：</b>JR 到馬堀 → 步行 → 小火車</td><td>08:16 → 09:53 約 1 小時 37 分（含 30 分等車緩衝）</td><td>0 次轉乘，步行 7～9 分</td><td>有一段特色交通體驗，且小火車班次固定、可預先訂位。</td></tr>
+<tr><td>JR 直接到嵯峨嵐山站</td><td>約 17 分</td><td>0 次轉乘</td><td>最快，但少了小火車，也少了這趟行程的主軸。</td></tr>
+<tr><td>回程改搭嵐電或阪急</td><td>未查證</td><td>需另外轉乘</td><td>住宿在京都站旁，JR 直達最省事，不採用。<span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+</table></div>
+<p class="xs">一日券判斷：本行程只有 JR 與小火車，市巴士／地下鐵一日券用不上，合計 ¥1,440 也不需要套票。（是否有其他 JR 套票可涵蓋此段，我沒有逐項查證<span class="v v-w" title="二手資料／待確認">⚠️</span>）</p>
+
+</section>
+<section class="sheet " id="p6">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.06</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>嵯峨野小火車（特殊交通）</span></h2>
+
+<div class="split">
+<div>
+<p class="sm">嵯峨野觀光鐵道沿保津川行駛，全長約 7.3 km，是這趟行程的交通主軸。你走的是「上行」方向：龜岡 → 嵯峨（中途停保津峽、嵐山）。<span class="v v-ok" title="官方原文核實">✅</span></p>
+<h3>官方時刻（2026/3/14 改正版）<span class="v v-ok" title="官方原文核實">✅</span></h3>
+<div class="tw"><table>
+<tr><th>列車</th><th class="t">トロッコ亀岡 發</th><th class="t">保津峡 發</th><th class="t">トロッコ嵐山 發</th></tr>
+<tr class="hl"><td><b>嵯峨野 2 號</b>（主）</td><td class="t"><b>09:30</b></td><td class="t">09:42</td><td class="t">09:53</td></tr>
+<tr><td>嵯峨野 4 號（備案）</td><td class="t">10:30</td><td class="t">10:42</td><td class="t">10:53</td></tr>
+<tr><td>嵯峨野 6 號</td><td class="t">11:30</td><td class="t">11:42</td><td class="t">11:53</td></tr>
+<tr><td>嵯峨野 8～14 號</td><td class="t" colspan="3">每小時 :30 發，至 15:30 發（14 號）</td></tr>
+<tr><td>嵯峨野 16 號（末班）</td><td class="t">16:30</td><td class="t">16:44</td><td class="t">17:01</td></tr>
+</table></div>
+<p class="xs">臨時列車（82、92 號）只在特定日期開行，本行程用不到。</p>
+</div>
+<div style="display:grid;gap:8px">
+<figure class="ph-b"><img src="img/train1.jpg" alt="嵯峨野小火車車頭與客車"><figcaption>嵯峨野小火車車頭與客車<span class="cr">Photo: Streetdeck · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure>
+<figure class="ph-c"><img src="img/train4.jpg" alt="トロッコ亀岡站外觀"><figcaption>トロッコ亀岡站外觀<span class="cr">Photo: Nesnad · CC BY 4.0 · Wikimedia Commons</span></figcaption></figure>
+</div>
+</div>
+<div class="cols2">
+<div><h3>票價與訂位</h3>
+<dl class="facts sm">
+<dt>單程票價</dt><dd>大人 ¥880／小兒（6～11 歲）¥440<span class="v v-ok" title="官方原文核實">✅<i>龜岡市官網</i></span></dd>
+<dt>座位</dt><dd>全席指定<span class="v v-ok" title="官方原文核實">✅</span></dd>
+<dt>訂位開賣</dt><dd>搭乘日前一個月 00:00，即 <b class="mono">2027/03/08 00:00</b>（日本時間）<span class="v v-ok" title="官方原文核實">✅</span></dd>
+<dt>訂位網站</dt><dd><a class="ext" target="_blank" rel="noopener" href="https://ars-saganokanko.triplabo.jp/home">官方訂位系統<span aria-hidden="true"> ↗</span></a>，方向選「亀岡→嵯峨・嵐山」<span class="v v-ok" title="官方原文核實">✅</span></dd>
+<dt>退票</dt><dd>前一日 23:59 前免費；當天不能改期或退票<span class="v v-ok" title="官方原文核實">✅</span></dd>
+<dt>當天現場票</dt><dd>トロッコ亀岡站約 09:10 起售；網路售完時各站窗口仍可能有當日票（保津峽站除外）<span class="v v-ok" title="官方原文核實">✅</span></dd>
+</dl>
+<p class="xs">官網票價表的數字在網頁擷取時沒有顯示，所以票價是用龜岡市官網（<a class="ext" target="_blank" rel="noopener" href="https://www.city.kameoka.kyoto.jp/soshiki/29/3532.html">來源<span aria-hidden="true"> ↗</span></a>）確認，Google Maps 顯示也是 ¥880。</p>
+</div>
+<div><h3>運行日與 2027 年的風險</h3>
+<ul class="sm">
+<li>運行期間 3/1～12/29，1/1～2/28 與 12/30～12/31 全便運休<span class="v v-ok" title="官方原文核實">✅</span>。</li>
+<li>龜岡市官網寫「水曜定休（遇假日運轉）」；2026 年官方日曆春季只有 4/15、4/22 兩個星期三停駛，4/1、4/8、4/29 都有開<span class="v v-ok" title="官方原文核實">✅</span>。2027/4/8 是星期四，預期為一般運行日，但 <b>2027 年日曆尚未公布</b><span class="v v-w" title="二手資料／待確認">⚠️</span>。</li>
+<li>官網首頁預告「2027 年春 新型車両デビュー」<span class="v v-ok" title="官方原文核實">✅</span>，時刻與票務可能調整，3 月開賣前請再看一次。</li>
+<li>訂 <b>09:30</b> 為主，同時查 10:30 是否還有位子當備案。</li>
+</ul>
+</div>
+</div>
+
+</section>
+<section class="sheet " id="p7">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.07</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>京都站到トロッコ亀岡站</span></h2>
+
+<div class="cols2">
+<div><figure class="map "><img src="maps/map02_kyoto_umahori.jpg" alt="MAP 02｜京都站 → 馬堀站（JR 山陰線＝嵯峨野線，25 分，¥320）"><figcaption>MAP 02｜京都站 → 馬堀站（JR 山陰線＝嵯峨野線，25 分，¥320）<span class="cr">地圖截圖：Google Maps（地圖資料 ©2026 Google）· 截取於 2026-09-30</span></figcaption></figure></div>
+<div><figure class="map "><img src="maps/map03_umahori_torokko.jpg" alt="MAP 03｜馬堀站 → トロッコ亀岡駅（步行 7 分／550 m，另一條 9 分／650 m）"><figcaption>MAP 03｜馬堀站 → トロッコ亀岡駅（步行 7 分／550 m，另一條 9 分／650 m）<span class="cr">地圖截圖：Google Maps（地圖資料 ©2026 Google）· 截取於 2026-09-30</span></figcaption></figure></div>
+</div>
+<h3>早上這段怎麼走</h3>
+<div class="tw"><table>
+<tr><th class="t">時間</th><th>動作</th><th>備註</th></tr>
+<tr><td class="t">08:16</td><td>京都站 JR 嵯峨野線「普通」發車</td><td>建議搭這班。之後有 08:27（亀岡方面）、08:40 普通、08:53 普通。<span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr><td class="t">約 08:41</td><td>抵達馬堀站</td><td>Google Maps 顯示京都→馬堀 25 分、¥320<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td></tr>
+<tr><td class="t">08:41～08:50</td><td>步行到トロッコ亀岡站</td><td>站前有觀光案內所。步行 7～9 分。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td></tr>
+<tr><td class="t">08:50～09:20</td><td>換票（若用電子票，出示 QR）、拍站體、上廁所</td><td>預留約 30 分緩衝，因為這班車不能錯過。</td></tr>
+<tr class="hl"><td class="t"><b>09:30</b></td><td><b>小火車發車</b></td><td>提早 10 分鐘到月台。</td></tr>
+</table></div>
+<div class="warnbox"><b>⚠️ 班次提醒：</b>京都站 JR 的早晨班次是取自 Yahoo!乘換案內的時刻表，屬二手資料，2027 年可能改點。京都→馬堀 25 分鐘的車程是 Google 的估算（有些資料寫 23 分）。如果 08:16 那班沒趕上，08:40 普通仍來得及（約 09:05 到馬堀，09:15 到小火車站，剩 15 分緩衝），但 08:53 就太緊，直接改搭 10:30 的小火車。<span class="v v-w" title="二手資料／待確認">⚠️</span></div>
+<div class="cols2">
+<div><figure class="map crop"><img src="maps/map06_torokko_line.jpg" alt="MAP 06｜トロッコ亀岡駅 → トロッコ嵐山駅（Google Maps：嵯峨野觀光鐵道，20 分，¥880）"><figcaption>MAP 06｜トロッコ亀岡駅 → トロッコ嵐山駅（Google Maps：嵯峨野觀光鐵道，20 分，¥880）<span class="cr">地圖截圖：Google Maps（地圖資料 ©2026 Google）· 截取於 2026-09-30</span></figcaption></figure></div>
+<div><h3>怎麼認車</h3>
+<ul class="sm">
+<li>京都站請找「JR 嵯峨野線（山陰本線）」月台，方向是<b>園部・亀岡</b>。</li>
+<li>普通車一定會停馬堀站；快速是否停馬堀我沒有確認，所以優先搭「普通」。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+<li>馬堀站出來後往「トロッコ亀岡」方向走，Google Maps 導航即可，路程短。</li>
+<li>官方有製作「馬堀站 → トロッコ亀岡站」的道路導覽影片（<a class="ext" target="_blank" rel="noopener" href="https://www.sagano-kanko.co.jp/news/714/">官網公告<span aria-hidden="true"> ↗</span></a>）。<span class="v v-ok" title="官方原文核實">✅</span></li>
+</ul>
+<p class="xs" style="margin-top:6px"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E4%BA%AC%E9%83%BD%E9%A7%85&destination=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E4%BA%80%E5%B2%A1%E9%A7%85&travelmode=transit">京都站 → トロッコ亀岡（一次導航）<span aria-hidden="true"> ↗</span></a></p>
+</div>
+</div>
+
+</section>
+<section class="sheet " id="p8">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.08</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>御髮神社</span></h2>
+
+<div class="split">
+<div><figure class="map "><img src="maps/map04_north.jpg" alt="MAP 04｜北段：トロッコ嵐山駅 → 御髮神社 → 大河內山莊 → 常寂光寺 → 二尊院（1.0 km／15 分，爬升約 122 m）"><figcaption>MAP 04｜北段：トロッコ嵐山駅 → 御髮神社 → 大河內山莊 → 常寂光寺 → 二尊院（1.0 km／15 分，爬升約 122 m）<span class="cr">地圖截圖：Google Maps（地圖資料 ©2026 Google）· 截取於 2026-09-30</span></figcaption></figure></div>
+<div>
+<p class="xs">從這裡開始是北段的四個點。這張圖能看出它們都貼在小倉山山腳，走完一圈只有約 1 km。</p>
+<figure class="ph-b"><img src="img/mikami1.jpg" alt="御髮神社的社殿與奉納旗"><figcaption>御髮神社的社殿與奉納旗<span class="cr">Photo: Kentaro Ohno · CC BY 2.0 · Wikimedia Commons</span></figcaption></figure>
+</div>
+</div>
+<div class="cols2">
+<div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">御髮神社是日本唯一祭祀「頭髮」的神社，位在小火車下車後最近的一處山腳小社。它不大，觀光價值不高，但一出站就能走到，御朱印很有特色，適合當作嵯峨野的第一站。把它放在最前面，是因為它離站近，不會造成任何繞路。</p>
+<h3>景點簡介</h3>
+<p class="sm">神社創建於龜山天皇陵附近的小倉山，祭神是藤原采女亮政之，被視為日本髮結業的始祖。境內設有「御髮塚」，供奉信眾奉納的頭髮。美髮、理容業者常來感謝頭髮帶來的生計。官網有寫神社提供頭髮祈願與護身符。<span class="v v-ok" title="官方原文核實">✅</span></p>
+<h3>現場看什麼？</h3>
+<ul class="sm"><li>御髮塚（奉納頭髮的塚）</li><li>寫著「御髮神社」的奉納旗與紅色圍欄</li><li>小小的拜殿與山腳的樹林</li><li>社務所的御朱印與護身符</li></ul>
+</div>
+<div>
+<h3>基本資訊</h3>
+<dl class="facts sm">
+<dt>建議停留</dt><dd>20 分（含御朱印）</dd>
+<dt>地址</dt><dd>京都市右京區嵯峨小倉山田淵山町 10-2</dd>
+<dt>境內開放</dt><dd>境內自由；社務所 09:30～16:00 <span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>離小火車站</dt><dd>步行約 3～5 分（我的估算）<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+</dl>
+<h3>御朱印資訊　<span class="stars">推薦程度：★★★★★</span></h3>
+<dl class="facts sm">
+<dt>種類</dt><dd>1 種，中央有「髮」字，300 円<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>授與時間</dt><dd>各來源不同：09:00～15:00、10:00～15:00、社務所 09:30～16:00 <span class="v v-w" title="二手資料／待確認">⚠️</span><br><span class="xs">預計 10:00 到，三種說法都涵蓋。</span></dd>
+<dt>形式</dt><dd><b>以書置き（紙）為主</b>：2026/06/08、2026/05/04 都拿到書置き；<b>直書き不固定</b>：2026/07/19、2026/08/14 有人拿到；書寫人員不定時在場。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Omairi 2026</i></span></dd>
+<dt>貼進御朱印帳</dt><dd>2021、2023 年都有人回報，神職會幫忙用糨糊貼進帳內。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Omairi</i></span></dd>
+<dt>期間限定</dt><dd>近期投稿未看到。</dd>
+</dl>
+<h3>拍照建議</h3>
+<p class="sm">拍奉納旗與紅圍欄的對比；山腳林蔭下光線偏暗，上午容易拍出斑駁的日光。</p>
+<p class="xs"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%BE%A1%E9%AB%AA%E7%A5%9E%E7%A4%BE">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></p>
+</div>
+</div>
+
+</section>
+<section class="sheet " id="p9">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.09</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>大河內山莊庭園</span></h2>
+
+<div class="row2"><figure class="ph-b"><img src="img/okochi1.jpg" alt="庭園入口的木門與飛石"><figcaption>庭園入口的木門與飛石<span class="cr">Photo: Basile Morin · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure><figure class="ph-b"><img src="img/okochi3.jpg" alt="小倉山的山坡與櫻花"><figcaption>小倉山的山坡與櫻花<span class="cr">Photo: KimonBerlin · CC BY-SA 2.0 · Wikimedia Commons</span></figcaption></figure></div>
+<div class="cols2">
+<div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">這是全天最適合「坐下來」的地方。離小火車站約 140 m<span class="v v-w" title="二手資料／待確認">⚠️</span>，繞路成本是零，卻能在小倉山南坡上看到嵐山與京都市區的全景，最後還有一碗抹茶與和菓子。它沒有御朱印，但觀光價值高，也讓早上節奏慢下來，是我加進行程的順路景點。</p>
+<h3>景點簡介</h3>
+<p class="sm">這座庭園是昭和初期電影明星大河內傳次郎（1898～1962）花了約 30 年，在小倉山南坡親手打造的私人庭園。庭內有松、櫻、楓，能眺望比叡山，也與小倉山的古典詩歌有關。園內另有展示大河內傳次郎演藝生涯與日本電影史的展示空間。<span class="v v-ok" title="官方原文核實">✅<i>京都市觀光協會</i></span></p>
+<h3>現場看什麼？</h3>
+<ul class="sm"><li>沿山坡繞行的庭園散步道</li><li>眺望嵐山、桂川、比叡山的展望處</li><li>櫻花、楓樹與松樹的季節景色（4 月上旬是櫻與新綠的交界）</li><li>入園附的抹茶與和菓子（休息點）</li><li>大河內傳次郎的展示空間</li></ul>
+</div>
+<div>
+<h3>基本資訊</h3>
+<dl class="facts sm">
+<dt>建議停留</dt><dd>40 分（含抹茶休息）</dd>
+<dt>開園時間</dt><dd>09:00～17:00（最終入場 16:30），全年無休<span class="v v-ok" title="官方原文核實">✅<i>京都市觀光協會</i></span></dd>
+<dt>入園料</dt><dd>大人（高中生以上）¥1,000／小中學生 ¥500，含抹茶與點心<span class="v v-ok" title="官方原文核實">✅<i>京都市觀光協會</i></span></dd>
+<dt>地址</dt><dd>京都市右京區嵯峨小倉山田渕山町 8</dd>
+<dt>離小火車站</dt><dd>約 140 m<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>御朱印</dt><dd>無。</dd>
+</dl>
+<div class="shubox" style="margin-top:6px"><b>御朱印價值：</b>無；<b>觀光價值：</b>A。因為離站近、位置順路才列入。若時間吃緊，可只看外側展望而不入園。</div>
+<h3>拍照建議</h3>
+<p class="sm">入口木門框住飛石小徑是最經典的構圖；展望處拍嵐山與桂川。4 月上旬早上十點左右人潮還沒滿，光線也正好。園內有些區域有拍照規定，請依現場標示。</p>
+<p class="xs"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E3%83%88%E3%83%AD%E3%83%83%E3%82%B3%E5%B5%90%E5%B1%B1%E9%A7%85&destination=%E5%A4%A7%E6%B2%B3%E5%86%85%E5%B1%B1%E8%8D%98%E5%BA%AD%E5%9C%92&travelmode=walking">從トロッコ嵐山站導航<span aria-hidden="true"> ↗</span></a>　<a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E6%B2%B3%E5%86%85%E5%B1%B1%E8%8D%98%E5%BA%AD%E5%9C%92">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></p>
+<p class="xs">資料來源：<a class="ext" target="_blank" rel="noopener" href="https://www.kyoto-kankou.or.jp/info_search/3683">京都市觀光協會官網<span aria-hidden="true"> ↗</span></a></p>
+</div>
+</div>
+
+</section>
+<section class="sheet " id="p10">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.10</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>常寂光寺</span></h2>
+
+<div class="row2"><figure class="ph-b"><img src="img/jojak1.jpg" alt="多寶塔與遠處嵐山"><figcaption>多寶塔與遠處嵐山<span class="cr">Photo: 663highland · CC BY 2.5 · Wikimedia Commons</span></figcaption></figure><figure class="ph-b"><img src="img/jojak3.jpg" alt="從山腰望多寶塔"><figcaption>從山腰望多寶塔<span class="cr">Photo: Casey Yee · CC BY-SA 2.0 · Wikimedia Commons</span></figcaption></figure></div>
+<div class="cols2">
+<div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">常寂光寺是北段最有「山寺」感的一處，坡度也是全天最陡的一段。爬上去，多寶塔立在山腰，回頭能看到京都市區與嵐山。它在小倉山的楓樹群裡，4 月上旬是新綠，不像秋天那樣爆滿。這裡有兩種御朱印，價值高，是我把它留在行程裡的主因。</p>
+<h3>景點簡介</h3>
+<p class="sm">位在小倉山山腰，是日蓮宗的寺院（二手資料<span class="v v-w" title="二手資料／待確認">⚠️</span>）。境內有仁王門、本堂與山腰的多寶塔，整片山坡種了許多楓樹。小倉山自古是和歌名所，與大河內山莊、二尊院同屬這片山腳。</p>
+<h3>現場看什麼？</h3>
+<ul class="sm"><li>多寶塔與山坡上的展望</li><li>入口的仁王門與參道</li><li>山腰的楓林與苔</li><li>本堂周邊的庭院</li><li>從高處遠眺京都市區</li></ul>
+</div>
+<div>
+<h3>基本資訊</h3>
+<dl class="facts sm">
+<dt>建議停留</dt><dd>40 分（含爬坡與御朱印）</dd>
+<dt>拜觀時間</dt><dd>09:00～17:00（受付至 16:30）<span class="v v-ok" title="官方原文核實">✅</span></dd>
+<dt>拜觀料</dt><dd>¥600<span class="v v-ok" title="官方原文核實">✅</span></dd>
+<dt>地址</dt><dd>京都市右京區嵯峨小倉山小倉町 3</dd>
+<dt>離大河內山莊</dt><dd>步行約 10 分，上坡（估）<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+</dl>
+<h3>御朱印資訊　<span class="stars">推薦程度：★★★★☆</span></h3>
+<dl class="facts sm">
+<dt>種類</dt><dd>御朱印與御首題兩種，各 300 円<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>授與位置</dt><dd>拜觀受付處<span class="v v-ph" title="御朱印社群真實投稿">📷<i>2026/06/08</i></span></dd>
+<dt>形式</dt><dd>書置き。2026/08/14、2026/06/09 皆為書置き的御朱印與御首題。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Omairi 2026</i></span></dd>
+<dt>授與時間</dt><dd>官網未載；一般資料寫 09:00～17:00（最終 16:30）。<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>期間限定</dt><dd>有紀錄：洛陽十二支妙見巡「酉」（2026/06/28）、御本堂公開紀念與切繪御朱印（2025/11/26）、「福聚海無量」（2025/12/03）。4/8 是否有限定版現場確認。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Omairi</i></span></dd>
+</dl>
+<h3>拍照建議</h3>
+<p class="sm">多寶塔越靠近越要仰拍；從塔旁往回拍遠景，能把京都市區與山坡一起入鏡。石階濕滑時小心。</p>
+<p class="xs"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%A4%A7%E6%B2%B3%E5%86%85%E5%B1%B1%E8%8D%98%E5%BA%AD%E5%9C%92&destination=%E5%B8%B8%E5%AF%82%E5%85%89%E5%AF%BA&travelmode=walking">從大河內山莊導航<span aria-hidden="true"> ↗</span></a>　<a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%B8%B8%E5%AF%82%E5%85%89%E5%AF%BA">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></p>
+<p class="xs">資料來源：<a class="ext" target="_blank" rel="noopener" href="https://jojakko-ji.or.jp/">常寂光寺官網<span aria-hidden="true"> ↗</span></a></p>
+</div>
+</div>
+
+</section>
+<section class="sheet " id="p11">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.11</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>二尊院</span></h2>
+
+<div class="row2"><figure class="ph-c"><img src="img/nison2.jpg" alt="本堂與前方的庭園"><figcaption>本堂與前方的庭園<span class="cr">Photo: 663highland · CC BY 2.5 · Wikimedia Commons</span></figcaption></figure><figure class="ph-c"><img src="img/nison3.jpg" alt="高處望向嵯峨野的市街"><figcaption>高處望向嵯峨野的市街<span class="cr">Photo: Daderot · CC0 · Wikimedia Commons</span></figcaption></figure></div>
+<div class="cols2">
+<div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">二尊院是北段的最後一站，也是這幾座寺院裡「歷史氣氛最完整」的一座：長長的參道、氣派的總門、兩尊本尊。它的御朱印是直書き、種類多，我把它從一般順路景點提升為值得認真收的一處。位置在北段最北端，走完就開始往南回程。</p>
+<h3>景點簡介</h3>
+<p class="sm">二尊院是天台宗寺院，位在小倉山東麓，「二尊」指釋迦如來與阿彌陀如來兩尊本尊（社群投稿記載）。<span class="v v-ph" title="御朱印社群真實投稿">📷</span> 境內的總門建於慶長十八年（1613 年），是京都市指定文化財；穿過總門後是一條由楓樹夾道的參道，寺院也是「法然上人二十五靈場」第十七番。<span class="v v-ok" title="官方原文核實">✅<i>官網</i></span></p>
+<h3>現場看什麼？</h3>
+<ul class="sm"><li>總門（慶長十八年）</li><li>兩側楓樹夾著的長參道</li><li>本堂裡的二尊（釋迦如來與阿彌陀如來）</li><li>境內的花手水等季節裝飾</li><li>境內高處的眺望</li></ul>
+</div>
+<div>
+<h3>基本資訊</h3>
+<dl class="facts sm">
+<dt>建議停留</dt><dd>40 分</dd>
+<dt>拜觀時間</dt><dd>09:00～16:30（年中無休）<span class="v v-ok" title="官方原文核實">✅</span></dd>
+<dt>拜觀料</dt><dd class="sm">大人（中學生以上）<b>¥500</b>／小學生以下免費<span class="v v-ok" title="官方原文核實">✅<i>官網</i></span><br><span class="xs">部分旅遊網站寫 ¥600，以官網為準。</span></dd>
+<dt>地址</dt><dd>京都市右京區嵯峨二尊院門前長神町 27</dd>
+<dt>離常寂光寺</dt><dd>步行 5～8 分（估）<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+</dl>
+<h3>御朱印資訊　<span class="stars">推薦程度：★★★★★</span></h3>
+<dl class="facts sm">
+<dt>種類</dt><dd>本尊二尊（釋迦如來、阿彌陀如來可分別寫在專用帳）、九頭龍辯財天、法然上人二十五靈場第十七番，另有季節限定。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Omairi 2026</i></span></dd>
+<dt>形式</dt><dd><b>直書き</b>：2026/08/17（本尊二尊）、2026/06/09（九頭龍辯財天）、2026/05/02（第十七番）都是當場書寫。<span class="v v-ph" title="御朱印社群真實投稿">📷</span></dd>
+<dt>授與時間</dt><dd>官網與社群投稿都未載明。建議入寺後直接問，並在 16:00 前完成，避免趕不上。<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>期間限定</dt><dd>2025/11/26 有季節限定御朱印；4/8 是否有限定版現場確認。<span class="v v-ph" title="御朱印社群真實投稿">📷</span></dd>
+</dl>
+<h3>拍照建議</h3>
+<p class="sm">站在總門後面往參道拍縱深；4 月上旬的楓是嫩綠色。正殿內部拍照請遵守現場規定。</p>
+<p class="xs"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%B8%B8%E5%AF%82%E5%85%89%E5%AF%BA&destination=%E4%BA%8C%E5%B0%8A%E9%99%A2&travelmode=walking">從常寂光寺導航<span aria-hidden="true"> ↗</span></a>　<a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E4%BA%8C%E5%B0%8A%E9%99%A2">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></p>
+<p class="xs">資料來源：<a class="ext" target="_blank" rel="noopener" href="https://nisonin.jp/">二尊院官網<span aria-hidden="true"> ↗</span></a></p>
+</div>
+</div>
+<div class="warnbox"><b>⚠️ 待確認：</b>二尊院的御朱印授與時間沒有官方說法；如果進不了本堂時再拿御朱印，至少保證在 16:00 前完成。二尊院拜觀料以官網 ¥500 為準（先前我曾誤寫 ¥600，已更正）。</div>
+
+</section>
+<section class="sheet " id="p12">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.12</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>竹林小徑與野宮神社</span></h2>
+
+<div class="row2"><figure class="ph-c"><img src="img/bamboo1.jpg" alt="嵯峨野竹林"><figcaption>嵯峨野竹林<span class="cr">Photo: Mitchwandrew · CC BY 4.0 · Wikimedia Commons</span></figcaption></figure><figure class="ph-c"><img src="img/nonomiya2.jpg" alt="野宮神社的黑木鳥居"><figcaption>野宮神社的黑木鳥居<span class="cr">Photo: Hyppolyte de Saint-Rambert · CC BY 4.0 · Wikimedia Commons</span></figcaption></figure></div>
+<div class="cols2">
+<div>
+<h3>竹林小徑</h3>
+<p class="sm"><b>為什麼推薦：</b>這是嵯峨野最具代表性的畫面，離開北段山腳往南時順路穿過，完全沒有繞路。4/8 前後是人潮高峰，中午前後最擠，所以只花 20 分，不是拍完全部，而是慢慢走。</p>
+<p class="sm"><b>簡介：</b>兩側高聳的孟宗竹夾出一條步道，一路通往天龍寺北門。風吹過竹梢的聲音是它的特色。</p>
+<p class="sm"><b>現場看什麼：</b>抬頭看竹林、路上的光影、靠近野宮神社一側的小柴垣。</p>
+<p class="sm"><b>停留：</b>20 分（含拍照）。<b>拍照：</b>不要站在路中間；人少時往低處拍，把光線灑進來。</p>
+<p class="xs">從小火車站走到竹林約 10 分（官網 FAQ）<span class="v v-ok" title="官方原文核實">✅</span>；本行程是從二尊院往南走到竹林，Google Maps 未單獨標示竹林，現場請依「竹林の小径」指標。<span class="v v-w" title="二手資料／待確認">⚠️</span></p>
+</div>
+<div>
+<h3>野宮神社</h3>
+<p class="sm"><b>為什麼推薦：</b>竹林裡的一座小社，與《源氏物語》有關，人氣高在縁結び與學業。神社很小、御朱印只有蓋印，所以是「順路收」，不會多花心力。</p>
+<p class="sm"><b>簡介：</b>官網介紹以「黑木鳥居」與「小柴垣」為特色，並有一塊神石（龜石）。<span class="v v-ok" title="官方原文核實">✅</span></p>
+<p class="sm"><b>現場看什麼：</b>樹皮未剝的黑木鳥居、小柴垣、龜石（依現場說明參拜）、拜殿。</p>
+<p class="sm"><b>停留：</b>25 分（含御朱印與排隊）。</p>
+<dl class="facts sm">
+<dt>授與所</dt><dd>境內右手邊的社務所（2026/08/10）<span class="v v-ph" title="御朱印社群真實投稿">📷</span>；09:00～17:00<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>種類</dt><dd>1 種蓋印御朱印，300 円，含「嵯峨野めぐり」字樣<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>形式</dt><dd>以蓋印為主：2026/08/17、2026/06/08 蓋印；2026/07/19 直書き（含印）。也有人提到宮司希望遊客別闖入對面住家。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Omairi 2026</i></span></dd>
+<dt>推薦</dt><dd class="stars">★★★☆☆</dd>
+</dl>
+</div>
+</div>
+<div class="row3"><figure class="ph-c"><img src="img/bamboo2.jpg" alt="竹林近拍"><figcaption>竹林近拍<span class="cr">Photo: Basile Morin · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure><figure class="ph-c"><img src="img/nonomiya3.jpg" alt="拜殿黃昏"><figcaption>拜殿黃昏<span class="cr">Photo: そらみみ · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure><figure class="ph-c"><img src="img/nonomiya1.jpg" alt="社號碑與縁結び告示（冬季雪景）"><figcaption>社號碑與縁結び告示（冬季雪景）<span class="cr">Photo: Foxy1219 · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure></div>
+<div class="shubox"><b>值得參觀 ≠ 值得收集：</b>竹林小徑是「值得參觀」，沒有御朱印；野宮神社是「值得順路收集」但不必久留。
+<a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E4%BA%8C%E5%B0%8A%E9%99%A2&destination=%E9%87%8E%E5%AE%AE%E7%A5%9E%E7%A4%BE&travelmode=walking">二尊院 → 野宮神社<span aria-hidden="true"> ↗</span></a>　<a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E9%87%8E%E5%AE%AE%E7%A5%9E%E7%A4%BE">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></div>
+
+</section>
+<section class="sheet " id="p13">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.13</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">食</span><span>午餐與休息</span></h2>
+
+<p class="lead">午餐排在 13:30，剛好在野宮神社之後、天龍寺之前。這一帶走路都在 5 分鐘內，不用為了一間店繞路。</p>
+<div class="cols2">
+<div>
+<h3>主選：湯豆腐 嵯峨野</h3>
+<dl class="facts sm">
+<dt>位置</dt><dd>京都市右京區嵯峨天龍寺芒ノ馬場町 45（天龍寺旁，嵐電嵐山站步行約 5 分）<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>營業時間</dt><dd>來源不一致：11:00～17:30（LO 16:30）或 11:00～18:30（LO 17:30）。豆腐賣完即結束。<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>公休</dt><dd>7 月第 4 個星期三與四、12/30～1/1。4/8 預期營業。<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>預約</dt><dd>套餐可網路預約；「湯豆腐定食」不能預約，需現場排隊。<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>為什麼選</dt><dd>離天龍寺最近，走路不繞；以嵯峨豆腐為主，適合早上吃了很多御朱印的時間。</dd>
+<dt>電話</dt><dd class="mono">075-871-6946</dd>
+</dl>
+<p class="xs" style="margin-top:4px"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E8%B1%86%E8%85%90%20%E5%B5%AF%E5%B3%A8%E9%87%8E%20%E4%BA%AC%E9%83%BD">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></p>
+</div>
+<div>
+<h3>不可用：天龍寺「篩月」</h3>
+<div class="shubox sm"><b>4/8 是星期四，篩月定休。</b>官網寫營業 11:00～14:00、定休日「木曜日」，套餐 ¥3,800～¥9,000，另加庭園參拜料 ¥500，且需 2～3 日前預約。<span class="v v-ok" title="官方原文核實">✅</span><br>如果想吃，只能改日期。本行程不排。</div>
+<h3>備案</h3>
+<ul class="sm">
+<li><b>嵯峨豆腐 森嘉：</b>竹林周邊的豆腐店，營業時間我沒有查到官方資料。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+<li><b>街區小吃：</b>若排隊超過 30 分，改買街區小吃代替正餐，午餐縮短為 30 分。</li>
+<li><b>大河內山莊的抹茶與和菓子：</b>已含在入園料內<span class="v v-ok" title="官方原文核實">✅</span>，上午先吃一次，中午就不必吃太多。</li>
+</ul>
+</div>
+</div>
+<h3>休息點與洗手間</h3>
+<ul class="sm">
+<li>小火車站與大河內山莊是早上唯二可以坐下來的地方，抹茶時間就是休息。</li>
+<li>4/8 前後是賞櫻季，中午 12:00～13:30 最擠；13:30 用餐雖然較晚，但比 12:00 排隊短。</li>
+<li>各寺社的洗手間位置我沒有逐一查證，請看現場標示，多數在入口附近。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+</ul>
+<div class="box"><b>用餐原則：</b>寧可吃得簡單、不繞路，也不要為了一間店多走 20 分鐘，這樣下午的天龍寺才不會被擠掉。</div>
+
+</section>
+<section class="sheet " id="p14">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.14</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>天龍寺（一）簡介與基本資訊</span></h2>
+
+<div class="row2"><figure class="ph-c"><img src="img/tenryu4.jpg" alt="曹源池庭園（秋季拍攝）"><figcaption>曹源池庭園（秋季拍攝）<span class="cr">Photo: ttshr1970 · CC BY 3.0 · Wikimedia Commons</span></figcaption></figure><figure class="ph-c"><img src="img/tenryu2.jpg" alt="境內的建築"><figcaption>境內的建築<span class="cr">Photo: TarnishedPath · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure></div>
+<div class="cols2">
+<div>
+<h3>為什麼推薦這裡？</h3>
+<p class="sm">天龍寺是這一天的「主場」。它是臨濟宗天龍寺派的大本山，被列入世界遺產「古都京都的文化財」<span class="v v-ok" title="官方原文核實">✅</span>，庭園借嵐山當背景，是京都最有代表性的禪寺庭園之一。安排在午餐後，剛好能用一個安靜的下午收掉最重要的景點；而且它位在嵐山中心，走完之後渡月橋與 JR 站都在 15 分鐘內。</p>
+<h3>景點簡介</h3>
+<p class="sm">天龍寺由足利尊氏創建，開山祖師是夢窗疎石，是京都五山之首（一般認知，<span class="v v-w" title="二手資料／待確認">⚠️</span>）。境內最有名的是夢窗疎石設計的曹源池庭園，以池、石組與遠山構成；後方的百花苑則是季節花木的區域。庭園之外還有大方丈、書院與多寶殿等建築（合稱諸堂），以及有龍圖的法堂。</p>
+<h3>現場看什麼？</h3>
+<ul class="sm"><li>曹源池庭園：池、石組與嵐山借景</li><li>大方丈前廊：坐著看庭園</li><li>百花苑：後山的季節花木</li><li>諸堂（大方丈、書院、多寶殿）：需加購</li><li>北門：出口直接接竹林</li></ul>
+</div>
+<div>
+<h3>基本資訊（官網）<span class="v v-ok" title="官方原文核實">✅</span></h3>
+<dl class="facts sm">
+<dt>庭園</dt><dd>08:30～17:00（受付 16:50）</dd>
+<dt>庭園拜觀料</dt><dd>高中生以上 ¥500／中小學生 ¥300／未就學免費</dd>
+<dt>諸堂</dt><dd>庭園料 ＋ ¥300；08:30～16:45（受付 16:30）</dd>
+<dt>法堂雲龍圖</dt><dd>另收 ¥500；09:00～16:30（受付 16:20）；官網標示為<b>週末假日公開</b></dd>
+<dt>地址</dt><dd>京都市右京區嵯峨天龍寺芒ノ馬場町 68</dd>
+<dt>電話</dt><dd class="mono">075-881-1235（08:30～17:00）</dd>
+<dt>建議停留</dt><dd>75 分（庭園為主）</dd>
+</dl>
+<div class="warnbox" style="margin-top:6px"><b>⚠️ 4/8 是星期四：</b>官網頁面把雲龍圖標為週末假日公開。有資料稱「春秋特別參拜期」每天開放，但我沒能在官網確認，所以本行程<b>不排雲龍圖</b>，若當天有公告再加。<span class="v v-w" title="二手資料／待確認">⚠️</span></div>
+<h3>御朱印資訊　<span class="stars">推薦程度：★★★★☆</span></h3>
+<dl class="facts sm">
+<dt>授與位置</dt><dd>境內手前左手邊的社務所（2026/08/10 有人拿到書置き刺繡御朱印）<span class="v v-ph" title="御朱印社群真實投稿">📷</span></dd>
+<dt>授與時間</dt><dd>一般資料寫 08:30～17:30，官網頁面沒有明載。<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>形式</dt><dd><b>不固定</b>：直書き（蓋印）2026/08/14、2026/06/09、2026/06/06；蓋印 2026/07/05、2026/06/08；書置き 2026/05/02、2026/08/10（含刺繡版）。<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Omairi 2026</i></span></dd>
+<dt>費用</dt><dd>約 ¥300<span class="v v-w" title="二手資料／待確認">⚠️</span></dd>
+<dt>其他</dt><dd>亦為「神佛靈場巡拜之道 京都第 8 番」（2026/02/05 紀錄）<span class="v v-ph" title="御朱印社群真實投稿">📷</span></dd>
+</dl>
+</div>
+</div>
+<p class="xs"><a class="ext" target="_blank" rel="noopener" href="https://www.tenryuji.com/visit/">天龍寺官網：參拜・交通案內<span aria-hidden="true"> ↗</span></a>　<a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E9%BE%8D%E5%AF%BA%20%E4%BA%AC%E9%83%BD">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></p>
+
+</section>
+<section class="sheet " id="p15">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.15</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>天龍寺（二）參觀路線與時間不夠時</span></h2>
+
+<p class="sm">天龍寺很大，不能只當成「一個景點」。以下是本行程的判斷：<b>只看庭園，不全走完</b>。理由是庭園（曹源池＋百花苑）就是天龍寺的精華，加購諸堂要多花 ¥300 與 20～30 分，雲龍圖 4/8 又不確定開放。</p>
+<h3>景區總覽</h3>
+<div class="tw"><table>
+<tr><th>區域</th><th>內容</th><th class="t">建議時間</th><th>是否要付費</th><th>本行程</th></tr>
+<tr class="hl"><td><b>曹源池庭園</b></td><td>池、石組、嵐山借景</td><td class="t">30 分</td><td>庭園料 ¥500</td><td><b>必看</b></td></tr>
+<tr class="hl"><td><b>百花苑</b></td><td>後方山坡的花木步道</td><td class="t">20 分</td><td>含在庭園料內</td><td><b>必看</b></td></tr>
+<tr><td>大方丈前廊</td><td>坐著看庭園</td><td class="t">10 分</td><td>含在庭園料或諸堂</td><td>視人潮</td></tr>
+<tr><td>諸堂（大方丈、書院、多寶殿）</td><td>室內展示與廊下</td><td class="t">20～30 分</td><td>+¥300</td><td>不排（雨天備案）</td></tr>
+<tr><td>法堂雲龍圖</td><td>天井龍圖</td><td class="t">15 分</td><td>¥500，週末假日</td><td>不排</td></tr>
+<tr><td>北門</td><td>出口，接竹林小徑</td><td class="t">—</td><td>—</td><td>可作出口</td></tr>
+</table></div>
+<div class="cols2">
+<div>
+<h3>建議參觀路線（75 分）</h3>
+<ol class="sm">
+<li>進門、買庭園券，<b>先去社務所領御朱印</b>（避免離開前排長隊）。</li>
+<li>大方丈前 → 曹源池庭園，繞池一圈。</li>
+<li>往後方走百花苑（坡道、風景好）。</li>
+<li>從百花苑回到池畔，再經北門或南側出口離開。</li>
+<li>出口後若走南側，是嵐山商店街，直接前往渡月橋。</li>
+</ol>
+<p class="xs">入口（正門或北門）與各區實際動線以現場指標為主；本手冊沒有自繪境內圖，官方導覽請看官網連結。</p>
+</div>
+<div>
+<h3>如果時間只剩 60 分鐘</h3>
+<ul class="sm">
+<li>只走曹源池庭園（30 分）與百花苑前半（10 分）。</li>
+<li>御朱印 10 分。</li>
+<li>不進諸堂、不看雲龍圖。</li>
+<li>從北門出來後不走竹林，直接走南側回渡月橋。</li>
+</ul>
+<h3>如果時間充裕</h3>
+<ul class="sm">
+<li>加購諸堂（+¥300），在大方丈廊下坐 10～15 分。</li>
+<li>若當天官網公告法堂開放，再加雲龍圖。</li>
+</ul>
+</div>
+</div>
+<figure class="ph-w"><img src="img/tenryu1.jpg" alt="庭園一角的水流與苔"><figcaption>庭園一角的水流與苔<span class="cr">Photo: Marco Almbauer · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure>
+
+</section>
+<section class="sheet " id="p16">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.16</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">観</span><span>渡月橋與嵐山街區</span></h2>
+
+<div class="row2"><figure class="ph-c"><img src="img/toget2.jpg" alt="渡月橋黃昏"><figcaption>渡月橋黃昏<span class="cr">Photo: Basile Morin · CC BY-SA 4.0 · Wikimedia Commons</span></figcaption></figure><figure class="ph-c"><img src="img/toget1.jpg" alt="渡月橋與松樹"><figcaption>渡月橋與松樹<span class="cr">Photo: Blue Lotus from Arashiyama, Kyoto · CC BY 2.0 · Wikimedia Commons</span></figcaption></figure></div>
+<div class="cols2">
+<div>
+<h3>渡月橋　<span class="tag a">A</span></h3>
+<p class="sm"><b>為什麼推薦：</b>渡月橋是嵐山的象徵，橫跨桂川，放在行程尾端，是走完寺社後慢慢收尾的地方。離 JR 站和商店街都近，可以隨時調整時間。</p>
+<p class="sm"><b>簡介：</b>橋橫跨桂川（上游稱大堰川），背後是嵐山。相傳「渡月」之名與龜山上皇有關（一般說法，<span class="v v-w" title="二手資料／待確認">⚠️</span>）。</p>
+<p class="sm"><b>現場看什麼：</b>橋上望嵐山、河畔的松樹、河面上的小船。</p>
+<p class="sm"><b>停留：</b>20 分。<b>拍照：</b>從河邊往橋與山拍全景最好；橋上人多，站在河岸的沙洲較容易拍。</p>
+<p class="xs"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%E6%B8%A1%E6%9C%88%E6%A9%8B">在 Google Maps 開啟<span aria-hidden="true"> ↗</span></a></p>
+</div>
+<div>
+<h3>嵐山街區　<span class="tag">C</span></h3>
+<p class="sm"><b>為什麼保留：</b>這是行程裡最先可以刪的一段（C 級）。它的角色是「收尾」與「買伴手禮」，不是重點景點。</p>
+<p class="sm"><b>怎麼逛：</b>從渡月橋北詰沿街往北走，一路是小吃與伴手禮店，最後接 JR 嵯峨嵐山站方向。營業時間各店不同，我沒有逐一查證。<span class="v v-w" title="二手資料／待確認">⚠️</span></p>
+<p class="sm"><b>停留：</b>40 分。時間吃緊直接省略。</p>
+<p class="sm"><b>路線：</b>渡月橋 → 嵯峨嵐山站，Google Maps 顯示與天龍寺前的路連在一起，最後約 15 分到車站。</p>
+</div>
+</div>
+<figure class="map crop"><img src="maps/map05_south.jpg" alt="MAP 05｜南段：二尊院 → 野宮神社 → 天龍寺 → 渡月橋 → 嵯峨嵐山駅（2.6 km／35 分）"><figcaption>MAP 05｜南段：二尊院 → 野宮神社 → 天龍寺 → 渡月橋 → 嵯峨嵐山駅（2.6 km／35 分）<span class="cr">地圖截圖：Google Maps（地圖資料 ©2026 Google）· 截取於 2026-09-30</span></figcaption></figure>
+<p class="xs"><a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E5%A4%A9%E9%BE%8D%E5%AF%BA&destination=%E6%B8%A1%E6%9C%88%E6%A9%8B&travelmode=walking">天龍寺 → 渡月橋<span aria-hidden="true"> ↗</span></a>　<a class="gm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&origin=%E6%B8%A1%E6%9C%88%E6%A9%8B&destination=%E5%B5%AF%E5%B3%A8%E5%B5%90%E5%B1%B1%E9%A7%85&travelmode=walking">渡月橋 → 嵯峨嵐山站<span aria-hidden="true"> ↗</span></a></p>
+
+</section>
+<section class="sheet " id="p17">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.17</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">印</span><span>今日御朱印攻略</span></h2>
+
+<p class="sm">御朱印是重要興趣，但以「順路收集」為原則：今天 5 處寺社都在動線上，沒有為了多收一張而繞路。「值得收集」與「值得參觀」分開判斷，S 最高、C 最低。</p>
+<div class="tw"><table>
+<tr><th>寺社</th><th>參觀</th><th>收集</th><th>御朱印</th><th>授與位置</th><th>授與時間</th><th>取得方式</th><th>備註</th><th>推薦</th></tr>
+<tr><td><b>御髮神社</b></td><td class="t">B</td><td class="t">A</td><td>「髮」1 種，¥300<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>神社的社務所<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>09:00／09:30／10:00 起，說法不同<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>書置き為主，偶有直書き<span class="v v-ph" title="御朱印社群真實投稿">📷<i>2026</i></span></td><td>可請神職貼進帳<span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td class="stars">★★★★★</td></tr>
+<tr><td><b>常寂光寺</b></td><td class="t">A</td><td class="t">A</td><td>御朱印＋御首題，各 ¥300<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>拜觀受付<span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td>09:00～17:00（16:30）<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>書置き<span class="v v-ph" title="御朱印社群真實投稿">📷<i>2026</i></span></td><td>有期間限定紀錄<span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td class="stars">★★★★☆</td></tr>
+<tr><td><b>二尊院</b></td><td class="t">A</td><td class="t">A</td><td>本尊二尊、九頭龍辯財天、二十五靈場第十七番</td><td>現場詢問</td><td><b>未明載</b><span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>直書き<span class="v v-ph" title="御朱印社群真實投稿">📷<i>2026</i></span></td><td>有季節限定紀錄<span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td class="stars">★★★★★</td></tr>
+<tr><td><b>野宮神社</b></td><td class="t">A</td><td class="t">B</td><td>1 種蓋印，¥300<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>境內右手社務所<span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td>09:00～17:00<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>蓋印為主，偶爾直書き<span class="v v-ph" title="御朱印社群真實投稿">📷<i>2026</i></span></td><td>無專用御朱印帳<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td class="stars">★★★☆☆</td></tr>
+<tr><td><b>天龍寺</b></td><td class="t">S</td><td class="t">A</td><td>1 種為主，約 ¥300<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>境內手前左手社務所<span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td>約 08:30～17:30<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>蓋印直書き、書置き皆有<span class="v v-ph" title="御朱印社群真實投稿">📷<i>2026</i></span></td><td>神佛靈場巡拜之道 京都 8 番<span class="v v-ph" title="御朱印社群真實投稿">📷</span></td><td class="stars">★★★★☆</td></tr>
+</table></div>
+<div class="cols2">
+<div>
+<h3>今日預計收集</h3>
+<p class="sm"><b>基本 5 張</b>（每處 1 張）。若加收常寂光寺御首題與二尊院第二種御朱印，約 <b>7 張</b>，御朱印費用約 ¥1,500～2,400。正常節奏下不會影響行程。</p>
+<h3>期間限定與日期限定</h3>
+<p class="sm">近期投稿看到常寂光寺（洛陽十二支妙見巡「酉」、御本堂公開紀念切繪）、二尊院（2025/11/26 季節限定）有限定版。<b>4/8 前後是否有櫻花季限定版，我沒有找到資料</b>，請現場看告示。<span class="v v-ph" title="御朱印社群真實投稿">📷</span></p>
+<h3>書置き與直書き怎麼處理</h3>
+<p class="sm">書置き（紙）通常要自己貼到御朱印帳，記得帶<b>雙面膠或口紅膠</b>。御髮神社有時神職會幫忙貼。直書き請先把御朱印帳翻到要寫的頁面，遞出時打開放好。</p>
+</div>
+<div>
+<h3>御朱印排程</h3>
+<ol class="sm">
+<li><b>10:00 御髮神社</b>：一到就先參拜、再領，若還沒開始授與，走完御髮塚再回來。</li>
+<li><b>11:40 常寂光寺</b>：拜觀受付處領。</li>
+<li><b>12:20 二尊院</b>：進本堂後直接請書寫，並確認是否還有其他種類。</li>
+<li><b>13:15 野宮神社</b>：境內右手社務所。</li>
+<li><b>14:35 天龍寺</b>：進門先領，離開前不再排。</li>
+</ol>
+<div class="warnbox" style="margin-top:6px"><b>⚠️ 授與時間提醒：</b>景點還開著，但御朱印可能不辦。本行程各處都排在 15:00 前，已避開最晚受付時間（二尊院 16:00、其餘 16:30）。</div>
+</div>
+</div>
+<p class="xs">御朱印資料來自：各寺社官網（未載明者標 ⚠️）與 Omairi 真實訪客投稿（我用瀏覽器實際讀取，投稿期間 2025/03～2026/09）。價格與時間可能變動，最終以現場公告為準。</p>
+
+</section>
+<section class="sheet " id="p18">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.18</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>一日時間軸</span></h2>
+
+<ul class="tl">
+<li><span class="tm">08:16</span><span class="tt"><b>京都站</b>　JR 嵯峨野線（普通，往園部／龜岡）</span></li>
+<li class="mv"><span class="tm"></span><span class="tt"><b>↓ JR 25 分 ／ 步行 7～9 分</b></span></li>
+<li class="go"><span class="tm">09:30</span><span class="tt"><b>トロッコ亀岡</b>　搭「嵯峨野 2 號」，約 09:50～09:53 抵達嵐山站</span></li>
+<li><span class="tm">10:00</span><span class="tt"><b>御髮神社</b>　參拜、御朱印（20 分）</span></li>
+<li><span class="tm">10:25</span><span class="tt"><b>大河內山莊</b>　庭園＋抹茶（40 分）</span></li>
+<li class="mv"><span class="tm"></span><span class="tt"><b>↓ 步行約 10 分（爬坡）</b></span></li>
+<li><span class="tm">11:15</span><span class="tt"><b>常寂光寺</b>　多寶塔、御朱印（40 分）</span></li>
+<li><span class="tm">12:05</span><span class="tt"><b>二尊院</b>　總門、參道、御朱印（40 分）</span></li>
+<li class="mv"><span class="tm"></span><span class="tt"><b>↓ 往南走，進入竹林</b></span></li>
+<li><span class="tm">12:45</span><span class="tt"><b>竹林小徑</b>　慢走、拍照（20 分）</span></li>
+<li><span class="tm">13:05</span><span class="tt"><b>野宮神社</b>　黑木鳥居、御朱印（25 分）</span></li>
+<li><span class="tm">13:30</span><span class="tt"><b>午餐</b>　湯豆腐 嵯峨野（60 分）</span></li>
+<li><span class="tm">14:30</span><span class="tt"><b>天龍寺</b>　庭園＋御朱印（75 分）</span></li>
+<li><span class="tm">15:45</span><span class="tt"><b>渡月橋</b>　河畔散步、拍照（20 分）</span></li>
+<li><span class="tm">16:05</span><span class="tt"><b>嵐山街區</b>　小吃、伴手禮（40 分）</span></li>
+<li class="mv"><span class="tm"></span><span class="tt"><b>↓ 步行約 15 分</b></span></li>
+<li><span class="tm">17:00</span><span class="tt"><b>JR 嵯峨嵐山站</b>　搭往京都方向（約 17:05 發）</span></li>
+<li class="go"><span class="tm">約 17:22</span><span class="tt"><b>京都站</b>　抵達，比預設上限 19:00 早約 1 小時 38 分</span></li>
+</ul>
+<div class="cols2">
+<div class="box sm"><b>剛好一張表看出「現在該在哪」：</b><br>10:00 前該在御髮神社；12:00 前該離開常寂光寺；14:30 前該進天龍寺；17:00 前該到車站。</div>
+<div class="warnbox sm"><b>唯一的硬性時刻：</b><b class="mono">09:30</b> 小火車。其他時間彈性 ±30 分。如果 13:30 前還在二尊院，請直接跳過竹林拍照時間，午餐推遲不超過 14:00。</div>
+</div>
+<p class="xs">時間均為預估。10:00～13:30 的步行段落是我依 Google Maps 總步行 50 分（北段 15 分＋南段 35 分）分配的估算。<span class="v v-w" title="二手資料／待確認">⚠️</span></p>
+
+</section>
+<section class="sheet " id="p19">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.19</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">基</span><span>費用總覽</span></h2>
+
+<div class="tw"><table>
+<tr><th>類別</th><th>項目</th><th class="t">金額（每人）</th><th>來源</th></tr>
+<tr><td rowspan="3"><b>交通</b></td><td>JR 京都 → 馬堀</td><td class="t">¥320</td><td><span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td></tr>
+<tr><td>嵯峨野小火車（龜岡 → 嵐山）</td><td class="t">¥880</td><td><span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr><td>JR 嵯峨嵐山 → 京都</td><td class="t">¥240</td><td><span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span></td></tr>
+<tr class="hl"><td colspan="2"><b>交通小計</b></td><td class="t"><b>¥1,440</b></td><td></td></tr>
+<tr><td rowspan="5"><b>門票</b></td><td>大河內山莊（含抹茶點心）</td><td class="t">¥1,000</td><td><span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr><td>常寂光寺</td><td class="t">¥600</td><td><span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr><td>二尊院</td><td class="t">¥500</td><td><span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr><td>天龍寺庭園（諸堂 +¥300 不排）</td><td class="t">¥500</td><td><span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr class="hl"><td><b>門票小計</b></td><td class="t"><b>¥2,600</b></td><td></td></tr>
+<tr><td><b>御朱印</b></td><td>5 張（基本）～ 7 張（加收兩種）</td><td class="t">約 ¥1,500～2,400</td><td><span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr><td><b>午餐</b></td><td>湯豆腐等一餐</td><td class="t">約 ¥2,000～3,500</td><td><span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr><td><b>小吃與飲料</b></td><td>街區小吃、自動販賣機</td><td class="t">約 ¥1,000</td><td><span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr class="hl"><td colspan="2"><b>預估總費用／人</b></td><td class="t"><b>約 ¥8,500～11,000</b></td><td></td></tr>
+</table></div>
+<div class="box"><b>2 人合計約 ¥17,000～22,000。</b>換算台幣請以出發當日匯率為準。</div>
+<h3>一日券與套票判斷</h3>
+<ul class="sm">
+<li>本行程只有 JR 與嵯峨野小火車，總交通費 ¥1,440，<b>不需要一日券</b>。</li>
+<li>市巴士／地下鐵一日券涵蓋不到 JR 與嵯峨野小火車，買了也用不上。（未逐條查證，<span class="v v-w" title="二手資料／待確認">⚠️</span>）</li>
+<li>小火車沒有折扣可用，單買最直接。</li>
+<li>門票各自單買。若當天想加購天龍寺諸堂，再 +¥300。</li>
+</ul>
+<h3>費用的可信度說明</h3>
+<ul class="sm">
+<li>門票金額都是官方或觀光協會原文：<a class="ext" target="_blank" rel="noopener" href="https://jojakko-ji.or.jp/">常寂光寺官網<span aria-hidden="true"> ↗</span></a>、<a class="ext" target="_blank" rel="noopener" href="https://nisonin.jp/">二尊院官網<span aria-hidden="true"> ↗</span></a>、<a class="ext" target="_blank" rel="noopener" href="https://www.tenryuji.com/visit/">天龍寺官網<span aria-hidden="true"> ↗</span></a>、<a class="ext" target="_blank" rel="noopener" href="https://www.kyoto-kankou.or.jp/info_search/3683">京都市觀光協會（大河內山莊）<span aria-hidden="true"> ↗</span></a>。</li>
+<li>JR 票價來自 Google Maps 轉乘（京都 → 馬堀 ¥320；嵯峨嵐山 → 京都 ¥240），JR 官方票價我沒有另外確認。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+<li>御朱印初穗料有些寺社沒公布，用約 ¥300 估算；午餐與小吃是估算，沒有查證菜單價格。</li>
+<li>如用 IC 卡（ICOCA／Suica）搭 JR，實際金額可能與現金票價有數圓差異。</li>
+</ul>
+
+</section>
+<section class="sheet " id="p20">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.20</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>雨天備案</span></h2>
+
+<p class="sm">下雨時不重新規劃，只把「戶外、爬坡、拍照為主」的部分縮短，保留有屋簷或雨中更好看的地方。小火車雨天是否照常行駛，請看官網當日公告。<span class="v v-w" title="二手資料／待確認">⚠️</span></p>
+<div class="tw"><table>
+<tr><th>景點</th><th>雨天判斷</th><th>調整方式</th></tr>
+<tr><td>小火車</td><td>視公告</td><td>當日早上看官網「運行情況」；若停駛見「彈性與刪減」頁。</td></tr>
+<tr class="hl"><td>大河內山莊</td><td><b>仍然值得</b></td><td>庭園苔與新綠雨中更漂亮，抹茶休息可延長。</td></tr>
+<tr><td>御髮神社</td><td>可去</td><td>停留縮短，御朱印取完即走。</td></tr>
+<tr><td>常寂光寺</td><td>縮短</td><td>山腰石階濕滑，體力或雨勢大就只到本堂前，不上多寶塔。</td></tr>
+<tr class="hl"><td>二尊院</td><td><b>仍然值得</b></td><td>本堂與參道有屋簷可避雨，總門雨景好看。</td></tr>
+<tr class="hl"><td>竹林小徑</td><td><b>雨中反而好看</b></td><td>竹葉發亮，人也少；注意路面濕滑。</td></tr>
+<tr><td>野宮神社</td><td>可去</td><td>縮短停留，御朱印領完即走。</td></tr>
+<tr class="hl"><td>天龍寺</td><td><b>仍然值得</b></td><td>建議加購諸堂（+¥300），能在廊下看庭園而不淋雨。</td></tr>
+<tr><td>渡月橋與街區</td><td>可省</td><td>雨天視野差，渡月橋可過橋即回；街區小吃改成室內店。</td></tr>
+</table></div>
+<div class="cols2">
+<div><h3>下雨要準備</h3><ul class="sm"><li>防水外套或折疊傘，寺社內通常不能撐傘進殿。</li><li>好走且防滑的鞋，襪子多帶一雙。</li><li>塑膠袋裝御朱印帳與紙本御朱印。</li></ul></div>
+<div><h3>大雨時的最小版本</h3><ul class="sm"><li>小火車 → 御髮神社 → 大河內山莊 → 二尊院 → 天龍寺（加購諸堂）→ 直接回車站。</li><li>省略常寂光寺、竹林拍照、野宮神社與街區。</li><li>這樣約 4 小時就能收工，午餐在天龍寺旁就近吃。</li></ul></div>
+</div>
+
+</section>
+<section class="sheet " id="p21">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.21</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">行</span><span>行程彈性與刪減方案</span></h2>
+
+<p class="sm">這個分級是為了「行程調整」，不是對景點做主觀評分。S 盡量保留、A 推薦保留、B 有時間再去、C 可以刪除。刪除順序是 C → B → A。</p>
+<div class="tw"><table>
+<tr><th>級別</th><th>景點</th><th>說明</th></tr>
+<tr><td><span class="tag s">S</span></td><td>嵯峨野小火車、竹林小徑、天龍寺</td><td>整天主軸，盡量保留。</td></tr>
+<tr><td><span class="tag a">A</span></td><td>常寂光寺、大河內山莊、渡月橋、野宮神社</td><td>推薦保留；野宮神社順路，不占時間。</td></tr>
+<tr><td><span class="tag">B</span></td><td>御髮神社、二尊院</td><td>有時間再去。但兩者的御朱印價值高，刪除前先想是否只縮短停留。</td></tr>
+<tr><td><span class="tag">C</span></td><td>嵐山街區、午餐拉長的部分</td><td>最先刪。</td></tr>
+</table></div>
+<h3>情境對照</h3>
+<div class="tw"><table>
+<tr><th>情境</th><th>怎麼調整</th></tr>
+<tr><td><b>晚出發 30 分</b><br><span class="xs">改搭 08:40 普通</span></td><td>約 09:05 到馬堀，09:15 到小火車站，仍趕得上 09:30。不用刪景點，但剩下的緩衝只有 15 分。</td></tr>
+<tr><td><b>晚出發 1 小時</b><br><span class="xs">趕不上 09:30，改 10:30 小火車</span></td><td>10:53 抵達嵐山。<b>刪二尊院與街區</b>，大河內山莊縮為 30 分。新時間：御髮神社 10:58～11:20 → 大河內山莊 11:25～11:55 → 常寂光寺 12:05～12:45 → 竹林與野宮 13:00～13:40 → 午餐 13:40～14:30 → 天龍寺 14:30～15:45 → 渡月橋 → 17:00 回。</td></tr>
+<tr><td><b>排隊太久</b><br><span class="xs">竹林、午餐、天龍寺御朱印</span></td><td>午餐改街區小吃（縮到 30 分）；天龍寺只看庭園，60 分版；御朱印排太久先拍照再回來領。</td></tr>
+<tr><td><b>交通延誤</b><br><span class="xs">JR 延誤到趕不上 09:30</span></td><td>直接改 10:30 那班（同「晚出發 1 小時」）。若整條小火車停駛（如強風），先在馬堀站確認，改搭 JR 回到嵯峨嵐山站，把行程反過來走：天龍寺 → 竹林 → 野宮 → 北段四處，回程仍是 JR 嵯峨嵐山站。<span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr><td><b>某景點臨時關閉</b></td><td>直接刪除該景點，不需補位。若是天龍寺庭園關閉，延長午餐與渡月橋，並提前回京都。</td></tr>
+</table></div>
+<div class="box"><b>追加景點（時間充裕時）：</b>本手冊不加入新景點，避免破壞已確認的行程。若提前完成，可回到嵐山街區多待一會、在渡月橋喝杯咖啡，或提早回京都站休息。</div>
+<p class="xs">刪除決策原則：先看時間，再看動線，最後才看御朱印。因為「為了多收一張而繞路」在這個行程裡不值得。</p>
+
+</section>
+<section class="sheet " id="p22">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.22</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">基</span><span>出發前必看</span></h2>
+
+<div class="tw"><table>
+<tr><th>地點</th><th>開放時間</th><th>最晚入場</th><th>御朱印</th><th>備註</th></tr>
+<tr><td>嵯峨野小火車</td><td>09:30 起，每小時 :30 發<span class="v v-ok" title="官方原文核實">✅</span></td><td>末班 16:30 發</td><td>—</td><td>2027 年時刻待確認<span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr><td>御髮神社</td><td>境內自由<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>—</td><td>09:00／09:30／10:00 起<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>社務所可能到 15:00 或 16:00 <span class="v v-w" title="二手資料／待確認">⚠️</span></td></tr>
+<tr><td>大河內山莊</td><td>09:00～17:00<span class="v v-ok" title="官方原文核實">✅</span></td><td>16:30</td><td>—</td><td>全年無休<span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr><td>常寂光寺</td><td>09:00～17:00<span class="v v-ok" title="官方原文核實">✅</span></td><td>16:30</td><td>09:00～17:00<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>受付 16:30 截止</td></tr>
+<tr><td>二尊院</td><td>09:00～16:30<span class="v v-ok" title="官方原文核實">✅</span></td><td>—</td><td><b>未載明</b><span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>年中無休<span class="v v-ok" title="官方原文核實">✅</span></td></tr>
+<tr><td>野宮神社</td><td>境內自由<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>—</td><td>09:00～17:00<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>—</td></tr>
+<tr><td>天龍寺庭園</td><td>08:30～17:00<span class="v v-ok" title="官方原文核實">✅</span></td><td>16:50</td><td>約 08:30～17:30<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>諸堂 16:30、雲龍圖 16:20</td></tr>
+<tr><td>湯豆腐 嵯峨野</td><td>11:00 起<span class="v v-w" title="二手資料／待確認">⚠️</span></td><td>LO 16:30 或 17:30</td><td>—</td><td>賣完即止</td></tr>
+</table></div>
+<div class="cols2">
+<div>
+<h3>需徒步的路段</h3>
+<ul class="sm">
+<li>北段：トロッコ嵐山 → 二尊院，1.0 km，<b>爬升約 122 m</b>，有坡與石階<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span>。</li>
+<li>南段：二尊院 → 嵯峨嵐山站，2.6 km，<b>爬升約 80 m、下降約 180 m</b>，以下坡為主<span class="v v-ph" title="御朱印社群真實投稿">📷<i>Google</i></span>。</li>
+<li>馬堀站 → トロッコ亀岡：550～650 m，平坦。</li>
+</ul>
+<h3>鞋子與天氣</h3>
+<ul class="sm">
+<li>穿好走的運動鞋。寺內有石階、碎石與土路，不建議穿皮鞋或涼鞋。</li>
+<li>4 月上旬早晚偏涼、日間較暖，建議洋蔥式穿法，出發前看預報。<span class="v v-w" title="二手資料／待確認">⚠️</span></li>
+<li>非山區、無纜車，但常寂光寺與大河內山莊有坡度。</li>
+</ul>
+</div>
+<div>
+<h3>是否要提早到</h3>
+<ul class="sm">
+<li><b>小火車</b>：至少提早 20～30 分到站，這是唯一不能錯過的班次。</li>
+<li><b>4/8 是賞櫻季尾聲</b>：竹林與天龍寺人潮多。竹林排在 12:45，接近午間高峰，請預期人多，拍照用「局部＋抬頭」的構圖比較容易避開人群。</li>
+<li><b>傍晚 JR 嵯峨嵐山站</b>：17:00 前後常有大量遊客，若被擠得上不了車，多等一班即可，行程有緩衝。</li>
+</ul>
+<h3>小火車官方提醒</h3>
+<ul class="sm">
+<li>當天不能改期或退票，前一天 23:59 前免費退<span class="v v-ok" title="官方原文核實">✅</span>。</li>
+<li>網路訂位售完時，可到各站窗口買當日票（保津峽站除外）<span class="v v-ok" title="官方原文核實">✅</span>。</li>
+<li>新型車輛預告 2027 年春登場，時刻可能改。<span class="v v-ok" title="官方原文核實">✅</span></li>
+</ul>
+</div>
+</div>
+<div class="warnbox"><b>⚠️ 資訊分歧：</b>二尊院拜觀料官網 ¥500、部分旅遊網站 ¥600，採官網。御髮神社授與時間、大河內山莊離小火車站 140 m、JR 早晨班次都屬二手資料，出發前請再看一次。</div>
+
+</section>
+<section class="sheet " id="p23">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.23</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">基</span><span>旅行 Checklist</span></h2>
+
+<p class="sm">勾選狀態只保存在這台裝置的瀏覽器裡，換裝置或清除資料就會消失。</p>
+<div class="cols2">
+<div>
+<h3>出發前確認</h3>
+<ul class="ck">
+<li><input type="checkbox" id="ck-a1"><label for="ck-a1"><b>2027/03/08 00:00（日本時間）</b>訂好小火車 09:30 兩人座位</label></li>
+<li><input type="checkbox" id="ck-a2"><label for="ck-a2">訂位確認信與 QR 碼截圖存手機</label></li>
+<li><input type="checkbox" id="ck-a3"><label for="ck-a3">查 2027 年小火車運行日曆與時刻表（4/8 有開、時間沒變）</label></li>
+<li><input type="checkbox" id="ck-a4"><label for="ck-a4">查 JR 嵯峨野線早晨班次（08:16／08:40）</label></li>
+<li><input type="checkbox" id="ck-a5"><label for="ck-a5">確認御髮神社、二尊院御朱印授與時間（電話或現場）</label></li>
+<li><input type="checkbox" id="ck-a6"><label for="ck-a6">查 4/8 前後天氣與櫻花情況</label></li>
+<li><input type="checkbox" id="ck-a7"><label for="ck-a7">天龍寺是否有雲龍圖與諸堂特別公告</label></li>
+<li><input type="checkbox" id="ck-a8"><label for="ck-a8">下載 Google Maps 離線地圖（嵐山、嵯峨野）</label></li>
+<li><input type="checkbox" id="ck-a9"><label for="ck-a9">把本手冊存為 PDF 或離線頁面</label></li>
+</ul>
+<h3>錢與票</h3>
+<ul class="ck">
+<li><input type="checkbox" id="ck-b1"><label for="ck-b1">日圓現金（寺社常只收現金）：預備 ¥12,000／人</label></li>
+<li><input type="checkbox" id="ck-b2"><label for="ck-b2">零錢：¥100 與 ¥500 硬幣多帶（御朱印、賽錢）</label></li>
+<li><input type="checkbox" id="ck-b3"><label for="ck-b3">ICOCA／Suica 有餘額</label></li>
+</ul>
+</div>
+<div>
+<h3>隨身物品</h3>
+<ul class="ck">
+<li><input type="checkbox" id="ck-c1"><label for="ck-c1"><b>御朱印帳</b>（可多帶一本備用）</label></li>
+<li><input type="checkbox" id="ck-c2"><label for="ck-c2">雙面膠或口紅膠（黏書置き）</label></li>
+<li><input type="checkbox" id="ck-c3"><label for="ck-c3">塑膠套或夾鏈袋（保護御朱印帳）</label></li>
+<li><input type="checkbox" id="ck-c4"><label for="ck-c4">摺疊傘或輕便雨衣</label></li>
+<li><input type="checkbox" id="ck-c5"><label for="ck-c5">好走的運動鞋、備用襪</label></li>
+<li><input type="checkbox" id="ck-c6"><label for="ck-c6">行動電源與充電線</label></li>
+<li><input type="checkbox" id="ck-c7"><label for="ck-c7">水壺或水（沿路自動販賣機也有）</label></li>
+<li><input type="checkbox" id="ck-c8"><label for="ck-c8">護照影本（備用）</label></li>
+<li><input type="checkbox" id="ck-c9"><label for="ck-c9">口罩、小包面紙、手帕（寺社洗手間常無擦手紙）</label></li>
+<li><input type="checkbox" id="ck-c10"><label for="ck-c10">防曬與帽子</label></li>
+</ul>
+<h3>當天早上</h3>
+<ul class="ck">
+<li><input type="checkbox" id="ck-d1"><label for="ck-d1">確認 09:30 小火車與 JR 08:16 班次沒變</label></li>
+<li><input type="checkbox" id="ck-d2"><label for="ck-d2">御朱印帳放在包包最容易拿的位置</label></li>
+<li><input type="checkbox" id="ck-d3"><label for="ck-d3">看官網「運行情況」公告（風雨、事故）</label></li>
+<li><input type="checkbox" id="ck-d4"><label for="ck-d4">把住宿地址存手機，方便晚上導航回去</label></li>
+</ul>
+</div>
+</div>
+
+</section>
+<section class="sheet " id="p24">
+<header class="rh"><span>嵐山・嵯峨野 一日行程說明書</span><span class="rh-r">2027.04.08 ｜ P.24</span></header>
+<h2 class="pt"><span class="kind" aria-hidden="true">基</span><span>資料來源與圖片授權</span></h2>
+
+<h3>資料來源</h3>
+<div class="tw dense"><table>
+<tr><th>可信度</th><th>來源</th><th>取用內容</th></tr>
+<tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://www.sagano-kanko.co.jp/">嵯峨野觀光鐵道 官網（運行資訊、時刻表 PDF、運行日曆 PDF、FAQ、票務）<span aria-hidden="true"> ↗</span></a></td><td>2026 年時刻表（2026/3/14 改正）、2026 年運行日曆、1 個月前 00:00 訂位、退票規則、當日票、新型車輛預告</td></tr><tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://www.city.kameoka.kyoto.jp/soshiki/29/3532.html">龜岡市官網：嵯峨野トロッコ列車<span aria-hidden="true"> ↗</span></a></td><td>票價 ¥880／¥440、全席指定、運行期間、水曜定休</td></tr><tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://www.tenryuji.com/visit/">天龍寺 官網（參拜・交通案內）<span aria-hidden="true"> ↗</span></a></td><td>開放時間、拜觀料、諸堂、雲龍圖；篩月營業時間</td></tr><tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://jojakko-ji.or.jp/">常寂光寺 官網<span aria-hidden="true"> ↗</span></a></td><td>拜觀時間 09:00～17:00、拜觀料 ¥600</td></tr><tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://nisonin.jp/">二尊院 官網<span aria-hidden="true"> ↗</span></a></td><td>拜觀時間、拜觀料 ¥500、總門</td></tr><tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://www.kyoto-kankou.or.jp/info_search/3683">京都市觀光協會：大河內山莊庭園<span aria-hidden="true"> ↗</span></a></td><td>開園時間、入園料、簡介</td></tr><tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://mikami-jinjya-kyoto.com/">御髮神社 官網<span aria-hidden="true"> ↗</span></a></td><td>神社概要、髮塚（開放時間未載明）</td></tr><tr><td class="t">✅ 官方</td><td><a class="ext" target="_blank" rel="noopener" href="https://nonomiya.com/">野宮神社 官網<span aria-hidden="true"> ↗</span></a></td><td>黑木鳥居、小柴垣、神石（時間與御朱印未載明）</td></tr><tr><td class="t">📷 Omairi</td><td><a class="ext" target="_blank" rel="noopener" href="https://omairi.club/spots/77968/goshuin">天龍寺<span aria-hidden="true"> ↗</span></a>、<a class="ext" target="_blank" rel="noopener" href="https://omairi.club/spots/79307/goshuin">野宮神社<span aria-hidden="true"> ↗</span></a>、<a class="ext" target="_blank" rel="noopener" href="https://omairi.club/spots/84646/goshuin">御髮神社<span aria-hidden="true"> ↗</span></a>、<a class="ext" target="_blank" rel="noopener" href="https://omairi.club/spots/82166/goshuin">常寂光寺<span aria-hidden="true"> ↗</span></a>、<a class="ext" target="_blank" rel="noopener" href="https://omairi.club/spots/82045/goshuin">二尊院<span aria-hidden="true"> ↗</span></a> 的 Omairi 御朱印頁</td><td>2025/03～2026/09 的真實投稿（我用瀏覽器實際讀取）</td></tr><tr><td class="t">⚠️ 二手</td><td><a class="ext" target="_blank" rel="noopener" href="https://www.google.com/maps">Google Maps（步行與轉乘）<span aria-hidden="true"> ↗</span></a></td><td>步行時間與距離、爬升、JR 車程與票價、地圖截圖（2026-09-30）</td></tr><tr><td class="t">⚠️ 二手</td><td><a class="ext" target="_blank" rel="noopener" href="https://transit.yahoo.co.jp/timetable/25647/1831">Yahoo!乘換案內：京都站 嵯峨野線時刻表<span aria-hidden="true"> ↗</span></a></td><td>早晨班次（08:16、08:27、08:40、08:53）</td></tr><tr><td class="t">⚠️ 二手</td><td><a class="ext" target="_blank" rel="noopener" href="https://www.hotpepper.jp/strJ000108819/">Tabelog／Hotpepper 等（湯豆腐 嵯峨野）<span aria-hidden="true"> ↗</span></a></td><td>午餐店營業時間與公休（兩種說法）</td></tr><tr><td class="t">⚠️ 二手</td><td><a class="ext" target="_blank" rel="noopener" href="https://hotokami.jp/">Hotokami 等御朱印網站<span aria-hidden="true"> ↗</span></a></td><td>御髮神社、野宮神社、天龍寺的授與時間與價格（二手）</td></tr>
+</table></div>
+<p class="xs">資訊互相矛盾時（例如二尊院拜觀料 ¥500／¥600、御髮神社授與時間、湯豆腐店營業時間），手冊內都直接標出差異，沒有自行猜測。</p>
+<h3>圖片授權</h3>
+<p class="xs">所有照片為 Wikimedia Commons 的授權照片（CC BY／CC BY-SA／CC0／公有領域），已用瀏覽器逐張確認畫面內容。地圖為 Google Maps 截圖。手冊製作日 2026-09-30，價格與時間可能變動，以現場與官網公告為準。</p>
+<div class="tw dense"><table id="credits">
+<tr><th>檔案</th><th>作者</th><th>授權</th><th>頁面</th></tr>
+<tr><td class="t">bamboo1.jpg <span class="xs">竹林／御髮神社</span></td><td>Mitchwandrew</td><td class="t">CC BY 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Arashiyama_Bamboo_Grove.jpg">Arashiyama Bamboo Grove.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">bamboo2.jpg <span class="xs">竹林／御髮神社</span></td><td>Basile Morin</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Bamboo_Forest,_Arashiyama,_Kyoto,_Japan.jpg">Bamboo Forest, Arashiyama, Kyoto, Japan.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">jojak1.jpg <span class="xs">常寂光寺</span></td><td>663highland</td><td class="t">CC BY 2.5</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Jojakkoji01s3200.jpg">Jojakkoji01s3200.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">jojak3.jpg <span class="xs">常寂光寺</span></td><td>Casey Yee</td><td class="t">CC BY-SA 2.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:J%C5%8Djakkoji_Tah%C5%8Dt%C5%8D_May_17,_2009.jpg">Jōjakkoji Tahōtō May 17, 2009.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">mikami1.jpg <span class="xs">御髮神社</span></td><td>Kentaro Ohno</td><td class="t">CC BY 2.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Mikami_Shrine,_Kyoto_-_Aug_31,_2014_(1).jpg">Mikami Shrine, Kyoto - Aug 31, 2014 (1).jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">nison2.jpg <span class="xs">二尊院</span></td><td>663highland</td><td class="t">CC BY 2.5</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Nisonin03s3200.jpg">Nisonin03s3200.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">nison3.jpg <span class="xs">二尊院</span></td><td>Daderot</td><td class="t">CC0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Nisonin_-_Kyoto_-_DSC06236.JPG">Nisonin - Kyoto - DSC06236.JPG<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">nonomiya1.jpg <span class="xs">野宮神社</span></td><td>Foxy1219</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Nonomiya_Shrine_2017.jpg">Nonomiya Shrine 2017.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">nonomiya2.jpg <span class="xs">野宮神社</span></td><td>Hyppolyte de Saint-Rambert</td><td class="t">CC BY 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Nonomiya-jinja_(Uky%C5%8D-ku_Kyoto)_Torii_hdsr_S5_05.jpg">Nonomiya-jinja (Ukyō-ku Kyoto) Torii hdsr S5 05.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">nonomiya3.jpg <span class="xs">野宮神社</span></td><td>そらみみ</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Haiden_of_Nonomiya_Shrine_at_dusk.JPG">Haiden of Nonomiya Shrine at dusk.JPG<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">okochi1.jpg <span class="xs">大河內山莊</span></td><td>Basile Morin</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Wooden_gate_in_Okochi_Sanso_Garden,_Kyoto,_Japan.jpg">Wooden gate in Okochi Sanso Garden, Kyoto, Japan.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">okochi3.jpg <span class="xs">大河內山莊</span></td><td>KimonBerlin</td><td class="t">CC BY-SA 2.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Okochi_Sanso_Villa_(3670797334).jpg">Okochi Sanso Villa (3670797334).jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">tenryu1.jpg <span class="xs">天龍寺</span></td><td>Marco Almbauer</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Tenry%C5%AB-ji_Garten.jpg">Tenryū-ji Garten.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">tenryu2.jpg <span class="xs">天龍寺</span></td><td>TarnishedPath</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Tenryu-ji_Temple_in_Kyoto.jpg">Tenryu-ji Temple in Kyoto.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">tenryu4.jpg <span class="xs">天龍寺</span></td><td>ttshr1970</td><td class="t">CC BY 3.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Tenryu-ji,_Sogenchi_Teien_(Garden)_-1_(November_2008)_-_panoramio.jpg">Tenryu-ji, Sogenchi Teien (Garden) -1 (November 2008) - panoramio.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">toget1.jpg <span class="xs">渡月橋</span></td><td>Blue Lotus from Arashiyama, Kyoto</td><td class="t">CC BY 2.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Togetsukyo_in_Kyoto_Arashiyama.jpg">Togetsukyo in Kyoto Arashiyama.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">toget2.jpg <span class="xs">渡月橋</span></td><td>Basile Morin</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Togetsu-ky%C5%8D_bridge_at_golden_hour,_Kyoto,_Japan.jpg">Togetsu-kyō bridge at golden hour, Kyoto, Japan.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">train1.jpg <span class="xs">嵯峨野小火車</span></td><td>Streetdeck</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Sagano_Romantic_Train.jpg">Sagano Romantic Train.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">train3.jpg <span class="xs">嵯峨野小火車</span></td><td>Toshinori baba</td><td class="t">CC BY-SA 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Sagano_scenic_railway_hotsukyo.jpg">Sagano scenic railway hotsukyo.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+<tr><td class="t">train4.jpg <span class="xs">嵯峨野小火車</span></td><td>Nesnad</td><td class="t">CC BY 4.0</td><td><a class="ext" target="_blank" rel="noopener" href="https://commons.wikimedia.org/wiki/File:Torokko_Kameoka_Station_-_front_A_-_2017_8_19.jpg">Torokko Kameoka Station - front A - 2017 8 19.jpg<span aria-hidden="true"> ↗</span></a></td></tr>
+</table></div>
+
+</section>
+<script>
+(function(){
+  var boxes=document.querySelectorAll('.ck input[type=checkbox]');
+  var key='sagano-handbook-2027-ck';
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+  boxes.forEach(function(b){
+    if(saved[b.id])b.checked=true;
+    b.addEventListener('change',function(){
+      saved[b.id]=b.checked;
+      try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}
+    });
+  });
+})();
+</script></body></html>

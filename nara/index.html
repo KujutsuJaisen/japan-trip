@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>奈良一日手冊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout concept: A4 sheets like a travel-magazine spread; pine-green headings, vermilion seal marks used only as small category stamps. */
+:root{
+  --paper:#E9ECE8; --sheet:#FDFDFB; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5;
+  --pine:#2D5848; --shu:#C2361F; --deer:#8A5C3B; --moss:#E8EFE8; --tint:#F1F4F0;
+  --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00;
+  --shadow:0 1px 3px rgba(20,30,25,.12),0 6px 24px rgba(20,30,25,.08);
+  --f-head:"Shippori Mincho B1","Hiragino Mincho ProN","Noto Serif TC","Yu Mincho",serif;
+  --f-body:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1513; --sheet:#182120; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#33413C;
+  --pine:#86C5AA; --shu:#EE6E55; --deer:#D4A47A; --moss:#202D29; --tint:#1D2926;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1513; --sheet:#182120; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#33413C;
+  --pine:#86C5AA; --shu:#EE6E55; --deer:#D4A47A; --moss:#202D29; --tint:#1D2926;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:13px;line-height:1.62;padding-inline:12px;padding-block:14px}
+a{color:var(--pine);text-decoration-thickness:1px;text-underline-offset:2px;overflow-wrap:anywhere}
+a:focus-visible,input:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+.sheet{width:min(210mm,100%);margin:0 auto 18px;background:var(--sheet);box-shadow:var(--shadow);padding:11mm 12mm 12mm;display:flex;flex-direction:column;gap:10px;position:relative;min-width:0}
+.sheet>*{flex-shrink:0;min-width:0}
+.hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:10.5px;letter-spacing:.06em;color:var(--ink2);border-bottom:1px solid var(--rule);padding-bottom:6px}
+.hd .pg{font-family:var(--f-mono);letter-spacing:0;white-space:nowrap}
+.hd b{font-family:var(--f-head);font-weight:800;color:var(--pine);letter-spacing:.1em}
+h1,h2,h3{font-family:var(--f-head);color:var(--ink);text-wrap:balance;margin:0;line-height:1.3}
+h2{font-size:22px;font-weight:800;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+h2 small{font-family:var(--f-body);font-size:11.5px;font-weight:500;color:var(--ink2);letter-spacing:.04em}
+h3{font-size:14.5px;font-weight:800;color:var(--pine);display:flex;align-items:center;gap:7px;margin-top:2px}
+p{margin:0}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:1.55em;height:1.55em;border:1.5px solid var(--shu);color:var(--shu);font-style:normal;font-family:var(--f-head);font-weight:800;font-size:12px;line-height:1;flex:none;border-radius:2px}
+.lead{font-size:13.5px;color:var(--ink)}
+.mut{color:var(--ink2)}
+.sm{font-size:11.5px}
+.xs{font-size:10.3px;color:var(--ink2)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.t{display:inline-block;font-size:10.5px;line-height:1;padding:2px 4px;border-radius:3px;vertical-align:baseline;white-space:nowrap;font-style:normal}
+.t.ok{background:var(--okbg);color:var(--okfg)}.t.ph{background:var(--phbg);color:var(--phfg)}.t.ng{background:var(--ngbg);color:var(--ngfg)}
+.tw{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:11.8px;line-height:1.5}
+th{background:var(--moss);color:var(--pine);text-align:left;font-weight:700;white-space:nowrap;padding:5px 7px;border-bottom:1.5px solid var(--pine)}
+td{padding:5px 7px;border-bottom:1px solid var(--rule);vertical-align:top}
+td.tm,th.tm{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.dense{font-size:9.6px;line-height:1.38}table.dense td,table.dense th{padding:2.5px 5px}
+table.kv th{width:7.5em;background:var(--tint);border-bottom:1px solid var(--rule);color:var(--ink2);font-weight:500}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+@media (max-width:640px){.grid2,.grid3,.cols{grid-template-columns:1fr}.sheet{padding:16px}}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;max-width:100%;object-fit:cover;aspect-ratio:3/2;background:var(--tint)}
+figure.w img{aspect-ratio:16/9}figure.ww img{aspect-ratio:2.3/1}figure.map img{aspect-ratio:16/9;object-position:50% 45%}figure.sq img{aspect-ratio:4/3}
+figcaption{font-size:9.3px;line-height:1.4;color:var(--ink2);padding-top:3px}
+.box{background:var(--tint);border-left:3px solid var(--pine);padding:7px 10px;font-size:12px}
+.box.warn{background:var(--ngbg);border-left-color:var(--ngfg);color:var(--ink)}
+.box.shu{border-left-color:var(--shu)}
+ul.l,ol.l{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:2px}
+ul.l.c{list-style:none;padding-left:0}
+.chips{display:flex;flex-wrap:wrap;gap:5px 3px;align-items:center}
+.chip{white-space:nowrap;border:1px solid var(--pine);color:var(--pine);padding:2px 8px;font-size:11.5px;border-radius:2px;background:var(--sheet)}
+.chip.k{background:var(--pine);color:var(--sheet)}
+.arr{color:var(--shu);font-size:11px}
+.toc{columns:2;column-gap:20px;font-size:12.5px}
+.toc a{display:flex;gap:8px;text-decoration:none;color:var(--ink);padding:2px 0;border-bottom:1px dotted var(--rule);break-inside:avoid}
+.toc a span.n{font-family:var(--f-mono);color:var(--shu);min-width:1.8em}
+.cover{display:flex;flex-direction:column;gap:12px}
+.cover h1{font-size:40px;font-weight:800;line-height:1.18;letter-spacing:.02em}
+.cover .sub{font-size:15px;color:var(--ink2);letter-spacing:.14em}
+.stamp{display:inline-flex;flex-direction:column;border:2px solid var(--shu);color:var(--shu);font-family:var(--f-head);font-weight:800;padding:6px 10px;line-height:1.25;font-size:15px;align-self:flex-start;transform:rotate(-2deg);border-radius:2px}
+.tl{display:flex;flex-direction:column;border-left:2px solid var(--pine);margin-left:6px}
+.tl>div{display:grid;grid-template-columns:5.6em 1fr;gap:8px;padding:2px 0 5px 12px;position:relative;font-size:11.8px}
+.tl>div::before{content:"";position:absolute;left:-6px;top:7px;width:9px;height:9px;background:var(--sheet);border:2px solid var(--shu);border-radius:50%}
+.tl .tm{font-family:var(--f-mono);font-weight:500;color:var(--pine);white-space:nowrap}
+.star{color:var(--shu);letter-spacing:.05em;white-space:nowrap}
+label.ck{display:flex;gap:8px;align-items:flex-start;padding:2px 0;font-size:12px;cursor:pointer}
+label.ck input{margin-top:3px;accent-color:var(--shu)}
+.ckgrp{display:flex;flex-direction:column;gap:0}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kpi div{border:1px solid var(--rule);padding:6px 8px;background:var(--tint)}
+.kpi b{display:block;font-family:var(--f-mono);font-size:15px;color:var(--pine)}
+.kpi span{font-size:10.5px;color:var(--ink2)}
+@media (max-width:640px){.kpi{grid-template-columns:1fr 1fr}.toc{columns:1}.cover h1{font-size:30px}}
+
+@media print{
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+    --paper:#fff; --sheet:#fff; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5; --pine:#2D5848; --shu:#C2361F; --deer:#8A5C3B; --moss:#E8EFE8; --tint:#F1F4F0;
+    --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00; --shadow:none; color-scheme:light}
+  @page{size:A4;margin:0}
+  html,body{background:#fff}
+  body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;height:297mm;margin:0;padding:10mm 12mm 9mm;box-shadow:none;overflow:hidden;break-after:page;page-break-after:always;gap:7px;font-size:calc(12.2px*var(--k,1));line-height:1.52}
+  .sheet:last-child{break-after:auto;page-break-after:auto}
+  .hd{font-size:.86em}
+  table{font-size:.94em}table.dense{font-size:.84em}
+  h2{font-size:1.65em}h2 small{font-size:.52em}h3{font-size:1.08em}
+  .lead{font-size:1.05em}.box{font-size:.95em;padding:5px 9px}
+  .tl>div{font-size:.95em;padding-bottom:3px}
+  .sm{font-size:.92em}.xs{font-size:.84em}
+  figcaption{font-size:.74em}
+  .t{font-size:.84em}
+  .cover h1{font-size:3.2em}.cover .sub{font-size:1.2em}
+  .tw{overflow:visible}
+}
+</style>
+<main>
+<section class="sheet" id="p1" aria-label="第 1 頁 封面・目錄">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">1 / 25</span></header>
+
+<div class="cover">
+  <div class="stamp"><span>2027.04.08</span><span>木曜日</span></div>
+  <h1>奈良一日<br>東大寺・春日大社・奈良公園</h1>
+  <div class="sub">觀光＋御朱印　行程說明書</div>
+  <figure class="w"><img src="img/daibutsuden2.jpg" alt="東大寺大佛殿正面" width="1000"><figcaption>Cun Cun・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Daibutsuden,_June_2019.jpg">Wikimedia Commons</a></figcaption></figure>
+  <p class="lead">2 人，京都站出發並返回。近鉄奈良站前吃早餐，從奈良公園走進東大寺，經二月堂、法華堂上春日大社，下山後走興福寺與東向商店街，傍晚搭近鉄回京都。</p>
+  <div class="toc"><a href="#p2"><span class="n">02</span><span>旅行基本資訊</span></a><a href="#p3"><span class="n">03</span><span>最需再確認的 5 件事・日文地名</span></a><a href="#p4"><span class="n">04</span><span>今日行程總覽・時間界線</span></a><a href="#p5"><span class="n">05</span><span>今日路線地圖・動線說明</span></a><a href="#p6"><span class="n">06</span><span>區段放大地圖</span></a><a href="#p7"><span class="n">07</span><span>交通總覽</span></a><a href="#p8"><span class="n">08</span><span>特殊交通：近鉄京都線・奈良線</span></a><a href="#p9"><span class="n">09</span><span>出發段落與早餐 ROKUMEI</span></a><a href="#p10"><span class="n">10</span><span>奈良公園與鹿</span></a><a href="#p11"><span class="n">11</span><span>東大寺 簡介與基本資訊</span></a><a href="#p12"><span class="n">12</span><span>東大寺 參觀路線與時間不夠時</span></a><a href="#p13"><span class="n">13</span><span>南大門・大佛殿</span></a><a href="#p14"><span class="n">14</span><span>二月堂</span></a><a href="#p15"><span class="n">15</span><span>法華堂（三月堂）</span></a><a href="#p16"><span class="n">16</span><span>春日大社</span></a><a href="#p17"><span class="n">17</span><span>午餐與休息</span></a><a href="#p18"><span class="n">18</span><span>興福寺</span></a><a href="#p19"><span class="n">19</span><span>猿澤池・東向商店街・回程</span></a><a href="#p20"><span class="n">20</span><span>今日御朱印攻略</span></a><a href="#p21"><span class="n">21</span><span>一日時間軸・費用總覽</span></a><a href="#p22"><span class="n">22</span><span>雨天備案・刪減方案</span></a><a href="#p23"><span class="n">23</span><span>出發前必看・Checklist</span></a><a href="#p24"><span class="n">24</span><span>資料來源與圖片授權</span></a><a href="#p25"><span class="n">25</span><span>待確認事項</span></a></div>
+  <p class="xs">查證等級：<i class="t ok">✅</i> 官方原文　<i class="t ph">📷</i> omairi.club 訪客投稿（附日期）　<i class="t ng">⚠️</i> 二手資料或估算。時刻與費用以 2026/10/01 查到的資料為準，2027 年版尚未公布的部分已在內文標示。</p>
+</div>
+</section>
+<section class="sheet" id="p2" aria-label="第 2 頁 旅行基本資訊">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">2 / 25</span></header>
+
+<h2><i class="seal">基</i>旅行基本資訊</h2>
+<div class="tw"><table class="kv "><tbody><tr><th>日期</th><td>2027/04/08（四）。平日，非日本國定假日 <i class="t ng">⚠️</i>（2027 年祝日表未逐項核對）</td></tr><tr><th>人數</th><td>2 人</td></tr><tr><th>出發・結束</th><td>京都站（近鉄京都駅）。住宿在京都站周邊</td></tr><tr><th>時間</th><td>07:06 京都站發，約 18:27 回到京都站。19:00 前解散，保留 30 分鐘緩衝</td></tr><tr><th>交通</th><td>近鉄京都線・奈良線（去程轉乘 1 次）＋全程步行。巴士只當疲累時的備案</td></tr><tr><th>步行量</th><td>Google 全日路線 5.2 km、1 小時 13 分 <i class="t ng">⚠️</i>，未含春日大社境內與午餐往返。實際約 6～8 km <i class="t ng">⚠️</i>（我的估算）</td></tr><tr><th>預估費用</th><td>每人約 ¥10,270（交通、拜觀、御朱印、早午餐、鹿仙貝）。明細見第 21 頁</td></tr><tr><th>氣候</th><td>奈良 4 月平年值：平均 14.0℃、日最高 19.8℃、日最低 8.7℃、降水量 98.9 mm（1991～2020）<i class="t ok">✅</i></td></tr><tr><th>櫻花</th><td>奈良平年開花 3/28、滿開 4/4。2026 年為 3/24 開花、3/31 滿開 <i class="t ng">⚠️</i>。4/8 多半是花吹雪到葉櫻的階段（我的推測）</td></tr><tr><th>預約</th><td>本日行程沒有需要事先預約或有開賣日的項目。特急券在近鉄車站當日購買</td></tr></tbody></table></div>
+<h3>今日特色</h3>
+<ul class="l "><li><b>4/8 是花祭（佛誕日）。</b>東大寺在大佛殿前設花御堂，2026 年的公告是法要 8:00～9:00 左右、灌佛到約 15:00 <i class="t ok">✅</i>。興福寺也有仏生会 <i class="t ok">✅</i>。2027 年細節尚未公布。</li><li><b>興福寺五重塔目前被工程外罩整個包住，看不到塔身。</b>修理預定到 2034 年度完成 <i class="t ok">✅</i>。這一天不把五重塔當看點。</li><li><b>一圈走完不折返。</b>近鉄奈良站（西）→ 東大寺（東北）→ 春日大社（東南）→ 興福寺（西），回到出發點旁邊的商店街。</li></ul>
+<h3>可信度圖例</h3>
+<div class="tw"><table><thead><tr><th>標記</th><th>意思</th><th>本手冊的做法</th></tr></thead><tbody>
+<tr><td><i class="t ok">✅</i></td><td>官方原文核實</td><td>實際開啟寺社、鐵道、觀光協會、氣象廳網頁確認。搜尋引擎摘要不算。</td></tr>
+<tr><td><i class="t ph">📷</i></td><td>omairi.club 訪客投稿</td><td>附參拜日期，只用來判斷直書き／書置き、授與位置。</td></tr>
+<tr><td><i class="t ng">⚠️</i></td><td>二手資料或估算</td><td>轉乘網站、Google Maps 估算、旅遊網站、我的估算。</td></tr>
+</tbody></table></div>
+<h3>公休與休運檢查（2027/04/08 木）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>結果</th><th>依據</th></tr></thead><tbody><tr><td>東大寺</td><td>開放（無休）</td><td>官網寫除特別行事或緊急情況外無休 <i class="t ok">✅</i></td></tr><tr><td>興福寺</td><td>開放（年中無休）</td><td>官網 <i class="t ok">✅</i></td></tr><tr><td>春日大社</td><td>開放</td><td>官網寫通年參拜時間，未載明公休 <i class="t ok">✅</i></td></tr><tr><td>平宗 奈良店</td><td>開放（定休日是週一）</td><td>官網 <i class="t ok">✅</i>，其他休業日以官網日曆為準 <i class="t ng">⚠️</i></td></tr><tr><td>ROKUMEI COFFEE</td><td>營業時間 8:00～18:00</td><td>官網未載明定休日 <i class="t ng">⚠️</i>，食べログ寫全年無休 <i class="t ng">⚠️</i></td></tr><tr><td>近鉄</td><td>使用平日時刻表</td><td>官網 2026/3/14 版 <i class="t ok">✅</i>，2027 年版尚未公布</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p3" aria-label="第 3 頁 最需再確認的 5 件事・日文地名">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">3 / 25</span></header>
+
+<h2><i class="seal">基</i>出發前最需要再確認的 5 件事</h2>
+<ol class="l"><li><b>近鉄 2027 年度時刻表。</b>本手冊用官網 2026/3/14 版。2027 年 3 月前後，到近鉄「駅の時刻表」再查 07:06 急行、07:52 快速急行、17:50 特急是否還在。</li><li><b>花祭的 2027 年內容。</b>東大寺與興福寺的 4/8 活動時間，等官網公布後確認。這項只影響人潮與拍照，不影響行程。</li><li><b>法華堂與戒壇堂的入堂料。</b>東大寺官網寫大佛殿、法華堂、戒壇堂、博物館「各自收入堂料」，表中只列一個 ¥800，我採用 ¥800 <i class="t ok">✅</i>。購票時再看一次。</li><li><b>御朱印初穂料。</b>東大寺官網每張 ¥300 <i class="t ok">✅</i>。omairi 2026/07/23 有一則投稿寫「¥500、B5 和綴」<i class="t ph">📷</i>，可能是特殊裝訂，兩者並列，我採用官網。興福寺與夫婦大國社的金額官網未載明 <i class="t ng">⚠️</i>。</li><li><b>店家日曆。</b>ROKUMEI 的早餐套餐時段與休息日、平宗的休業日曆、東向商店街各店 4/8 是否營業。</li></ol>
+<div class="box warn"><b>先知道：</b>興福寺五重塔被覆屋包住，我先前規劃寫過「看五重塔外觀」「猿澤池與五重塔倒影」，這兩處已撤回。</div>
+<h3>日文地名對照（貼進 Google Maps 搜尋用）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>日文</th><th>讀音</th><th>中文</th></tr></thead><tbody><tr><td>京都駅 ／ 近鉄京都駅</td><td>きょうとえき ／ きんてつきょうとえき</td><td>京都站，近鉄月台在站內</td></tr><tr><td>大和西大寺駅</td><td>やまとさいだいじえき</td><td>去程轉乘站</td></tr><tr><td>近鉄奈良駅</td><td>きんてつならえき</td><td>4 號出口</td></tr><tr><td>ロクメイコーヒー 奈良店</td><td>ろくめいこーひー ならてん</td><td>早餐店 ROKUMEI COFFEE CO. NARA</td></tr><tr><td>小西さくら通り</td><td>こにしさくらどおり</td><td>近鉄奈良站 4 號出口外的商店街</td></tr><tr><td>奈良公園／鹿せんべい</td><td>ならこうえん／しかせんべい</td><td>奈良公園／鹿仙貝</td></tr><tr><td>東大寺／南大門／大仏殿</td><td>とうだいじ／なんだいもん／だいぶつでん</td><td>東大寺／南大門／大佛殿</td></tr><tr><td>二月堂／法華堂（三月堂）</td><td>にがつどう／ほっけどう（さんがつどう）</td><td>二月堂／法華堂</td></tr><tr><td>春日大社／夫婦大國社</td><td>かすがたいしゃ／めおとだいこくしゃ</td><td>春日大社／夫婦大國社</td></tr><tr><td>柿の葉ずし 平宗 奈良店</td><td>かきのはずし ひらそう ならてん</td><td>午餐</td></tr><tr><td>興福寺／中金堂／東金堂</td><td>こうふくじ／ちゅうこんどう／とうこんどう</td><td>興福寺</td></tr><tr><td>国宝館／南円堂（納経所）</td><td>こくほうかん／なんえんどう</td><td>國寶館／南圓堂（納經所）</td></tr><tr><td>猿沢池／東向商店街</td><td>さるさわのいけ／ひがしむきしょうてんがい</td><td>猿澤池／東向商店街</td></tr><tr><td>御朱印／直書き／書き置き</td><td>ごしゅいん／じかがき／かきおき</td><td>朱印／現場手寫／預先寫好的紙</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p4" aria-label="第 4 頁 今日行程總覽・時間界線">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">4 / 25</span></header>
+
+<h2><i class="seal">行</i>今日行程總覽</h2>
+<div class="tw"><table class=""><thead><tr><th class="tm">時間</th><th>地點</th><th>行程</th><th>交通</th><th>停留</th></tr></thead><tbody><tr><td class="tm">07:06</td><td>近鉄京都駅</td><td>搭急行（橿原神宮前行）</td><td>近鉄 <i class="t ng">⚠️</i></td><td>約 40 分</td></tr><tr><td class="tm">07:46→07:52</td><td>大和西大寺</td><td>轉乘快速急行（近鉄奈良行）</td><td>同站轉乘 6 分 <i class="t ng">⚠️</i></td><td>6 分</td></tr><tr><td class="tm">07:58</td><td>近鉄奈良駅</td><td>4 號出口進小西さくら通り</td><td>步行 1 分 <i class="t ng">⚠️</i></td><td>2 分</td></tr><tr><td class="tm">08:00～08:45</td><td>ROKUMEI COFFEE</td><td>早餐</td><td>–</td><td>45 分</td></tr><tr><td class="tm">08:45～09:20</td><td>奈良公園</td><td>走到南大門，沿路看鹿</td><td>步行 22 分＋拍照 13 分 <i class="t ng">⚠️</i></td><td>35 分</td></tr><tr><td class="tm">09:30～10:15</td><td>東大寺 大佛殿</td><td>大佛、花祭、御朱印「華厳」</td><td>境內步行</td><td>45 分</td></tr><tr><td class="tm">10:25～10:55</td><td>二月堂</td><td>舞台眺望、御朱印「南無観」</td><td>步行約 8 分 <i class="t ng">⚠️</i></td><td>30 分</td></tr><tr><td class="tm">11:00～11:30</td><td>法華堂</td><td>天平佛像、御朱印「不空羂索」</td><td>步行約 5 分 <i class="t ng">⚠️</i></td><td>30 分</td></tr><tr><td class="tm">11:50～13:05</td><td>春日大社</td><td>本社參拜、夫婦大國社</td><td>步行約 20 分 <i class="t ng">⚠️</i></td><td>75 分</td></tr><tr><td class="tm">13:40～14:25</td><td>平宗 奈良店</td><td>午餐（柿の葉ずし）</td><td>下山步行約 35 分 <i class="t ng">⚠️</i></td><td>45 分</td></tr><tr><td class="tm">14:30～15:45</td><td>興福寺</td><td>中金堂、東金堂、納経所</td><td>步行約 8 分 <i class="t ng">⚠️</i></td><td>75 分</td></tr><tr><td class="tm">15:45～16:30</td><td>猿沢池</td><td>散步、休息</td><td>步行 4 分 <i class="t ng">⚠️</i></td><td>45 分</td></tr><tr><td class="tm">16:30～17:35</td><td>東向商店街</td><td>伴手禮、點心</td><td>步行約 8 分 <i class="t ng">⚠️</i></td><td>65 分</td></tr><tr><td class="tm">17:50→18:27</td><td>近鉄奈良→京都</td><td>特急回京都</td><td>近鉄 <i class="t ok">✅</i></td><td>37 分</td></tr><tr><td class="tm">18:27～19:00</td><td>京都站</td><td>晚餐、解散</td><td>–</td><td>緩衝 33 分</td></tr></tbody></table></div>
+<h3>今天的時間界線</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>時段</th><th>備註</th></tr></thead><tbody><tr><td>去程直達急行（備案）</td><td>07:44 發→08:35 到</td><td>不轉乘，但晚 37 分到 <i class="t ok">✅</i></td></tr><tr><td>去程快速急行（備案）</td><td>07:58 準急→08:04 到、08:02 快速急行→08:08 到</td><td>錯過 07:52 時用 <i class="t ok">✅</i></td></tr><tr><td>ROKUMEI</td><td>8:00 開店，L.O. 17:30</td><td><i class="t ok">✅</i></td></tr><tr><td>東大寺 大佛殿・二月堂（御朱印）</td><td>7:30～17:30（4～10 月）</td><td><i class="t ok">✅</i></td></tr><tr><td>法華堂・戒壇堂</td><td>8:30～16:00（御朱印同）</td><td>16:00 前一定要到 <i class="t ok">✅</i></td></tr><tr><td>春日大社</td><td>參拜 6:30～17:30、御朱印 9:00～閉門、特別參拝 9:00～16:00</td><td><i class="t ok">✅</i></td></tr><tr><td>平宗 はなれ（用餐）</td><td>11:30～20:00（L.O.）</td><td>週一公休 <i class="t ok">✅</i></td></tr><tr><td>興福寺</td><td>9:00～17:00，入堂至 16:45；三館共通券 16:00 停售；納経所最後受理 16:30</td><td><i class="t ok">✅</i></td></tr><tr><td>回程直達（近鉄奈良→京都）</td><td>17:17 急行→18:06、17:25 特急→18:00、17:50 特急→18:27、18:20 特急→18:57、18:47 急行→19:32</td><td>19:00 前到京都的最晚班是 18:20 <i class="t ok">✅</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p5" aria-label="第 5 頁 今日路線地圖・動線說明">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">5 / 25</span></header>
+
+<h2><i class="seal">行</i>今日路線地圖</h2>
+<figure class="map"><img src="img/map_all.jpg" alt="Google Maps 全日步行路線總覽" width="1428" style="object-position:50% 38%"><figcaption>全日路線（近鉄奈良→ROKUMEI→南大門→大佛殿→二月堂→法華堂→春日大社→中金堂→猿澤池→近鉄奈良）。步行 1 小時 13 分、5.2 km （Google 估算）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/01</figcaption></figure>
+<div class="chips"><span class="xs">行程順序示意圖（示意圖，非地理比例）</span></div>
+<div class="chips">
+<span class="chip k">京都</span><span class="arr">▶</span><span class="chip">大和西大寺</span><span class="arr">▶</span><span class="chip">近鉄奈良</span><span class="arr">▶</span><span class="chip">ROKUMEI</span><span class="arr">▶</span><span class="chip">南大門</span><span class="arr">▶</span><span class="chip">大佛殿</span><span class="arr">▶</span><span class="chip">二月堂</span><span class="arr">▶</span><span class="chip">法華堂</span><span class="arr">▶</span><span class="chip">春日大社</span><span class="arr">▶</span><span class="chip">平宗</span><span class="arr">▶</span><span class="chip">興福寺</span><span class="arr">▶</span><span class="chip">猿澤池</span><span class="arr">▶</span><span class="chip">東向商店街</span><span class="arr">▶</span><span class="chip">近鉄奈良</span><span class="arr">▶</span><span class="chip k">京都</span>
+</div>
+<h3>為什麼這樣走最順</h3>
+<p>近鉄奈良站在西側，東大寺在東北，春日大社在東南。照「站 → 東大寺 → 春日大社 → 回站」走，是一圈順時針，沒有折返。上山集中在中午前，下午全是下坡與平地。興福寺、猿澤池、東向商店街都貼著車站，放在最後，累了可以直接上車。</p>
+<div class="grid2">
+<div><h3>順路加入的</h3><ul class="l "><li>ROKUMEI：出站 1 分鐘</li><li>猿澤池、南大門、公園的鹿：去東大寺的路上</li><li>二月堂舞台：大佛殿到法華堂之間</li><li>平宗：下山後經猿澤池，南行約 100 m <i class="t ok">✅</i></li></ul></div>
+<div><h3>值得去但不排的</h3><ul class="l "><li>奈良町、元興寺、新藥師寺：都在南側，折返多</li><li>東大寺博物館、正倉院外觀：與大佛殿重複</li><li>春日大社國寶殿（¥700）：與時間不合 <i class="t ok">✅</i></li><li>萬葉植物園、藤花：藤花要到黃金週前後 <i class="t ok">✅</i></li><li>戒壇院：備案，約多 15 分鐘 <i class="t ng">⚠️</i></li></ul></div>
+</div>
+<h3>有沒有更好的反向走法</h3>
+<p class="sm">反過來先上春日大社，要先搭巴士上山（約 11～15 分 <i class="t ok">✅</i>），御朱印 9:00 才開始；東大寺會落到中午到下午，是人潮最多的時段，法華堂 16:00 關門也更趕。所以不採用。</p>
+
+</section>
+<section class="sheet" id="p6" aria-label="第 6 頁 區段放大地圖">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">6 / 25</span></header>
+
+<h2><i class="seal">行</i>區段放大地圖</h2>
+<div class="grid2">
+<figure class="sq"><img src="img/map_D.jpg" alt="近鉄奈良站到 ROKUMEI 的步行路線" width="1428" style="object-position:50% 50%"><figcaption>① 近鉄奈良站 → ROKUMEI：1 分、52 m・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/01</figcaption></figure>
+<figure class="sq"><img src="img/map_A.jpg" alt="近鉄奈良到東大寺南大門的步行路線" width="1428" style="object-position:55% 55%"><figcaption>② 登大路・奈良公園 → 南大門：22 分、1.5 km・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/01</figcaption></figure>
+<figure class="sq"><img src="img/map_B.jpg" alt="東大寺到春日大社的步行路線" width="1428" style="object-position:60% 45%"><figcaption>③ 大佛殿 → 二月堂 → 法華堂 → 春日大社：24 分、1.6 km・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/01</figcaption></figure>
+<figure class="sq"><img src="img/map_C.jpg" alt="春日大社到近鉄奈良站的步行路線" width="1428" style="object-position:35% 50%"><figcaption>④ 春日大社 → 中金堂 → 猿澤池 → 近鉄奈良：19 分、1.4 km・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/01</figcaption></figure>
+</div>
+<h3>各段步行時間（Google 估算，<i class="t ng">⚠️</i>）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>區段</th><th>Google</th><th>本手冊採用</th><th>說明</th></tr></thead><tbody><tr><td>近鉄奈良駅 → ROKUMEI</td><td>1 分、52 m</td><td>2 分</td><td>4 號出口出站即是</td></tr><tr><td>ROKUMEI → 南大門</td><td>22 分、1.5 km</td><td>35 分</td><td>多留 13 分給賞鹿與拍照</td></tr><tr><td>大佛殿 → 二月堂</td><td>8 分</td><td>10 分</td><td>有石階</td></tr><tr><td>二月堂 → 法華堂</td><td>5 分</td><td>5 分</td><td>–</td></tr><tr><td>法華堂 → 春日大社</td><td>11 分（路線沒畫完）</td><td>20 分</td><td>Google 在春日大社境內沒有算出完整步道，我抓 20 分</td></tr><tr><td>春日大社 → 興福寺 → 猿澤池</td><td>19 分、1.4 km（同樣沒算完）</td><td>約 35 分</td><td>官網：從車站步行約 25 分 <i class="t ok">✅</i>，以此反推</td></tr><tr><td>猿澤池 → 近鉄奈良駅</td><td>8 分</td><td>8 分</td><td>–</td></tr></tbody></table></div>
+<div class="box warn">第③張地圖最後一段是虛線，是 Google 沒有畫出的路段，不是實際步道。實際走法以現場指標為準。</div>
+
+</section>
+<section class="sheet" id="p7" aria-label="第 7 頁 交通總覽">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">7 / 25</span></header>
+
+<h2><i class="seal">行</i>交通總覽</h2>
+<div class="tw"><table class="dense"><thead><tr><th>段</th><th>起訖</th><th>工具</th><th class="tm">時間</th><th>費用</th><th>轉乘</th><th>徒步</th><th>來源</th></tr></thead><tbody><tr><td>1</td><td>京都→大和西大寺</td><td>近鉄京都線 急行 橿原神宮前行 07:06→07:46</td><td class="tm">40 分</td><td>京都→近鉄奈良 ¥760</td><td>1</td><td>站內</td><td><i class="t ok">✅</i></td></tr><tr><td>2</td><td>大和西大寺→近鉄奈良</td><td>快速急行 近鉄奈良行 07:52→07:58</td><td class="tm">6 分</td><td>含於 ¥760</td><td>–</td><td>站內轉乘</td><td><i class="t ok">✅</i></td></tr><tr><td>3</td><td>近鉄奈良→ROKUMEI</td><td>步行</td><td class="tm">1 分</td><td>–</td><td>–</td><td>52 m</td><td><i class="t ng">⚠️</i></td></tr><tr><td>4</td><td>ROKUMEI→南大門</td><td>步行</td><td class="tm">22 分</td><td>–</td><td>–</td><td>1.5 km</td><td><i class="t ng">⚠️</i></td></tr><tr><td>5</td><td>南大門→大佛殿</td><td>步行</td><td class="tm">約 7 分</td><td>–</td><td>–</td><td>約 0.5 km</td><td><i class="t ng">⚠️</i></td></tr><tr><td>6</td><td>大佛殿→二月堂→法華堂</td><td>步行</td><td class="tm">約 13 分</td><td>–</td><td>–</td><td>含石階</td><td><i class="t ng">⚠️</i></td></tr><tr><td>7</td><td>法華堂→春日大社</td><td>步行</td><td class="tm">約 20 分</td><td>–</td><td>–</td><td>約 1 km</td><td><i class="t ng">⚠️</i></td></tr><tr><td>8</td><td>春日大社→平宗→興福寺</td><td>步行</td><td class="tm">約 45 分</td><td>–</td><td>–</td><td>約 2.5 km</td><td><i class="t ng">⚠️</i></td></tr><tr><td>9</td><td>近鉄奈良→京都</td><td>特急 17:50→18:27</td><td class="tm">37 分</td><td>¥760＋特急券 ¥520＝¥1,280</td><td>–</td><td>站內</td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<p class="xs">票價出自近鉄「京都⇔近鉄奈良 運賃特急料金表」：普通運賃 ¥760、特急料金 ¥520 <i class="t ok">✅</i>。時刻出自近鉄駅時刻表（2026年3月14日現在、平日）<i class="t ok">✅</i>。2027 年版尚未公布。</p>
+<h3>去程四種方式比較</h3>
+<div class="tw"><table class="dense"><thead><tr><th>方式</th><th>京都發→奈良到</th><th class="tm">時間</th><th>費用</th><th>轉乘</th><th>徒步與便利性</th></tr></thead><tbody><tr><td><b>A 主案：急行＋西大寺轉乘</b></td><td>07:06→07:58</td><td class="tm">52 分</td><td>¥760</td><td>1 次</td><td>最貼近預定的 7:10 出發，可在 8:00 開店時到 ROKUMEI</td></tr><tr><td>B 直達急行</td><td>07:44→08:35</td><td class="tm">51 分</td><td>¥760</td><td>無</td><td>最輕鬆，但晚 37 分，後面各點往後推</td></tr><tr><td>C 特急</td><td>07:50→08:25</td><td class="tm">35 分</td><td>¥1,280</td><td>無</td><td>快，但多 ¥520，仍比 A 晚 27 分</td></tr><tr><td>D JR みやこ路快速</td><td>以當日時刻為準</td><td class="tm">約 45 分 <i class="t ng">⚠️</i></td><td>¥720 <i class="t ng">⚠️</i></td><td>無</td><td>JR 奈良站離公園較遠：步行約 20 分、巴士約 10 分 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<p class="sm">選 A 的理由：ROKUMEI 8:00 開，早餐後 8:45 進公園，後面所有行程與先前確認的時間相同。轉乘只有一次，且備案就在 6 分鐘內。</p>
+<h3>回程比較</h3>
+<div class="tw"><table class="dense"><thead><tr><th>班次</th><th>到京都</th><th>費用</th><th>判斷</th></tr></thead><tbody><tr><td>17:17 急行</td><td>18:06</td><td>¥760</td><td>要在 17:05 離開商店街，逛街只剩約 35 分</td></tr><tr><td><b>17:50 特急（主案）</b></td><td>18:27</td><td>¥1,280</td><td>多 ¥520，但商店街可逛到 17:35</td></tr><tr><td>18:20 特急</td><td>18:57</td><td>¥1,280</td><td>19:00 前能到的最後一班，緩衝太薄</td></tr><tr><td>18:47 急行</td><td>19:32</td><td>¥760</td><td>超過 19:00，不採用</td></tr></tbody></table></div>
+<h3>一日券判斷</h3>
+<p class="sm">全程只有近鉄往返，加一次可能的巴士（春日大社本殿→近鉄奈良 ¥250 <i class="t ng">⚠️</i>）。不需要買任何一日券，也不需要 JR Pass。</p>
+
+</section>
+<section class="sheet" id="p8" aria-label="第 8 頁 特殊交通：近鉄京都線・奈良線">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">8 / 25</span></header>
+
+<h2><i class="seal">行</i>京都⇄奈良 近鉄專頁</h2>
+<figure class="ww"><img src="img/map_E.jpg" alt="Google Maps 京都站到近鉄奈良站的電車路線" width="1428" style="object-position:50% 45%"><figcaption>京都駅→近鉄奈良駅（電車）。Google 依截圖當下的時間顯示 36～55 分，不代表 4/8 的班次・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/01</figcaption></figure>
+<div class="grid2">
+<div>
+<h3>去程班次（平日）<i class="t ok">✅</i></h3>
+<div class="tw"><table class="dense"><thead><tr><th>列車</th><th>京都發</th><th>到站</th><th>備註</th></tr></thead><tbody><tr><td>急行 橿原神宮前行</td><td>07:06</td><td>西大寺 07:46（07:49 發）</td><td>主案，要在西大寺下車</td></tr><tr><td>快速急行 近鉄奈良行</td><td>西大寺 07:52</td><td>近鉄奈良 07:58</td><td>始發尼崎</td></tr><tr><td>準急 近鉄奈良行</td><td>西大寺 07:58</td><td>近鉄奈良 08:04</td><td>錯過 07:52 的備案</td></tr><tr><td>急行 近鉄奈良行</td><td>07:44</td><td>近鉄奈良 08:35</td><td>直達備案</td></tr><tr><td>特急 ビスタカー</td><td>07:50</td><td>近鉄奈良 08:25</td><td>+¥520</td></tr></tbody></table></div>
+</div>
+<div>
+<h3>回程班次（平日）<i class="t ok">✅</i></h3>
+<div class="tw"><table class="dense"><thead><tr><th>列車</th><th>近鉄奈良發</th><th>到京都</th></tr></thead><tbody><tr><td>急行</td><td>17:17</td><td>18:06</td></tr><tr><td>特急 ビスタカー</td><td>17:25</td><td>18:00</td></tr><tr><td><b>特急（主案）</b></td><td>17:50</td><td>18:27</td></tr><tr><td>特急 伊勢志摩ライナー</td><td>18:20</td><td>18:57</td></tr><tr><td>急行</td><td>18:47</td><td>19:32</td></tr></tbody></table></div>
+<p class="xs">時刻表標示「2026年3月14日現在」。2027 年版尚未公布，3 月前後再看一次。</p>
+</div>
+</div>
+<h3>票價</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>普通運賃</th><td>京都⇄近鉄奈良 ¥760 <i class="t ok">✅</i></td></tr><tr><th>特急料金</th><td>¥520（京都⇄近鉄奈良）<i class="t ok">✅</i>。座席指定的有無未核對 <i class="t ng">⚠️</i></td></tr><tr><th>快速急行・準急・急行</th><td>只收普通運賃 ¥760</td></tr><tr><th>JR 比較</th><td>みやこ路快速 京都→JR奈良 ¥720、約 45 分 <i class="t ng">⚠️</i>（駅探）</td></tr></tbody></table></div>
+<h3>風險與注意</h3>
+<ul class="l "><li>07:06 的急行終點是橿原神宮前，<b>不是近鉄奈良行</b>。在大和西大寺下車轉乘，不要坐過站。</li><li>大和西大寺是大站，轉乘月台位置我沒有查證 <i class="t ng">⚠️</i>。出站前看站內「近鉄奈良方面」指標。</li><li>大和西大寺到近鉄奈良約 6 分鐘，不會多收費 <i class="t ok">✅</i>。</li><li>特急的車種會因整備改變 <i class="t ok">✅</i>（時刻表附註）。</li></ul>
+
+</section>
+<section class="sheet" id="p9" aria-label="第 9 頁 出發段落與早餐 ROKUMEI">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">9 / 25</span></header>
+
+<h2><i class="seal">行</i>出發段落<small><i class="seal">食</i> 到站後直接早餐</small></h2>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>步驟</th><th>重點</th></tr></thead><tbody><tr><td class="tm">07:00 前</td><td>到近鉄京都駅月台</td><td>近鉄京都駅在京都站大樓內 <i class="t ng">⚠️</i>。站內搜尋「近鉄」指標</td></tr><tr><td class="tm">07:06</td><td>搭急行 橿原神宮前行</td><td>認「橿原神宮前」，車身側面與月台螢幕寫急行</td></tr><tr><td class="tm">07:46</td><td>大和西大寺下車</td><td>轉乘「奈良線 近鉄奈良方面」</td></tr><tr><td class="tm">07:52</td><td>搭快速急行 近鉄奈良行</td><td>錯過就搭 07:58 準急（08:04 到）</td></tr><tr><td class="tm">07:58</td><td>近鉄奈良駅，走 4 號出口</td><td>小西さくら通り商店街入口，鹿の暖簾是店的標誌 <i class="t ok">✅</i></td></tr><tr><td class="tm">08:00</td><td>ROKUMEI 開店</td><td>出站到店 1 分鐘、52 m <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h2 style="margin-top:4px"><i class="seal">食</i>ROKUMEI COFFEE CO. NARA<small>ロクメイコーヒー 奈良店</small></h2>
+<div class="grid2">
+<div>
+<p class="sm"><b>為什麼推薦：</b>它在近鉄奈良站 4 號出口外，出站 1 分鐘，8:00 開店，剛好接在 07:58 到站之後。烘豆師拿過 JCRC 2018（日本咖啡烘焙冠軍賽）冠軍 <i class="t ok">✅</i>，咖啡與現烤可頌是早上進公園前的補給。這是順路的一站，不是繞路的一站。</p>
+<figure class="sq"><img src="img/map_D.jpg" alt="近鉄奈良站到 ROKUMEI 的步行路線" width="1428" style="object-position:50% 52%"><figcaption>近鉄奈良駅 → ROKUMEI（1 分、52 m）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/01</figcaption></figure>
+</div>
+<div>
+<div class="tw"><table class="kv "><tbody><tr><th>地址</th><td>〒630-8225 奈良市西御門町31 <i class="t ok">✅</i></td></tr><tr><th>電話</th><td>0742-23-4075 <i class="t ok">✅</i></td></tr><tr><th>營業</th><td>8:00～18:00（L.O. 17:30）<i class="t ok">✅</i></td></tr><tr><th>公休</th><td>官網未載明 <i class="t ng">⚠️</i>，食べログ：全年無休 <i class="t ng">⚠️</i></td></tr><tr><th>座位</th><td>吧台與 4 人桌 <i class="t ok">✅</i>；食べログ寫 42 席、不能預約 <i class="t ng">⚠️</i></td></tr><tr><th>付款</th><td>信用卡、電子錢包、QR 支付 <i class="t ng">⚠️</i>（食べログ）</td></tr><tr><th>飲料</th><td>本日のコーヒー ¥580、ブレンド ¥650～、カフェラテ ¥680、カプチーノ ¥680 <i class="t ok">✅</i></td></tr><tr><th>食物</th><td>自家製可頌、法式可頌、季節可頌；價格官網未列 <i class="t ok">✅</i></td></tr><tr><th>早餐套餐</th><td>時段與價格說法不一：一份資料寫 9:00～11:00、¥880，食べログ列 ¥820，官網只寫有モーニングセット。<b>採用「到店確認」</b></td></tr></tbody></table></div>
+</div>
+</div>
+<div class="box ">8:00～9:00 若尚未供應套餐，改點單品可頌＋本日のコーヒー（約 ¥880 <i class="t ng">⚠️</i>）。可外帶，趕時間時拿著邊走邊吃 <i class="t ok">✅</i>。照片：Commons 上找不到可確認的店內照片，這頁用地圖代替。</div>
+<p class="xs"><a href="https://www.google.com/maps/search/?api=1&query=ROKUMEI%20COFFEE%20CO.%20NARA">Google Maps 開啟 ROKUMEI</a>　|　<a href="https://www.google.com/maps/dir/?api=1&origin=%E8%BF%91%E9%89%84%E5%A5%88%E8%89%AF%E9%A7%85&destination=ROKUMEI%20COFFEE%20%E5%A5%88%E8%89%AF%E5%BA%97&travelmode=walking">步行導航</a></p>
+
+</section>
+<section class="sheet" id="p10" aria-label="第 10 頁 奈良公園與鹿">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">10 / 25</span></header>
+
+<h2><i class="seal">観</i>奈良公園與鹿<small>ならこうえん</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/deer_sakura.jpg" alt="奈良公園的鹿在落櫻花瓣上低頭吃草" width="1000" style="object-position:50% 50%"><figcaption>rumpleteaser from Nagoya, Japan・CC BY 2.0・<a href="https://commons.wikimedia.org/wiki/File:Deer_Drinking_Cherry_Blossom_Petals_(7096064073).jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/deer_nandaimon.jpg" alt="東大寺南大門前的鹿" width="1000" style="object-position:50% 50%"><figcaption>Christophe95・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Deer_in_front_of_Nandaimon_at_Todaiji.jpg">Wikimedia Commons</a></figcaption></figure>
+</div>
+<p><b>為什麼推薦：</b>這趟的第一個畫面。從 ROKUMEI 走到南大門的 22 分鐘幾乎都在公園裡，鹿會自己走到路上。這一段不需要門票，也不用排隊，是整天唯一不趕的時間。</p>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>規模</th><td>總面積 511.52 公頃，約東京巨蛋 108 個大 <i class="t ok">✅</i>。公園沒有出入口的概念，任何方向都能進出 <i class="t ok">✅</i></td></tr><tr><th>鹿</th><td>約 1,300 頭，野生動物，國家天然紀念物 <i class="t ok">✅</i></td></tr><tr><th>位置</th><td>近鉄奈良駅徒步約 8 分、JR奈良駅徒步約 20 分（巴士約 10 分）<i class="t ok">✅</i></td></tr><tr><th>鹿仙貝</th><td>10 片 ¥200，露店與伴手禮店販售 <i class="t ok">✅</i></td></tr><tr><th>本段走法</th><td>ROKUMEI → 登大路 → 公園 → 南大門，22 分、1.5 km <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>現場看什麼</h3>
+<ul class="l "><li>鹿在櫻花花瓣上吃草的畫面（時間上多半是花吹雪階段 <i class="t ng">⚠️</i>）</li><li>路上的興福寺區域。<b>五重塔現在是工程外罩</b>，Google 地圖也標「臨時休業」。2023 年 7 月起開始搭覆屋，預定 2034 年度完成 <i class="t ok">✅</i></li><li>東大寺南大門前的鹿群，與大門同框很好拍</li><li>早上出沒的鹿較悠閒，人多時鹿會往邊緣移動</li></ul>
+<h3>與鹿相處的規則<i class="t ok">✅</i></h3>
+<ul class="l "><li>只能餵鹿仙貝，點心、麵包、蔬菜都不能給。手上的塑膠袋、地圖、傳單會被吃掉。</li><li>買到後先拆掉紙封，一片一片快速給。沒有了就雙手張開，表示「沒有了」。</li><li>野生動物，盡量不要摸。接觸後洗手。</li></ul>
+<p class="xs">來源：奈良市観光協會「奈良公園の見どころ」「奈良公園の鹿」<i class="t ok">✅</i>、気象庁平年値 <i class="t ok">✅</i>。拍照建議：低角度、鹿與花同框；不要在鹿旁蹲著拿食物。</p>
+<p class="xs"><a href="https://www.google.com/maps/dir/?api=1&origin=ROKUMEI%20COFFEE%20%E5%A5%88%E8%89%AF%E5%BA%97&destination=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E5%8D%97%E5%A4%A7%E9%96%80&travelmode=walking">Google Maps 步行導航（ROKUMEI → 南大門）</a></p>
+
+</section>
+<section class="sheet" id="p11" aria-label="第 11 頁 東大寺 簡介與基本資訊">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">11 / 25</span></header>
+
+<h2><i class="seal">観</i>東大寺<small>とうだいじ　簡介與基本資訊</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/nandaimon1.jpg" alt="東大寺南大門" width="1000"><figcaption>Cun Cun・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Nandaimon.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/daibutsuden1.jpg" alt="東大寺大佛殿正面" width="1000"><figcaption>ONO Masanobu・CC0・<a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Daibutsuden_front_view_in_2011.jpg">Wikimedia Commons</a></figcaption></figure>
+</div>
+<p><b>為什麼推薦：</b>觀光價值 S、御朱印價值 A。它是今天的主角，也是所有行程裡最大的景區。我們只走最精華的一段：南大門、大佛殿、二月堂、法華堂，大約 2 小時 10 分。其餘堂宇不排，原因在下一頁。</p>
+<h3>簡介</h3>
+<p class="sm">華厳宗大本山。大佛殿是東大寺的金堂，奈良時代創建，歷經治承與永祿兩次兵火，現在的建築是江戶時代由公慶上人重建，規模縮小為 7 間，但高度與進深維持創建時的樣子，是世界最大級的木造建築 <i class="t ok">✅</i>。大佛殿東西 57.012 m、南北 50.480 m、高 48.742 m <i class="t ok">✅</i>。</p>
+<h3>景區總覽</h3>
+<div class="tw"><table class="dense"><thead><tr><th>區域</th><th>內容</th><th class="tm">時間</th><th>另收費</th><th>本行程</th></tr></thead><tbody><tr><td>南大門</td><td>入口大門，門前有鹿</td><td class="tm">開放時間官網未載明 <i class="t ng">⚠️</i></td><td>免費 <i class="t ng">⚠️</i></td><td>路過，拍照</td></tr><tr><td>大佛殿</td><td>盧舍那佛 14.98 m</td><td class="tm">7:30～17:30 <i class="t ok">✅</i></td><td>¥800 <i class="t ok">✅</i></td><td><b>必看</b></td></tr><tr><td>二月堂</td><td>舞台眺望</td><td class="tm">御朱印 7:30～17:30 <i class="t ok">✅</i></td><td>舞台未載明 <i class="t ng">⚠️</i></td><td>看</td></tr><tr><td>法華堂（三月堂）</td><td>天平佛像群</td><td class="tm">8:30～16:00 <i class="t ok">✅</i></td><td>¥800 <i class="t ok">✅</i></td><td>看</td></tr><tr><td>戒壇院戒壇堂</td><td>四天王像</td><td class="tm">8:30～16:00 <i class="t ok">✅</i></td><td>¥800 <i class="t ok">✅</i></td><td>備案</td></tr><tr><td>東大寺博物館</td><td>展示</td><td class="tm">9:30～17:30 <i class="t ok">✅</i></td><td>單獨 ¥800，與大佛殿套票 ¥1,200 <i class="t ok">✅</i></td><td>不排</td></tr><tr><td>四月堂（三昧堂）</td><td>耐震工事閉堂</td><td class="tm">令和7年5月7日起約 2 年，令和9年春頃再開予定 <i class="t ok">✅</i></td><td>–</td><td>不排，4/8 可能剛好重開 <i class="t ng">⚠️</i></td></tr><tr><td>其他小堂</td><td>開山堂、不動堂、俊乗堂、念仏堂、行基堂、鐘楼等</td><td class="tm">8:30～16:00 左右 <i class="t ok">✅</i></td><td>各堂另計</td><td>不排</td></tr></tbody></table></div>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>地址</th><td>〒630-8587 奈良市雑司町406-1 <i class="t ok">✅</i>　電話 0742-22-5511 <i class="t ok">✅</i></td></tr><tr><th>休館</th><td>無休（除特別行事或緊急情況）<i class="t ok">✅</i></td></tr><tr><th>付款</th><td>現金のみ <i class="t ok">✅</i></td></tr><tr><th>音聲導覽</th><td>¥500，4～10 月 10:00～17:00 借出，大佛殿剪票口外 15 m <i class="t ok">✅</i></td></tr><tr><th>從車站</th><td>近鉄奈良駅→南大門約 1.5 km 步行 <i class="t ng">⚠️</i>；巴士「東大寺大仏殿・春日大社前」下車步行 5 分 <i class="t ok">✅</i></td></tr><tr><th>花祭（仏生会）</th><td>2026/4/8：法要 8:00～9:00 左右、甘茶 8:00 過後～15:00 左右，在大佛殿前 <i class="t ok">✅</i>。2027 年待公布 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<p class="xs">官方境內案內圖：<a href="https://www.todaiji.or.jp/information/haikan/">東大寺 拝観時間・拝観料頁（附境內案內圖 PDF）</a></p>
+
+</section>
+<section class="sheet" id="p12" aria-label="第 12 頁 東大寺 參觀路線與時間不夠時">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">12 / 25</span></header>
+
+<h2><i class="seal">観</i>東大寺<small>參觀路線與時間不夠時</small></h2>
+<h3>完整參觀還是只看精華</h3>
+<p class="sm">東大寺御朱印有 10 幾種，分散在各堂。第三方文章估計全收要 5～6 小時、走 7～8 公里 <i class="t ng">⚠️</i>。這趟一天還要去春日大社與興福寺，所以只走精華。判斷：<b>只看精華</b>。</p>
+<h3>建議路線與時間</h3>
+<div class="tw"><table class="dense"><thead><tr><th>順序</th><th>地點</th><th class="tm">時間</th><th>做什麼</th></tr></thead><tbody><tr><td>1</td><td>南大門</td><td class="tm">09:20</td><td>看大門與鹿，拍照 5 分鐘</td></tr><tr><td>2</td><td>大佛殿</td><td class="tm">09:30～10:15</td><td>先領御朱印排隊（7:30 起受理），再入殿，最後看八角燈籠</td></tr><tr><td>3</td><td>二月堂</td><td class="tm">10:25～10:55</td><td>從大佛殿東北方向走上去，約 8 分 <i class="t ng">⚠️</i>。爬舞台眺望，領御朱印</td></tr><tr><td>4</td><td>法華堂</td><td class="tm">11:00～11:30</td><td>緊鄰二月堂，約 5 分 <i class="t ng">⚠️</i>。入堂看佛像，領御朱印</td></tr><tr><td>5</td><td>前往春日大社</td><td class="tm">11:30～11:50</td><td>東南方向林間路徑</td></tr></tbody></table></div>
+<div class="grid2">
+<figure class="sq"><img src="img/nigatsudo.jpg" alt="東大寺二月堂與石燈籠" width="1000"><figcaption>Christophe95・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Nigatsu-d%C5%8D_at_Todaiji_1.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/hokkedo.jpg" alt="東大寺法華堂正面" width="1000"><figcaption>Nekosuki・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Sangatsu-do_National_Treasure_%E5%9B%BD%E5%AE%9D%E6%9D%B1%E5%A4%A7%E5%AF%BA%E4%B8%89%E6%9C%88%E5%A0%8215.JPG">Wikimedia Commons</a></figcaption></figure>
+</div>
+<h3>只剩 60 分鐘怎麼走</h3>
+<ul class="l "><li>南大門 5 分鐘 → 大佛殿 40 分鐘（含御朱印）→ 二月堂 15 分鐘（只領御朱印、看舞台）。</li><li>法華堂 16:00 關，若時間夠，改把二月堂縮短、保留法華堂（佛像比舞台更值得）。</li><li>時間窗口：戒壇堂與法華堂同樣 16:00 關，下午才到東大寺要先排它們。</li></ul>
+<h3>時間充裕怎麼加</h3>
+<ul class="l "><li>第一優先：戒壇院戒壇堂（四天王像，¥800，8:30～16:00，約 +15 分）<i class="t ok">✅</i></li><li>第二：東大寺博物館（9:30～17:30，最後入館 17:00，與大佛殿套票 ¥1,200）<i class="t ok">✅</i></li><li>再來：在大佛殿前多看花祭的灌佛（約到 15:00）<i class="t ok">✅</i>（2026 年資料）</li></ul>
+<h3>人潮與排隊</h3>
+<ul class="l "><li>大佛殿御朱印有多位書寫者，可以自選隊伍；2026/09/02 的投稿提到這點 <i class="t ph">📷</i>。</li><li>2026/05/02 的投稿：大佛殿非常擁擠，法華堂內人很少，可以慢慢看佛像 <i class="t ph">📷</i>。</li><li>所以順序是先大佛殿（人潮還沒到最高）、再山側的二月堂與法華堂。</li></ul>
+<p class="xs">來源：東大寺官網「拝観時間・拝観料」「御朱印について」<i class="t ok">✅</i>、omairi 東大寺（2026/05/02、2026/09/02）<i class="t ph">📷</i>、第三方御朱印整理 <i class="t ng">⚠️</i>。</p>
+
+</section>
+<section class="sheet" id="p13" aria-label="第 13 頁 南大門・大佛殿">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">13 / 25</span></header>
+
+<h2><i class="seal">観</i>南大門・大佛殿<small>なんだいもん・だいぶつでん</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/daibutsuden2.jpg" alt="東大寺大佛殿" width="1000"><figcaption>Cun Cun・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Daibutsuden,_June_2019.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/daibutsu.jpg" alt="大佛殿內的盧舍那佛" width="1000"><figcaption>Zairon・CC BY 4.0・<a href="https://commons.wikimedia.org/wiki/File:Nara_Todai-ji_Daibutsuden_Interior_Daibutsu_05.jpg">Wikimedia Commons</a>・堂內攝影以現場規定為準</figcaption></figure>
+</div>
+<p><b>為什麼推薦：</b>觀光價值 S、御朱印價值 A。整趟旅行的中心點，也是 4/8 花祭的現場。我們 9:20 到南大門、9:30 進大佛殿，是為了趕在白天人潮最高之前。南大門當作入口，不單獨花時間。</p>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>盧舍那佛</b>：像高 14.98 m，目長 1.02 m，耳長 2.54 m，顏長 5.33 m <i class="t ok">✅</i></li><li><b>大佛殿外觀</b>：世界最大級的木造建築，高 48.742 m <i class="t ok">✅</i></li><li><b>八角燈籠</b>：國寶，奈良時代，東大寺創建當初之物，火袋四面有音聲菩薩浮雕 <i class="t ok">✅</i></li><li><b>台座蓮瓣</b>：毛彫的「蓮華藏世界」圖，描繪華嚴經的世界 <i class="t ok">✅</i></li><li><b>花祭（4/8）</b>：大佛殿前花御堂，誕生佛可以灌甘茶 <i class="t ok">✅</i>（2026 年資料）</li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>時間</th><td>7:30～17:30（4～10 月）<i class="t ok">✅</i>。最後入場時間官網未載明 <i class="t ng">⚠️</i></td></tr><tr><th>門票</th><td>¥800（中學生以上）；小學生 ¥400。僅現金 <i class="t ok">✅</i></td></tr><tr><th>地址</th><td>〒630-8587 奈良市雑司町406-1 <i class="t ok">✅</i></td></tr><tr><th>上一點</th><td>ROKUMEI 起 22 分步行到南大門，再約 7 分到大佛殿 <i class="t ng">⚠️</i></td></tr><tr><th>拍照</th><td>參拜路線上可自由拍攝；禁止三腳架與團體集合照；堂內不可寫生與使用手電筒 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3><i class="seal">印</i>御朱印</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>種類</th><td>「華厳」，¥300（官網）<i class="t ok">✅</i></td></tr><tr><th>授與位置</th><td>大佛殿內 <i class="t ph">📷</i>（2026/07/16、直書き）；另有投稿稱大佛殿授与所 <i class="t ph">📷</i></td></tr><tr><th>時間</th><td>7:30～17:30（4～10 月）<i class="t ok">✅</i></td></tr><tr><th>方式</th><td>直書き。2026/09/02、09/13、07/16 皆為直書き <i class="t ph">📷</i>，且有多位書寫者可選隊伍 <i class="t ph">📷</i></td></tr><tr><th>價格差異</th><td>官網 ¥300 <i class="t ok">✅</i>。2026/07/23 的投稿寫 ¥500、B5 和綴 <i class="t ph">📷</i>。採用官網，現場確認</td></tr><tr><th>御朱印帳</th><td>東大寺自家版 ¥1,500～2,500（花柄大 ¥2,000、小 ¥1,500；椿 ¥2,500）<i class="t ok">✅</i></td></tr><tr><th>推薦程度</th><td>收集 <span class="star">★★★★★</span>　參觀 <span class="star">★★★★★</span></td></tr></tbody></table></div>
+<p class="xs">拍照建議：南大門正面看大佛殿的大屋頂；殿外中軸線上看八角燈籠與大屋頂同框；進殿前先拍外觀，殿內光線暗。　<a href="https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E5%8D%97%E5%A4%A7%E9%96%80&destination=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E5%A4%A7%E4%BB%8F%E6%AE%BF&travelmode=walking">Google Maps：南大門→大佛殿</a>　|　<a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E5%A4%A7%E5%AF%BA%20%E5%A4%A7%E4%BB%8F%E6%AE%BF">大佛殿位置</a></p>
+
+</section>
+<section class="sheet" id="p14" aria-label="第 14 頁 二月堂">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">14 / 25</span></header>
+
+<h2><i class="seal">観</i>二月堂<small>にがつどう</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/nigatsudo_steps.jpg" alt="二月堂的石階與石燈籠" width="1000"><figcaption>Raita Futo from Tokyo, Japan・CC BY 2.0・<a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Nigatsudo_temple_(52541975165).jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/nigatsudo.jpg" alt="二月堂與石燈籠" width="1000"><figcaption>Christophe95・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Nigatsu-d%C5%8D_at_Todaiji_1.jpg">Wikimedia Commons</a></figcaption></figure>
+</div>
+<p><b>為什麼推薦：</b>觀光價值 A、御朱印價值 A。大佛殿看完後往山側走，這裡是整天第一個可以從高處往下看奈良的地方。人潮比大佛殿少，石階與木造舞台有登山的感覺。和法華堂只隔 5 分鐘，兩處連著走不繞路。</p>
+<h3>簡介</h3>
+<p class="sm">位於東大寺山側的佛堂，以每年 3 月的修二會（お水取り）聞名 <i class="t ng">⚠️</i>。官網的御朱印頁提到修二會期間御朱印照常授與 <i class="t ok">✅</i>。4/8 已經不在修二會期間。</p>
+<h3>現場看什麼</h3>
+<ul class="l "><li>舞台往西眺望，視野開闊。2026/06/29 的投稿說「歩き疲れたならしばし休憩できます。見晴らしよい」<i class="t ph">📷</i></li><li>同一則投稿提到從這裡經裏參道的路是東大寺的亮點 <i class="t ph">📷</i>，本行程不走，改往法華堂</li><li>上石階的木造堂宇與石燈籠，從下方仰拍最好看</li><li>舞台上可坐下喘口氣，備案時間就放在這裡</li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>地址</th><td>〒630-8587 奈良市雑司町406-1（東大寺境內）<i class="t ok">✅</i></td></tr><tr><th>開放</th><td>舞台是否全天可上，官網未載明 <i class="t ng">⚠️</i>；御朱印受付 7:30～17:30 <i class="t ok">✅</i></td></tr><tr><th>門票</th><td>未載明 <i class="t ng">⚠️</i>（官網的各堂收費表只列大佛殿、法華堂、戒壇堂、博物館）</td></tr><tr><th>上一點</th><td>大佛殿→二月堂 Google 估算 8 分 <i class="t ng">⚠️</i>，有坡度與石階</td></tr><tr><th>停留</th><td>30 分：御朱印 10 分、舞台 10 分、石階上下 10 分</td></tr></tbody></table></div>
+<h3><i class="seal">印</i>御朱印</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>種類</th><td>「南無観」「二月堂御詠歌」，各 ¥300 <i class="t ok">✅</i>。本行程領「南無観」，御詠歌選用</td></tr><tr><th>授與位置</th><td>二月堂前授与所 <i class="t ph">📷</i>（2026/07/23）</td></tr><tr><th>時間</th><td>4～10 月 7:30～17:30。修二會期間照常授與 <i class="t ok">✅</i></td></tr><tr><th>方式</th><td>直書き：2026/09/13、2026/09/02、2025/12/09 <i class="t ph">📷</i></td></tr><tr><th>備註</th><td>2026/09/02 的投稿拿到「南無観」的說明文，解釋觀指觀音菩薩 <i class="t ph">📷</i></td></tr><tr><th>推薦程度</th><td>收集 <span class="star">★★★★☆</span>　參觀 <span class="star">★★★★☆</span></td></tr></tbody></table></div>
+<p class="xs">拍照建議：石階下方往上拍，把石燈籠放前景；舞台上拍遠景時避開逆光。　<a href="https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E5%A4%A7%E4%BB%8F%E6%AE%BF&destination=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E4%BA%8C%E6%9C%88%E5%A0%82&travelmode=walking">Google Maps：大佛殿→二月堂</a></p>
+
+</section>
+<section class="sheet" id="p15" aria-label="第 15 頁 法華堂（三月堂）">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">15 / 25</span></header>
+
+<h2><i class="seal">観</i>法華堂（三月堂）<small>ほっけどう（さんがつどう）</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/hokkedo.jpg" alt="東大寺法華堂正面" width="1000"><figcaption>Nekosuki・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Sangatsu-do_National_Treasure_%E5%9B%BD%E5%AE%9D%E6%9D%B1%E5%A4%A7%E5%AF%BA%E4%B8%89%E6%9C%88%E5%A0%8215.JPG">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/hokkedo_side.jpg" alt="東大寺法華堂側面的木造欄杆" width="1000"><figcaption>Nekosuki・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Sangatsu-do_National_Treasure_%E5%9B%BD%E5%AE%9D%E6%9D%B1%E5%A4%A7%E5%AF%BA%E4%B8%89%E6%9C%88%E5%A0%8204.JPG">Wikimedia Commons</a></figcaption></figure>
+</div>
+<p><b>為什麼推薦：</b>觀光價值 A（佛像價值更高）、御朱印價值 A。大佛殿很擠，法華堂內人少，可以慢慢看國寶佛像。2026/05/02 的投稿就說「大混雜の大仏殿から一転、堂内は人もまばら」<i class="t ph">📷</i>。它 16:00 關門，所以放在上午。</p>
+<h3>簡介</h3>
+<p class="sm">本尊是不空羂索觀音，周圍有許多天平時代的佛像 <i class="t ph">📷</i>（投稿提到金剛力士像與不空羂索觀音）。「執金剛神」的御朱印只在 12 月 16 日提供，4/8 不會有 <i class="t ok">✅</i>。「東大寺最古的建築」的說法來自一般解說 <i class="t ng">⚠️</i>。</p>
+<h3>現場看什麼</h3>
+<ul class="l "><li><b>不空羂索觀音菩薩</b>：國寶，堂內的中心佛像 <i class="t ph">📷</i></li><li><b>四周的守護像</b>：「圍繞的護衛」般的氣勢，2026/06/29 的投稿用「ものすごい迫力」形容 <i class="t ph">📷</i></li><li>堂內光線暗，用眼睛看比用相機好。內部能否拍照官網未載明 <i class="t ng">⚠️</i></li><li>建築本身的木造格子與緩坡屋頂，適合在外面拍</li></ul>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>時間</th><td>8:30～16:00（御朱印受付同）<i class="t ok">✅</i></td></tr><tr><th>門票</th><td>¥800（東大寺官網：法華堂另收入堂料）<i class="t ok">✅</i>。是否同為 ¥800 現場確認 <i class="t ng">⚠️</i></td></tr><tr><th>地址</th><td>東大寺境內 <i class="t ok">✅</i></td></tr><tr><th>上一點</th><td>二月堂→法華堂約 5 分 <i class="t ng">⚠️</i></td></tr><tr><th>停留</th><td>30 分：佛像 20 分、御朱印 10 分</td></tr></tbody></table></div>
+<h3><i class="seal">印</i>御朱印</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>種類</th><td>「不空羂索」¥300 <i class="t ok">✅</i>；「執金剛神」僅 12/16 <i class="t ok">✅</i></td></tr><tr><th>授與位置</th><td>堂內 <i class="t ph">📷</i>（2026/07/23）</td></tr><tr><th>時間</th><td>8:30～16:00 <i class="t ok">✅</i></td></tr><tr><th>方式</th><td>直書き：2026/05/02、2025/12/09 <i class="t ph">📷</i></td></tr><tr><th>推薦程度</th><td>收集 <span class="star">★★★★☆</span>　參觀 <span class="star">★★★★☆</span></td></tr></tbody></table></div>
+<p class="xs">時間界線：16:00 前一定要入堂，並預留御朱印時間。當天若因法要而閉堂，改去戒壇院戒壇堂（同樣 8:30～16:00、¥800）<i class="t ok">✅</i>。　<a href="https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E4%BA%8C%E6%9C%88%E5%A0%82&destination=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E6%B3%95%E8%8F%AF%E5%A0%82&travelmode=walking">Google Maps：二月堂→法華堂</a></p>
+
+</section>
+<section class="sheet" id="p16" aria-label="第 16 頁 春日大社">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">16 / 25</span></header>
+
+<h2><i class="seal">観</i>春日大社<small>かすがたいしゃ</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/kasuga_gate.jpg" alt="春日大社的朱紅色社殿" width="1000"><figcaption>Guilhem Vellut・CC BY 2.0・<a href="https://commons.wikimedia.org/wiki/File:Kasuga_Taisha_Shrine_@_Nara.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/kasuga_lantern_deer.jpg" alt="春日大社的石燈籠與鹿" width="1000"><figcaption>Zairon・CC BY 4.0・<a href="https://commons.wikimedia.org/wiki/File:Nara_Kasuga-taisha_Lanterns_%26_Deer_05.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/kasuga_sando.jpg" alt="春日大社參道" width="1000"><figcaption>Zairon・CC BY 4.0・<a href="https://commons.wikimedia.org/wiki/File:Nara_Kasuga-taisha_Lanterns_%26_Chakutoden_1.jpg">Wikimedia Commons</a></figcaption></figure>
+</div>
+<p><b>為什麼推薦：</b>觀光價值 S、御朱印價值 A。山側的行程在這裡收尾，朱紅色社殿與成排的燈籠與前面的佛寺氣氛完全不同。從這裡開始是下坡，走參道往市區，不用再爬。</p>
+<h3>簡介</h3>
+<p class="sm">神護景雲 2 年（768）由稱德天皇下令在御蓋山（春日山）山麓建造本殿 <i class="t ok">✅</i>。每 20 年一次的式年造替已經 60 回 <i class="t ok">✅</i>。國寶本殿 4 棟，另有 27 棟重要文化財 <i class="t ok">✅</i>。全國約 3,000 座春日神社的總本社 <i class="t ok">✅</i>。神鹿是神的使者，鹿的由來與這裡有關 <i class="t ok">✅</i>。</p>
+<div class="grid2">
+<div>
+<h3>現場看什麼</h3>
+<ul class="l "><li>朱漆的本社社殿與迴廊</li><li>參道兩側成排的石燈籠 <i class="t ok">✅</i></li><li>本殿前特別參拜：可進到本殿前較近處（選用）</li><li>社紋「藤」：藤棚的花期在黃金週前後 <i class="t ok">✅</i>，4/8 還沒開</li><li>神鹿與石燈籠同框</li></ul>
+</div>
+<div>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>時間</th><td>參拜所 3～10 月 6:30～17:30 <i class="t ok">✅</i></td></tr><tr><th>特別參拜</th><td>9:00～16:00，¥700（選用）<i class="t ok">✅</i></td></tr><tr><th>地址</th><td>〒630-8212 奈良市春日野町160 <i class="t ok">✅</i></td></tr><tr><th>交通</th><td>奈良交通巴士「春日大社本殿」約 11～15 分；從車站步行約 25 分 <i class="t ok">✅</i></td></tr><tr><th>注意</th><td>禁止寵物、無人機、境內全面禁菸 <i class="t ok">✅</i></td></tr></tbody></table></div>
+</div>
+</div>
+<h3><i class="seal">印</i>御朱印</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>本社</th><th>夫婦大國社（選用）</th></tr></thead><tbody><tr><td>初穂料</td><td>¥500 <i class="t ok">✅</i>（2023/4/1 起）</td><td>官方未載明 <i class="t ng">⚠️</i></td></tr><tr><td>時間</td><td>9:00～閉門（通年）<i class="t ok">✅</i></td><td>9:00～16:30 <i class="t ng">⚠️</i></td></tr><tr><td>方式</td><td>直書き：2026/09/13、09/02、08/22、08/13、07/16 <i class="t ph">📷</i></td><td><b>書置き</b>：2026/08/19、2026/04/19、2023/11/03 <i class="t ph">📷</i></td></tr><tr><td>位置</td><td>拜殿前的授與所 <i class="t ng">⚠️</i></td><td>社務所 <i class="t ph">📷</i>（2026/04/19）</td></tr><tr><td>注意</td><td>混雜期會停止寫入御朱印帳，只給紙本。例如 2026/9/19～23 <i class="t ok">✅</i>。4/8 是否也會 <i class="t ng">⚠️</i></td><td>紙本，需要膠水貼進御朱印帳</td></tr><tr><td>推薦</td><td>收集 <span class="star">★★★★☆</span>　參觀 <span class="star">★★★★★</span></td><td>收集 <span class="star">★★★☆☆</span>　參觀 <span class="star">★★★☆☆</span></td></tr></tbody></table></div>
+<p class="xs">來源：春日大社官網「ご由緒」「基本情報」「お知らせ」<i class="t ok">✅</i>、omairi（日期見表）<i class="t ph">📷</i>。拍照建議：參道的石燈籠與樹蔭，選順光的上午到中午；朱漆在晴天最顯色。　<a href="https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E5%A4%A7%E5%AF%BA%E6%B3%95%E8%8F%AF%E5%A0%82&destination=%E6%98%A5%E6%97%A5%E5%A4%A7%E7%A4%BE&travelmode=walking">Google Maps：法華堂→春日大社</a></p>
+
+</section>
+<section class="sheet" id="p17" aria-label="第 17 頁 午餐與休息">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">17 / 25</span></header>
+
+<h2><i class="seal">食</i>午餐與休息<small>下山後的 13:40～14:25</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/sarusawa.jpg" alt="猿澤池" width="1000"><figcaption>663highland・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:170930_Sarusawaike_Nara_Japan01s3.jpg">Wikimedia Commons</a>・2017 年攝影，五重塔現已被覆屋遮蓋，現況看不到塔身</figcaption></figure>
+<div>
+<h3>主選：柿の葉ずし 平宗 奈良店 はなれ</h3>
+<p class="sm">位於猿澤池南邊約 100 m 的奈良町入口，從近鉄奈良站步行約 10 分 <i class="t ok">✅</i>。下山後經過猿澤池，繞進去是 5～10 分鐘的小繞路 <i class="t ng">⚠️</i>。奈良的鄉土料理柿葉壽司在這裡能坐下來吃。</p>
+</div>
+</div>
+<div class="tw"><table class="kv "><tbody><tr><th>店名</th><td>柿の葉ずし 平宗 奈良店 本館／はなれ <i class="t ok">✅</i></td></tr><tr><th>地址</th><td>〒630-8374 奈良市今御門町30-1 <i class="t ok">✅</i>　電話 0742-22-0866 <i class="t ok">✅</i></td></tr><tr><th>用餐</th><td>はなれ 11:30～20:00（L.O.）；本館販售 10:00～20:30 <i class="t ok">✅</i></td></tr><tr><th>公休</th><td>每週一 <i class="t ok">✅</i>。4/8 是週四，營業。其他休業日以官網日曆為準，2027 年日曆尚未公布 <i class="t ng">⚠️</i></td></tr><tr><th>餐點</th><td>柿の葉ずし盛り合わせ（附赤だし或清湯）¥1,650（含稅）<i class="t ok">✅</i></td></tr><tr><th>預約</th><td>午餐預約只接 10 位以上 <i class="t ok">✅</i>。2 人現場排隊</td></tr><tr><th>路線</th><td>一之鳥居→三條通→猿澤池→平宗，約 35 分步行 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>備案</h3>
+<div class="tw"><table class="dense"><thead><tr><th>店</th><th>位置</th><th>時間（二手）</th><th>備註</th></tr></thead><tbody><tr><td>柿の葉すし本舗たなか なら本店</td><td>東向商店街入口，近鉄奈良站 2 號出口步行約 1 分</td><td>9:30～19:30、無休 <i class="t ng">⚠️</i></td><td>以外帶為主，是否有內用我沒查到</td></tr><tr><td>ゐざさ 近鉄奈良駅店</td><td>近鉄奈良站東出口</td><td>10:00～19:00 <i class="t ng">⚠️</i></td><td>外帶柿葉壽司，可在興福寺前找長椅吃</td></tr><tr><td>ROKUMEI COFFEE</td><td>近鉄奈良站 4 號出口外</td><td>8:00～18:00 <i class="t ok">✅</i></td><td>喝咖啡休息用，賣可頌</td></tr></tbody></table></div>
+<div class="box "><b>當天公休的店：</b>主選與備案在 4/8（週四）都不是已知的公休日。平宗的週一休不會碰到。如果日曆上出現例外休業日，改去備案 1。</div>
+<h3>休息點</h3>
+<p class="sm">猿澤池邊有星巴克（猿澤池店）<i class="t ng">⚠️</i>（Google Maps 標示），可以在興福寺前後休息。ROKUMEI 營業到 18:00 <i class="t ok">✅</i>，傍晚可以回來買咖啡豆或喝杯咖啡當作收尾。</p>
+<p class="xs">來源：平宗官網「奈良店」<i class="t ok">✅</i>、Navitime/naralunch 等第三方店家整理 <i class="t ng">⚠️</i>。　<a href="https://www.google.com/maps/search/?api=1&query=%E6%9F%BF%E3%81%AE%E8%91%89%E3%81%9A%E3%81%97%20%E5%B9%B3%E5%AE%97%20%E5%A5%88%E8%89%AF%E5%BA%97">Google Maps：平宗 奈良店</a>　|　<a href="https://www.google.com/maps/dir/?api=1&origin=%E6%98%A5%E6%97%A5%E5%A4%A7%E7%A4%BE&destination=%E6%9F%BF%E3%81%AE%E8%91%89%E3%81%9A%E3%81%97%20%E5%B9%B3%E5%AE%97%20%E5%A5%88%E8%89%AF%E5%BA%97&travelmode=walking">步行導航（春日大社 → 平宗）</a></p>
+
+</section>
+<section class="sheet" id="p18" aria-label="第 18 頁 興福寺">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">18 / 25</span></header>
+
+<h2><i class="seal">観</i>興福寺<small>こうふくじ</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/chukondo.jpg" alt="興福寺中金堂" width="1000"><figcaption>Cun Cun・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Kofukuji_Chukondo.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/tokondo.jpg" alt="興福寺東金堂" width="1000"><figcaption>Cun Cun・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Kofukuji_Tokondo.jpg">Wikimedia Commons</a></figcaption></figure>
+</div>
+<div class="box warn"><b>五重塔現在看不到。</b>2023 年 7 月起搭設覆屋，修理 120 年來首次大規模進行，預定 2034 年度完成。工程期間國寶館與中金堂可照常參觀，施工區域有封路與繞道 <i class="t ok">✅</i>。</div>
+<p><b>為什麼推薦：</b>觀光價值 A、御朱印價值 A。它緊貼近鉄奈良站，放在下午的收尾，走累了也不會遠離車站。中金堂 2018 年落慶，是新堂，東金堂是 726 年創建的老堂，兩種氣氛放在同一區。</p>
+<h3>簡介</h3>
+<p class="sm">710 年由藤原不比等把前身寺院遷到平城京，是藤原氏的氏寺 <i class="t ok">✅</i>。與春日社一體化而擴張，鎌倉時代掌握大和一帶的實權 <i class="t ok">✅</i>。阿修羅像（八部眾）是代表性的寶物，收藏在國寶館 <i class="t ok">✅</i>。2026 年適逢東金堂創建 1,300 年，有後堂的特別公開 <i class="t ok">✅</i>。2027 年是否延續未公布 <i class="t ng">⚠️</i>。</p>
+<h3>基本資訊</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>時間</th><td>9:00～17:00，入堂至 16:45，年中無休 <i class="t ok">✅</i></td></tr><tr><th>門票</th><td>中金堂 ¥500、東金堂 ¥500、國寶館 ¥900；三館共通券 ¥1,600（16:00 停售）。僅現金 <i class="t ok">✅</i></td></tr><tr><th>單買 vs 套票</th><td>只進中金堂＋東金堂：單買 ¥1,000 較便宜。加國寶館：單買 ¥1,900，共通券 ¥1,600，省 ¥300。本行程採單買 ¥1,000</td></tr><tr><th>地址</th><td>〒630-8213 奈良市登大路町48 <i class="t ok">✅</i></td></tr><tr><th>攝影</th><td>堂內與館內禁止攝影 <i class="t ok">✅</i></td></tr><tr><th>花祭</th><td>4/8 興福寺也有仏生会 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3><i class="seal">印</i>御朱印</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>種類</th><td>南圓堂、南圓堂御詠歌、令興福力、一言觀音堂、千手觀音（國寶館）、中金堂、東金堂、東金堂御詠歌、北圓堂（僅開扉時）<i class="t ok">✅</i></td></tr><tr><th>授與位置</th><td>南圓堂納經所 <i class="t ok">✅</i>。須先參拜各堂再領 <i class="t ok">✅</i></td></tr><tr><th>時間</th><td>9:00～17:00，最後受理 16:30 <i class="t ok">✅</i></td></tr><tr><th>初穂料</th><td>官網未載明 <i class="t ng">⚠️</i>。第三方整理 2025/4 起 ¥500 <i class="t ng">⚠️</i></td></tr><tr><th>方式</th><td>直書き：2026/09/13、09/02 <i class="t ph">📷</i>。2026/09/07、09/13 的投稿都提到排隊的幾乎是外國人 <i class="t ph">📷</i>；南圓堂直書き 2026/09/02、2026/05/10 <i class="t ph">📷</i></td></tr><tr><th>其他</th><td>切り絵御朱印（東金堂與五重塔）2022/8 開始，¥1,000，授與處 2023/12 起併入納經所 <i class="t ok">✅</i>。現在是否還有 <i class="t ng">⚠️</i></td></tr><tr><th>推薦程度</th><td>收集（中金堂・東金堂）<span class="star">★★★★☆</span>　參觀 <span class="star">★★★★☆</span></td></tr></tbody></table></div>
+<p class="xs">建議走法（由東往西）：國寶館外側 → 東金堂 → 中金堂 → 南圓堂納經所 → 往猿澤池。　<a href="https://www.google.com/maps/dir/?api=1&origin=%E5%B9%B3%E5%AE%97%20%E5%A5%88%E8%89%AF%E5%BA%97&destination=%E8%88%88%E7%A6%8F%E5%AF%BA%20%E4%B8%AD%E9%87%91%E5%A0%82&travelmode=walking">Google Maps：平宗→中金堂</a>　|　<a href="https://www.google.com/maps/search/?api=1&query=%E8%88%88%E7%A6%8F%E5%AF%BA%20%E5%8D%97%E5%86%86%E5%A0%82">南圓堂納經所位置</a></p>
+
+</section>
+<section class="sheet" id="p19" aria-label="第 19 頁 猿澤池・東向商店街・回程">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">19 / 25</span></header>
+
+<h2><i class="seal">観</i>猿澤池・東向商店街<small>さるさわのいけ・ひがしむきしょうてんがい</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/higashimuki1.jpg" alt="近鉄奈良站前與東向商店街" width="1000"><figcaption>shankar s.・CC BY 2.0・<a href="https://commons.wikimedia.org/wiki/File:Kintetsu-Nara_Station_plaza_and_Higashimuki_Shotengai_2019-04-20.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/higashimuki2.jpg" alt="東向商店街的拱廊" width="1000"><figcaption>Cun Cun・CC BY-SA 4.0・<a href="https://commons.wikimedia.org/wiki/File:Higashimuki-Nara-June_2019.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/kintetsu_nara.jpg" alt="近鉄奈良站外觀" width="1000"><figcaption>Degueulasse・CC BY 3.0・<a href="https://commons.wikimedia.org/wiki/File:Kintetsu_Nara_station_20140902.jpg">Wikimedia Commons</a>・2014 年攝影，周邊現況可能已變</figcaption></figure>
+</div>
+<p><b>為什麼推薦：</b>猿澤池觀光價值 B，東向商店街 B。兩處都在車站旁，是拜完寺社後的緩衝與採買。這趟的安排是「寧可少去也不要趕」，所以最後 2 小時放這裡，剩下的時間有彈性。</p>
+<h3>猿澤池 15:45～16:30</h3>
+<ul class="l "><li>池畔散步。以前的五重塔倒影現在看不到，所以這裡比原先預想的更像休息點，不是看點 <i class="t ok">✅</i></li><li>離興福寺中金堂步行約 4 分 <i class="t ng">⚠️</i>，離近鉄奈良站約 8 分 <i class="t ng">⚠️</i></li><li>時間吃緊時，把這段縮成 15 分鐘，換商店街逛久一點</li></ul>
+<h3>東向商店街 16:30～17:35</h3>
+<div class="tw"><table class="kv "><tbody><tr><th>位置</th><td>近鉄奈良站東側的有頂拱廊，往三條通方向 <i class="t ok">✅</i></td></tr><tr><th>營業</th><td>各店不同，沒有查到商店街的統一時間 <i class="t ng">⚠️</i>。たなか 9:30～19:30、ゐざさ 10:00～19:00（二手）</td></tr><tr><th>可買</th><td>柿葉壽司（たなか、ゐざさ）<i class="t ng">⚠️</i>；和菓子店「中谷堂」在三條通口 <i class="t ng">⚠️</i>（Google Maps 標示）</td></tr><tr><th>上一點</th><td>猿澤池→商店街 8 分 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>回程：近鉄奈良 17:50 → 京都 18:27</h3>
+<ul class="l "><li>17:35 離開商店街，在近鉄奈良站的自動售票機買「京都」＋特急券（¥1,280）。座席指定的規則現場看售票機 <i class="t ng">⚠️</i></li><li>備案：17:17 急行（¥760，18:06 到）、17:25 特急ビスタカー（18:00 到）、18:20 特急（18:57 到）<i class="t ok">✅</i></li><li>18:27 到京都站，剩 33 分鐘吃晚餐或回住宿 <i class="t ok">✅</i></li></ul>
+<p class="xs">時間界線：19:00 前能到京都的最後一班是 18:20 發的特急（18:57）<i class="t ok">✅</i>。　<a href="https://www.google.com/maps/dir/?api=1&origin=%E7%8C%BF%E6%B2%A2%E6%B1%A0&destination=%E8%BF%91%E9%89%84%E5%A5%88%E8%89%AF%E9%A7%85&travelmode=walking">Google Maps：猿澤池→近鉄奈良站</a>　|　<a href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E5%90%91%E5%95%86%E5%BA%97%E8%A1%97">東向商店街位置</a></p>
+
+</section>
+<section class="sheet" id="p20" aria-label="第 20 頁 今日御朱印攻略">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">20 / 25</span></header>
+
+<h2><i class="seal">印</i>今日御朱印攻略</h2>
+<p class="sm">今天的原則：只領走路上順便能領的，不為了多一張繞路。基本 <b>7 張</b>，最多約 10～11 張（選用項目在表中標注）。</p>
+<div class="tw"><table class="dense"><thead><tr><th>寺社</th><th>參觀</th><th>收集</th><th>御朱印</th><th>授與位置</th><th class="tm">時間</th><th>方式</th><th>備註</th><th>推薦</th></tr></thead><tbody><tr><td>東大寺 大佛殿</td><td>S</td><td>A</td><td>華厳 ¥300</td><td>大佛殿內 <i class="t ph">📷</i></td><td class="tm">7:30～17:30 <i class="t ok">✅</i></td><td>直書き <i class="t ph">📷</i></td><td>多位書寫者可選隊</td><td><span class="star">★★★★★</span></td></tr><tr><td>東大寺 二月堂</td><td>A</td><td>A</td><td>南無観 ¥300</td><td>二月堂前授與所 <i class="t ph">📷</i></td><td class="tm">7:30～17:30 <i class="t ok">✅</i></td><td>直書き <i class="t ph">📷</i></td><td>御詠歌（選用）¥300</td><td><span class="star">★★★★☆</span></td></tr><tr><td>東大寺 法華堂</td><td>A</td><td>A</td><td>不空羂索 ¥300</td><td>堂內 <i class="t ph">📷</i></td><td class="tm">8:30～16:00 <i class="t ok">✅</i></td><td>直書き <i class="t ph">📷</i></td><td>16:00 前</td><td><span class="star">★★★★☆</span></td></tr><tr><td>春日大社 本社</td><td>S</td><td>A</td><td>本社 ¥500 <i class="t ok">✅</i></td><td>拜殿前授與所 <i class="t ng">⚠️</i></td><td class="tm">9:00～閉門 <i class="t ok">✅</i></td><td>直書き <i class="t ph">📷</i></td><td>混雜期紙本</td><td><span class="star">★★★★☆</span></td></tr><tr><td>夫婦大國社（選用）</td><td>B</td><td>B</td><td>¥500 <i class="t ng">⚠️</i></td><td>社務所 <i class="t ph">📷</i></td><td class="tm">9:00～16:30 <i class="t ng">⚠️</i></td><td>書置き <i class="t ph">📷</i></td><td>要膠水</td><td><span class="star">★★★☆☆</span></td></tr><tr><td>興福寺 中金堂</td><td>A</td><td>A</td><td>¥500 <i class="t ng">⚠️</i></td><td>南圓堂納經所 <i class="t ok">✅</i></td><td class="tm">9:00～17:00，最後 16:30 <i class="t ok">✅</i></td><td>直書き <i class="t ph">📷</i></td><td>先參拜再領</td><td><span class="star">★★★★☆</span></td></tr><tr><td>興福寺 東金堂</td><td>A</td><td>A</td><td>¥500 <i class="t ng">⚠️</i></td><td>南圓堂納經所 <i class="t ok">✅</i></td><td class="tm">同上</td><td>直書き <i class="t ph">📷</i></td><td>御詠歌（選用）</td><td><span class="star">★★★★☆</span></td></tr><tr><td>興福寺 南圓堂（選用）</td><td>B</td><td>B</td><td>¥500 <i class="t ng">⚠️</i></td><td>南圓堂納經所 <i class="t ok">✅</i></td><td class="tm">同上</td><td>直書き <i class="t ph">📷</i></td><td>西國三十三所第 9 番</td><td><span class="star">★★★☆☆</span></td></tr></tbody></table></div>
+<div class="grid2">
+<div>
+<h3>御朱印排程</h3>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>地點</th><th>張數</th></tr></thead><tbody><tr><td class="tm">09:30～10:15</td><td>大佛殿：華厳</td><td>1</td></tr><tr><td class="tm">10:25～10:55</td><td>二月堂：南無観</td><td>1</td></tr><tr><td class="tm">11:00～11:30</td><td>法華堂：不空羂索</td><td>1</td></tr><tr><td class="tm">11:50～13:05</td><td>春日大社：本社、夫婦大國社（選用）</td><td>1～2</td></tr><tr><td class="tm">15:00 前後</td><td>興福寺：中金堂、東金堂（參拜後到南圓堂）</td><td>2</td></tr><tr><td class="tm">合計</td><td>基本 7、最多約 10～11</td><td></td></tr></tbody></table></div>
+</div>
+<div>
+<h3>準備</h3>
+<ul class="l "><li>御朱印帳 2 本（東大寺與其他分開），或 1 本加夾紙</li><li>膠水（口紅膠）：書置き要貼</li><li>零錢：東大寺、興福寺現金限定 <i class="t ok">✅</i>，御朱印 ¥300、¥500 備好</li><li>東大寺自家御朱印帳 ¥1,500～2,500 <i class="t ok">✅</i>，可在現場買</li></ul>
+</div>
+</div>
+<h3>景點還開著，但御朱印可能不辦</h3>
+<ul class="l "><li><b>法華堂 16:00 關</b>：下午才到就趕不上，所以排在上午。</li><li><b>興福寺納經所最後受理 16:30</b>，比堂的入堂（16:45）早 15 分鐘 <i class="t ok">✅</i></li><li><b>春日大社混雜期只給紙本</b>，不寫入御朱印帳（2026/9/19～23 的公告）<i class="t ok">✅</i></li><li><b>夫婦大國社 16:30 截止</b> <i class="t ng">⚠️</i></li><li><b>四月堂閉堂中，御朱印暫停</b>，令和9年春頃再開 <i class="t ok">✅</i></li></ul>
+<p class="xs">價格提醒：東大寺官網各 ¥300 <i class="t ok">✅</i>，omairi 一則 2026/07/23 的投稿寫 ¥500（B5 和綴）<i class="t ph">📷</i>。兩者並列，採用官網。</p>
+
+</section>
+<section class="sheet" id="p21" aria-label="第 21 頁 一日時間軸・費用總覽">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">21 / 25</span></header>
+
+<h2><i class="seal">行</i>一日時間軸</h2>
+<div class="tl">
+<div><span class="tm">07:06</span><span><b>京都站</b> 搭近鉄急行（橿原神宮前行）</span></div>
+<div><span class="tm">07:46</span><span>大和西大寺 → 07:52 快速急行</span></div>
+<div><span class="tm">07:58</span><span>近鉄奈良站，4 號出口</span></div>
+<div><span class="tm">08:00</span><span><b>ROKUMEI COFFEE</b> 早餐（到 08:45）</span></div>
+<div><span class="tm">08:45</span><span>走進奈良公園，看鹿</span></div>
+<div><span class="tm">09:20</span><span>東大寺南大門</span></div>
+<div><span class="tm">09:30</span><span><b>大佛殿</b>、花祭、御朱印（到 10:15）</span></div>
+<div><span class="tm">10:25</span><span><b>二月堂</b> 舞台、御朱印（到 10:55）</span></div>
+<div><span class="tm">11:00</span><span><b>法華堂</b> 佛像、御朱印（到 11:30）</span></div>
+<div><span class="tm">11:50</span><span><b>春日大社</b> 參拜、御朱印（到 13:05）</span></div>
+<div><span class="tm">13:40</span><span><b>平宗</b> 午餐（到 14:25）</span></div>
+<div><span class="tm">14:30</span><span><b>興福寺</b> 中金堂、東金堂、納經所（到 15:45）</span></div>
+<div><span class="tm">15:45</span><span>猿澤池（到 16:30）</span></div>
+<div><span class="tm">16:30</span><span>東向商店街（到 17:35）</span></div>
+<div><span class="tm">17:50</span><span>近鉄奈良站 特急 → <b>18:27 京都</b></span></div>
+</div>
+<h2 style="margin-top:6px"><i class="seal">基</i>費用總覽（每人）</h2>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>金額</th><th>依據</th><th>來源</th></tr></thead><tbody><tr><td>近鉄去程（京都→近鉄奈良）</td><td>¥760</td><td>近鉄運賃表</td><td><i class="t ok">✅</i></td></tr><tr><td>近鉄回程 特急（¥760＋¥520）</td><td>¥1,280</td><td>近鉄運賃特急料金表</td><td><i class="t ok">✅</i></td></tr><tr><td>東大寺 大佛殿</td><td>¥800</td><td>東大寺官網</td><td><i class="t ok">✅</i></td></tr><tr><td>東大寺 法華堂</td><td>¥800</td><td>官網各堂另收，表列 ¥800</td><td><i class="t ok">✅</i></td></tr><tr><td>興福寺 中金堂＋東金堂</td><td>¥1,000</td><td>官網 ¥500 × 2</td><td><i class="t ok">✅</i></td></tr><tr><td>御朱印：東大寺 3 張</td><td>¥900</td><td>官網每張 ¥300</td><td><i class="t ok">✅</i></td></tr><tr><td>御朱印：春日大社本社</td><td>¥500</td><td>官網公告</td><td><i class="t ok">✅</i></td></tr><tr><td>御朱印：夫婦大國社、興福寺 2 張</td><td>¥1,500</td><td>每張 ¥500 假設</td><td><i class="t ng">⚠️</i></td></tr><tr><td>早餐 ROKUMEI</td><td>約 ¥880</td><td>咖啡 ¥580 ＋可頌估算</td><td><i class="t ng">⚠️</i></td></tr><tr><td>午餐 平宗</td><td>¥1,650</td><td>柿の葉ずし盛り合わせ</td><td><i class="t ok">✅</i></td></tr><tr><td>鹿仙貝 1 份</td><td>¥200</td><td>奈良市観光協會</td><td><i class="t ok">✅</i></td></tr><tr><td><b>合計（主方案）</b></td><td><b>約 ¥10,270</b></td><td>2 人合計約 ¥20,540</td><td><i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<p class="xs"><b>選用項目：</b>春日大社特別參拝 +¥700 <i class="t ok">✅</i>、興福寺國寶館共通券 +¥600（¥1,600 與 ¥1,000 之差）<i class="t ok">✅</i>、春日大社→近鉄奈良巴士 ¥250 <i class="t ng">⚠️</i>、回程改急行 −¥520 <i class="t ok">✅</i>。<b>單買 vs 套票：</b>興福寺只進兩堂，單買較便宜。不需要一日券。現金為主，建議每人準備 ¥12,000 以上。</p>
+
+</section>
+<section class="sheet" id="p22" aria-label="第 22 頁 雨天備案・刪減方案">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">22 / 25</span></header>
+
+<h2><i class="seal">基</i>雨天備案</h2>
+<ul class="l "><li><b>順序不變，縮短戶外段。</b>大佛殿、法華堂、興福寺是室內，維持原計畫。</li><li><b>二月堂：</b>石階濕滑 <i class="t ng">⚠️</i>，舞台眺望視野差時，只領御朱印就走（省約 10 分鐘）。</li><li><b>春日大社下山改搭巴士：</b>「春日大社本殿」→近鉄奈良站 11～15 分 <i class="t ok">✅</i>，¥250 <i class="t ng">⚠️</i>。省下約 25 分鐘步行，剩下的時間可進興福寺國寶館（共通券 ¥1,600）。</li><li><b>東向商店街有頂：</b>下雨天可以延長逛街時間（照片可見拱廊）。</li><li><b>午餐：</b>平宗在雨天排隊的情況未知 <i class="t ng">⚠️</i>，備案是東向商店街內的外帶店。</li><li>奈良市観光協會有「雨の日も快適！奈良のおすすめ屋内立ち寄りスポット」專頁 <i class="t ok">✅</i>，本手冊不採用其中的新景點，避免增加行程。</li></ul>
+<h2 style="margin-top:4px"><i class="seal">基</i>行程彈性與刪減方案</h2>
+<h3>景點分級（刪除順序：C → B → A，S 級盡量保留）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>級別</th><th>項目</th><th>理由</th></tr></thead><tbody><tr><td>S</td><td>東大寺大佛殿、春日大社、奈良公園（鹿）</td><td>今天的主體，不刪</td></tr><tr><td>A</td><td>二月堂、法華堂、興福寺中金堂與東金堂</td><td>重要，但可縮短</td></tr><tr><td>B</td><td>ROKUMEI 早餐、平宗午餐、猿澤池、東向商店街</td><td>可縮短、換成外帶</td></tr><tr><td>C</td><td>夫婦大國社御朱印、國寶館</td><td>時間不夠先捨棄</td></tr></tbody></table></div>
+<h3>情境對照</h3>
+<div class="tw"><table class="dense"><thead><tr><th>情境</th><th>怎麼調</th><th>刪掉什麼</th></tr></thead><tbody><tr><td>晚出發 30 分鐘</td><td>改搭 07:44 直達急行，08:35 到。ROKUMEI 縮成 30 分鐘</td><td>猿澤池（-45 分）</td></tr><tr><td>晚出發 1 小時</td><td>08:45 急行 → 09:32 到。ROKUMEI 改外帶，邊走邊吃。<i class="t ok">✅</i></td><td>猿澤池、夫婦大國社、商店街縮短</td></tr><tr><td>御朱印排隊超過 20 分</td><td>大佛殿與春日大社優先，二月堂的「南無観」可放棄</td><td>二月堂御朱印</td></tr><tr><td>近鉄延誤</td><td>07:52 快速急行錯過 → 07:58 準急（08:04）<i class="t ok">✅</i></td><td>不刪，延後 6 分</td></tr><tr><td>某處臨時關閉</td><td>法華堂關 → 戒壇院（同時間）；春日特別參拝停 → 略過；興福寺中金堂關 → 國寶館</td><td>–</td></tr><tr><td>回程班次延誤</td><td>看 17:17 急行／18:20 特急的替代</td><td>商店街最後一段</td></tr></tbody></table></div>
+<h3>時間充裕時追加（依推薦順序）</h3>
+<ol class="l"><li>戒壇院戒壇堂（+15 分，四天王像）<i class="t ok">✅</i></li><li>興福寺國寶館（共通券，阿修羅像）<i class="t ok">✅</i></li><li>春日大社特別參拝 ¥700 <i class="t ok">✅</i></li></ol>
+
+</section>
+<section class="sheet" id="p23" aria-label="第 23 頁 出發前必看・Checklist">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">23 / 25</span></header>
+
+<h2><i class="seal">基</i>出發前必看</h2>
+<ul class="l "><li><b>開放時間與最晚入場：</b>見第 4 頁。最緊的是法華堂 16:00、興福寺納經所 16:30。</li><li><b>步行與坡度：</b>全日約 6～8 km <i class="t ng">⚠️</i>。二月堂有石階，春日大社境內多石板與砂礫。</li><li><b>鞋：</b>好走的球鞋。花吹雪的路面與雨天的石階都會滑。</li><li><b>天氣：</b>4 月平年日最高 19.8℃、最低 8.7℃ <i class="t ok">✅</i>，早晚涼，備薄外套。</li><li><b>提早到：</b>ROKUMEI 8:00 開，07:58 到站正好。大佛殿 9:30 進，趕在最擁擠前。</li><li><b>現金：</b>東大寺與興福寺只收現金 <i class="t ok">✅</i>。</li><li><b>禮儀：</b>大佛殿禁止三腳架與團體集合照 <i class="t ok">✅</i>；春日大社禁止寵物、無人機、禁菸 <i class="t ok">✅</i>；鹿只能餵鹿仙貝 <i class="t ok">✅</i>。</li></ul>
+<h2 style="margin-top:6px">旅行 Checklist<small>勾選只存在這台裝置，換瀏覽器或清除資料就消失</small></h2>
+<div class="grid2" id="ck">
+<div class="ckgrp">
+<h3>前一晚</h3>
+<label class="ck"><input type="checkbox" data-k="a1"><span>確認近鉄 07:06 急行與 07:52 轉乘班次（2027 年版）</span></label>
+<label class="ck"><input type="checkbox" data-k="a2"><span>截圖本手冊第 4、8 頁</span></label>
+<label class="ck"><input type="checkbox" data-k="a3"><span>天氣預報，決定要不要帶雨具</span></label>
+<label class="ck"><input type="checkbox" data-k="a4"><span>平宗休業日曆、ROKUMEI 營業確認</span></label>
+<label class="ck"><input type="checkbox" data-k="a5"><span>東大寺 花祭 2027 年公告</span></label>
+<h3>隨身</h3>
+<label class="ck"><input type="checkbox" data-k="b1"><span>御朱印帳 2 本</span></label>
+<label class="ck"><input type="checkbox" data-k="b2"><span>膠水（書置き用）</span></label>
+<label class="ck"><input type="checkbox" data-k="b3"><span>現金每人 ¥12,000 以上，零錢多</span></label>
+<label class="ck"><input type="checkbox" data-k="b4"><span>IC 卡（交通卡）</span></label>
+</div>
+<div class="ckgrp">
+<h3>出發前</h3>
+<label class="ck"><input type="checkbox" data-k="c1"><span>好走的鞋</span></label>
+<label class="ck"><input type="checkbox" data-k="c2"><span>薄外套與雨具</span></label>
+<label class="ck"><input type="checkbox" data-k="c3"><span>水與小點心</span></label>
+<label class="ck"><input type="checkbox" data-k="c4"><span>手機行動電源</span></label>
+<label class="ck"><input type="checkbox" data-k="c5"><span>保溫瓶或環保袋（伴手禮）</span></label>
+<h3>當天</h3>
+<label class="ck"><input type="checkbox" data-k="d1"><span>近鉄京都駅月台：認「橿原神宮前」行急行</span></label>
+<label class="ck"><input type="checkbox" data-k="d2"><span>大和西大寺下車，轉乘近鉄奈良行</span></label>
+<label class="ck"><input type="checkbox" data-k="d3"><span>8:00 ROKUMEI 早餐</span></label>
+<label class="ck"><input type="checkbox" data-k="d4"><span>法華堂在 16:00 前進堂</span></label>
+<label class="ck"><input type="checkbox" data-k="d5"><span>17:35 前買好特急券</span></label>
+</div>
+</div>
+<script>
+(function(){
+  var boxes=document.querySelectorAll('#ck input[type=checkbox]');
+  var key='nara-handbook-ck';var saved={};
+  try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+  boxes.forEach(function(b){
+    b.checked=!!saved[b.dataset.k];
+    b.addEventListener('change',function(){
+      saved[b.dataset.k]=b.checked;
+      try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}
+    });
+  });
+})();
+</script>
+
+</section>
+<section class="sheet" id="p24" aria-label="第 24 頁 資料來源與圖片授權">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">24 / 25</span></header>
+
+<h2><i class="seal">基</i>資料來源與圖片授權</h2>
+<p class="xs">查證日 2026/10/01。官方頁面以瀏覽器實際開啟為準。搜尋引擎摘要只用來找到網址，不標 ✅。</p>
+<div class="tw"><table class="dense"><thead><tr><th>來源（點名稱開啟）</th><th>網域</th><th>等級</th><th>用在</th></tr></thead><tbody><tr><td><a href="https://www.todaiji.or.jp/information/haikan/">東大寺 拝観時間・拝観料</a></td><td>www.todaiji.or.jp</td><td><i class="t ok">✅</i></td><td>時間、入堂料、套票、音聲導覽</td></tr><tr><td><a href="https://www.todaiji.or.jp/information/goshuin/">東大寺 御朱印について</a></td><td>www.todaiji.or.jp</td><td><i class="t ok">✅</i></td><td>各堂種類、時間、¥300、四月堂停止</td></tr><tr><td><a href="https://www.todaiji.or.jp/information/daibutsuden/">東大寺 大仏殿</a></td><td>www.todaiji.or.jp</td><td><i class="t ok">✅</i></td><td>尺寸、拍照規定</td></tr><tr><td><a href="https://www.todaiji.or.jp/news-250219/">東大寺 四月堂閉堂</a></td><td>www.todaiji.or.jp</td><td><i class="t ok">✅</i></td><td>令和7年5月7日起約 2 年</td></tr><tr><td><a href="https://www.kasugataisha.or.jp/about/basic/">春日大社 基本情報</a></td><td>www.kasugataisha.or.jp</td><td><i class="t ok">✅</i></td><td>參拜時間、特別參拝 ¥700、交通</td></tr><tr><td><a href="https://www.kasugataisha.or.jp/about/">春日大社 ご由緒</a></td><td>www.kasugataisha.or.jp</td><td><i class="t ok">✅</i></td><td>創建、式年造替、藤花期</td></tr><tr><td><a href="https://www.kasugataisha.or.jp/news/2023/12095/">春日大社 御朱印授与（2023/4/1〜）</a></td><td>www.kasugataisha.or.jp</td><td><i class="t ok">✅</i></td><td>¥500、種類、紙本</td></tr><tr><td><a href="https://www.kasugataisha.or.jp/news/">春日大社 お知らせ</a></td><td>www.kasugataisha.or.jp</td><td><i class="t ok">✅</i></td><td>混雜期紙本のみ</td></tr><tr><td><a href="https://www.kohfukuji.com/info/info-guide/">興福寺 拝観情報</a></td><td>www.kohfukuji.com</td><td><i class="t ok">✅</i></td><td>時間、料金、共通券</td></tr><tr><td><a href="https://www.kohfukuji.com/info/info-goshuin/">興福寺 御朱印案内</a></td><td>www.kohfukuji.com</td><td><i class="t ok">✅</i></td><td>納經所、種類、受付時間</td></tr><tr><td><a href="https://www.kohfukuji.com/news/2065/">興福寺 五重塔修理</a></td><td>www.kohfukuji.com</td><td><i class="t ok">✅</i></td><td>覆屋、通行</td></tr><tr><td><a href="https://narashikanko.or.jp/ja/spot/world_heritage/kofukuji/">奈良市観光協会 興福寺</a></td><td>narashikanko.or.jp</td><td><i class="t ok">✅</i></td><td>2034 年度完了、五重塔外觀不可見</td></tr><tr><td><a href="https://narashikanko.or.jp/event/detail_10279.html">奈良市観光協会 仏生会</a></td><td>narashikanko.or.jp</td><td><i class="t ok">✅</i></td><td>2026/4/8 花祭</td></tr><tr><td><a href="https://narashikanko.or.jp/feature/narapark">奈良市観光協会 奈良公園／鹿</a></td><td>narashikanko.or.jp</td><td><i class="t ok">✅</i></td><td>面積、鹿的數量、鹿仙貝</td></tr><tr><td><a href="https://www.kintetsu.co.jp/railway/Dia/pdf/price_limited_express_d.pdf">近鉄 運賃特急料金表</a></td><td>www.kintetsu.co.jp</td><td><i class="t ok">✅</i></td><td>¥760、特急 ¥520</td></tr><tr><td><a href="https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-0&d=1&dw=0">近鉄 駅の時刻表（京都、大和西大寺、近鉄奈良）</a></td><td>eki.kintetsu.co.jp</td><td><i class="t ok">✅</i></td><td>2026/3/14 版、平日</td></tr><tr><td><a href="https://rokumei.coffee/f/shop-nara">ROKUMEI COFFEE 奈良店</a></td><td>rokumei.coffee</td><td><i class="t ok">✅</i></td><td>時間、地址、餐點、道順</td></tr><tr><td><a href="https://hiraso.jp/shop/shop-nara/">柿の葉ずし 平宗 奈良店</a></td><td>hiraso.jp</td><td><i class="t ok">✅</i></td><td>時間、週一休、¥1,650</td></tr><tr><td><a href="https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?prec_no=64&block_no=47780">気象庁 奈良 平年値</a></td><td>www.data.jma.go.jp</td><td><i class="t ok">✅</i></td><td>4 月氣溫與降水</td></tr><tr><td><a href="https://omairi.club/spots/82872/goshuin">omairi.club 東大寺（大佛殿）</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/07/16、09/02、09/13 等</td></tr><tr><td><a href="https://omairi.club/spots/93438/goshuin">omairi.club 二月堂</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2025/12/09、2026/06/29、09/02、09/13</td></tr><tr><td><a href="https://omairi.club/spots/93437/goshuin">omairi.club 法華堂</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2025/12/09、2026/05/02、06/29</td></tr><tr><td><a href="https://omairi.club/spots/78603/goshuin">omairi.club 春日大社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/07/16、08/13、08/22、09/02、09/13</td></tr><tr><td><a href="https://omairi.club/spots/84924/goshuin">omairi.club 夫婦大國社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>書置き：2023/11/03、2026/04/19、08/19</td></tr><tr><td><a href="https://omairi.club/spots/81871/goshuin">omairi.club 興福寺／南圓堂</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/05/10、09/02、09/07、09/13</td></tr><tr><td><a href="https://www.google.com/maps/">Google Maps（步行・電車）</a></td><td>www.google.com</td><td><i class="t ng">⚠️</i></td><td>步行時間、距離（截圖 2026/10/01）</td></tr><tr><td><a href="https://ekitan.com/transit/fare/sf-5198/st-5212">駅探（京都→奈良）</a></td><td>ekitan.com</td><td><i class="t ng">⚠️</i></td><td>JR 運賃參考</td></tr><tr><td><a href="https://sakura.weathermap.jp/sp/point.php?city=Nara">天氣・櫻花開花資料（tenki.jp／weathermap）</a></td><td>sakura.weathermap.jp</td><td><i class="t ng">⚠️</i></td><td>2026 年開花與滿開日</td></tr><tr><td><a href="https://www.naralunch.com/">第三方店家與御朱印整理</a></td><td>www.naralunch.com</td><td><i class="t ng">⚠️</i></td><td>たなか、ゐざさ、夫婦大國社時間</td></tr></tbody></table></div>
+<h3>照片授權（全部來自 Wikimedia Commons，已縮為寬 1000 px）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>用在</th><th>作者</th><th>授權</th><th>Commons</th></tr></thead><tbody><tr><td>大佛殿正面</td><td>ONO Masanobu</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Daibutsuden_front_view_in_2011.jpg">連結</a></td></tr><tr><td>大佛殿</td><td>Cun Cun</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Daibutsuden,_June_2019.jpg">連結</a></td></tr><tr><td>大佛</td><td>Zairon</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Nara_Todai-ji_Daibutsuden_Interior_Daibutsu_05.jpg">連結</a></td></tr><tr><td>南大門</td><td>Cun Cun</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:T%C5%8Ddai-ji_Nandaimon.jpg">連結</a></td></tr><tr><td>南大門前的鹿</td><td>Christophe95</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Deer_in_front_of_Nandaimon_at_Todaiji.jpg">連結</a></td></tr><tr><td>二月堂石階</td><td>Raita Futo from Tokyo, Japan</td><td>CC BY 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Nigatsudo_temple_(52541975165).jpg">連結</a></td></tr><tr><td>二月堂</td><td>Christophe95</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Nigatsu-d%C5%8D_at_Todaiji_1.jpg">連結</a></td></tr><tr><td>法華堂側面</td><td>Nekosuki</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Sangatsu-do_National_Treasure_%E5%9B%BD%E5%AE%9D%E6%9D%B1%E5%A4%A7%E5%AF%BA%E4%B8%89%E6%9C%88%E5%A0%8204.JPG">連結</a></td></tr><tr><td>法華堂</td><td>Nekosuki</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Todai-ji_Sangatsu-do_National_Treasure_%E5%9B%BD%E5%AE%9D%E6%9D%B1%E5%A4%A7%E5%AF%BA%E4%B8%89%E6%9C%88%E5%A0%8215.JPG">連結</a></td></tr><tr><td>春日大社社殿</td><td>Guilhem Vellut</td><td>CC BY 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kasuga_Taisha_Shrine_@_Nara.jpg">連結</a></td></tr><tr><td>燈籠與鹿</td><td>Zairon</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Nara_Kasuga-taisha_Lanterns_%26_Deer_05.jpg">連結</a></td></tr><tr><td>春日大社參道</td><td>Zairon</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Nara_Kasuga-taisha_Lanterns_%26_Chakutoden_1.jpg">連結</a></td></tr><tr><td>中金堂</td><td>Cun Cun</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kofukuji_Chukondo.jpg">連結</a></td></tr><tr><td>東金堂</td><td>Cun Cun</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kofukuji_Tokondo.jpg">連結</a></td></tr><tr><td>猿澤池</td><td>663highland</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:170930_Sarusawaike_Nara_Japan01s3.jpg">連結</a></td></tr><tr><td>落櫻上的鹿</td><td>rumpleteaser from Nagoya, Japan</td><td>CC BY 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Deer_Drinking_Cherry_Blossom_Petals_(7096064073).jpg">連結</a></td></tr><tr><td>東向商店街入口</td><td>shankar s.</td><td>CC BY 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kintetsu-Nara_Station_plaza_and_Higashimuki_Shotengai_2019-04-20.jpg">連結</a></td></tr><tr><td>東向商店街拱廊</td><td>Cun Cun</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Higashimuki-Nara-June_2019.jpg">連結</a></td></tr><tr><td>近鉄奈良站</td><td>Degueulasse</td><td>CC BY 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kintetsu_Nara_station_20140902.jpg">連結</a></td></tr></tbody></table></div>
+<p class="xs">地圖：Google Maps 截圖，地圖資料 ©2026 Google，截取日期 2026/10/01，僅作個人行程參考。示意圖為自製，非地理比例。</p>
+
+</section>
+<section class="sheet" id="p25" aria-label="第 25 頁 待確認事項">
+<header class="hd"><span><b>奈良一日手冊</b>　東大寺・春日大社・奈良公園</span><span>2027/04/08（四）</span><span class="pg">25 / 25</span></header>
+
+<h2><i class="seal">基</i>待確認事項<small>臨近出發日時請再確認一次</small></h2>
+<p class="sm">下面是這次查證沒能定案的項目。出發日前一到兩個月，照這份清單重新查證即可。</p>
+<h3>仍未確認的事 <i class="t ng">⚠️</i></h3>
+<ul class="l "><li>近鉄 2027 年度時刻表、花祭 2027 年內容。</li><li>大和西大寺轉乘月台位置、特急座席指定的規則。</li><li>興福寺、夫婦大國社的御朱印初穂料；ROKUMEI 的公休與早餐套餐時段。</li><li>二月堂舞台是否全天可上、是否免費；南大門開放時間。</li><li>法華堂與戒壇堂內部是否可攝影。</li><li>春日大社 4/8 是否為「紙本のみ」；春日大社下山路線的實際步行時間。</li></ul>
+<h3>沒能完成的查證</h3>
+<ul class="l "><li>東大寺官網只顯示 2026/10/01 的資訊，2027 年度的拜觀規則與年中行事尚未公布。</li><li>omairi 只讀了各寺社「御朱印」分頁的投稿文字與日期，沒有逐一開啟每篇投稿。</li><li>店內照片（ROKUMEI、平宗）在 Wikimedia Commons 找不到可確認的真實照片，未使用。</li></ul>
+
+</section>
+</main>
