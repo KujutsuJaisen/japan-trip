@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>鞍馬貴船一日手冊</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho+B1:wght@600;800&display=swap">
+<style>
+/* Layout concept: A4 sheets like a travel-magazine spread; pine-green headings, vermilion seal marks used only as small category stamps. */
+:root{
+  --paper:#E9ECE8; --sheet:#FDFDFB; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5;
+  --pine:#2D5848; --shu:#C2361F; --deer:#8A5C3B; --moss:#E8EFE8; --tint:#F1F4F0;
+  --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00;
+  --shadow:0 1px 3px rgba(20,30,25,.12),0 6px 24px rgba(20,30,25,.08);
+  --f-head:"Shippori Mincho B1","Hiragino Mincho ProN","Noto Serif TC","Yu Mincho",serif;
+  --f-body:"Noto Sans TC","Hiragino Sans","Yu Gothic","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1513; --sheet:#182120; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#33413C;
+  --pine:#86C5AA; --shu:#EE6E55; --deer:#D4A47A; --moss:#202D29; --tint:#1D2926;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1513; --sheet:#182120; --ink:#E7ECE9; --ink2:#A6B2AD; --rule:#33413C;
+  --pine:#86C5AA; --shu:#EE6E55; --deer:#D4A47A; --moss:#202D29; --tint:#1D2926;
+  --okbg:#1B3626; --okfg:#9ADAB0; --phbg:#1D2B45; --phfg:#A9C6F5; --ngbg:#3B2F12; --ngfg:#F2CD83;
+  --shadow:0 1px 3px rgba(0,0,0,.5); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:13px;line-height:1.62;padding-inline:12px;padding-block:14px}
+a{color:var(--pine);text-decoration-thickness:1px;text-underline-offset:2px;overflow-wrap:anywhere}
+a:focus-visible,input:focus-visible{outline:2px solid var(--shu);outline-offset:2px}
+.sheet{width:min(210mm,100%);margin:0 auto 18px;background:var(--sheet);box-shadow:var(--shadow);padding:11mm 12mm 12mm;display:flex;flex-direction:column;gap:10px;position:relative;min-width:0}
+.sheet>*{flex-shrink:0;min-width:0}
+.hd{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-size:10.5px;letter-spacing:.06em;color:var(--ink2);border-bottom:1px solid var(--rule);padding-bottom:6px}
+.hd .pg{font-family:var(--f-mono);letter-spacing:0;white-space:nowrap}
+.hd b{font-family:var(--f-head);font-weight:800;color:var(--pine);letter-spacing:.1em}
+h1,h2,h3{font-family:var(--f-head);color:var(--ink);text-wrap:balance;margin:0;line-height:1.3}
+h2{font-size:22px;font-weight:800;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+h2 small{font-family:var(--f-body);font-size:11.5px;font-weight:500;color:var(--ink2);letter-spacing:.04em}
+h3{font-size:14.5px;font-weight:800;color:var(--pine);display:flex;align-items:center;gap:7px;margin-top:2px}
+p{margin:0}
+.seal{display:inline-flex;align-items:center;justify-content:center;width:1.55em;height:1.55em;border:1.5px solid var(--shu);color:var(--shu);font-style:normal;font-family:var(--f-head);font-weight:800;font-size:12px;line-height:1;flex:none;border-radius:2px}
+.lead{font-size:13.5px;color:var(--ink)}
+.mut{color:var(--ink2)}
+.sm{font-size:11.5px}
+.xs{font-size:10.3px;color:var(--ink2)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.t{display:inline-block;font-size:10.5px;line-height:1;padding:2px 4px;border-radius:3px;vertical-align:baseline;white-space:nowrap;font-style:normal}
+.t.ok{background:var(--okbg);color:var(--okfg)}.t.ph{background:var(--phbg);color:var(--phfg)}.t.ng{background:var(--ngbg);color:var(--ngfg)}
+.tw{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:11.8px;line-height:1.5}
+th{background:var(--moss);color:var(--pine);text-align:left;font-weight:700;white-space:nowrap;padding:5px 7px;border-bottom:1.5px solid var(--pine)}
+td{padding:5px 7px;border-bottom:1px solid var(--rule);vertical-align:top}
+td.tm,th.tm{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+table.dense{font-size:9.6px;line-height:1.38}table.dense td,table.dense th{padding:2.5px 5px}
+table.kv th{width:7.5em;background:var(--tint);border-bottom:1px solid var(--rule);color:var(--ink2);font-weight:500}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+@media (max-width:640px){.grid2,.grid3,.cols{grid-template-columns:1fr}.sheet{padding:16px}}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;max-width:100%;object-fit:cover;aspect-ratio:3/2;background:var(--tint)}
+figure.w img{aspect-ratio:16/9}figure.ww img{aspect-ratio:2.3/1}figure.map img{aspect-ratio:16/9;object-position:50% 45%}figure.sq img{aspect-ratio:4/3}
+figcaption{font-size:9.3px;line-height:1.4;color:var(--ink2);padding-top:3px}
+.box{background:var(--tint);border-left:3px solid var(--pine);padding:7px 10px;font-size:12px}
+.box.warn{background:var(--ngbg);border-left-color:var(--ngfg);color:var(--ink)}
+.box.shu{border-left-color:var(--shu)}
+ul.l,ol.l{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:2px}
+ul.l.c{list-style:none;padding-left:0}
+.chips{display:flex;flex-wrap:wrap;gap:5px 3px;align-items:center}
+.chip{white-space:nowrap;border:1px solid var(--pine);color:var(--pine);padding:2px 8px;font-size:11.5px;border-radius:2px;background:var(--sheet)}
+.chip.k{background:var(--pine);color:var(--sheet)}
+.arr{color:var(--shu);font-size:11px}
+.toc{columns:2;column-gap:20px;font-size:12.5px}
+.toc a{display:flex;gap:8px;text-decoration:none;color:var(--ink);padding:2px 0;border-bottom:1px dotted var(--rule);break-inside:avoid}
+.toc a span.n{font-family:var(--f-mono);color:var(--shu);min-width:1.8em}
+.cover{display:flex;flex-direction:column;gap:12px}
+.cover h1{font-size:40px;font-weight:800;line-height:1.18;letter-spacing:.02em}
+.cover .sub{font-size:15px;color:var(--ink2);letter-spacing:.14em}
+.stamp{display:inline-flex;flex-direction:column;border:2px solid var(--shu);color:var(--shu);font-family:var(--f-head);font-weight:800;padding:6px 10px;line-height:1.25;font-size:15px;align-self:flex-start;transform:rotate(-2deg);border-radius:2px}
+.tl{display:flex;flex-direction:column;border-left:2px solid var(--pine);margin-left:6px}
+.tl>div{display:grid;grid-template-columns:5.6em 1fr;gap:8px;padding:2px 0 5px 12px;position:relative;font-size:11.8px}
+.tl>div::before{content:"";position:absolute;left:-6px;top:7px;width:9px;height:9px;background:var(--sheet);border:2px solid var(--shu);border-radius:50%}
+.tl .tm{font-family:var(--f-mono);font-weight:500;color:var(--pine);white-space:nowrap}
+.star{color:var(--shu);letter-spacing:.05em;white-space:nowrap}
+label.ck{display:flex;gap:8px;align-items:flex-start;padding:2px 0;font-size:12px;cursor:pointer}
+label.ck input{margin-top:3px;accent-color:var(--shu)}
+.ckgrp{display:flex;flex-direction:column;gap:0}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.kpi div{border:1px solid var(--rule);padding:6px 8px;background:var(--tint)}
+.kpi b{display:block;font-family:var(--f-mono);font-size:15px;color:var(--pine)}
+.kpi span{font-size:10.5px;color:var(--ink2)}
+@media (max-width:640px){.kpi{grid-template-columns:1fr 1fr}.toc{columns:1}.cover h1{font-size:30px}}
+
+@media print{
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+    --paper:#fff; --sheet:#fff; --ink:#1C2326; --ink2:#4B575B; --rule:#D5DAD5; --pine:#2D5848; --shu:#C2361F; --deer:#8A5C3B; --moss:#E8EFE8; --tint:#F1F4F0;
+    --okbg:#E3F0E6; --okfg:#1E5A33; --phbg:#E4EBF6; --phfg:#264C86; --ngbg:#FFF0D2; --ngfg:#7A4A00; --shadow:none; color-scheme:light}
+  @page{size:A4;margin:0}
+  html,body{background:#fff}
+  body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sheet{width:210mm;height:297mm;margin:0;padding:10mm 12mm 9mm;box-shadow:none;overflow:hidden;break-after:page;page-break-after:always;gap:7px;font-size:calc(12.2px*var(--k,1));line-height:1.52}
+  .sheet:last-child{break-after:auto;page-break-after:auto}
+  .hd{font-size:.86em}
+  table{font-size:.94em}table.dense{font-size:.84em}
+  h2{font-size:1.65em}h2 small{font-size:.52em}h3{font-size:1.08em}
+  .lead{font-size:1.05em}.box{font-size:.95em;padding:5px 9px}
+  .tl>div{font-size:.95em;padding-bottom:3px}
+  .sm{font-size:.92em}.xs{font-size:.84em}
+  figcaption{font-size:.74em}
+  .t{font-size:.84em}
+  .cover h1{font-size:3.2em}.cover .sub{font-size:1.2em}
+  .tw{overflow:visible}
+}
+</style>
+<main>
+<section class="sheet" id="p1" aria-label="第 1 頁 封面・目錄">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">1 / 24</span></header>
+
+<div class="cover">
+  <div class="stamp"><span>鞍馬</span><span>貴船</span></div>
+  <h1>鞍馬・貴船<br>一日手冊</h1>
+  <p class="sub">鞍馬寺・貴船神社・下鴨神社　2027年4月8日（四）</p>
+  <figure class="ww"><img src="img/stairs.jpg" alt="鞍馬寺の石段と燈籠" width="1000" style="object-position:50% 55%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_Temple_hdsr_S5_25.jpg">Wikimedia Commons</a></figcaption></figure>
+  <div class="kpi">
+    <div><b>2 人</b><span>大眾運輸・京都車站出發</span></div>
+    <div><b>約 50 分</b><span>本殿 → 貴船的山路（官網合計）</span></div>
+    <div><b>3～5 枚</b><span>今日預計的御朱印</span></div>
+    <div><b>約 ¥1,920</b><span>每人交通費（含巴士 ⚠️）</span></div>
+  </div>
+  <p class="lead">從京都車站搭 JR 與京阪轉叡山電車到鞍馬，搭纜車上山，走奧の院參道與木の根道，翻山到貴船神社，下午沿叡電回出町柳，順路參拜下鴨神社。觀光為主，御朱印順路收集。</p>
+  <div class="toc"><a href="#p2"><span class="n">02</span><span>旅行基本資訊</span></a><a href="#p3"><span class="n">03</span><span>最需再確認的 5 件事・日文地名</span></a><a href="#p4"><span class="n">04</span><span>今日行程總覽</span></a><a href="#p5"><span class="n">05</span><span>路線地圖・動線說明</span></a><a href="#p6"><span class="n">06</span><span>區段地圖</span></a><a href="#p7"><span class="n">07</span><span>交通總覽</span></a><a href="#p8"><span class="n">08</span><span>特殊交通：叡電・きらら・纜車・巴士</span></a><a href="#p9"><span class="n">09</span><span>出發段落：京都駅 → 鞍馬</span></a><a href="#p10"><span class="n">10</span><span>鞍馬寺：簡介與基本資訊</span></a><a href="#p11"><span class="n">11</span><span>鞍馬寺：參觀路線與時間不夠時</span></a><a href="#p12"><span class="n">12</span><span>鞍馬寺：本殿金堂・金剛床・霊宝殿</span></a><a href="#p13"><span class="n">13</span><span>奥の院參道・木の根道・魔王殿・西門</span></a><a href="#p14"><span class="n">14</span><span>貴船神社：簡介與本宮</span></a><a href="#p15"><span class="n">15</span><span>貴船神社：結社・奥宮</span></a><a href="#p16"><span class="n">16</span><span>午餐與休息</span></a><a href="#p17"><span class="n">17</span><span>下鴨神社・河合神社・糺の森</span></a><a href="#p18"><span class="n">18</span><span>今日御朱印攻略</span></a><a href="#p19"><span class="n">19</span><span>一日時間軸與費用總覽</span></a><a href="#p20"><span class="n">20</span><span>雨天備案・彈性與刪減方案</span></a><a href="#p21"><span class="n">21</span><span>出發前必看・Checklist</span></a><a href="#p22"><span class="n">22</span><span>資料來源</span></a><a href="#p23"><span class="n">23</span><span>照片授權與資料處理</span></a><a href="#p24"><span class="n">24</span><span>待確認事項</span></a></div>
+  <div class="box warn"><b>先看這個</b>：2027 年度的叡電、京阪、JR 時刻表都還沒公布。手冊裡的時間以現行最新版（叡電 2026/8/22 變更、京阪 2026/8/22、JR 2026/10/03 改正）推算，出發前請照最後一頁「待確認事項」再核對一次。</div>
+</div>
+</section>
+<section class="sheet" id="p2" aria-label="第 2 頁 旅行基本資訊">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">2 / 24</span></header>
+
+<h2><i class="seal">基</i>旅行基本資訊 <small>日期・時間・費用・圖例</small></h2>
+<div class="tw"><table class="kv "><tbody><tr><th>日期</th><td>2027/04/08（週四，由日曆推算）</td></tr><tr><th>人數・交通</th><td>2 人・大眾運輸（JR 奈良線、京阪、叡山電車、京都巴士 33、徒步）</td></tr><tr><th>出發・結束</th><td>京都車站 07:40 出發，約 17:00 回到京都車站；原訂 19:00 結束，剩約 2 小時給晚餐與休息</td></tr><tr><th>住宿</th><td>京都車站周邊（當天回原出發地）</td></tr><tr><th>今日特色</th><td><ul class="l c"><li>鞍馬寺：纜車上山，金剛床，再走奧の院參道與木の根道翻山到貴船（本殿 → 貴船約 50 分，官網）</li><li>貴船神社「三社詣」：本宮、結社、奧宮，加上水占みくじ</li><li>叡山電車鞍馬線的山中風景；下午順路到下鴨神社與糺の森</li></ul></td></tr><tr><th>預估花費</th><td>交通約 ¥1,920／人，愛山費 ¥500，纜車上行 ¥200，霊宝殿 ¥200（任意），御朱印約 ¥900～1,300，午餐另計（第 19 頁）</td></tr><tr><th>事前預約</th><td>本路線沒有需要預約或有開賣日的項目 <i class="t ng">⚠️</i>（我逐項看過官網，未見預約制；午餐建議自己先訂位）</td></tr><tr><th>時刻表狀態</th><td>2027 年度時刻表尚未公布。用的是現行版：叡電 2026/8/22 變更、京阪 2026/8/22、JR 西日本 2026/10/03 改正（查詢日 2026/10/08 木）</td></tr><tr><th>查證日</th><td>2026/10/05。官方頁面以瀏覽器實際開啟為準</td></tr></tbody></table></div>
+<h3>可信度圖例</h3>
+<div class="tw"><table class=""><thead><tr><th>標記</th><th>意思</th><th>怎麼用</th></tr></thead><tbody><tr><td><i class="t ok">✅</i></td><td>官方原文核實：真的開啟寺社、鐵道、巴士公司、市府或觀光協會的頁面看到</td><td>可以照著安排，但出發前仍要看最新公告</td></tr><tr><td><i class="t ph">📷</i></td><td>omairi.club 的真實訪客投稿，附投稿或參拜日期</td><td>用來判斷直書き／書置き、授與位置、限定御朱印；不是官方保證</td></tr><tr><td><i class="t ng">⚠️</i></td><td>二手資料、轉乘網站、Google Maps 估算、我自己的推算</td><td>當參考，出發前再確認</td></tr></tbody></table></div>
+<h3>旅遊日（週四）的公休與休運檢查</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>4/8 週四的狀況</th><th>來源</th></tr></thead><tbody><tr><td>鞍馬寺</td><td>官網未列定休日；霊宝殿週二休，週四有開</td><td><i class="t ok">✅</i></td></tr><tr><td>鞍馬山ケーブル</td><td>定期檢修日在官網「お知らせ」列的是 2026 年 7～10 月的上午停駛；2027 年的日程未公布</td><td><i class="t ok">✅</i></td></tr><tr><td>貴船神社</td><td>年中無休（官網）</td><td><i class="t ok">✅</i></td></tr><tr><td>下鴨神社</td><td>定休日なし（官網）；河合社 16:30 閉門</td><td><i class="t ok">✅</i></td></tr><tr><td>叡電「きらら」</td><td>時刻表備註標◆的班次「水曜日と木曜日の運行はございません」，週四只有沒標◆的班次</td><td><i class="t ok">✅</i></td></tr><tr><td>料理旅館 ひろ文（貴船）</td><td>官網寫「4月定休日：1日・8日・30日」，沒寫年份；2026 年 4/8 是週三，2027 年同日的公休未公布</td><td><i class="t ok">✅</i></td></tr><tr><td>JR／京阪／叡電</td><td>平日ダイヤ（週四）。沒有查到 4/8 的休運</td><td><i class="t ng">⚠️</i></td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p3" aria-label="第 3 頁 最需再確認的 5 件事・日文地名">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">3 / 24</span></header>
+
+<h2><i class="seal">基</i>出發前最需要再確認的 5 件事 <small>・日文地名對照</small></h2>
+<ol class="l"><li><b>三家鐵道的 2027 年 4 月時刻</b>：叡電 08:24 發（鞍馬 08:55）、京阪東福寺 07:58 發、JR 京都 07:40 發。都是現行版推算 <i class="t ng">⚠️</i>。</li><li><b>貴船本宮 4 月的參拜時間</b>：官網只寫「6:00～20:00（5/1～11/30）」，冬期沒寫；10/04 的お知らせ顯示神社會依日期變更本宮參拜時間。授與所寫 9:00～17:00 <i class="t ok">✅</i>，但「時期によって変更」。</li><li><b>午餐</b>：貴船 4 月沒有川床（5 月起），ひろ文官網的 4 月定休日列 1・8・30 日（年份未載），2027 年未公布。準備好備案（第 16 頁）。</li><li><b>山路與纜車</b>：鞍馬寺的纜車有每月上午的檢修停駛；雨後木の根道會滑。出發前一晚看鞍馬寺「お知らせ」與貴船神社「お知らせ」。</li><li><b>御朱印的初穂料與限定</b>：貴船的本宮與奧宮是 ¥300 還是 ¥500，投稿與舊部落格不一致；「春の特別ご朱印めぐり」2027 年是否舉辦也未公布（2026 年是 2/4～4/30，含由岐神社、貴船神社、下鴨神社）。</li></ol>
+<h3>日文地名對照（貼進 Google Maps 搜尋）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>日文原名</th><th>讀音</th><th>用途</th></tr></thead><tbody><tr><td>京都車站</td><td>京都駅</td><td>きょうとえき</td><td>出發</td></tr><tr><td>東福寺站</td><td>東福寺駅</td><td>とうふくじえき</td><td>JR 與京阪轉乘</td></tr><tr><td>出町柳站</td><td>出町柳駅</td><td>でまちやなぎえき</td><td>叡電起點</td></tr><tr><td>鞍馬站</td><td>鞍馬駅</td><td>くらまえき</td><td>叡電終點</td></tr><tr><td>貴船口站</td><td>貴船口駅</td><td>きぶねぐちえき</td><td>回程上車</td></tr><tr><td>鞍馬寺 仁王門</td><td>鞍馬寺 仁王門</td><td>くらまでら におうもん</td><td>山門，付愛山費</td></tr><tr><td>纜車（山門駅）</td><td>鞍馬山ケーブル 山門駅（普明殿）</td><td>さんもんえき（ふみょうでん）</td><td>上山</td></tr><tr><td>本殿金堂・金剛床</td><td>本殿金堂・金剛床</td><td>ほんでんこんどう・こんごうしょう</td><td>鞍馬寺中心</td></tr><tr><td>霊宝殿</td><td>霊宝殿（鞍馬山博物館）</td><td>れいほうでん</td><td>任意</td></tr><tr><td>魔王殿・木の根道</td><td>魔王殿・木の根道</td><td>まおうでん・きのねみち</td><td>奥の院參道</td></tr><tr><td>西門</td><td>鞍馬寺 西門</td><td>にしもん</td><td>往貴船的出口</td></tr><tr><td>貴船神社</td><td>貴船神社 本宮・結社・奥宮</td><td>きふねじんじゃ ほんぐう・ゆいのやしろ・おくみや</td><td>三社詣</td></tr><tr><td>水占みくじ</td><td>水占みくじ</td><td>みずうらみくじ</td><td>本宮</td></tr><tr><td>下鴨神社・河合神社</td><td>賀茂御祖神社（下鴨神社）・河合神社</td><td>かもみおやじんじゃ・かわいじんじゃ</td><td>回程順路</td></tr><tr><td>糺の森</td><td>糺の森</td><td>ただすのもり</td><td>參道的森</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p4" aria-label="第 4 頁 今日行程總覽">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">4 / 24</span></header>
+
+<h2><i class="seal">行</i>今日行程總覽 <small>時間｜地點｜行程｜交通｜停留</small></h2>
+<div class="tw"><table class=""><thead><tr><th class="tm">時間</th><th>地點</th><th>行程</th><th>交通</th><th>停留</th></tr></thead><tbody><tr><td class="tm">07:40</td><td>京都駅</td><td>JR 奈良線（宇治行）到東福寺</td><td>JR 3 分</td><td>—</td></tr><tr><td class="tm">07:58</td><td>東福寺</td><td>轉京阪（出町柳行）</td><td>京阪 約 15 分</td><td>轉乘 15 分</td></tr><tr><td class="tm">08:24</td><td>出町柳</td><td>轉叡電鞍馬線（3 番線）</td><td>叡電 31 分</td><td>轉乘 11 分</td></tr><tr><td class="tm">08:55</td><td>鞍馬</td><td>步行 3 分到仁王門付愛山費，再走 2 分到纜車山門駅</td><td>徒步</td><td>5 分</td></tr><tr><td class="tm">09:20</td><td>山門駅</td><td>搭纜車上山（2 分，¥200）；09:00 班趕不上</td><td>纜車，每 20 分 ⚠️</td><td>等車約 18 分</td></tr><tr><td class="tm">09:32</td><td>本殿金堂</td><td>金剛床、展望、御朱印「尊天」</td><td>多宝塔駅步行 10 分</td><td>30 分</td></tr><tr><td class="tm">10:04</td><td>霊宝殿</td><td>任意（週四開館）</td><td>徒步 2 分</td><td>20 分</td></tr><tr><td class="tm">10:52</td><td>魔王殿</td><td>奥の院參道、木の根道、背比べ石</td><td>徒步 28 分 ⚠️</td><td>15 分</td></tr><tr><td class="tm">11:27</td><td>貴船神社 本宮</td><td>水占みくじ、御朱印</td><td>西門經過，徒步 20 分</td><td>30 分</td></tr><tr><td class="tm">11:57</td><td>午餐</td><td>貴船（備案：自備）</td><td>—</td><td>70 分</td></tr><tr><td class="tm">13:22</td><td>奥宮・結社</td><td>三社詣，奧宮御朱印書置き</td><td>徒步 15 分＋7 分</td><td>30 分</td></tr><tr><td class="tm">14:21</td><td>貴船バス停</td><td>京都巴士 33 到貴船口（7 分）</td><td>巴士，班次 ⚠️</td><td>等車 10 分 ⚠️</td></tr><tr><td class="tm">14:36</td><td>貴船口</td><td>叡電回出町柳（29 分，週四可搭的きらら）</td><td>叡電</td><td>緩衝 8 分</td></tr><tr><td class="tm">15:17</td><td>下鴨神社</td><td>糺の森、河合神社、御朱印</td><td>出町柳徒步 12 分</td><td>63 分</td></tr><tr><td class="tm">16:40</td><td>出町柳</td><td>京阪到七条，徒步到京都駅</td><td>京阪 7 分＋徒步 13 分</td><td>—</td></tr><tr><td class="tm">17:00</td><td>京都駅</td><td>回到出發地，晚餐</td><td>—</td><td>約 2 小時緩衝</td></tr></tbody></table></div>
+<h3>今天的時間界線</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>界線</th><th>來源</th><th>我們的安排</th></tr></thead><tbody><tr><td>叡電 出町柳 → 鞍馬</td><td>平日 07:11、07:37、08:02、08:24、08:45、09:00、之後每 15 分；末班 22:30</td><td><i class="t ok">✅</i></td><td>08:24 發，11 分緩衝；趕不上搭 08:45（鞍馬 09:16）</td></tr><tr><td>叡電 貴船口 → 出町柳</td><td>14:06、14:21、14:36、14:51、15:06；末班 23:06</td><td><i class="t ok">✅</i></td><td>14:36 發（週四可搭的きらら），緩衝 8 分；趕不上搭 14:51</td></tr><tr><td>鞍馬寺 本殿</td><td>開扉 9:00～16:15</td><td><i class="t ok">✅</i></td><td>09:32 到，不緊</td></tr><tr><td>鞍馬山ケーブル</td><td>山門駅上行 8:40 起、末班上行 16:20（本殿已閉）、下行末班 16:25；每 20 分</td><td><i class="t ok">✅</i></td><td>主案上行搭 09:20 班（每 20 分的推算 ⚠️），下行不搭</td></tr><tr><td>霊宝殿</td><td>9:00～16:00，週二休，12/12～2 月底休</td><td><i class="t ok">✅</i></td><td>10:04 入館</td></tr><tr><td>鞍馬寺 御朱印</td><td>官網未載；舊部落格寫 9:00～16:00（另一說 16:30）</td><td><i class="t ng">⚠️</i></td><td>09:32～10:02 領</td></tr><tr><td>貴船本宮 授與所</td><td>9:00～17:00（時期によって変更）</td><td><i class="t ok">✅</i></td><td>11:27 到</td></tr><tr><td>貴船本宮 參拜</td><td>5/1～11/30 為 6:00～20:00；4 月未載明</td><td><i class="t ok">✅</i></td><td>請查「お知らせ」</td></tr><tr><td>下鴨神社</td><td>楼門內 6:30～17:00；河合社 6:30～16:30；御朱印授與時間未載明</td><td><i class="t ok">✅</i></td><td>15:17 到，16:20 離開，河合社先走</td></tr><tr><td>京阪 出町柳 → 七条</td><td>16～17 時台每小時約 10 班</td><td><i class="t ok">✅</i></td><td>16:40 發</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p5" aria-label="第 5 頁 路線地圖・動線說明">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">5 / 24</span></header>
+
+<h2><i class="seal">行</i>今日路線地圖 <small>為什麼這樣走</small></h2>
+<figure class="map"><img src="img/map_all.jpg" alt="京都車站到鞍馬、貴船、下鴨神社的位置" width="1428" style="object-position:38% 60%"><figcaption>京都車站（紅標）、出町柳、下鴨神社、鞍馬、貴船神社、貴船口的相對位置・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+<div class="chips"><span class="chip k">京都駅</span><span class="arr">▶</span><span class="chip">出町柳</span><span class="arr">▶</span><span class="chip k">鞍馬</span><span class="arr">▶</span><span class="chip">纜車</span><span class="arr">▶</span><span class="chip k">本殿金堂</span><span class="arr">▶</span><span class="chip">魔王殿</span><span class="arr">▶</span><span class="chip k">貴船 本宮</span><span class="arr">▶</span><span class="chip">奥宮・結社</span><span class="arr">▶</span><span class="chip">貴船口</span><span class="arr">▶</span><span class="chip">出町柳</span><span class="arr">▶</span><span class="chip k">下鴨神社</span><span class="arr">▶</span><span class="chip">京都駅</span></div>
+<p class="xs">示意圖，非地理比例。</p>
+<div class="cols">
+<div><h3>為什麼這樣走最順</h3>
+<ul class="l "><li>叡電鞍馬線是由南往北的單線，鞍馬是終點；從鞍馬翻山到貴船是單向，不折返。鞍馬寺官網的路線：鞍馬駅 → 山門 3 分 → 普明殿（纜車山門駅）2 分 → 纜車 2 分 → 本殿金堂 10 分 → 魔王殿 30 分 → 貴船神社 20 分 <i class="t ok">✅</i>。</li><li>貴船口站在回程叡電上，不用再回鞍馬。</li><li>下鴨神社離出町柳走路 12 分 <i class="t ok">✅</i>，放在回程最後，早上去的話會多繞一段且太早。</li></ul></div>
+<div><h3>順路加入的</h3>
+<ul class="l "><li>纜車：省下九十九折的上坡（Google：仁王門 → 由岐神社上 59 m、由岐神社 → 本殿上 90 m ⚠️）。</li><li>霊宝殿：本殿左側 2 分（官網）。</li><li>貴船結社：本宮往奧宮的路上。</li><li>下鴨神社：回程出出町柳就到。</li></ul></div></div>
+<h3>值得去但這天不排的</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>為什麼不排</th></tr></thead><tbody><tr><td>大原（三千院・寂光院）</td><td>另一條山谷，要換巴士，會多出約 1 小時；與今天的鞍馬・貴船是不同方向</td></tr><tr><td>八瀬・瑠璃光院</td><td>在叡電本線的另一條支線，方向相反</td></tr><tr><td>鞍馬溫泉</td><td>鞍馬站旁，時間和費用我沒有查證；如果想泡，要犧牲下鴨神社</td></tr><tr><td>由岐神社・九十九折參道</td><td>你決定搭纜車上山；由岐神社在步行參道上，纜車繞過它，要去只能從仁王門走 5 分往返。等纜車的 18 分鐘如果改變主意，可以走去看（官網）</td></tr><tr><td>一乘寺拉麵</td><td>要在叡電中途下車再上車，會破壞回程的班次節奏</td></tr></tbody></table></div>
+<h3>反向走法（貴船 → 鞍馬）的比較</h3>
+<div class="tw"><table class="dense"><thead><tr><th></th><th>主案：鞍馬 → 貴船</th><th>反向：貴船 → 鞍馬</th></tr></thead><tbody><tr><td>優點</td><td>纜車上山省力，下午走平路；午餐在貴船，時間順；末班叡電不趕</td><td>貴船本宮 9:00 一開就到，人少；下山可以走參道或搭纜車；終點在鞍馬站，可泡溫泉</td></tr><tr><td>缺點</td><td>貴船本宮在中午前後，遊客較多</td><td>西門側是上坡；午餐難排（鞍馬站前的店我沒有查證）；兩處授與所都集中在上午</td></tr><tr><td>結論</td><td>推薦</td><td>體力好、想早點拍貴船時才選</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p6" aria-label="第 6 頁 區段地圖">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">6 / 24</span></header>
+
+<h2><i class="seal">行</i>區段地圖 <small>鞍馬寺・貴船・下鴨</small></h2>
+<figure class="map"><img src="img/map_kurama.jpg" alt="鞍馬寺本殿金堂經魔王殿、西門到貴船本宮的步行路線" width="1428" style="object-position:50% 50%"><figcaption>本殿金堂 → 魔王殿 → 西門 → 貴船本宮（上山段改搭纜車，不在圖上）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+<div class="grid2">
+<figure class="sq"><img src="img/map_kibune.jpg" alt="貴船神社本宮到奧宮" width="1428" style="object-position:50% 50%"><figcaption>貴船本宮 → 結社 → 奧宮（單程 950 m）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+<figure class="sq"><img src="img/map_shimogamo.jpg" alt="出町柳到下鴨神社與河合神社" width="1428" style="object-position:50% 50%"><figcaption>出町柳 → 下鴨神社 → 河合神社・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+</div>
+<div class="tw"><table class="dense"><thead><tr><th>區段</th><th>Google Maps 步行</th><th>官方／其他數字</th><th>連結</th></tr></thead><tbody><tr><td>鞍馬駅 → 仁王門</td><td>4 分・210 m</td><td>官網 3 分 <i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E9%A7%85&destination=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E4%BB%81%E7%8E%8B%E9%96%80&travelmode=walking">導航</a></td></tr><tr><td>仁王門 → 纜車山門駅</td><td>2 分・68 m</td><td>官網 2 分 <i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E4%BB%81%E7%8E%8B%E9%96%80&destination=%E9%9E%8D%E9%A6%AC%E5%B1%B1%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%20%E5%B1%B1%E9%96%80%E9%A7%85&travelmode=walking">導航</a></td></tr><tr><td>纜車 山門駅 → 多宝塔駅</td><td>—</td><td>官網 2 分，¥200 <i class="t ok">✅</i></td><td>—</td></tr><tr><td>多宝塔駅 → 本殿金堂</td><td>9 分・400 m（上 59 m）</td><td>官網 10 分 <i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%B1%B1%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%20%E5%A4%9A%E5%AE%9D%E5%A1%94%E9%A7%85&destination=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E6%9C%AC%E6%AE%BF%E9%87%91%E5%A0%82&travelmode=walking">導航</a></td></tr><tr><td>本殿金堂 → 魔王殿</td><td>20 分・1.0 km</td><td>官網 30 分 <i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E6%9C%AC%E6%AE%BF%E9%87%91%E5%A0%82&destination=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E9%AD%94%E7%8E%8B%E6%AE%BF&travelmode=walking">導航</a></td></tr><tr><td>魔王殿 → 西門</td><td>12 分・550 m</td><td>—</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E9%AD%94%E7%8E%8B%E6%AE%BF&destination=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E8%A5%BF%E9%96%80&travelmode=walking">導航</a></td></tr><tr><td>西門 → 貴船本宮</td><td>1 分・58 m</td><td>官網（魔王殿から貴船神社まで）20 分 <i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E8%A5%BF%E9%96%80&destination=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E6%9C%AC%E5%AE%AE&travelmode=walking">導航</a></td></tr><tr><td>本宮 → 結社 → 奧宮</td><td>8 分＋7 分・約 950 m</td><td>omairi：本宮から約 15 分 <i class="t ph">📷</i>（2026/07/19）</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E6%9C%AC%E5%AE%AE&destination=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E5%A5%A5%E5%AE%AE&travelmode=walking">導航</a></td></tr><tr><td>貴船 → 貴船口</td><td>步行 19 分・1.6 km（下 85 m）</td><td>官網 約 30 分（2 km）<i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E8%B2%B4%E8%88%B9%E3%83%90%E3%82%B9%E5%81%9C&destination=%E8%B2%B4%E8%88%B9%E5%8F%A3%E9%A7%85&travelmode=walking">導航</a></td></tr><tr><td>出町柳駅 → 下鴨神社</td><td>7～10 分・500～700 m</td><td>官網 12 分 <i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%87%BA%E7%94%BA%E6%9F%B3%E9%A7%85&destination=%E4%B8%8B%E9%B4%A8%E7%A5%9E%E7%A4%BE&travelmode=walking">導航</a></td></tr><tr><td>七条駅 → 京都駅</td><td>13 分・900 m</td><td>—</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E4%B8%83%E6%9D%A1%E9%A7%85%20%E4%BA%AC%E9%98%AA&destination=%E4%BA%AC%E9%83%BD%E9%A7%85&travelmode=walking">導航</a></td></tr></tbody></table></div>
+<p class="xs">Google Maps 的步行時間是估算，不含參拜、拍照與排隊。官網的數字比較保守，行程用官網的。</p>
+
+</section>
+<section class="sheet" id="p7" aria-label="第 7 頁 交通總覽">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">7 / 24</span></header>
+
+<h2><i class="seal">行</i>交通總覽 <small>每段的時間、費用與注意</small></h2>
+<div class="tw"><table class="dense"><thead><tr><th>區段</th><th>工具</th><th class="tm">時間</th><th>轉乘</th><th>費用</th><th>注意</th><th>來源</th><th>導航</th></tr></thead><tbody><tr><td>京都 → 東福寺</td><td>JR 奈良線 07:40 發（宇治行，8 番線）</td><td class="tm">3 分</td><td>1</td><td>¥150</td><td>7:55 發（9 番線）是備案</td><td><i class="t ok">✅</i>時刻・<i class="t ng">⚠️</i>運賃</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E4%BA%AC%E9%83%BD%E9%A7%85&destination=%E6%9D%B1%E7%A6%8F%E5%AF%BA%E9%A7%85&travelmode=transit">導航</a></td></tr><tr><td>東福寺 → 出町柳</td><td>京阪 07:58 發</td><td class="tm">約 15 分</td><td>—</td><td>¥300</td><td>JR 轉京阪的東福寺轉乘，07:43 到、07:58 發，有 15 分緩衝</td><td><i class="t ok">✅</i>時刻・運賃・<i class="t ng">⚠️</i>時間</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E6%9D%B1%E7%A6%8F%E5%AF%BA%E9%A7%85%20%E4%BA%AC%E9%98%AA&destination=%E5%87%BA%E7%94%BA%E6%9F%B3%E9%A7%85&travelmode=transit">導航</a></td></tr><tr><td>出町柳 → 鞍馬</td><td>叡電鞍馬線 08:24 發（3 番線）</td><td class="tm">31 分</td><td>轉乘 11 分</td><td>¥470</td><td>看「鞍馬行」，不是八瀬比叡山口行</td><td><i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%87%BA%E7%94%BA%E6%9F%B3%E9%A7%85&destination=%E9%9E%8D%E9%A6%AC%E9%A7%85&travelmode=transit">導航</a></td></tr><tr><td>貴船 → 貴船口</td><td>京都巴士 33 系統</td><td class="tm">約 7 分</td><td>—</td><td>約 ¥230</td><td>均一區間，IC 下車時刷 1 次；班次未取得</td><td><i class="t ok">✅</i>均一區間・<i class="t ng">⚠️</i>金額與班次</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E8%B2%B4%E8%88%B9%E3%83%90%E3%82%B9%E5%81%9C&destination=%E8%B2%B4%E8%88%B9%E5%8F%A3%E9%A7%85&travelmode=transit">導航</a></td></tr><tr><td>貴船口 → 出町柳</td><td>叡電 14:51 發</td><td class="tm">約 29 分</td><td>—</td><td>¥470</td><td>14:36 發的班次是週四可搭的きらら</td><td><i class="t ok">✅</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E8%B2%B4%E8%88%B9%E5%8F%A3%E9%A7%85&destination=%E5%87%BA%E7%94%BA%E6%9F%B3%E9%A7%85&travelmode=transit">導航</a></td></tr><tr><td>出町柳 → 七条</td><td>京阪 16:44 發</td><td class="tm">約 7 分</td><td>—</td><td>¥300</td><td>要看車身停靠站</td><td><i class="t ok">✅</i>運賃・<i class="t ng">⚠️</i>時間</td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%87%BA%E7%94%BA%E6%9F%B3%E9%A7%85&destination=%E4%B8%83%E6%9D%A1%E9%A7%85%20%E4%BA%AC%E9%98%AA&travelmode=transit">導航</a></td></tr><tr><td>七条 → 京都駅</td><td>徒步</td><td class="tm">13 分・900 m</td><td>—</td><td>—</td><td>也可搭 JR 或地鐵，不如走路</td><td><i class="t ng">⚠️</i></td><td><a href="https://www.google.com/maps/dir/?api=1&origin=%E4%B8%83%E6%9D%A1%E9%A7%85%20%E4%BA%AC%E9%98%AA&destination=%E4%BA%AC%E9%83%BD%E9%A7%85&travelmode=walking">導航</a></td></tr></tbody></table></div>
+<h3>京都駅 → 鞍馬的走法比較</h3>
+<div class="tw"><table class="dense"><thead><tr><th>方式</th><th class="tm">時間</th><th>費用</th><th>轉乘</th><th>徒步量</th><th>便利性</th></tr></thead><tbody><tr><td>A：JR 奈良線 → 京阪 → 叡電（主案）</td><td class="tm">07:40 → 08:55（75 分）</td><td>¥920</td><td>2 次</td><td>東福寺、出町柳各轉乘一次</td><td>每一段都有官網時刻表可對；轉乘各一次（東福寺、出町柳）</td></tr><tr><td>B：地鐵烏丸線 → 市バス 3 → 叡電</td><td class="tm">08:10 → 09:16（66 分）</td><td>¥920</td><td>2 次</td><td>四條站換巴士約 3 分</td><td>搭 08:45 叡電；巴士在市區塞車時會慢 ⚠️</td></tr><tr><td>C：地鐵到國際會館 → 京都巴士 52 到鞍馬</td><td class="tm">官網：巴士約 25 分</td><td>地鐵＋巴士 ⚠️</td><td>1 次</td><td>少</td><td>鞍馬寺官網列為選項；6 月公告顯示這條巴士曾改道 ⚠️</td></tr></tbody></table></div>
+<p class="xs">A、B 的時間與金額來自 Yahoo!乘換案內與 Google Maps <i class="t ng">⚠️</i>；C 的巴士時間是鞍馬寺官網寫的「（２５分）」<i class="t ok">✅</i>。選 A 是因為每一段都有官網時刻表可對。</p>
+<h3>一日券判斷：不建議買</h3>
+<div class="tw"><table class="dense"><thead><tr><th>票券</th><th>價格</th><th>能不能用在這條路線</th></tr></thead><tbody><tr><td>地下鉄＆えいでん 鞍馬・貴船日帰りきっぷ</td><td>¥2,100</td><td>京阪只含三條～出町柳、叡電全線、地鐵全線；不含 JR 與京都巴士。有效期 2026/4/1～2027/3/31，2027/4/8 能不能用未確認 <i class="t ng">⚠️</i><i class="t ok">✅</i></td></tr><tr><td>叡山電車・京阪電車 1日乗車券</td><td>¥2,100</td><td>只在 Surutto QRtto 販售，需註冊與信用卡；有效期同樣只到 2027/3/31 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<div class="box "><b>算給你看</b>：單買 JR ¥150 ＋ 京阪 ¥300 ＋ 叡電 ¥470（去）＋ 叡電 ¥470 ＋ 京阪 ¥300（回）＋ 巴士 ¥230 ＝ <b>¥1,920／人</b>，一日券 ¥2,100 還貴 ¥180，而且巴士不能用。用 ICOCA 等交通 IC 卡就好（京都巴士 33 收 IC <i class="t ok">✅</i>）。</div>
+
+</section>
+<section class="sheet" id="p8" aria-label="第 8 頁 特殊交通：叡電・きらら・纜車・巴士">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">8 / 24</span></header>
+
+<h2><i class="seal">行</i>特殊交通 <small>叡電鞍馬線・きらら・鞍馬山ケーブル・巴士 33</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/eiden_kurama.jpg" alt="叡山電車鞍馬線的電車" width="1000" style="object-position:50% 60%"><figcaption>Smiley.toerist・CC BY-SA 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Eizan_Kurama_Line_2024_4.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/kirara_ichihara.jpg" alt="叡電展望列車きらら（900 系）" width="1000" style="object-position:50% 50%"><figcaption>Norihiro Kataoka・CC BY-SA 2.0・2013 年攝・<a href="https://commons.wikimedia.org/wiki/File:Eizan_Electric_Railway_series_Deo_900_near_Ichihara_Station_(Kyoto).jpg">Wikimedia Commons</a>・市原站附近的 900 系（きらら）</figcaption></figure>
+</div>
+<h3>叡電鞍馬線（出町柳 ⇄ 鞍馬）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>內容</th><th>來源</th></tr></thead><tbody><tr><td>時間・運賃</td><td>出町柳 → 鞍馬 31 分，→ 貴船口 28 分；鞍馬 → 貴船口 2 分。普通運賃 出町柳～鞍馬 ¥470、～貴船口 ¥470（2023/4/1 版運賃表）</td><td><i class="t ok">✅</i></td></tr><tr><td>出町柳發 往鞍馬（平日）</td><td>7:11、7:37、8:02、<b>8:24</b>、8:45；9～16 時台每 :00、:15、:30、:45；17 時台 17:01、17:25、17:49；18 時台 18:13、18:37。08:24 發的鞍馬行在 3 番線（時刻表標記；9:30 等少數班次標 2 番線）</td><td><i class="t ok">✅</i></td></tr><tr><td>貴船口發 往出町柳（平日）</td><td>13～16 時台每小時 :06、:21、:36、<b>:51</b>；17 時台 17:06、17:22、17:46；18 時台 18:09、18:33、18:57；末班 23:06</td><td><i class="t ok">✅</i></td></tr><tr><td>鞍馬發 往出町柳（平日）</td><td>9～16 時台每小時 :04、:19、:34、:49</td><td><i class="t ok">✅</i></td></tr><tr><td>注意</td><td>時刻表標「行楽シーズン等は発車時刻を変更する場合があります」；版本 2026/8/22 變更</td><td><i class="t ok">✅</i></td></tr><tr><td>列車運行情報</td><td>叡電官網首頁有「列車運行情報」，出發前與在站上都可看</td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>展望列車「きらら」：週四只有部分班次</h3>
+<ul class="l "><li>官網介紹：大片玻璃窗，車廂中央 8 個座位朝向窗外；特別推薦二軒茶屋～鞍馬間，尤其市原～二ノ瀬的「もみじのトンネル」，春到夏是青もみじ <i class="t ok">✅</i>。</li><li>時刻表備註：「◆印がついてる列車は、水曜日と木曜日の運行はございません」<i class="t ok">✅</i>。4/8 是週四，所以有◆的班次不開。</li><li><b>週四可搭（沒標◆）</b>：出町柳發往鞍馬 10:15、11:30、12:45、14:00、15:15、16:30；鞍馬發往出町柳 10:49、12:04、13:19、14:34、15:49、17:04；貴船口發的時間是鞍馬發後 2 分，例如 14:36、15:51 <i class="t ok">✅</i>（2026/8/22 版）。</li><li>主案的去程（08:24）不是きらら；回程排在貴船口 14:36 發的きらら（週四可搭），15:05 到出町柳；趕不上就搭 14:51 的一般班次（15:20 到）。</li></ul>
+<h3>鞍馬山ケーブル（山門駅 ⇄ 多宝塔駅）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>內容</th><th>來源</th></tr></thead><tbody><tr><td>時間</td><td>山門駅上行 8:40 起、多宝塔駅下行 8:45 起；上行末班 16:20（官網寫「これで上ると本殿は、閉っています」），下行末班 16:25（1～5 月、9～12 月）；每 20 分一班；乘車 2 分</td><td><i class="t ok">✅</i></td></tr><tr><td>費用</td><td>大人單程 ¥200、小學生以下 ¥100，官網稱是「寄進」，不是運賃</td><td><i class="t ok">✅</i></td></tr><tr><td>停駛</td><td>「お知らせ」列出 2026 年 7/27、8/27、9/25、10/27 的上午定期檢修；2026/8/30～31 因故障臨時停駛。2027 年 4 月的日程未公布</td><td><i class="t ok">✅</i></td></tr><tr><td>怎麼用</td><td>主案：08:58 付完愛山費，走 2 分到山門駅，搭 09:20 班上行（每 20 分一班是從 8:40 與末班 16:20 推算，我沒有看到完整時刻表 ⚠️）；09:00 班只有 2 分緩衝，趕不上就等 09:20。下行不搭，走奧の院參道到貴船。付款方式官網未載</td><td><i class="t ng">⚠️</i></td></tr><tr><td>山門駅</td><td>普明殿，供奉毘沙門天立像；仁王門步行 2 分；旁邊有洗手間（鳥樞沙摩明王殿）</td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>京都巴士 33 系統（叡電貴船口駅前 ⇄ 貴船）</h3>
+<ul class="l "><li>約 7 分，貴船巴士站再走約 5 分到貴船神社 <i class="t ok">✅</i>（貴船神社官網、京都観光 Navi）。</li><li>京都巴士官網：33 系統（叡電貴船口駅前～貴船）是均一區間，降車時 IC 刷 1 次 <i class="t ok">✅</i>。運賃表（2026/3/20 實施）的京都市均一區間是 ¥230，所以推算 ¥230 <i class="t ng">⚠️</i>。</li><li>班次：貴船神社官網的 33 系統時刻表連結已失效，我沒有取得；官網的步行備案是貴船口 → 貴船神社約 30 分（2 km）<i class="t ok">✅</i>。行程用「等車 10 分」估算 <i class="t ng">⚠️</i>。</li></ul>
+<div class="box warn"><b>風險</b>：叡電與巴士在櫻花季、假日會增班或改時；2026/6 的豪雨公告顯示京都巴士 32、52 曾改道，叡電與鞍馬寺照常。出發前看叡電「列車運行情報」與京都巴士公告。</div>
+
+</section>
+<section class="sheet" id="p9" aria-label="第 9 頁 出發段落：京都駅 → 鞍馬">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">9 / 24</span></header>
+
+<h2><i class="seal">行</i>出發段落 <small>京都駅 → 東福寺 → 出町柳 → 鞍馬</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/map_T1.jpg" alt="京都駅到東福寺駅" width="1428" style="object-position:50% 50%"><figcaption>JR 京都駅 → 東福寺・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+<figure class="sq"><img src="img/map_T2.jpg" alt="東福寺駅到出町柳駅" width="1428" style="object-position:50% 50%"><figcaption>京阪 東福寺 → 出町柳・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+<figure class="sq"><img src="img/map_T3.jpg" alt="出町柳駅到鞍馬駅" width="1428" style="object-position:50% 50%"><figcaption>叡電 出町柳 → 鞍馬・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+</div>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>站</th><th>動作</th><th>時間來源</th></tr></thead><tbody><tr><td class="tm">07:40</td><td>京都駅 8 番線</td><td>JR 奈良線 普通 宇治行 → 07:43 東福寺（乘車 3 分）</td><td><i class="t ok">✅</i>時刻（JR 西日本，查詢 2026/10/08 木）・<i class="t ng">⚠️</i>乘車時間</td></tr><tr><td class="tm">07:43～07:58</td><td>東福寺</td><td>走到京阪東福寺站，搭 1 番線（三條・出町柳方面）</td><td><i class="t ok">✅</i>月台・<i class="t ng">⚠️</i>轉乘步行</td></tr><tr><td class="tm">07:58</td><td>京阪 東福寺</td><td>搭出町柳行，約 15 分到出町柳（08:13）</td><td><i class="t ok">✅</i>時刻（20260822 版）・<i class="t ng">⚠️</i>乘車時間</td></tr><tr><td class="tm">08:13～08:24</td><td>出町柳</td><td>轉乘叡電，到 3 番線找「鞍馬」行</td><td><i class="t ng">⚠️</i>轉乘</td></tr><tr><td class="tm">08:24</td><td>叡電 出町柳</td><td>鞍馬行，31 分 → 08:55 鞍馬</td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>怎麼認車</h3>
+<ul class="l "><li>叡電從出町柳出發的車有兩種：「鞍馬」行與「八瀬比叡山口」行，交互發車，看車頭與月台的行先牌。平日 8～9 時台 鞍馬行是 8:02、8:24、8:45、9:00。</li><li>京阪從東福寺到出町柳，月台寫「三條・出町柳方面」。我只看過時刻表，沒有查到各班的停靠站，上車前看車身的種別與行先。</li><li>叡電可以刷交通 IC 卡。京阪與叡電的出町柳站是兩個站，轉乘要出閘再進閘，步行時間我沒有量 <i class="t ng">⚠️</i>；所以預留 11 分緩衝。</li></ul>
+<h3>如果趕不上</h3>
+<div class="tw"><table class="dense"><thead><tr><th>情況</th><th>做法</th><th>結果</th></tr></thead><tbody><tr><td>沒搭上 JR 07:40</td><td>搭 07:55（9 番線，普通奈良行）→ 07:58 東福寺 → 京阪 08:05 → 08:20 出町柳</td><td>叡電 08:24 只剩 4 分轉乘，很緊 <i class="t ng">⚠️</i>；沒趕上就搭 08:45</td></tr><tr><td>沒搭上京阪 07:58</td><td>搭京阪 08:05（→ 08:20）或 08:11（→ 08:24 或 08:27）</td><td>同上</td></tr><tr><td>沒搭上叡電 08:24</td><td>搭 08:45 → 09:16 鞍馬</td><td>09:16 到鞍馬、纜車改搭 09:40 班，全天順延約 20 分，刪霊宝殿（第 20 頁）</td></tr><tr><td>整段延誤</td><td>改搭地鐵烏丸線＋市バス（第 7 頁 B 方案）</td><td>約 09:16 到鞍馬 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<div class="box "><b>為什麼 07:40 出發</b>：叡電 08:24 發車、08:55 到鞍馬，搭 09:20 的纜車、09:32 到本殿，在 9:00 開扉之後，且有 11 分的轉乘緩衝。07:00 出發不會更早進得了寺，因為本殿 9:00 才開 <i class="t ok">✅</i>。</div>
+
+</section>
+<section class="sheet" id="p10" aria-label="第 10 頁 鞍馬寺：簡介與基本資訊">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">10 / 24</span></header>
+
+<h2><i class="seal">観</i>鞍馬寺 <small>簡介與基本資訊</small></h2>
+<div class="grid2">
+<figure class="sq"><img src="img/niomon.jpg" alt="鞍馬寺 仁王門" width="1000" style="object-position:50% 40%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_gate_Niomon_hdsr_S5_08.jpg">Wikimedia Commons</a></figcaption></figure>
+<figure class="sq"><img src="img/kurama_stn.jpg" alt="鞍馬站與天狗" width="1000" style="object-position:50% 40%"><figcaption>Hahifuheho・CC0・2020 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama_station_sign_and_Tengus_20200530.jpg">Wikimedia Commons</a>・鞍馬駅的站名牌與天狗面</figcaption></figure>
+</div>
+<h3>為什麼推薦</h3>
+<p class="sm">鞍馬寺是這天最重要的景點。從山麓走到山上的本殿，再沿奧の院參道翻山到貴船，沿路是義經少年時代的傳說、金剛床、木の根道，風景與體驗都集中在這一條路上。觀光價值 S，御朱印價值 A。</p>
+<h3>簡介</h3>
+<p class="sm">鞍馬弘教的總本山。本殿金堂供奉千手観音、毘沙門天王、護法魔王尊，三位合稱「尊天」；本尊是秘佛，60 年一次、丙寅年才開扉 <i class="t ok">✅</i>（官網「山内案内」）。整座山被視為尊天的身體，所以愛山費用來維護山林與參道，參道保持土路，倒木盡量不動 <i class="t ok">✅</i>。</p>
+<div class="tw"><table class="kv "><tbody><tr><th>地址・電話</th><td>京都市左京区鞍馬本町 1074・075-741-2003 <i class="t ok">✅</i></td></tr><tr><th>開放</th><td>本殿開扉 9:00～16:15 <i class="t ok">✅</i>；山門的入山時間官網未載明</td></tr><tr><th>愛山費</th><td>¥500（令和 5 年 4 月 1 日起）<i class="t ok">✅</i>；用於清掃山林、綠化與整理參道</td></tr><tr><th>纜車</th><td>單程 ¥200（寄進），上行 8:40 起、末班 16:20 <i class="t ok">✅</i></td></tr><tr><th>霊宝殿</th><td>¥200，9:00～16:00，週二休（祝日則翌日），12/12～2 月底休 <i class="t ok">✅</i></td></tr><tr><th>其他</th><td>寵物可入山，但不能搭纜車與進殿 <i class="t ok">✅</i>；山內多處有洗手間；轉法輪堂一樓「洗心亭」是免費休息所 <i class="t ok">✅</i></td></tr><tr><th>離上一點</th><td>鞍馬駅步行 3 分到仁王門 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>景區總覽</h3>
+<div class="tw"><table class="dense"><thead><tr><th>區域</th><th>內容</th><th class="tm">時間</th><th>另收費</th><th>本行程</th></tr></thead><tbody><tr><td>山麓</td><td>仁王門（明治 44 年再建，左側門扉是壽永年間 1182～84 的）、鳥樞沙摩明王殿（洗手間）</td><td class="tm">仁王門前 3 分</td><td>愛山費 ¥500</td><td>必經</td></tr><tr><td>普明殿（纜車山門駅）</td><td>毘沙門天立像；纜車 2 分到多宝塔駅，上行 8:40 起</td><td class="tm">仁王門 → 2 分</td><td>纜車 ¥200</td><td>搭上行</td></tr><tr><td>由岐神社</td><td>鎮守社，拝殿是重要文化財；在步行參道上</td><td class="tm">仁王門 → 5 分</td><td>—</td><td>不排</td></tr><tr><td>九十九折參道</td><td>中門、巽の弁財天社、轉法輪堂（洗心亭）；纜車路線與它在轉法輪堂附近會合</td><td class="tm">多宝塔駅 → 本殿 10 分</td><td>—</td><td>纜車代替</td></tr><tr><td>本殿金堂</td><td>金剛床、閼伽井護法善神社、光明心殿、本坊</td><td class="tm">參拜 30 分</td><td>—</td><td>必看</td></tr><tr><td>霊宝殿</td><td>三層：自然科學博物苑、寺寶展、與謝野晶子・寛紀念室、佛像奉安室（毘沙門天三尊像為國寶）</td><td class="tm">20 分</td><td>¥200</td><td>任意</td></tr><tr><td>奥の院參道</td><td>息つぎの水、背比べ石、木の根道、大杉權現社、不動堂、義經堂、魔王殿</td><td class="tm">本殿 → 魔王殿 30 分</td><td>—</td><td>必走</td></tr><tr><td>西門</td><td>往貴船的出口</td><td class="tm">魔王殿 → 貴船神社 20 分</td><td>—</td><td>必經</td></tr></tbody></table></div>
+<p class="xs">內部配置請看鞍馬寺官網「山内案内図」，我沒有自己畫。<a href="https://www.kuramadera.or.jp/annai.html">鞍馬寺 山内案内</a></p>
+
+</section>
+<section class="sheet" id="p11" aria-label="第 11 頁 鞍馬寺：參觀路線與時間不夠時">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">11 / 24</span></header>
+
+<h2><i class="seal">観</i>鞍馬寺 <small>參觀路線與時間不夠時</small></h2>
+<figure class="map"><img src="img/map_kurama_wide.jpg" alt="鞍馬寺山內與貴船的位置" width="1428" style="object-position:50% 55%"><figcaption>鞍馬駅、鞍馬寺、貴船神社一帶的位置（無路線線）・Google Maps 截圖・地圖資料 ©2026 Google・截取日期 2026/10/05</figcaption></figure>
+<h3>主案：纜車上山，走奧の院參道到貴船</h3>
+<div class="tw"><table class="dense"><thead><tr><th>順序</th><th>區段</th><th>官網</th><th>Google</th><th>備註</th></tr></thead><tbody><tr><td>1</td><td>鞍馬駅 → 仁王門</td><td>3 分 <i class="t ok">✅</i></td><td>4 分 <i class="t ng">⚠️</i></td><td>付愛山費 ¥500</td></tr><tr><td>2</td><td>仁王門 → 纜車山門駅（普明殿）</td><td>2 分 <i class="t ok">✅</i></td><td>2 分 <i class="t ng">⚠️</i></td><td>09:00 班趕不上，等 09:20 班（約 18 分）</td></tr><tr><td>3</td><td>山門駅 → 多宝塔駅</td><td>纜車 2 分，¥200 <i class="t ok">✅</i></td><td>—</td><td>每 20 分一班（推算 <i class="t ng">⚠️</i>）</td></tr><tr><td>4</td><td>多宝塔駅 → 本殿金堂</td><td>10 分 <i class="t ok">✅</i></td><td>9 分，上 59 m <i class="t ng">⚠️</i></td><td>途中與九十九折參道會合，經轉法輪堂（洗心亭）</td></tr><tr><td>5</td><td>本殿金堂 → 霊宝殿</td><td>2 分 <i class="t ok">✅</i></td><td>4 分 <i class="t ng">⚠️</i></td><td>任意，20 分</td></tr><tr><td>6</td><td>霊宝殿 → 魔王殿</td><td>本殿 → 魔王殿 30 分 <i class="t ok">✅</i></td><td>16 分 <i class="t ng">⚠️</i></td><td>行程用 28 分（30 分扣掉 2 分）</td></tr><tr><td>7</td><td>魔王殿 → 貴船神社</td><td>20 分 <i class="t ok">✅</i></td><td>西門 12 分＋西門 → 本宮 1 分 <i class="t ng">⚠️</i></td><td>西門出來就是貴船本宮</td></tr></tbody></table></div>
+<p class="sm">步行合計：鞍馬駅 → 本殿金堂 3＋2＋10 ＝ 15 分（加纜車 2 分），本殿 → 貴船神社 30＋20 ＝ <b>50 分</b>（官網）。這是官網「纜車コース」加上「奧の院參道 → 西門 → 貴船」的組合。</p>
+<div class="cols">
+<div><h3>只剩 60 分鐘怎麼走</h3>
+<ul class="l "><li>仁王門 → 山門駅 2 分 → 纜車 2 分 → 多宝塔駅 → 本殿金堂 10 分 <i class="t ok">✅</i>，約 15 分到。</li><li>在本殿金堂、金剛床與領御朱印停 20 分。</li><li>原路搭纜車下山（上行末班 16:20，下行末班 16:25）。</li><li>之後走叡電到貴船口，搭巴士到貴船（第 20 頁雨天版）。</li></ul></div>
+<div><h3>時間充裕怎麼加</h3>
+<ul class="l "><li>霊宝殿（¥200，二樓與謝野晶子紀念室，三樓佛像奉安室）。</li><li>洗心亭免費休息；義經堂、僧正ガ谷是牛若丸向天狗學兵法的傳說地。</li><li>在本殿前的展望處看山，再走奧の院參道。</li><li>等纜車的 18 分鐘：改變主意的話，可以走 5 分到由岐神社（往返約 10 分）。鞍馬溫泉我沒有查證，不列入。</li></ul></div></div>
+<div class="box "><b>為什麼這樣走</b>：纜車省下九十九折的上坡（官網 20 分，Google 上 90 m <i class="t ng">⚠️</i>），體力留給奧の院參道與木の根道。代價是等纜車約 18 分鐘（09:00 班要 08:58 就到山門駅，我算 09:02 到，所以排 09:20），以及看不到由岐神社與九十九折參道。纜車上行是「寄進」¥200，不是運賃 <i class="t ok">✅</i>。</div>
+<h3>路況與安全</h3>
+<ul class="l "><li>參道是土路，倒木盡量不動；木の根道雨後濕滑，穿防滑鞋。</li><li>2026/6/27 的豪雨公告：鞍馬寺照常，木の根道可通行 <i class="t ok">✅</i>（京都観光 Navi）。出發前看鞍馬寺「お知らせ」。</li><li>纜車有每月上午的檢修停駛（2026 年 7～10 月已公布，2027 年 4 月未公布）；停駛時就走九十九折：仁王門 → 由岐神社 5 分、→ 本殿 20 分（官網 ✅），比纜車的 2＋2＋10 分多約 11 分，但不用等車。</li><li>16:15 本殿閉，山內不要拖到傍晚。</li></ul>
+
+</section>
+<section class="sheet" id="p12" aria-label="第 12 頁 鞍馬寺：本殿金堂・金剛床・霊宝殿">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">12 / 24</span></header>
+
+<h2><i class="seal">観</i>本殿金堂・金剛床 <small>鞍馬寺の中心</small></h2>
+<div class="grid2">
+<figure class=""><img src="img/honden.jpg" alt="鞍馬寺 本殿金堂與金剛床" width="1000" style="object-position:50% 50%"><figcaption>Nankou Oronain (as36…・CC BY-SA 3.0・2011 年攝・<a href="https://commons.wikimedia.org/wiki/File:%E9%9E%8D%E9%A6%AC%E5%AF%BA%E6%9C%AC%E6%AE%BF%E9%87%91%E5%A0%82_Main_hall,_Kurama-dera_2011.8.28_-_panoramio.jpg">Wikimedia Commons</a>・金剛床（前景圓形圖案）與本殿金堂</figcaption></figure>
+<figure class=""><img src="img/view1.jpg" alt="本殿附近的展望" width="1000" style="object-position:50% 50%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_Temple_hdsr_S5_17.jpg">Wikimedia Commons</a>・本殿附近的山景</figcaption></figure>
+</div>
+<h3>為什麼推薦</h3>
+<p class="sm">纜車與參道會合之後的終點，也是整座山的中心。前面的「金剛床」是星曼荼羅的圖形，官網說是人與尊天合一的修行場；本殿的虎是毘沙門天的使者。觀光價值 S，御朱印價值 A（「尊天」直書き，有寅の日的印）。</p>
+<h3>簡介</h3>
+<p class="sm">本殿金堂供奉千手観音菩薩、毘沙門天王、護法魔王尊，合稱「尊天」，本尊是秘佛，60 年一次開扉。前面的「阿吽の虎」取代一般的狛犬，因為毘沙門天出現在寅月、寅日、寅刻 <i class="t ok">✅</i>。金剛床模擬星曼荼羅 <i class="t ok">✅</i>。本殿地下是宝殿，供奉信徒的清浄髪 <i class="t ok">✅</i>。</p>
+<div class="grid2">
+<div><h3>現場看什麼</h3>
+<ul class="l "><li>金剛床：站在中央正面拍，再看本殿</li><li>阿吽の虎：左右一對，不是獅子</li><li>展望：本殿旁的山谷視野</li><li>閼伽井護法善神社（水神，本殿東側）與光明心殿（護法魔王尊，本殿西側）</li><li>本坊的前庭「瑞風庭」，象徵魔王尊降臨奧の院</li></ul></div>
+<div><figure class="w"><img src="img/tiger.jpg" alt="本殿前的阿吽の虎" width="1000" style="object-position:50% 35%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_gate_Niomon_hdsr_S5_03.jpg">Wikimedia Commons</a>・阿吽の虎之一</figcaption></figure></div>
+</div>
+<div class="tw"><table class="kv "><tbody><tr><th>停留</th><td>30 分（含御朱印）</td></tr><tr><th>離上一點</th><td>纜車多宝塔駅 → 本殿金堂 步行 10 分 <i class="t ok">✅</i>（Google 9 分，上 59 m <i class="t ng">⚠️</i>）；纜車山門駅 → 多宝塔駅 2 分，¥200 <i class="t ok">✅</i></td></tr><tr><th>開放</th><td>本殿開扉 9:00～16:15 <i class="t ok">✅</i>；御朱印時間官網未載明，舊部落格 9:00～16:00（另一說 16:30）<i class="t ng">⚠️</i></td></tr><tr><th>地址</th><td>京都市左京区鞍馬本町 1074 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>御朱印</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>內容</th><th>來源</th></tr></thead><tbody><tr><td>種類</td><td>「尊天」，御本尊三尊一體的墨書；有些日子會蓋「寅の日」的印</td><td><i class="t ph">📷</i>2026/09/06、2026/08/27、2026/04/05、2025/12/27</td></tr><tr><td>形式</td><td>直書き，可寫進御朱印帳；也有人用毘沙門天用的帳。記念版另有書置き</td><td><i class="t ph">📷</i></td></tr><tr><td>授與位置</td><td>本殿金堂內的納經所（「本堂の朱印所」）</td><td><i class="t ph">📷</i>・<i class="t ng">⚠️</i>舊部落格</td></tr><tr><td>初穂料</td><td>通常版 ¥300（冥加料）；記念版是年度限定</td><td><i class="t ng">⚠️</i></td></tr><tr><td>御朱印帳</td><td>鞍馬寺原版：¥2,000（舊部落格，含御朱印）與 ¥3,000（じゃらん）兩說，無法確認</td><td><i class="t ng">⚠️</i>（兩處矛盾，並列）</td></tr><tr><td>推薦程度</td><td><span class="star">★★★★★</span>　寺院本身與御朱印都值得</td><td>—</td></tr></tbody></table></div>
+<h3>霊宝殿（任意）</h3>
+<p class="sm">本殿左側走 2 分。一樓是鞍馬山自然科學博物苑，二樓是寺寶展與與謝野晶子・寛紀念室，三樓是佛像奉安室，毘沙門天三尊像是國寶 <i class="t ok">✅</i>。入館 ¥200，9:00～16:00，週二休（4/8 是週四，開館）<i class="t ok">✅</i>。觀光價值 B，時間不夠就先刪它。</p>
+<p class="sm"><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%B1%B1%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%20%E5%A4%9A%E5%AE%9D%E5%A1%94%E9%A7%85&destination=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E6%9C%AC%E6%AE%BF%E9%87%91%E5%A0%82&travelmode=walking">多宝塔駅 → 本殿金堂（Google Maps 步行）</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E6%9C%AC%E6%AE%BF%E9%87%91%E5%A0%82">地圖：本殿金堂</a></p>
+
+</section>
+<section class="sheet" id="p13" aria-label="第 13 頁 奥の院參道・木の根道・魔王殿・西門">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">13 / 24</span></header>
+
+<h2><i class="seal">観</i>奥の院參道・魔王殿 <small>木の根道と西門</small></h2>
+<div class="grid2">
+<figure class=""><img src="img/kinone.jpg" alt="鞍馬寺 木の根道" width="1000" style="object-position:50% 50%"><figcaption>KENPEI・CC BY-SA 3.0・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama-dera_kinonemichi.jpg">Wikimedia Commons</a>・木の根道</figcaption></figure>
+<figure class=""><img src="img/maoden.jpg" alt="鞍馬寺 奥の院 魔王殿" width="1000" style="object-position:50% 50%"><figcaption>KENPEI・CC BY-SA 3.0・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama-dera_Okunoin_Maoden.jpg">Wikimedia Commons</a>・奥の院 魔王殿</figcaption></figure>
+</div>
+<h3>為什麼推薦</h3>
+<p class="sm">這是鞍馬寺最像「山」的一段，也是整天體驗的高峰：牛若丸向天狗學兵法的傳說地，樹根浮出地表的木の根道，最後從西門下到貴船。觀光價值 S；沒有找到這一段獨立的御朱印，御朱印價值 C。</p>
+<h3>簡介（官網「山内案内」）</h3>
+<ul class="l "><li><b>息つぎの水</b>：霊宝殿出來穿過小門，進入險峻的奧の院參道；牛若丸夜裡獨自趕路，在這裡喝泉水喘口氣 <i class="t ok">✅</i>。</li><li><b>背比べ石</b>：牛若離開鞍馬寺前往奧州平泉時，依依不捨地和這塊石頭比身高 <i class="t ok">✅</i>。</li><li><b>木の根道</b>：砂岩因岩漿侵入而變硬，樹根無法往下長，在地表畫出阿拉伯花紋；牛若也在這裡修行兵法 <i class="t ok">✅</i>。</li><li><b>大杉權現社・不動堂</b>：大杉苑冥想道場，護法魔王尊能量高的地方；不動堂供奉傳教大師最澄所刻的不動明王 <i class="t ok">✅</i>。</li><li><b>義經堂</b>：義經的魂魄回到鞍馬山，被祀為遮那王尊；這一帶是「僧正ガ谷」，牛若向天狗學兵法的地方 <i class="t ok">✅</i>。</li><li><b>魔王殿</b>：護法魔王尊降臨的磐座，自古受崇拜 <i class="t ok">✅</i>。</li></ul>
+<div class="cols">
+<div><h3>現場看什麼</h3>
+<ul class="l "><li>木の根道的樹根，別踩濕滑的根</li><li>背比べ石與義經堂，一路都有路標</li><li>魔王殿前的岩石與周圍的杉林</li><li>西門：出了西門就是貴船，府道 361 號 <i class="t ok">✅</i>（Google：西門 → 本宮 1 分，58 m <i class="t ng">⚠️</i>）</li></ul></div>
+<div><h3>路況與時間</h3>
+<ul class="l "><li>本殿 → 魔王殿 官網 30 分、魔王殿 → 貴船神社 20 分 <i class="t ok">✅</i></li><li>Google：霊宝殿 → 魔王殿 16 分、魔王殿 → 西門 12 分 <i class="t ng">⚠️</i></li><li>官網沒有列山路上的補給點，水與零食出發前先準備</li><li>雨後與 4 月早春的泥濘：穿防滑鞋</li></ul></div></div>
+<div class="tw"><table class="kv "><tbody><tr><th>停留</th><td>15 分（魔王殿）；整段行走約 50 分</td></tr><tr><th>離上一點</th><td>本殿金堂 → 魔王殿 30 分 <i class="t ok">✅</i>；霊宝殿 → 魔王殿 約 28 分（30 分扣 2 分）<i class="t ng">⚠️</i></td></tr><tr><th>開放</th><td>參道隨時可走；本殿 16:15 閉，傍晚以前走完 <i class="t ok">✅</i></td></tr><tr><th>御朱印</th><td>官網與 omairi 都沒有魔王殿的獨立授與位置，授與所只見於本殿金堂 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<figure class="ww"><img src="img/nishimon.jpg" alt="鞍馬寺 西門" width="1000" style="object-position:50% 45%"><figcaption>KENPEI・CC BY-SA 3.0・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kurama-dera_nishimon.jpg">Wikimedia Commons</a>・西門（通往貴船）</figcaption></figure>
+<p class="sm"><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E6%9C%AC%E6%AE%BF%E9%87%91%E5%A0%82&destination=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E9%AD%94%E7%8E%8B%E6%AE%BF&travelmode=walking">本殿 → 魔王殿（Google Maps 步行）</a>　<a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E9%AD%94%E7%8E%8B%E6%AE%BF&destination=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E6%9C%AC%E5%AE%AE&travelmode=walking">魔王殿 → 貴船本宮</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E9%AD%94%E7%8E%8B%E6%AE%BF">地圖：魔王殿</a></p>
+
+</section>
+<section class="sheet" id="p14" aria-label="第 14 頁 貴船神社：簡介與本宮">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">14 / 24</span></header>
+
+<h2><i class="seal">観</i>貴船神社 本宮 <small>水神の総本宮・水占みくじ</small></h2>
+<div class="grid2">
+<figure class=""><img src="img/kibune_hongu.jpg" alt="貴船神社 本宮" width="1000" style="object-position:50% 50%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_(Kyoto_Sakyo-ku)_Hong%C5%AB_hdsr_S5_02.jpg">Wikimedia Commons</a>・本宮（1 月拍攝，有殘雪）</figcaption></figure>
+<figure class=""><img src="img/horses.jpg" alt="貴船神社 本宮的黒馬・白馬" width="1000" style="object-position:50% 50%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_(Kyoto_Sakyo-ku)_Hong%C5%AB_hdsr_S5_04.jpg">Wikimedia Commons</a>・本宮前的馬像</figcaption></figure>
+</div>
+<h3>為什麼推薦</h3>
+<p class="sm">翻山下來的第一站，剛好在西門出口旁。貴船是水神的總本宮，參拜的重點是「三社詣」，順序是本宮 → 奧宮 → 結社；本宮可以在御神水試水占みくじ，也是領御朱印的地方。觀光價值 A，御朱印價值 A。</p>
+<h3>簡介</h3>
+<p class="sm">官網：祭祀萬物生命之源「水神」，是全國約 2,000 社水神的總本宮；白鳳六年（約 1,300 年前）已有社殿造替的記錄 <i class="t ok">✅</i>。本宮原在奧宮之地，因洪水流失，天喜三年（1055）遷到現址；現在的本宮在平成年間從基礎重建 <i class="t ok">✅</i>。社殿前石垣湧出的御神水是貴船山的湧水；把水占みくじ浮在靈泉上，字就會浮出來 <i class="t ok">✅</i>。</p>
+<div class="grid2">
+<div><h3>現場看什麼</h3>
+<ul class="l "><li>御神水與石垣：官網說的「こんこんと溢れる」處</li><li>水占みくじ：白紙浮在水上，字浮現（初穂料 ¥200，非官網，<i class="t ng">⚠️</i>）</li><li>黒馬・白馬像：本宮前的馬像</li><li>社殿與本宮前的石段：境內不大，山邊的小境內（omairi 2026/09/06 的感想 <i class="t ph">📷</i>）</li><li>本宮邊的桂（御神木），說明牌見照片 <i class="t ng">⚠️</i></li></ul></div>
+<div><figure class="w"><img src="img/gosuisui.jpg" alt="貴船神社 本宮的水邊" width="1000" style="object-position:50% 45%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_(Kyoto_Sakyo-ku)_Hong%C5%AB_hdsr_S5_18.jpg">Wikimedia Commons</a>・本宮的水邊與說明牌</figcaption></figure></div></div>
+<div class="tw"><table class="kv "><tbody><tr><th>停留</th><td>30 分（參拜、水占、御朱印）</td></tr><tr><th>離上一點</th><td>魔王殿 → 貴船神社 20 分 <i class="t ok">✅</i>；西門 → 本宮 1 分（Google <i class="t ng">⚠️</i>）</td></tr><tr><th>開放</th><td>本宮參拜（含水占）6:00～20:00 是 5/1～11/30 的時間，年中無休、參拜無料 <i class="t ok">✅</i>。<b>4 月的時間官網未載明</b>；10/04 的「本宮參拜時間について」顯示神社會依日期變更 <i class="t ok">✅</i>。第三方資料寫 12/1～4/30 是 6:00～18:00 <i class="t ng">⚠️</i></td></tr><tr><th>授與所</th><td>御守與御朱印等的授與所 9:00～17:00（ライトアップ期間中は延長）<i class="t ok">✅</i>；御祈祷受付 9:00～15:00 <i class="t ok">✅</i></td></tr><tr><th>4 月的祭典</th><td>4/1 春季御更衣祭、4/3 土解祭、4/29 昭和祭；4/8 沒有祭典 <i class="t ok">✅</i></td></tr><tr><th>地址・電話</th><td>京都市左京区鞍馬貴船町 180・075-741-2016 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>御朱印</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>內容</th><th>來源</th></tr></thead><tbody><tr><td>種類</td><td>本宮御朱印（直書き）。「水神」二字取代一般的「奉拝」，有雙葉葵與菊花印</td><td><i class="t ph">📷</i>直書き 2026/09/21、2026/09/06、2026/08/27、2025/06/05；<i class="t ng">⚠️</i>部落格</td></tr><tr><td>授與位置</td><td>本宮的授與所（官網把御朱印列在授與所受付時間下）</td><td><i class="t ok">✅</i></td></tr><tr><td>初穂料</td><td><b>金額有兩說，並列</b>：舊部落格 ¥300；omairi 2026/07 前後的留言「貴船神社本宮は初穂料 500 円」</td><td><i class="t ng">⚠️</i>／<i class="t ph">📷</i></td></tr><tr><td>御朱印帳</td><td>官網授與品有「朱印帳」，價格與款式未載；部落格寫有期間限定款</td><td><i class="t ok">✅</i>存在・<i class="t ng">⚠️</i>款式</td></tr><tr><td>推薦程度</td><td><span class="star">★★★★★</span>　本宮「水神」是今天最值得收集的御朱印之一</td><td>—</td></tr></tbody></table></div>
+<p class="sm"><a href="https://www.google.com/maps/dir/?api=1&origin=%E9%9E%8D%E9%A6%AC%E5%AF%BA%20%E8%A5%BF%E9%96%80&destination=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E6%9C%AC%E5%AE%AE&travelmode=walking">西門 → 本宮（Google Maps 步行）</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E6%9C%AC%E5%AE%AE">地圖：貴船神社 本宮</a>　<a href="https://kifunejinja.jp/info/">官網 參拝のご案内</a></p>
+
+</section>
+<section class="sheet" id="p15" aria-label="第 15 頁 貴船神社：結社・奥宮">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">15 / 24</span></header>
+
+<h2><i class="seal">観</i>貴船神社 結社・奥宮 <small>三社詣の後半</small></h2>
+<div class="grid3">
+<figure class="sq"><img src="img/yui.jpg" alt="貴船神社 結社" width="1000" style="object-position:50% 50%"><figcaption>KENPEI・CC BY-SA 3.0・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_Yuinoyashiro1.jpg">Wikimedia Commons</a>・結社</figcaption></figure>
+<figure class="sq"><img src="img/okumiya.jpg" alt="貴船神社 奥宮 本殿" width="1000" style="object-position:50% 50%"><figcaption>KENPEI・CC BY-SA 3.0・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_Okumiya_honden.jpg">Wikimedia Commons</a>・奥宮 本殿</figcaption></figure>
+<figure class="sq"><img src="img/yui_rock.jpg" alt="貴船神社 結社的岩（檔名 天の磐船）" width="1000" style="object-position:50% 50%"><figcaption>KENPEI・CC BY-SA 3.0・2009 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_Yuinoyashiro_amenoiwafune.jpg">Wikimedia Commons</a>・檔名 Yuinoyashiro amenoiwafune（天の磐船）</figcaption></figure>
+</div>
+<h3>為什麼推薦</h3>
+<p class="sm">本宮往上游走約 15 分，沿著貴船川一路是森與水。結社是縁結びの社，奧宮是貴船神社創建的地方。官網寫「參拜三社」才算完整，所以主案走過去再回來。觀光價值 A（奧宮）與 B+（結社），御朱印價值：奧宮 B（書置き），結社沒找到獨立御朱印。</p>
+<h3>簡介（官網「境内案内」）</h3>
+<ul class="l "><li><b>結社（中社）</b>：祭神磐長姫命，縁結びで有名；傳說磐長姫因被瓊々杵命拒絕而留在此地，保佑人們的良緣；平安時代女歌人和泉式部為夫的變心來參拜，願望成真，從此稱「恋の宮」<i class="t ok">✅</i>。</li><li><b>奥宮</b>：貴船神社創建之地，森林環繞；玉依姫命乘坐的黃船，為了不被人看見用石頭包起來，至今長滿青苔，供在奧宮本殿旁（船形石）；本殿正下方有「龍穴」，被視為日本三大龍穴之一，沒有人可以看 <i class="t ok">✅</i>。</li><li><b>參拜順序</b>：官網寫「本宮、奧宮、結社」。我們的走法是本宮 → 奧宮（途中經過結社不停）→ 回程停結社，等於官網的順序 <i class="t ok">✅</i>。</li></ul>
+<div class="tw"><table class="kv "><tbody><tr><th>停留</th><td>奧宮 20 分、結社 10 分</td></tr><tr><th>離上一點</th><td>本宮 → 結社 8 分（Google）、結社 → 奧宮 7 分；本宮 → 奧宮 15 分・約 950 m <i class="t ng">⚠️</i>。omairi：「本宮から徒歩約 15 分」<i class="t ph">📷</i>（2026/07/19）</td></tr><tr><th>開放</th><td>官網沒有另列結社與奧宮的參拜時間；omairi 2026/07/19 的投稿者早上 8 點到本宮，在社務所開門前就參拜了結社與奧宮 <i class="t ph">📷</i></td></tr><tr><th>路況</th><td>沿府道 361 號與貴船川，路窄，有車；照片是 1 月拍的，4/8 不會有雪。奧宮附近有停車場（官網）<i class="t ok">✅</i></td></tr><tr><th>注意</th><td><b>川床（納涼床）</b> 5 月起才開（ひろ文官網），4/8 看不到；之前的 Commons 照片（Nôryô-yuka）不使用</td></tr></tbody></table></div>
+<h3>御朱印</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>內容</th><th>來源</th></tr></thead><tbody><tr><td>奥宮</td><td>書置きのみ（直書き不可）。紙本，通常御朱印</td><td><i class="t ph">📷</i>2025/06/05、2025/11/15、2026/07/19、2026/01/08</td></tr><tr><td>授與位置</td><td><b>未見明確記載</b>：舊部落格寫「在本宮的授與所」；omairi 2026/07/19 的投稿者早到，先拜結社與奧宮、等社務所開門 → 推測在本宮領</td><td><i class="t ng">⚠️</i>・<i class="t ph">📷</i></td></tr><tr><td>初穂料</td><td>2026/01/08 的投稿：書置きのみ ¥300；約 2026/07 的留言：「與本宮同為 ¥500」。<b>兩說並列，現場看標價</b></td><td><i class="t ph">📷</i></td></tr><tr><td>結社</td><td>沒有找到結社獨立的御朱印</td><td><i class="t ng">⚠️</i></td></tr><tr><td>推薦程度</td><td><span class="star">★★★★☆</span>　奧宮的書置きが「貴船らしい」；結社是參拜重點但不另收御朱印</td><td>—</td></tr></tbody></table></div>
+<div class="box "><b>建議</b>：在本宮 11:27 領御朱印時，先問授與所「奥宮の御朱印もここですか」。如果在本宮就能領，兩張一起拿，之後不必回頭。</div>
+<p class="sm"><a href="https://www.google.com/maps/dir/?api=1&origin=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E6%9C%AC%E5%AE%AE&destination=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E5%A5%A5%E5%AE%AE&travelmode=walking">本宮 → 奥宮（Google Maps 步行）</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E7%B5%90%E7%A4%BE">地圖：結社</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E8%B2%B4%E8%88%B9%E7%A5%9E%E7%A4%BE%20%E5%A5%A5%E5%AE%AE">地圖：奥宮</a></p>
+
+</section>
+<section class="sheet" id="p16" aria-label="第 16 頁 午餐與休息">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">16 / 24</span></header>
+
+<h2><i class="seal">食</i>午餐與休息 <small>貴船 4 月沒有川床</small></h2>
+<figure class="ww"><img src="img/kibune_river.jpg" alt="貴船川" width="1000" style="object-position:50% 55%"><figcaption>Hyppolyte de Saint-Rambert・CC BY 4.0・2024 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kibune_(Kyoto_Sakyo-ku)_Kibune_River_hdsr_S5_01.jpg">Wikimedia Commons</a>・貴船川（1 月拍攝）</figcaption></figure>
+<p class="sm">4/8 的貴船沒有川床：ひろ文官網寫川床從 5 月到 9 月末，10 月中旬到 4 月是「囲炉裏」的室內用餐 <i class="t ok">✅</i>。這天午餐沒有一家我可以保證營業，下表照「官網確認的」與「二手資料」分開。</p>
+<div class="tw"><table class="dense"><thead><tr><th>店・方案</th><th>時間・價格</th><th>4/8（週四）</th><th>用途</th><th>來源</th></tr></thead><tbody><tr><td><b>料理旅館 ひろ文</b>（結社旁，電話 075-741-2147）</td><td>午餐 11:00～15:00（最終入店 13:30）；秋冬（10 月中旬～4 月）在囲炉裏部屋用餐：季節の京会席 ¥10,890／14,520／20,570、牛しゃぶ ¥10,890、地鶏水たき ¥10,890，都要事前預約</td><td><b>可能不可用</b>：官網「4月定休日：1日・8日・30日」，沒寫年份；2026 年 4/8 是週三，2027 年未公布</td><td><b>主選</b>（要先電話確認 4/8 營業與預約；價格高）</td><td><i class="t ok">✅</i></td></tr><tr><td>貴船京紫陽（本宮北門內）</td><td>食事處 11:00～16:00；餐點約 50 種（烏龍、蕎麥、湯豆腐）</td><td>不定休，未知</td><td>備案</td><td><i class="t ng">⚠️</i></td></tr><tr><td>貴船ひろや</td><td>10 月～4 月 11:00～17:00（一休.com）；另有資料寫 11:00～14:00、17:00～19:00</td><td>不定休，未知</td><td>備案</td><td><i class="t ng">⚠️</i></td></tr><tr><td>川床（ひろ文）</td><td>5 月～9 月末（官網）</td><td><b>不可用</b>：4/8 還沒開</td><td>—</td><td><i class="t ok">✅</i></td></tr><tr><td>川床（其他料理旅館）</td><td>多數寫 5/1～9/30</td><td><b>不可用</b>：4/8 還沒開</td><td>—</td><td><i class="t ng">⚠️</i></td></tr><tr><td><b>自備午餐（最穩）</b></td><td>出發前在京都駅或出町柳買飯糰、麵包；鞍馬寺轉法輪堂 1 樓「洗心亭」是免費休息所</td><td>洗心亭官網載明可用</td><td><b>備案</b>（最穩）</td><td><i class="t ok">✅</i></td></tr><tr><td>鞍馬駅前的食堂</td><td>油屋食堂 9:00～16:30、雍州路 10:00～18:00（週二休）、くら満荘 11:00～21:00 不定休</td><td>主案不經過（午餐前已離開鞍馬）</td><td>不用</td><td><i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<div class="box "><b>怎麼排</b>：主案的午餐時段是 11:57～13:07，主選是 ひろ文（結社旁）。出發前一週電話或網路問 ひろ文（2 人、4/8、午餐）；若 4/8 休或不想花 ¥10,890，就改自備午餐：09:25 前後從纜車走上本殿、經過轉法輪堂時，用「洗心亭」休息吃點心，11:57 那一段改成在貴船休息與喝茶。貴船有沒有可以坐下來吃便當的地方，我沒有查到。我不能證明貴船其他店 4/8 有開，所以只有 ひろ文 有官網資料，其他列備案。</div>
+<h3>休息點</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>設施</th><th>來源</th></tr></thead><tbody><tr><td>轉法輪堂（多宝塔駅 → 本殿的路上）</td><td>一樓「洗心亭」免費休息所與畫廊</td><td><i class="t ok">✅</i></td></tr><tr><td>鞍馬山內各處</td><td>洗手間；山門前的鳥樞沙摩明王殿，本殿下方也有</td><td><i class="t ok">✅</i></td></tr><tr><td>貴船神社 本宮</td><td>授與所 9:00～17:00；洗手間與茶屋狀況未載明</td><td><i class="t ok">✅</i>／<i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<p class="xs">一休.com、食べログ等第三方的營業時間只當參考，不是 ✅。</p>
+
+</section>
+<section class="sheet" id="p17" aria-label="第 17 頁 下鴨神社・河合神社・糺の森">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">17 / 24</span></header>
+
+<h2><i class="seal">観</i>下鴨神社・河合神社 <small>回程順路・糺の森</small></h2>
+<div class="grid2">
+<figure class=""><img src="img/shimo_romon.jpg" alt="下鴨神社 楼門" width="1000" style="object-position:50% 50%"><figcaption>Zairon・CC BY-SA 4.0・2018 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kyoto_Shimogamo-jinja_Romon_3.jpg">Wikimedia Commons</a>・楼門</figcaption></figure>
+<figure class=""><img src="img/tadasu.jpg" alt="下鴨神社 糺の森參道" width="1000" style="object-position:50% 50%"><figcaption>Cun Cun・CC BY-SA 4.0・2019 年攝・<a href="https://commons.wikimedia.org/wiki/File:Shimogamo_Forest_(Tadasu_no_Mori).jpg">Wikimedia Commons</a>・糺の森參道</figcaption></figure>
+</div>
+<h3>為什麼推薦</h3>
+<p class="sm">這是不在你指定目的地內的順路點，行程裡「第一個可砍」。優點是從出町柳走 12 分就到，穿過糺の森的參道很平，是爬完山以後最輕鬆的一段；河合神社的美麗祈願也有特色。觀光價值 A，御朱印價值 A。</p>
+<h3>簡介</h3>
+<p class="sm">賀茂御祖神社，通稱下鴨神社。西本殿祭祀賀茂建角身命（京都開拓之神），東本殿祭祀其御子神玉依媛命 <i class="t ok">✅</i>。河合神社是境內的摂社，祭神玉依姫命，被稱為「日本第一美麗神」，授與手鏡形的鏡絵馬與鏡みくじ（¥500）<i class="t ok">✅</i>。河合神社北側的糺の森裡，有鴨長明晚年居所「方丈の庵」的復原展示（神宮寺旧跡的拝観區）<i class="t ok">✅</i>。世界遺產的身分官網首頁沒寫，不當作官方資料 <i class="t ng">⚠️</i>。</p>
+<div class="grid2">
+<div><h3>現場看什麼</h3>
+<ul class="l "><li>糺の森的參道，約 12 分從出町柳走到</li><li>楼門與本殿</li><li>河合神社的鏡絵馬：用自己的化妝品在手鏡形絵馬上畫臉</li><li>相生社（縁結び）、印璽社（契約）、井上社（お祓い）、言社（干支のお社）等境內小社 <i class="t ok">✅</i></li></ul></div>
+<div><figure class="w"><img src="img/kawai_haiden.jpg" alt="河合神社" width="1000" style="object-position:50% 50%"><figcaption>Zairon・CC BY-SA 4.0・2018 年攝・<a href="https://commons.wikimedia.org/wiki/File:Kyoto_Shimogamo-jinja_Kawai-jinja_03.jpg">Wikimedia Commons</a>・河合神社 拝殿一帶</figcaption></figure></div></div>
+<div class="tw"><table class="kv "><tbody><tr><th>停留</th><td>63 分（15:17～16:20），河合神社要在 16:30 前離開</td></tr><tr><th>離上一點</th><td>出町柳駅 → 下鴨神社 徒步 12 分 <i class="t ok">✅</i>（Google 7～10 分 <i class="t ng">⚠️</i>）</td></tr><tr><th>開放</th><td>楼門內 6:30 開、17:00 閉；河合社 6:30 開、16:30 閉；神事時可能變更；定休日なし <i class="t ok">✅</i></td></tr><tr><th>特別拝観</th><td>大炊殿・神宮寺旧跡等 10:00～16:00、¥1,000；官網寫對象是團體 <i class="t ok">✅</i>，本行程不排</td></tr><tr><th>地址・電話</th><td>京都市左京区下鴨泉川町 59・075-781-0010 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>御朱印</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>內容</th><th>來源</th></tr></thead><tbody><tr><td>下鴨神社</td><td>直書きの投稿多數（2026/10/01、2026/09/20、2026/02/09）；限定：葵祭（5 月，2025/05/15）、みたらし祭（7 月）書置き，都不在 4 月</td><td><i class="t ph">📷</i></td></tr><tr><td>河合神社</td><td>直書き（2026/08/27、2026/06/18）；也有書置きの投稿（2026/08/15）</td><td><i class="t ph">📷</i></td></tr><tr><td>授與時間・初穂料</td><td><b>官網未載明</b>。有投稿寫「受付終了直前に間に合いました」，河合神社要早點去</td><td><i class="t ng">⚠️</i>・<i class="t ph">📷</i></td></tr><tr><td>推薦程度</td><td><span class="star">★★★★☆</span>（下鴨）・<span class="star">★★★☆☆</span>（河合）　但「值得收集」與「值得參觀」分開看：下鴨的御朱印是常規版</td><td>—</td></tr></tbody></table></div>
+<div class="box "><b>放不放進行程</b>：如果前面延誤，下鴨神社就是第一個被砍的（第 20 頁）。如果要去，走法是出町柳 → 糺の森 → 下鴨本殿 → 河合神社（16:30 閉）→ 原路回出町柳搭京阪。也可以從「下鴨神社前」搭市バス 4 或 205 回京都駅，官網寫這兩個系統直達京都駅 <i class="t ok">✅</i>，時間我沒有查 <i class="t ng">⚠️</i>。</div>
+<p class="sm"><a href="https://www.google.com/maps/dir/?api=1&origin=%E5%87%BA%E7%94%BA%E6%9F%B3%E9%A7%85&destination=%E4%B8%8B%E9%B4%A8%E7%A5%9E%E7%A4%BE&travelmode=walking">出町柳 → 下鴨神社（Google Maps 步行）</a>　<a href="https://www.google.com/maps/search/?api=1&query=%E6%B2%B3%E5%90%88%E7%A5%9E%E7%A4%BE">地圖：河合神社</a></p>
+
+</section>
+<section class="sheet" id="p18" aria-label="第 18 頁 今日御朱印攻略">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">18 / 24</span></header>
+
+<h2><i class="seal">印</i>今日御朱印攻略 <small>基本 3 張、最多 5 張</small></h2>
+<div class="tw"><table class="dense"><thead><tr><th>寺社</th><th>參觀</th><th>收集</th><th>御朱印</th><th>授與位置</th><th>授與時間</th><th>取得方式</th><th>備註</th><th>推薦</th></tr></thead><tbody><tr><td>鞍馬寺 本殿金堂</td><td>S</td><td>A</td><td>「尊天」，寅の日有印</td><td>本殿金堂內納經所</td><td>官網未載；9:00～16:00 <i class="t ng">⚠️</i></td><td>直書き</td><td>¥300 <i class="t ng">⚠️</i>；御朱印帳 ¥2,000／¥3,000 兩說</td><td><span class="star">★★★★★</span></td></tr><tr><td>魔王殿・西門</td><td>S</td><td>C</td><td>未見獨立御朱印</td><td>—</td><td>—</td><td>—</td><td>值得走，不用找御朱印</td><td>—</td></tr><tr><td>貴船神社 本宮</td><td>A</td><td>A</td><td>「水神」</td><td>本宮授與所</td><td>9:00～17:00 <i class="t ok">✅</i></td><td>直書き</td><td>¥300／¥500 並列 <i class="t ng">⚠️</i>／<i class="t ph">📷</i></td><td><span class="star">★★★★★</span></td></tr><tr><td>貴船神社 奥宮</td><td>A</td><td>B</td><td>通常版</td><td>本宮授與所（推測）</td><td>同上 <i class="t ng">⚠️</i></td><td>書置きのみ</td><td>先在本宮問清楚</td><td><span class="star">★★★★☆</span></td></tr><tr><td>貴船神社 結社</td><td>B+</td><td>C</td><td>未見獨立御朱印</td><td>—</td><td>—</td><td>—</td><td>縁結びの社，順路拜</td><td>—</td></tr><tr><td>下鴨神社</td><td>A</td><td>A</td><td>通常版（直書き）</td><td>境內</td><td>未載明 <i class="t ng">⚠️</i></td><td>直書き</td><td>限定版不在 4 月</td><td><span class="star">★★★★☆</span></td></tr><tr><td>河合神社</td><td>B+</td><td>B</td><td>通常版</td><td>境內（河合社）</td><td>未載明；河合社 16:30 閉 <i class="t ok">✅</i></td><td>直書き為主</td><td>早去</td><td><span class="star">★★★☆☆</span></td></tr></tbody></table></div>
+<div class="cols">
+<div><h3>今天預計收幾張</h3>
+<ul class="l "><li>基本 3 張：鞍馬寺、貴船本宮、貴船奧宮</li><li>最多 5 張：加下鴨神社與河合神社；由岐神社（3 種書置き）這次不去</li><li>不必為了多收而繞路：魔王殿、結社沒有獨立御朱印，不另找</li></ul></div>
+<div><h3>書置きの準備</h3>
+<ul class="l "><li>貴船奧宮是書置き：帶透明資料夾與紙膠水或雙面膠</li><li>日期印的墨容易沾到別張（omairi 的留言 <i class="t ph">📷</i>）</li><li>直書き的御朱印帳：鞍馬寺、貴船本宮、下鴨、河合可寫進帳；不要把書置きの紙夾在帳外</li><li>零錢：¥100、¥500 硬幣各備幾枚</li></ul></div></div>
+<h3>御朱印排程（照主案時間）</h3>
+<div class="tw"><table class="dense"><thead><tr><th class="tm">時間</th><th>地點</th><th>領什麼</th><th>當天最晚</th></tr></thead><tbody><tr><td class="tm">09:32～10:02</td><td>鞍馬寺 本殿金堂</td><td>「尊天」直書き</td><td>16:00 <i class="t ng">⚠️</i></td></tr><tr><td class="tm">11:27～11:57</td><td>貴船本宮</td><td>「水神」直書き；奧宮書置き（先問位置）</td><td>17:00 <i class="t ok">✅</i></td></tr><tr><td class="tm">15:17～16:20</td><td>下鴨神社・河合神社</td><td>直書き 2 張</td><td>未載明；河合社 16:30 閉 <i class="t ok">✅</i></td></tr></tbody></table></div>
+<h3>「景點還開著，但御朱印可能已結束」的提醒</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>景點開放</th><th>御朱印</th><th>風險</th></tr></thead><tbody><tr><td>鞍馬寺</td><td>本殿 16:15 閉 <i class="t ok">✅</i></td><td>納經所 16:00 <i class="t ng">⚠️</i></td><td>15:50 才到可能領不到</td></tr><tr><td>貴船神社</td><td>本宮 4 月時間未載明；5/1～11/30 到 20:00 <i class="t ok">✅</i></td><td>授與所 9:00～17:00 <i class="t ok">✅</i></td><td>17:00 後只能參拜，領不到</td></tr><tr><td>下鴨神社</td><td>楼門內 17:00 閉 <i class="t ok">✅</i></td><td>未載明 <i class="t ng">⚠️</i></td><td>16:30 前領最保險</td></tr><tr><td>河合神社</td><td>河合社 16:30 閉 <i class="t ok">✅</i></td><td>未載明；有「受付終了直前」的投稿 <i class="t ph">📷</i></td><td>最容易先結束</td></tr></tbody></table></div>
+<div class="box "><b>期間限定</b>：「京都 洛北の社寺＆えいでん 春の特別ご朱印めぐり」2026 年是 2/4～4/30，參加社寺含下鴨神社、貴船神社（也含由岐神社），叡電 4 站（出町柳、修学院、貴船口、鞍馬）賣限定繪馬形紀念印。2027 年是否舉辦未公布；若舉辦，4/8 在期間內。</div>
+
+</section>
+<section class="sheet" id="p19" aria-label="第 19 頁 一日時間軸與費用總覽">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">19 / 24</span></header>
+
+<h2><i class="seal">行</i>一日時間軸與費用 <small>時間由「前一段結束＋移動時間」算出</small></h2>
+<div class="cols">
+<div><div class="tl"><div><span class="tm">07:40</span><span>京都 → 東福寺 JR奈良線（宇治行 8番線）（JR 3 分） <span class="xs">緩衝 0 分</span></span></div><div><span class="tm">07:58</span><span>東福寺 → 出町柳 京阪（出町柳行）（京阪 15 分） <span class="xs">緩衝 15 分</span></span></div><div><span class="tm">08:24</span><span>出町柳 → 鞍馬 叡電鞍馬線（3番線）（叡電 31 分） <span class="xs">緩衝 11 分</span></span></div><div><span class="tm">09:20</span><span>山門駅 → 多宝塔駅 鞍馬山ケーブル（20 分間隔，¥200）（ケーブル 2 分） <span class="xs">緩衝 18 分</span></span></div><div><span class="tm">09:32</span><span>本殿金堂（金剛床・展望・御朱印）（30 分）</span></div><div><span class="tm">10:04</span><span>霊宝殿（任意）（20 分）</span></div><div><span class="tm">10:52</span><span>魔王殿（15 分）</span></div><div><span class="tm">11:27</span><span>貴船神社 本宮（水占・御朱印）（30 分）</span></div><div><span class="tm">11:57</span><span>午餐（70 分）</span></div><div><span class="tm">13:22</span><span>奥宮（20 分）</span></div><div><span class="tm">13:49</span><span>結社（10 分）</span></div><div><span class="tm">14:11</span><span>貴船バス停で巴士33待ち（班次未取得，暫估）（10 分）</span></div><div><span class="tm">14:21</span><span>貴船 → 貴船口 京都バス33（巴士 7 分）</span></div><div><span class="tm">14:36</span><span>貴船口 → 出町柳 叡電（きらら，週四可搭）（叡電 29 分） <span class="xs">緩衝 8 分</span></span></div><div><span class="tm">15:17</span><span>下鴨神社・河合神社・糺の森（63 分）</span></div><div><span class="tm">16:40</span><span>出町柳 → 七条 京阪（京阪 7 分） <span class="xs">緩衝 8 分</span></span></div></div>
+<p class="xs">到站時間 17:00 回京都駅。叡電、京阪的出發時間是時刻表固定班次 <i class="t ok">✅</i>，其餘由步行與停留推算 <i class="t ng">⚠️</i>。</p></div>
+<div><h3>費用總覽（每人）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>金額</th><th>來源</th></tr></thead><tbody><tr><td>JR 京都 → 東福寺</td><td>¥150</td><td><i class="t ng">⚠️</i></td></tr><tr><td>京阪 東福寺 → 出町柳</td><td>¥300</td><td><i class="t ok">✅</i></td></tr><tr><td>叡電 出町柳 → 鞍馬</td><td>¥470</td><td><i class="t ok">✅</i></td></tr><tr><td>京都巴士 33 貴船 → 貴船口</td><td>約 ¥230</td><td><i class="t ng">⚠️</i></td></tr><tr><td>叡電 貴船口 → 出町柳</td><td>¥470</td><td><i class="t ok">✅</i></td></tr><tr><td>京阪 出町柳 → 七条</td><td>¥300</td><td><i class="t ok">✅</i></td></tr><tr><td><b>交通小計</b></td><td><b>¥1,920</b></td><td>—</td></tr><tr><td>鞍馬寺 愛山費</td><td>¥500</td><td><i class="t ok">✅</i></td></tr><tr><td>鞍馬山ケーブル 上行（寄進）</td><td>¥200</td><td><i class="t ok">✅</i></td></tr><tr><td>霊宝殿（任意）</td><td>¥200</td><td><i class="t ok">✅</i></td></tr><tr><td>御朱印（基本 3 張）</td><td>約 ¥900～1,300</td><td><i class="t ng">⚠️</i></td></tr><tr><td>下鴨・河合神社 御朱印</td><td>未載明</td><td>—</td></tr></tbody></table></div></div></div>
+<div class="tw"><table class="dense"><thead><tr><th>合計（不含午餐）</th><th>每人</th><th>2 人</th></tr></thead><tbody><tr><td>低：交通＋愛山費＋纜車＋基本 3 張御朱印（¥900）</td><td>¥3,520</td><td>¥7,040</td></tr><tr><td>高：加霊宝殿與較高的初穂料（¥1,300）</td><td>¥4,120</td><td>¥8,240</td></tr></tbody></table></div>
+<div class="tw"><table class="dense"><thead><tr><th>午餐</th><th>金額</th><th>說明</th></tr></thead><tbody><tr><td>自備（京都駅或出町柳買）</td><td>約 ¥500～1,000</td><td>我的估算 <i class="t ng">⚠️</i></td></tr><tr><td>ひろ文 季節の京会席</td><td>¥10,890～20,570</td><td>官網 <i class="t ok">✅</i>；4/8 公休與否未公布</td></tr><tr><td>貴船其他店</td><td>未載明</td><td><i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<div class="box "><b>單買 vs 套票</b>：交通單買 ¥1,920，一日券 ¥2,100 不划算（第 7 頁）；纜車 ¥200 是寄進，不在一日券內。御朱印的初穂料是舊部落格與 omairi 的數字，現場以標價為準。</div>
+<p class="xs">御朱印如果兩個人都要收，金額乘 2；一本帳共用就不乘。</p>
+
+</section>
+<section class="sheet" id="p20" aria-label="第 20 頁 雨天備案・彈性與刪減方案">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">20 / 24</span></header>
+
+<h2><i class="seal">基</i>雨天備案與刪減方案</h2>
+<h3>雨天（或山路狀況不明）</h3>
+<ul class="l "><li>2026/6/27 的豪雨公告：鞍馬寺與貴船神社照常，木の根道可通行，叡電正常，京都巴士 32、52 改道 <i class="t ok">✅</i>。所以大雨時主要風險是巴士與山路，不是叡電。</li><li>小雨：照主案走，木の根道改慢走，穿防滑鞋，雨衣比雨傘好。</li><li>大雨或路況不明：<b>放棄翻山</b>（主案已經是纜車上山，這時改成纜車也下山）。仁王門 → 纜車上（8:40 起，每 20 分，¥200）→ 本殿金堂 → 纜車下 → 鞍馬駅搭叡電到貴船口（鞍馬 → 貴船口 2 分 <i class="t ok">✅</i>）→ 巴士 33 或步行 30 分到貴船 <i class="t ok">✅</i>。霊宝殿是室內，適合雨天。</li><li>雨天的順序：鞍馬寺（纜車）→ 貴船本宮 → 奧宮（沿溪平路，雨中也走得到）→ 叡電回出町柳；下鴨神社的糺の森在雨中也好走，但可直接略過。</li></ul>
+<div class="tw"><table class="dense"><thead><tr><th>雨天版（暫估）</th><th class="tm">時間</th><th>備註</th></tr></thead><tbody><tr><td>鞍馬駅 → 仁王門 → 纜車上</td><td class="tm">08:58～09:22</td><td>纜車 8:40 起，主案就是搭 09:20 班 <i class="t ok">✅</i></td></tr><tr><td>本殿金堂、御朱印、霊宝殿</td><td class="tm">09:32～10:30</td><td>10 分走路到本殿 <i class="t ok">✅</i></td></tr><tr><td>纜車下 → 鞍馬駅 → 叡電到貴船口</td><td class="tm">10:45～11:15</td><td>叡電鞍馬發 :04 :19 :34 :49 <i class="t ok">✅</i></td></tr><tr><td>巴士 33 → 貴船 本宮、午餐、奧宮</td><td class="tm">11:30～14:30</td><td>巴士班次 <i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>S／A／B／C 分級</h3>
+<div class="tw"><table class="dense"><thead><tr><th>級</th><th>項目</th><th>說明</th></tr></thead><tbody><tr><td>S</td><td>鞍馬寺 本殿金堂與金剛床；奧の院・木の根道；貴船本宮</td><td>最後才刪</td></tr><tr><td>A</td><td>貴船奧宮；下鴨神社</td><td>依序刪：下鴨 → 奧宮</td></tr><tr><td>B</td><td>霊宝殿；貴船結社；河合神社</td><td>先刪</td></tr><tr><td>C</td><td>午餐的停留時間（60 分）、回程搭きらら</td><td>可以縮短</td></tr></tbody></table></div>
+<h3>情境對照</h3>
+<div class="tw"><table class="dense"><thead><tr><th>情境</th><th>做法</th><th>結果</th></tr></thead><tbody><tr><td>晚出發 30 分（叡電 08:45，鞍馬 09:16）</td><td>纜車改搭 09:40 班，刪霊宝殿</td><td>其他時間不變</td></tr><tr><td>晚出發 1 小時（叡電 09:00 → 09:31 鞍馬）</td><td>纜車改搭 10:00 班，刪霊宝殿、縮短午餐為 40 分、不去下鴨神社</td><td>14:51 叡電仍趕得上</td></tr><tr><td>授與所排隊 15 分</td><td>貴船本宮先領兩張（本宮、奧宮），午餐縮 15 分</td><td>14:36 的叡電仍趕得上</td></tr><tr><td>叡電或巴士延誤</td><td>貴船巴士排太長就走下山 30 分 <i class="t ok">✅</i>，搭 14:51 或 15:06 的叡電</td><td>下鴨神社縮為 30 分或略過</td></tr><tr><td>景點臨時關閉（山路）</td><td>改雨天版，只留 S 級</td><td>見上表</td></tr><tr><td>整天都順利</td><td>多留時間在奧宮與鞍馬寺</td><td>下鴨神社可延長到 17:00 閉門前</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p21" aria-label="第 21 頁 出發前必看・Checklist">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">21 / 24</span></header>
+
+<h2><i class="seal">基</i>出發前必看與 Checklist</h2>
+<div class="tw"><table class="dense"><thead><tr><th>項目</th><th>提醒</th><th>來源</th></tr></thead><tbody><tr><td>開放時間</td><td>鞍馬寺本殿 9:00～16:15；貴船授與所 9:00～17:00；下鴨神社 17:00、河合社 16:30 閉；霊宝殿 9:00～16:00</td><td><i class="t ok">✅</i></td></tr><tr><td>最晚時間</td><td>纜車上行末班 16:20（下行 16:25，主案不搭）；叡電貴船口末班 23:06、出町柳往鞍馬末班 22:30</td><td><i class="t ok">✅</i></td></tr><tr><td>御朱印時間</td><td>鞍馬寺官網未載，部落格寫 16:00（另一說 16:30）；上午就領完</td><td><i class="t ng">⚠️</i></td></tr><tr><td>徒步路段爬升</td><td>多宝塔駅 → 本殿 上 59 m；魔王殿 → 西門 下 132 m（Google）；纜車替你省掉九十九折</td><td><i class="t ng">⚠️</i></td></tr><tr><td>鞋</td><td>防滑的運動鞋；木の根道雨後濕滑</td><td><i class="t ng">⚠️</i></td></tr><tr><td>天氣・服裝</td><td>山內比市區涼，帶一件外套與雨具；4 月的氣溫與櫻花時機我沒有查證，請看出發前預報</td><td><i class="t ng">⚠️</i></td></tr><tr><td>提早多久到</td><td>07:40 發的 JR 提早 5～10 分到京都駅 8 番線；叡電 08:24 在出町柳 3 番線</td><td><i class="t ok">✅</i></td></tr><tr><td>行李</td><td>山路帶小背包，大件寄放在飯店；鞍馬與貴船沒有查到寄物櫃</td><td><i class="t ng">⚠️</i></td></tr></tbody></table></div>
+<h3>旅行 Checklist <small class="xs">勾選只存在這台裝置的瀏覽器裡</small></h3>
+<div class="cols">
+<div class="ckgrp">
+<label class="ck"><input type="checkbox" data-k="ic"> 交通 IC 卡（ICOCA 等），餘額 ¥2,000 以上</label>
+<label class="ck"><input type="checkbox" data-k="coin"> ¥100、¥500 硬幣（御朱印、愛山費、纜車 ¥200）</label>
+<label class="ck"><input type="checkbox" data-k="book"> 御朱印帳；書置き用的透明資料夾與紙膠水</label>
+<label class="ck"><input type="checkbox" data-k="shoes"> 防滑鞋、小背包、雨具</label>
+<label class="ck"><input type="checkbox" data-k="lunch"> 午餐：訂位或自備</label>
+<label class="ck"><input type="checkbox" data-k="water"> 水與零食（山路沒有查到補給點）</label>
+</div>
+<div class="ckgrp">
+<label class="ck"><input type="checkbox" data-k="tt"> 前一晚再看叡電 2027 年 4 月時刻</label>
+<label class="ck"><input type="checkbox" data-k="kibune"> 看貴船神社「お知らせ」（本宮參拝時間）</label>
+<label class="ck"><input type="checkbox" data-k="kurama"> 看鞍馬寺「お知らせ」（纜車、路況）</label>
+<label class="ck"><input type="checkbox" data-k="weather"> 看天氣預報，雨大改雨天版</label>
+<label class="ck"><input type="checkbox" data-k="maps"> Google Maps 離線地圖（山路訊號弱）</label>
+<label class="ck"><input type="checkbox" data-k="batt"> 手機電池與行動電源</label>
+</div></div>
+<h3>電話與搜尋關鍵字</h3>
+<div class="tw"><table class="dense"><thead><tr><th>地點</th><th>電話</th><th>來源</th></tr></thead><tbody><tr><td>鞍馬寺 寺務所</td><td>075-741-2003</td><td><i class="t ok">✅</i></td></tr><tr><td>貴船神社</td><td>075-741-2016</td><td><i class="t ok">✅</i></td></tr><tr><td>下鴨神社</td><td>075-781-0010</td><td><i class="t ok">✅</i></td></tr><tr><td>料理旅館 ひろ文</td><td>075-741-2147</td><td><i class="t ok">✅</i></td></tr></tbody></table></div>
+<p class="sm">Google Maps 搜尋：京都駅、東福寺駅 京阪、出町柳駅、鞍馬駅、鞍馬寺 仁王門、鞍馬山ケーブル 山門駅、鞍馬山ケーブル 多宝塔駅、鞍馬寺 本殿金堂、鞍馬寺 魔王殿、鞍馬寺 西門、貴船神社 本宮、貴船神社 結社、貴船神社 奥宮、貴船口駅、下鴨神社、河合神社。</p>
+<script>
+(function(){try{var K='kk-checklist-2027-04-08';var s=JSON.parse(localStorage.getItem(K)||'{}');document.querySelectorAll('input[data-k]').forEach(function(i){i.checked=!!s[i.dataset.k];i.addEventListener('change',function(){try{s[i.dataset.k]=i.checked;localStorage.setItem(K,JSON.stringify(s));}catch(e){}});});}catch(e){}})();
+</script>
+
+</section>
+<section class="sheet" id="p22" aria-label="第 22 頁 資料來源">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">22 / 24</span></header>
+
+<h2><i class="seal">基</i>資料來源</h2>
+<p class="xs">查證日 2026/10/05。官方頁面以瀏覽器實際開啟為準；搜尋引擎摘要只用來找網址，不標 ✅。叡電與京阪的時刻表是官網 PDF，京阪 PDF 文字抽取不全，時刻看渲染後的畫面。JR 時刻來自 JR 西日本「駅の時刻表」，2026/10/08（木）。</p>
+<div class="tw"><table class="dense"><thead><tr><th>來源（點名稱開啟）</th><th>網域</th><th>等級</th><th>用在</th></tr></thead><tbody><tr><td><a href="https://www.kuramadera.or.jp/">鞍馬寺 トップ（お知らせ・ケーブル・本殿開扉）</a></td><td>www.kuramadera.or.jp</td><td><i class="t ok">✅</i></td><td>本殿 9:00～16:15、ケーブル 8:40～、行事</td></tr><tr><td><a href="https://www.kuramadera.or.jp/access.html">鞍馬寺 交通・地図（コース）</a></td><td>www.kuramadera.or.jp</td><td><i class="t ok">✅</i></td><td>健腳コース各區間時間、ケーブル時刻</td></tr><tr><td><a href="https://www.kuramadera.or.jp/nyuzan.html">鞍馬寺 入山に際して</a></td><td>www.kuramadera.or.jp</td><td><i class="t ok">✅</i></td><td>愛山費 ¥500、ケーブル ¥200、霊宝殿 ¥200</td></tr><tr><td><a href="https://www.kuramadera.or.jp/annai.html">鞍馬寺 山内案内</a></td><td>www.kuramadera.or.jp</td><td><i class="t ok">✅</i></td><td>各堂の由緒</td></tr><tr><td><a href="https://www.kuramadera.or.jp/gyouji.html">鞍馬寺 年中行事</a></td><td>www.kuramadera.or.jp</td><td><i class="t ok">✅</i></td><td>花供養は 4 月中旬 8 日間</td></tr><tr><td><a href="https://www.kuramadera.or.jp/oshirase/">鞍馬寺 お知らせ</a></td><td>www.kuramadera.or.jp</td><td><i class="t ok">✅</i></td><td>ケーブル運休、検査日</td></tr><tr><td><a href="https://www.kuramadera.or.jp/reihoden.html">鞍馬寺 霊宝殿</a></td><td>www.kuramadera.or.jp</td><td><i class="t ok">✅</i></td><td>展示、国宝 毘沙門天三尊像</td></tr><tr><td><a href="https://kifunejinja.jp/">貴船神社 トップ</a></td><td>kifunejinja.jp</td><td><i class="t ok">✅</i></td><td>参拝時間、お知らせ</td></tr><tr><td><a href="https://kifunejinja.jp/info/">貴船神社 参拝のご案内</a></td><td>kifunejinja.jp</td><td><i class="t ok">✅</i></td><td>本宮 6:00～20:00（5/1～11/30）、授与所 9:00～17:00</td></tr><tr><td><a href="https://kifunejinja.jp/pray/">貴船神社 御祈祷・御守</a></td><td>kifunejinja.jp</td><td><i class="t ok">✅</i></td><td>御祈祷 9:00～15:00、朱印帳の授与</td></tr><tr><td><a href="https://kifunejinja.jp/access/">貴船神社 交通・アクセス</a></td><td>kifunejinja.jp</td><td><i class="t ok">✅</i></td><td>貴船口から徒歩 30 分（2 km）、バス 33</td></tr><tr><td><a href="https://kifunejinja.jp/event/">貴船神社 祭典・神事</a></td><td>kifunejinja.jp</td><td><i class="t ok">✅</i></td><td>4/1、4/3、4/29</td></tr><tr><td><a href="https://kifunejinja.jp/news/">貴船神社 お知らせ（本宮参拝時間について 2026/10/04）</a></td><td>kifunejinja.jp</td><td><i class="t ok">✅</i></td><td>日期による時間変更</td></tr><tr><td><a href="https://www.shimogamo-jinja.or.jp/">下鴨神社 トップ</a></td><td>www.shimogamo-jinja.or.jp</td><td><i class="t ok">✅</i></td><td>開閉門時間、定休日なし</td></tr><tr><td><a href="https://www.shimogamo-jinja.or.jp/access">下鴨神社 アクセス</a></td><td>www.shimogamo-jinja.or.jp</td><td><i class="t ok">✅</i></td><td>出町柳から徒歩 12 分、市バス 4・205</td></tr><tr><td><a href="https://www.shimogamo-jinja.or.jp/about/special">下鴨神社 特別拝観について</a></td><td>www.shimogamo-jinja.or.jp</td><td><i class="t ok">✅</i></td><td>大炊殿 10:00～16:00 ¥1,000</td></tr><tr><td><a href="https://www.shimogamo-jinja.or.jp/bireikigan">下鴨神社 美麗祈願（河合神社）</a></td><td>www.shimogamo-jinja.or.jp</td><td><i class="t ok">✅</i></td><td>鏡絵馬、鏡みくじ、方丈の庵</td></tr><tr><td><a href="https://eizandensha.co.jp/information/demachiyanagi/?di=2">叡山電車 時刻表 出町柳（鞍馬方面）</a></td><td>eizandensha.co.jp</td><td><i class="t ok">✅</i></td><td>2026/8/22 変更、平日・土休日</td></tr><tr><td><a href="https://eizandensha.co.jp/information/kibuneguchi/?di=5">叡山電車 時刻表 貴船口（出町柳方面）</a></td><td>eizandensha.co.jp</td><td><i class="t ok">✅</i></td><td>回程班次</td></tr><tr><td><a href="https://eizandensha.co.jp/information/kurama/?di=5">叡山電車 時刻表 鞍馬（出町柳方面）</a></td><td>eizandensha.co.jp</td><td><i class="t ok">✅</i></td><td>鞍馬發班次</td></tr><tr><td><a href="https://eizandensha.co.jp/information/kirara/?di=20">叡山電車 展望列車「きらら」時刻表（平日）</a></td><td>eizandensha.co.jp</td><td><i class="t ok">✅</i></td><td>◆ は水・木運休</td></tr><tr><td><a href="https://eizandensha.co.jp/about/kirara/">叡山電車 展望列車「きらら」</a></td><td>eizandensha.co.jp</td><td><i class="t ok">✅</i></td><td>特色、もみじのトンネル</td></tr><tr><td><a href="https://eizandensha.co.jp/guide/fare/">叡山電車 運賃のご案内</a></td><td>eizandensha.co.jp</td><td><i class="t ok">✅</i></td><td>普通運賃表（圖片，2023/4/1）</td></tr><tr><td><a href="https://www.keihan.co.jp/traffic/station/153/info.html">京阪 東福寺駅 時刻表・運賃</a></td><td>www.keihan.co.jp</td><td><i class="t ok">✅</i></td><td>時刻 20260822、運賃 2025/10/01 改定</td></tr><tr><td><a href="https://www.keihan.co.jp/traffic/station/180/info.html">京阪 出町柳駅 時刻表・運賃</a></td><td>www.keihan.co.jp</td><td><i class="t ok">✅</i></td><td>運賃 出町柳～七条・東福寺 ¥300</td></tr><tr><td><a href="https://www.keihan.co.jp/traffic/valueticket/detail/kuramakifune.html">京阪 地下鉄＆えいでん 鞍馬・貴船日帰りきっぷ</a></td><td>www.keihan.co.jp</td><td><i class="t ok">✅</i></td><td>¥2,100、有效期、バス不可</td></tr><tr><td><a href="https://www.keihan.co.jp/traffic/valueticket/detail/eizan1day.html">京阪 叡山電車・京阪電車 1日乗車券</a></td><td>www.keihan.co.jp</td><td><i class="t ok">✅</i></td><td>¥2,100、Surutto QRtto</td></tr><tr><td><a href="https://www.kyotobus.jp/route/fare/">京都バス 普通運賃・制度</a></td><td>www.kyotobus.jp</td><td><i class="t ok">✅</i></td><td>33 系統は IC 降車時 1 回、運賃表 2026/3/20</td></tr><tr><td><a href="https://www.jr-odekake.net/">JR 西日本 駅の時刻表（京都駅 奈良線）</a></td><td>www.jr-odekake.net</td><td><i class="t ok">✅</i></td><td>2026/10/08（木）；JR 西日本、ダイヤ改正 2026/10/03</td></tr><tr><td><a href="https://kyoto.travel/tw/getting-around/comfortable-access-to-kurama-kibune/">京都観光 Navi（鞍馬・貴船へのアクセス）</a></td><td>kyoto.travel</td><td><i class="t ok">✅</i></td><td>東福寺経由、3 分・12 分・28 分</td></tr><tr><td><a href="https://ja.kyoto.travel/news/format.php?id=562">京都観光 Navi（2026/6/27 大雨の影響）</a></td><td>ja.kyoto.travel</td><td><i class="t ok">✅</i></td><td>鞍馬・貴船は通常、バス 32/52 迂回</td></tr><tr><td><a href="https://hirobun.co.jp/">料理旅館 ひろ文</a></td><td>hirobun.co.jp</td><td><i class="t ok">✅</i></td><td>川床 5 月～、いろり、電話</td></tr><tr><td><a href="https://hirobun.co.jp/cuisine/">料理旅館 ひろ文 お料理</a></td><td>hirobun.co.jp</td><td><i class="t ok">✅</i></td><td>昼 11:00～15:00、4 月定休日 1・8・30</td></tr><tr><td><a href="https://omairi.club/spots/77931/goshuin">omairi.club 鞍馬寺</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/09/06、2026/08/27、2026/04/05、2025/12/27</td></tr><tr><td><a href="https://omairi.club/spots/77964/goshuin">omairi.club 貴船神社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/09/21、2026/09/06、2026/08/27</td></tr><tr><td><a href="https://omairi.club/spots/118761/goshuin">omairi.club 貴船神社 奥宮</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/07/19、2026/01/08、2025/11/15</td></tr><tr><td><a href="https://omairi.club/spots/77966/goshuin">omairi.club 下鴨神社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/10/01、2026/09/20、2026/02/09</td></tr><tr><td><a href="https://omairi.club/spots/84650/goshuin">omairi.club 河合神社</a></td><td>omairi.club</td><td><i class="t ph">📷</i></td><td>2026/08/27、2026/06/18、2026/08/15</td></tr><tr><td><a href="https://www.google.com/maps/">Google Maps（步行・電車）</a></td><td>www.google.com</td><td><i class="t ng">⚠️</i></td><td>步行時間、距離、爬升（截圖 2026/10/05）</td></tr><tr><td><a href="https://transit.yahoo.co.jp/">Yahoo!乗換案内</a></td><td>transit.yahoo.co.jp</td><td><i class="t ng">⚠️</i></td><td>JR 運賃 ¥150、京阪乗車時間、地鐵＋巴士案</td></tr><tr><td><a href="https://jinja-gosyuin.com/kuramadera-goshuin/">鞍馬寺 御朱印（舊部落格）</a></td><td>jinja-gosyuin.com</td><td><i class="t ng">⚠️</i></td><td>¥300、納經所、9:00～16:00</td></tr><tr><td><a href="https://gosyuin-kyoto.com/kifunejinja/">貴船神社 御朱印（舊部落格）</a></td><td>gosyuin-kyoto.com</td><td><i class="t ng">⚠️</i></td><td>本宮直書き、奧宮書置き、¥300</td></tr><tr><td><a href="https://newscast.jp/smart/news/9623616">京洛北 春の特別ご朱印めぐり 2026</a></td><td>newscast.jp</td><td><i class="t ng">⚠️</i></td><td>2026/2/4～4/30</td></tr><tr><td><a href="https://restaurant.ikyu.com/">一休.com レストラン（貴船）</a></td><td>restaurant.ikyu.com</td><td><i class="t ng">⚠️</i></td><td>ひろや等の營業時間（二手）</td></tr></tbody></table></div>
+
+</section>
+<section class="sheet" id="p23" aria-label="第 23 頁 照片授權與資料處理">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">23 / 24</span></header>
+
+<h2><i class="seal">基</i>照片授權與資料處理</h2>
+<h3>照片授權（全部來自 Wikimedia Commons，已縮為寬 1000 px）</h3>
+<div class="tw"><table class="dense"><thead><tr><th>用在</th><th>檔名</th><th>作者</th><th>授權</th><th>Commons</th></tr></thead><tbody><tr><td>鞍馬寺 仁王門</td><td>Kurama-Dera (Kyoto Sakyo-ku) gate Niomon hdsr S5 08.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_gate_Niomon_hdsr_S5_08.jpg">連結</a></td></tr><tr><td>阿吽の虎</td><td>Kurama-Dera (Kyoto Sakyo-ku) gate Niomon hdsr S5 03.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_gate_Niomon_hdsr_S5_03.jpg">連結</a></td></tr><tr><td>本殿金堂と金剛床</td><td>鞍馬寺本殿金堂 Main hall, Kurama-dera 2011.8.28 - panoramio.jpg</td><td>Nankou Oronain (as36…</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:%E9%9E%8D%E9%A6%AC%E5%AF%BA%E6%9C%AC%E6%AE%BF%E9%87%91%E5%A0%82_Main_hall,_Kurama-dera_2011.8.28_-_panoramio.jpg">連結</a></td></tr><tr><td>木の根道</td><td>Kurama-dera kinonemichi.jpg</td><td>KENPEI</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama-dera_kinonemichi.jpg">連結</a></td></tr><tr><td>本殿附近の展望</td><td>Kurama-Dera (Kyoto Sakyo-ku) Temple hdsr S5 17.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_Temple_hdsr_S5_17.jpg">連結</a></td></tr><tr><td>鞍馬寺の石段</td><td>Kurama-Dera (Kyoto Sakyo-ku) Temple hdsr S5 25.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama-Dera_(Kyoto_Sakyo-ku)_Temple_hdsr_S5_25.jpg">連結</a></td></tr><tr><td>魔王殿</td><td>Kurama-dera Okunoin Maoden.jpg</td><td>KENPEI</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama-dera_Okunoin_Maoden.jpg">連結</a></td></tr><tr><td>西門</td><td>Kurama-dera nishimon.jpg</td><td>KENPEI</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama-dera_nishimon.jpg">連結</a></td></tr><tr><td>鞍馬駅</td><td>Kurama station sign and Tengus 20200530.jpg</td><td>Hahifuheho</td><td>CC0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kurama_station_sign_and_Tengus_20200530.jpg">連結</a></td></tr><tr><td>貴船神社 本宮</td><td>Kifune-jinja (Kyoto Sakyo-ku) Hongū hdsr S5 02.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_(Kyoto_Sakyo-ku)_Hong%C5%AB_hdsr_S5_02.jpg">連結</a></td></tr><tr><td>本宮の馬像</td><td>Kifune-jinja (Kyoto Sakyo-ku) Hongū hdsr S5 04.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_(Kyoto_Sakyo-ku)_Hong%C5%AB_hdsr_S5_04.jpg">連結</a></td></tr><tr><td>本宮の水邊</td><td>Kifune-jinja (Kyoto Sakyo-ku) Hongū hdsr S5 18.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_(Kyoto_Sakyo-ku)_Hong%C5%AB_hdsr_S5_18.jpg">連結</a></td></tr><tr><td>奥宮 本殿</td><td>Kifune-jinja Okumiya honden.jpg</td><td>KENPEI</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_Okumiya_honden.jpg">連結</a></td></tr><tr><td>結社</td><td>Kifune-jinja Yuinoyashiro1.jpg</td><td>KENPEI</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_Yuinoyashiro1.jpg">連結</a></td></tr><tr><td>奥宮の船形石</td><td>Kifune-jinja Yuinoyashiro amenoiwafune.jpg</td><td>KENPEI</td><td>CC BY-SA 3.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kifune-jinja_Yuinoyashiro_amenoiwafune.jpg">連結</a></td></tr><tr><td>貴船川</td><td>Kibune (Kyoto Sakyo-ku) Kibune River hdsr S5 01.jpg</td><td>Hyppolyte de Saint-Rambert</td><td>CC BY 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kibune_(Kyoto_Sakyo-ku)_Kibune_River_hdsr_S5_01.jpg">連結</a></td></tr><tr><td>叡電鞍馬線</td><td>Eizan Kurama Line 2024 4.jpg</td><td>Smiley.toerist</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Eizan_Kurama_Line_2024_4.jpg">連結</a></td></tr><tr><td>きらら（900 系）</td><td>Eizan Electric Railway series Deo 900 near Ichihara Station (Kyoto).jpg</td><td>Norihiro Kataoka</td><td>CC BY-SA 2.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Eizan_Electric_Railway_series_Deo_900_near_Ichihara_Station_(Kyoto).jpg">連結</a></td></tr><tr><td>下鴨神社 楼門</td><td>Kyoto Shimogamo-jinja Romon 3.jpg</td><td>Zairon</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kyoto_Shimogamo-jinja_Romon_3.jpg">連結</a></td></tr><tr><td>糺の森</td><td>Shimogamo Forest (Tadasu no Mori).jpg</td><td>Cun Cun</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Shimogamo_Forest_(Tadasu_no_Mori).jpg">連結</a></td></tr><tr><td>河合神社</td><td>Kyoto Shimogamo-jinja Kawai-jinja 03.jpg</td><td>Zairon</td><td>CC BY-SA 4.0</td><td><a href="https://commons.wikimedia.org/wiki/File:Kyoto_Shimogamo-jinja_Kawai-jinja_03.jpg">連結</a></td></tr></tbody></table></div>
+<p class="xs">每張照片的圖說都附作者、授權、攝影年份與 Commons 頁面連結。貴船與鞍馬的照片有不少是 1 月拍的，有殘雪，4/8 的樹葉與景色會不同；2007～2012 年的照片與現況也可能有差。每一張都目視確認過內容與地點，貴船的檔案以「Kyoto Sakyo-ku」或 Kyoto 的 Commons 說明為準，沒有使用同名的其他縣市神社。</p>
+<h3>地圖</h3>
+<p class="sm">Google Maps 截圖，地圖資料 ©2026 Google，截取日期 2026/10/05，僅作個人行程參考。示意圖為自製，非地理比例。步行時間是 Google 的估算，不含參拜與停留。</p>
+<h3>資料是怎麼查的</h3>
+<ul class="l "><li>官方頁面用瀏覽器實際開啟，存下全文再讀；叡電與京阪的時刻表、運賃是官網 PDF 或圖片。</li><li>御朱印的授與方式（直書き／書置き）與日期，來自 omairi.club 的投稿，用 Claude in Chrome 讀取，標 <i class="t ph">📷</i> 並附日期。</li><li>舊部落格、轉乘網站、Google Maps 與一休.com 只當輔助，標 <i class="t ng">⚠️</i>。</li><li>所有「我的推算」「我的估算」都標 <i class="t ng">⚠️</i>，沒有標 <i class="t ok">✅</i> 的數字都不是官方原文。</li></ul>
+
+</section>
+<section class="sheet" id="p24" aria-label="第 24 頁 待確認事項">
+<header class="hd"><span><b>鞍馬・貴船一日手冊</b>　鞍馬寺・貴船神社・下鴨神社</span><span>2027/04/08（四）</span><span class="pg">24 / 24</span></header>
+
+<h2><i class="seal">基</i>待確認事項 <small>出發前一週再核對一次</small></h2>
+<div class="tw"><table class="dense"><thead><tr><th>#</th><th>要確認的事</th><th>現在的狀況</th><th>去哪裡確認</th></tr></thead><tbody><tr><td>1</td><td>叡電、京阪、JR 2027 年 4 月的時刻</td><td>現用 2026/8/22 版（叡電、京阪）與 2026/10/03 改正的 JR；主案 08:24、07:58、07:40 <i class="t ng">⚠️</i></td><td>叡電「時刻表」、京阪各站時刻表、JR 西日本駅の時刻表</td></tr><tr><td>2</td><td>叡電きらら 4/8 當天的運行</td><td>只知道 ◆ 的班次週三、週四不開；2027 年是否同樣未公布 <i class="t ok">✅</i></td><td>叡電 展望列車時刻表</td></tr><tr><td>3</td><td>貴船本宮 4 月的參拜時間與授與所</td><td>官網只寫 5/1～11/30 為 6:00～20:00；授與所 9:00～17:00 但「時期によって変更」 <i class="t ok">✅</i></td><td>貴船神社「お知らせ」、075-741-2016</td></tr><tr><td>4</td><td>貴船本宮・奧宮的初穂料與奧宮御朱印的授與位置</td><td>¥300／¥500 兩說；奧宮在哪裡領未見明確記載 <i class="t ng">⚠️</i></td><td>現場授與所、omairi 新投稿</td></tr><tr><td>5</td><td>鞍馬寺的御朱印時間、御朱印帳價格；纜車 09:20 班與付款方式</td><td>御朱印 16:00／16:30、帳 ¥2,000／¥3,000 是第三方資料；纜車每 20 分是推算，付款方式官網未載 <i class="t ng">⚠️</i></td><td>鞍馬寺 075-741-2003</td></tr><tr><td>6</td><td>下鴨神社與河合神社的御朱印授與時間與初穂料</td><td>官網未載 <i class="t ng">⚠️</i></td><td>下鴨神社 075-781-0010</td></tr><tr><td>7</td><td>午餐：ひろ文 4/8 的營業與預約；其他店</td><td>官網 4 月定休日列 1・8・30 日（年份未載）<i class="t ok">✅</i></td><td>ひろ文 075-741-2147</td></tr><tr><td>8</td><td>京都巴士 33 的時刻與運賃</td><td>¥230 為推算；時刻未取得 <i class="t ng">⚠️</i></td><td>京都巴士官網「時刻表検索」、京都バスナビ</td></tr><tr><td>9</td><td>鞍馬山ケーブルの 2027 年 4 月檢修日；山路與天候</td><td>官網只列 2026 年 7～10 月 <i class="t ok">✅</i></td><td>鞍馬寺「お知らせ」</td></tr><tr><td>10</td><td>「春の特別ご朱印めぐり」2027 年是否舉辦</td><td>2026 年為 2/4～4/30；2027 年未公布 <i class="t ng">⚠️</i></td><td>叡電官網新聞、各社寺</td></tr><tr><td>11</td><td>鞍馬寺 花供養（4 月中旬 8 天）的日程</td><td>官網寫「4 月中旬の 8 日間」，2027 日期未公布 <i class="t ok">✅</i></td><td>鞍馬寺 年中行事</td></tr><tr><td>12</td><td>京阪各班的停靠站、東福寺與出町柳的轉乘時間</td><td>只看過時刻表與 Yahoo 的 15 分 <i class="t ng">⚠️</i></td><td>京阪時刻表、現場站內看板</td></tr><tr><td>13</td><td>水占みくじ的初穂料、鞍馬寺山門的入山時間</td><td>水占 ¥200 是第三方資料；入山時間官網未載明 <i class="t ng">⚠️</i></td><td>貴船神社授與所、鞍馬寺 075-741-2003</td></tr><tr><td>14</td><td>兩張 ¥2,100 一日券 2027 年版</td><td>有效期只到 2027/3/31；此行不買，不影響行程 <i class="t ok">✅</i></td><td>京阪官網</td></tr></tbody></table></div>
+
+</section>
+</main>
